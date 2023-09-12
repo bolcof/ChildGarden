@@ -42,10 +42,7 @@ public class DisablePrefabs : Photon.MonoBehaviour
     private float countdownTime = 90.0f;
 
     private int winningPlayerID = -1;  // この行を追加
-
-
-
- void Awake()
+    void Awake()
     {
         //DontDestroyOnLoad(this.gameObject);
     }
