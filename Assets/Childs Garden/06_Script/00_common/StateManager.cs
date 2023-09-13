@@ -6,9 +6,6 @@ public class StateManager : MonoBehaviour
 {
     public static StateManager instance;
 
-    //Playerの絶対ID
-    public int myPlayerId;
-
     //使用しているSpawn PositionのID
     public int mySpawnPositionId;
 
@@ -23,5 +20,16 @@ public class StateManager : MonoBehaviour
             Destroy(gameObject);
         }
     mySpawnPositionId = -1;
+    }
+
+
+    //PlayerのRoom内ID
+    public int MyPlayerId() {
+        if (PhotonNetwork.connected && PhotonNetwork.inRoom) {
+            return PhotonNetwork.player.ID;
+        } else {
+            Debug.LogError("Out of Connect or Room!");
+            return -1;
+        }
     }
 }

@@ -77,6 +77,6 @@ public class GameManagerScript : Photon.PunBehaviour {
 
     [PunRPC]
     private void SetSpawnId(List<int> positionIdList) {
-        StateManager.instance.mySpawnPositionId = positionIdList[StateManager.instance.myPlayerId];
+        StateManager.instance.mySpawnPositionId = positionIdList[StateManager.instance.MyPlayerId()];
     }
 }
