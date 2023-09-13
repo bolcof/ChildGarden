@@ -29,7 +29,7 @@ public class GameManagerScript : Photon.PunBehaviour {
                 Debug.Log("aaaa masterClient");
                 // DONE ID全部ここから振り分けないと、クライアント側で処理が並行して被るリスクがある
                 List<int> positionIdList = RandomizedIdList();
-                photonView.RPC(nameof(SetSpawnId), PhotonTargets.AllBuffered, positionIdList);
+                photonView.RPC(nameof(SetSpawnId), PhotonTargets.All, positionIdList);
             } else {
                 Debug.Log("aaaa not masterClient");
                 // マスタークライアント以外のプレイヤーは、スポーンポイントの初期化情報を待つ
@@ -80,8 +80,8 @@ public class GameManagerScript : Photon.PunBehaviour {
     }
 
     [PunRPC]
-    private void SetSpawnId(List<int> positionIdList) {
-        Debug.Log("aaaa Set " + StateManager.instance.MyPlayerId().ToString() +positionIdList.ToString());
+    public void SetSpawnId(List<int> positionIdList) {
+        Debug.Log("aaaa Set " + StateManager.instance.MyPlayerId().ToString() + positionIdList.ToString());
         //PlayerIDは1から始まる
         StateManager.instance.mySpawnPositionId = positionIdList[StateManager.instance.MyPlayerId() - 1];
     }
