@@ -26,7 +26,7 @@ public class GameManagerScript : Photon.PunBehaviour
         if (PhotonNetwork.isMasterClient)
         {
             // マスタークライアントは、新しいプレイヤーに使用済みのスポーンポイントのインデックスを送信します。
-            photonView.RPC("InitializeUsedSpawnIndexes", PhotonTargets.Others, new List<int>(usedSpawnIndexes).ToArray());
+            //photonView.RPC("InitializeUsedSpawnIndexes", PhotonTargets.Others, new List<int>(usedSpawnIndexes).ToArray());
         }
         else
         {
