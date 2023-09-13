@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class StateManager : MonoBehaviour
 {
@@ -22,6 +23,10 @@ public class StateManager : MonoBehaviour
     mySpawnPositionId = -1;
     }
 
+    private void Update() {
+        InfomationText.instance.ChangeText("MyPlayerId : " + MyPlayerId().ToString() + "\n" +
+                              "mySpawnPositionId : " + mySpawnPositionId.ToString());
+    }
 
     //PlayerのRoom内ID
     public int MyPlayerId() {

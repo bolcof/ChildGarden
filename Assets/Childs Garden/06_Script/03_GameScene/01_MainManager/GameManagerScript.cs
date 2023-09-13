@@ -20,14 +20,18 @@ public class GameManagerScript : Photon.PunBehaviour {
         //     return;
         // })
 
+        Debug.Log("aaaa Start");
+
         //TODO ポジションが未設定だったらとしたいけど、本当は状態がそろっているかを確認した方が良い
         if (StateManager.instance.mySpawnPositionId == -1) {
 
             if (PhotonNetwork.isMasterClient) {
+                Debug.Log("aaaa masterClient");
                 // DONE ID全部ここから振り分けないと、クライアント側で処理が並行して被るリスクがある
                 List<int> positionIdList = RandomizedIdList();
                 photonView.RPC(nameof(SetSpawnId), PhotonTargets.AllBuffered, positionIdList);
             } else {
+                Debug.Log("aaaa not masterClient");
                 // マスタークライアント以外のプレイヤーは、スポーンポイントの初期化情報を待つ
                 StartCoroutine(WaitForSpawnPointsInitialization());
                 return;
@@ -77,6 +81,8 @@ public class GameManagerScript : Photon.PunBehaviour {
 
     [PunRPC]
     private void SetSpawnId(List<int> positionIdList) {
-        StateManager.instance.mySpawnPositionId = positionIdList[StateManager.instance.MyPlayerId()];
+        Debug.Log("aaaa Set " + StateManager.instance.MyPlayerId().ToString() +positionIdList.ToString());
+        //PlayerIDは1から始まる
+        StateManager.instance.mySpawnPositionId = positionIdList[StateManager.instance.MyPlayerId() - 1];
     }
 }
