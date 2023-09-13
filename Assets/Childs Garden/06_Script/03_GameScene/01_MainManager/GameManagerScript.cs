@@ -3,99 +3,80 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameManagerScript : Photon.PunBehaviour
-{
+public class GameManagerScript : Photon.PunBehaviour {
     public GameObject playerPrefab;
     public GameObject otherPrefab; // 新しいプレハブ
     public GameObject otherPrefab2;
     public Vector3[] spawnPoints;
     public PhotonView photonView;
 
-    // すでに使用された座標のインデックスを記録するHashSet
-    private HashSet<int> usedSpawnIndexes = new HashSet<int>();
-    
+    private List<int> spawnPositionIds = new List<int>();
 
-    void Start()
-    {
+    //TODO 本当はStartで始めるのもイマイチ。シーンが始まること自体をどこかで一元管理したい
+    void Start() {
         // if (!PhotonNetwork.connected)
         // {
         //     SceneManager.LoadScene("Launcher");
         //     return;
-        // }
+        // })
 
-        if (PhotonNetwork.isMasterClient)
-        {
-            // マスタークライアントは、新しいプレイヤーに使用済みのスポーンポイントのインデックスを送信します。
-            photonView.RPC("InitializeUsedSpawnIndexes", PhotonTargets.Others, new List<int>(usedSpawnIndexes).ToArray());
-        }
-        else
-        {
-            // マスタークライアント以外のプレイヤーは、スポーンポイントの初期化情報を待つ
-            StartCoroutine(WaitForSpawnPointsInitialization());
-            return;
-        }
+        //TODO ポジションが未設定だったらとしたいけど、本当は状態がそろっているかを確認した方が良い
+        if (StateManager.instance.mySpawnPositionId == -1) {
 
-        SpawnPlayer();
-    }
-
-    IEnumerator WaitForSpawnPointsInitialization()
-    {
-        yield return new WaitUntil(() => usedSpawnIndexes.Count > 0);
-        SpawnPlayer();
-    }
-
-    void SpawnPlayer()
-    {
-        // ランダムな座標を選択
-        Vector3 randomSpawnPoint = GetRandomSpawnPoint();
-        GameObject Player = PhotonNetwork.Instantiate(this.playerPrefab.name, randomSpawnPoint, Quaternion.identity, 0);
-        // 同じ座標のY軸+2に別のプレハブを生成
-        PhotonNetwork.Instantiate(this.otherPrefab.name, new Vector3(randomSpawnPoint.x, randomSpawnPoint.y + 2, randomSpawnPoint.z), Quaternion.identity, 0);
-        // 同じ座標に別のプレハブを生成
-        PhotonNetwork.Instantiate(this.otherPrefab2.name, new Vector3(randomSpawnPoint.x, randomSpawnPoint.y, randomSpawnPoint.z), Quaternion.identity, 0);
-
-
-        // 使用した座標のインデックスを記録
-        int usedSpawnIndex = System.Array.IndexOf(spawnPoints, randomSpawnPoint);
-        photonView.RPC("UpdateUsedSpawnIndexes", PhotonTargets.AllBuffered, usedSpawnIndex);
-    }
-
-    // まだ使用されていない座標のインデックスを取得するメソッド
-    List<int> GetAvailableSpawnIndexes()
-    {
-        List<int> availableSpawnIndexes = new List<int>();
-
-        for (int i = 0; i < spawnPoints.Length; i++)
-        {
-            if (!usedSpawnIndexes.Contains(i))
-            {
-                availableSpawnIndexes.Add(i);
+            if (PhotonNetwork.isMasterClient) {
+                // DONE ID全部ここから振り分けないと、クライアント側で処理が並行して被るリスクがある
+                List<int> positionIdList = RandomizedIdList();
+                photonView.RPC(nameof(SetSpawnId), PhotonTargets.AllBuffered, positionIdList);
+            } else {
+                // マスタークライアント以外のプレイヤーは、スポーンポイントの初期化情報を待つ
+                StartCoroutine(WaitForSpawnPointsInitialization());
+                return;
             }
         }
 
-        return availableSpawnIndexes;
+        SpawnPlayer();
     }
 
-    // ランダムな座標を取得するメソッド
-    Vector3 GetRandomSpawnPoint()
-    {
-        List<int> availableSpawnIndexes = GetAvailableSpawnIndexes();
+    IEnumerator WaitForSpawnPointsInitialization() {
+        yield return new WaitUntil(() => StateManager.instance.mySpawnPositionId != -1);
+        SpawnPlayer();
+    }
 
-        if (availableSpawnIndexes.Count == 0)
-        {
-            Debug.LogError("No available spawn points!");
-            return Vector3.zero;
+    void SpawnPlayer() {
+        // ランダムな座標を選択
+        Vector3 spawnPoint = spawnPoints[StateManager.instance.mySpawnPositionId];
+        GameObject Player = PhotonNetwork.Instantiate(this.playerPrefab.name, spawnPoint, Quaternion.identity, 0);
+        // 同じ座標のY軸+2に別のプレハブを生成
+        PhotonNetwork.Instantiate(this.otherPrefab.name, new Vector3(spawnPoint.x, spawnPoint.y + 2, spawnPoint.z), Quaternion.identity, 0);
+        // 同じ座標に別のプレハブを生成
+        PhotonNetwork.Instantiate(this.otherPrefab2.name, new Vector3(spawnPoint.x, spawnPoint.y, spawnPoint.z), Quaternion.identity, 0);
+    }
+
+    private List<int> RandomizedIdList() {
+
+        if (StateManager.instance.PlayerNum > spawnPositionIds.Count) {
+            Debug.LogError("playerNum cannot be greater than spawnPositionIds");
+            return new List<int>();
         }
 
-        int randomIndex = UnityEngine.Random.Range(0, availableSpawnIndexes.Count);
-        int spawnIndex = availableSpawnIndexes[randomIndex];
+        List<int> positionList = new List<int>();
+        List<int> randomizeList = new List<int>();
 
-        return spawnPoints[spawnIndex];
+        for (int i = 0; i < spawnPositionIds.Count; i++) {
+            positionList.Add(i);
+        }
+
+        for (int i = 0; i < StateManager.instance.PlayerNum; i++) {
+            int index = Random.Range(0, positionList.Count);
+            randomizeList.Add(positionList[index]);
+            positionList.RemoveAt(index);
+        }
+
+        return randomizeList;
     }
 
     [PunRPC]
-    void UpdateUsedSpawnIndexes(int usedIndex)
-    {
-        usedSpawnIndexes.Add(usedIndex);
+    private void SetSpawnId(List<int> positionIdList) {
+        StateManager.instance.mySpawnPositionId = positionIdList[StateManager.instance.myPlayerId];
     }
 }
