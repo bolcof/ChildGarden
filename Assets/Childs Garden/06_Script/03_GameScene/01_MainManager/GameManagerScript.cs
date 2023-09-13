@@ -27,11 +27,13 @@ public class GameManagerScript : Photon.PunBehaviour
         {
             // マスタークライアントは、新しいプレイヤーに使用済みのスポーンポイントのインデックスを送信します。
             //photonView.RPC("InitializeUsedSpawnIndexes", PhotonTargets.Others, new List<int>(usedSpawnIndexes).ToArray());
+            Debug.Log("aaaa isMasterClient");
         }
         else
         {
             // マスタークライアント以外のプレイヤーは、スポーンポイントの初期化情報を待つ
             StartCoroutine(WaitForSpawnPointsInitialization());
+            Debug.Log("aaaa isNotMasterClient");
             return;
         }
 
@@ -44,8 +46,8 @@ public class GameManagerScript : Photon.PunBehaviour
         SpawnPlayer();
     }
 
-    void SpawnPlayer()
-    {
+    void SpawnPlayer() {
+        Debug.Log("aaaa SpawnPlayer");
         // ランダムな座標を選択
         Vector3 randomSpawnPoint = GetRandomSpawnPoint();
         GameObject Player = PhotonNetwork.Instantiate(this.playerPrefab.name, randomSpawnPoint, Quaternion.identity, 0);
@@ -94,8 +96,8 @@ public class GameManagerScript : Photon.PunBehaviour
     }
 
     [PunRPC]
-    void UpdateUsedSpawnIndexes(int usedIndex)
-    {
+    void UpdateUsedSpawnIndexes(int usedIndex) {
+        Debug.Log("aaaa UpdateUsed");
         usedSpawnIndexes.Add(usedIndex);
     }
 }
