@@ -2,7 +2,7 @@ using UnityEngine;
 using Photon;
 using UnityEngine.SceneManagement;
 
-public class MasterSceneChangerA : Photon.MonoBehaviour
+public class StaticSceneManager : Photon.MonoBehaviour
 {
     private int highestIntValuePlayerID = -1;
 
@@ -15,7 +15,7 @@ public class MasterSceneChangerA : Photon.MonoBehaviour
 
     public void ChangeToNextScene()
     {
-    string currentScene = SceneManager.GetActiveScene().name;
+    string currentScene = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
     string targetScene = GetNextSceneBasedOnCurrent(currentScene);  // ここでtargetSceneを定義
 
     if (PhotonNetwork.isMasterClient && !string.IsNullOrEmpty(targetScene))
@@ -45,6 +45,6 @@ public class MasterSceneChangerA : Photon.MonoBehaviour
         }
     }
     
-//------------------------エンディングのシーン分岐--------------------------------
+//TODO ------------------------エンディングのシーン分岐--------------------------------
   
 }
