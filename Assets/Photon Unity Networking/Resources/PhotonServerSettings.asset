@@ -72,4 +72,7 @@ MonoBehaviour:
   - RequestLastScene
   - RequestLastSceneRPC
   - IncreaseCount
+  - SetSpawnId
+  - TestRPC
+  - SetSpawnId_2player
   DisableAutoOpenWizard: 1

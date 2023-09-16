@@ -1,9 +1,8 @@
-﻿using System.Collections;
+﻿﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StateManager : MonoBehaviour
-{
+public class StateManager : MonoBehaviour {
     public static StateManager instance;
 
     //使用しているSpawn PositionのID
@@ -19,9 +18,13 @@ public class StateManager : MonoBehaviour
         } else {
             Destroy(gameObject);
         }
-    mySpawnPositionId = -1;
+        mySpawnPositionId = -1;
     }
 
+    private void Update() {
+        InfomationText.instance.ChangeText("MyPlayerId : " + MyPlayerId().ToString() + "\n" +
+                              "mySpawnPositionId : " + mySpawnPositionId.ToString());
+    }
 
     //PlayerのRoom内ID
     public int MyPlayerId() {
