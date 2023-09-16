@@ -85,7 +85,7 @@ public class GameManagerScript : Photon.PunBehaviour {
     [PunRPC] public void SetSpawnId_2player(int player1posId, int player2posId) {
         //PlayerIDは1から始まる
         Debug.Log("aaaa SetSpawnId_2player");
-        switch (StateManager.instance.PlayerNum) {
+        switch (StateManager.instance.MyPlayerId()) {
             case 1:
                 StateManager.instance.mySpawnPositionId = player1posId;
                 Debug.Log("aaaa Set " + StateManager.instance.MyPlayerId().ToString() + " -- " + player1posId.ToString());
