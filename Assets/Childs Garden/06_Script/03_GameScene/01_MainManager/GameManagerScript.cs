@@ -14,27 +14,27 @@ public class GameManagerScript : Photon.PunBehaviour {
     //TODO 本当はStartで始めるのもイマイチ。シーンが始まること自体をどこかで一元管理したい
     void Start() {
 
-        Debug.Log("aaaa Start");
+        Debug.Log("Game Start");
 
         //TODO ポジションが未設定だったらとしたいけど、本当は状態がそろっているかを確認した方が良い
         if (StateManager.instance.mySpawnPositionId == -1) {
 
             if (PhotonNetwork.isMasterClient) {
-                Debug.Log("aaaa masterClient");
+                Debug.Log("I'm masterClient");
                 // DONE ID全部ここから振り分けないと、クライアント側で処理が並行して被るリスクがある
                 List<int> positionIdList = RandomizedIdList();
-                Debug.Log("aaaa " + string.Join(",", positionIdList));
+                Debug.Log("positionID list :  " + string.Join(",", positionIdList));
                 switch (StateManager.instance.PlayerNum) {
                     case 2:
-                        Debug.Log("aaaa 2player");
+                        Debug.Log("2player Play");
                         photonView.RPC(nameof(SetSpawnId_2player), PhotonTargets.All, positionIdList[0], positionIdList[1]);
                         break;
                     default:
-                        Debug.LogAssertion("aaaa wrong playerNum!");
+                        Debug.LogAssertion("wrong playerNum!");
                         break;
                 }
             } else {
-                Debug.Log("aaaa not masterClient");
+                Debug.Log("I'm not masterClient");
                 // マスタークライアント以外のプレイヤーは、スポーンポイントの初期化情報を待つ
                 StartCoroutine(WaitForSpawnPointsInitialization());
                 return;
@@ -84,23 +84,18 @@ public class GameManagerScript : Photon.PunBehaviour {
 
     [PunRPC] public void SetSpawnId_2player(int player1posId, int player2posId) {
         //PlayerIDは1から始まる
-        Debug.Log("aaaa SetSpawnId_2player");
         switch (StateManager.instance.MyPlayerId()) {
             case 1:
                 StateManager.instance.mySpawnPositionId = player1posId;
-                Debug.Log("aaaa Set " + StateManager.instance.MyPlayerId().ToString() + " -- " + player1posId.ToString());
+                Debug.Log("Set Player" + StateManager.instance.MyPlayerId().ToString() + " -> PositionID:" + player1posId.ToString());
                 break;
             case 2:
                 StateManager.instance.mySpawnPositionId = player2posId;
-                Debug.Log("aaaa Set " + StateManager.instance.MyPlayerId().ToString() + " -- " + player2posId.ToString());
+                Debug.Log("Set Player" + StateManager.instance.MyPlayerId().ToString() + " -> PositionID:" + player2posId.ToString());
                 break;
             default:
-                Debug.Log("aaaa wrong Player Num int SetSpawnPlayerId");
+                Debug.LogError("wrong Player Num int SetSpawnPlayerId");
                 break;
         }
-    }
-
-    [PunRPC] public void TestRPC() {
-        Debug.Log("aaaa getPRC");
     }
 }
