@@ -897,7 +897,6 @@ GameObject:
   - component: {fileID: 1570753560}
   - component: {fileID: 1570753559}
   - component: {fileID: 1570753562}
-  - component: {fileID: 1570753563}
   m_Layer: 0
   m_Name: DisableObj
   m_TagString: Untagged
@@ -976,27 +975,12 @@ MonoBehaviour:
   ownershipTransfer: 0
   ObservedComponents:
   - {fileID: 1570753559}
-  - {fileID: 1570753563}
+  - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 3
   instantiationId: 3
   currentMasterID: -1
   isRuntimeInstantiated: 0
---- !u!114 &1570753563
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1570753558}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8c54d9d129326094d8b1ed47d0a5aeeb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  randomScenesForOtherPlayers:
-  - badEND_A
-  - badEND_B
 --- !u!1001 &6263078448015262698
 PrefabInstance:
   m_ObjectHideFlags: 0

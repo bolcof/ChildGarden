@@ -10,6 +10,7 @@ public class CreateRayPoint : Photon.PunBehaviour
     private float distance = 20.0f;
     private Camera camera;
 
+    [SerializeField] string onbutsuFolderName;
     public GameObject[] s1Prefabs;
     private int number;
     private GameObject spawnPosition;
@@ -69,7 +70,7 @@ public class CreateRayPoint : Photon.PunBehaviour
             {
                 number = Random.Range(0, s1Prefabs.Length);
                 Vector3 spawnPosition = hit.point + Vector3.up * 0.5f;
-                PhotonNetwork.Instantiate(s1Prefabs[number].name, spawnPosition, Quaternion.identity, 0);
+                PhotonNetwork.Instantiate(onbutsuFolderName + s1Prefabs[number].name, spawnPosition, Quaternion.identity, 0);
                 currentHp = 0;
                 Debug.Log("value : " + currentHp);
                 SmallObj.SetActive (false);
@@ -85,7 +86,7 @@ public class CreateRayPoint : Photon.PunBehaviour
             {
                 number = Random.Range(0, s2Prefabs.Length);
                 Vector3 spawnPosition = hit.point + Vector3.up * 0.5f;
-                PhotonNetwork.Instantiate(s2Prefabs[number].name, spawnPosition, Quaternion.identity, 0);
+                PhotonNetwork.Instantiate(onbutsuFolderName + s2Prefabs[number].name, spawnPosition, Quaternion.identity, 0);
                 currentHp = 0;
                 Debug.Log("value : " + currentHp);
                 MiddleObj.SetActive (false);
@@ -102,7 +103,7 @@ public class CreateRayPoint : Photon.PunBehaviour
             {
                 number = Random.Range(0, s3Prefabs.Length);
                 Vector3 spawnPosition = hit.point + Vector3.up * 0.5f;
-                PhotonNetwork.Instantiate(s3Prefabs[number].name, spawnPosition, Quaternion.identity, 0);
+                PhotonNetwork.Instantiate(onbutsuFolderName + s3Prefabs[number].name, spawnPosition, Quaternion.identity, 0);
                 currentHp = 0;
                 Debug.Log("value : " + currentHp);
                 targetSlider3.SetActive (false);
