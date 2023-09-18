@@ -6,8 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : Photon.PunBehaviour {
     public GameObject playerPrefab;
-    public GameObject otherPrefab; // 新しいプレハブ
-    public GameObject otherPrefab2;
+    public GameObject myBoxStand;
+    public GameObject myFloorObject;
     public Vector3[] spawnPoints;
     public PhotonView photonView;
 
@@ -54,9 +54,9 @@ public class GameManager : Photon.PunBehaviour {
         Vector3 spawnPoint = spawnPoints[StateManager.instance.mySpawnPositionId];
         GameObject Player = PhotonNetwork.Instantiate(this.playerPrefab.name, spawnPoint, Quaternion.identity, 0);
         // 同じ座標のY軸+2に別のプレハブを生成
-        PhotonNetwork.Instantiate(this.otherPrefab.name, new Vector3(spawnPoint.x, spawnPoint.y + 2, spawnPoint.z), Quaternion.identity, 0);
+        PhotonNetwork.Instantiate(this.myBoxStand.name, new Vector3(spawnPoint.x, spawnPoint.y + 2, spawnPoint.z), Quaternion.identity, 0);
         // 同じ座標に別のプレハブを生成
-        PhotonNetwork.Instantiate(this.otherPrefab2.name, new Vector3(spawnPoint.x, spawnPoint.y, spawnPoint.z), Quaternion.identity, 0);
+        PhotonNetwork.Instantiate(this.myFloorObject.name, new Vector3(spawnPoint.x, spawnPoint.y, spawnPoint.z), Quaternion.identity, 0);
     }
 
     private List<int> RandomizedIdList() {
