@@ -35,7 +35,7 @@ public class ReadyCounter : PunBehaviour // PunBehaviourを継承
 
     IEnumerator StartCountdown()
     {
-        int countdownTime = 10; 
+        int countdownTime = 6; 
         while(countdownTime > 0)
         {
             countdownText.text = countdownTime.ToString(); 
@@ -60,8 +60,7 @@ public class ReadyCounter : PunBehaviour // PunBehaviourを継承
         }
         else if (currentScene == "test_Rule") // "test_Rule"からゲームシーンへ
         {
-            //TODO "MainGame"へ遷移
-            PhotonNetwork.LoadLevel("testA_0822");
+            PhotonNetwork.LoadLevel("MainGame");
         }
         // 必要に応じて他のシーンの条件も追加してください
     }

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6139479934375681399}
   - component: {fileID: 43374952608955690}
   m_Layer: 0
-  m_Name: 07_OnbutuFloorCount
+  m_Name: OnbutuCounter_Floor
   m_TagString: UI_Rule_01
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

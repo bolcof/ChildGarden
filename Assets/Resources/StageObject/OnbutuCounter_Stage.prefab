@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 3822697961935312886}
   - component: {fileID: 9207650543924305118}
   m_Layer: 0
-  m_Name: 07_OnbutuStageCount
+  m_Name: OnbutuCounter_Stage
   m_TagString: UI_Rule_02
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
