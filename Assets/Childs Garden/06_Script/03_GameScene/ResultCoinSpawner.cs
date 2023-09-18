@@ -12,10 +12,11 @@ public class ResultCoinSpawner : MonoBehaviour
     {
         if (hasInstantiated) return;
 
-        if (TagRegistry.Instance.HasWinLoseTaggedObject())
+        //TODO TagRegistry‚ªÁ‚¦‚½HH
+        /*if (TagRegistry.Instance.HasWinLoseTaggedObject())
         {
             Instantiate(prefabToInstantiate, Vector3.zero, Quaternion.identity);
             hasInstantiated = true;
-        }
+        }*/
     }
 }
