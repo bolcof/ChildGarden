@@ -31,7 +31,7 @@ public class StateManager : MonoBehaviour {
         if (PhotonNetwork.connected && PhotonNetwork.inRoom) {
             return PhotonNetwork.player.ID;
         } else {
-            Debug.LogAssertion("Out of Connect or Room!");
+            Debug.LogWarning("Out of Connect or Room!");
             return -1;
         }
     }
