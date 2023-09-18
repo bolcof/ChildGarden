@@ -4,7 +4,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameManagerScript : Photon.PunBehaviour {
+public class GameManager : Photon.PunBehaviour {
     public GameObject playerPrefab;
     public GameObject otherPrefab; // 新しいプレハブ
     public GameObject otherPrefab2;

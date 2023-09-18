@@ -176,9 +176,7 @@ public class DisablePrefabs : Photon.MonoBehaviour
     // 現在のシーンが "testC_0822" であるかのチェックを追加
     if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "testC_0822")
     {
-        
         Debug.Log("Current scene is testC_0822");
-        
     }
 
 
@@ -206,7 +204,7 @@ public class DisablePrefabs : Photon.MonoBehaviour
     private void RequestSceneChangeRPC()
     {
         // この部分はMasterClientのみ実行します。
-        MasterSceneChangerA sceneChanger = FindObjectOfType<MasterSceneChangerA>();
+        StaticSceneManager sceneChanger = FindObjectOfType<StaticSceneManager>();
         if (sceneChanger != null)
         {
             sceneChanger.ChangeToNextScene();

@@ -15,19 +15,15 @@ public class ReadyCounter : PunBehaviour // PunBehaviourを継承
 
     public GameObject ReadyObj;
 
-    
-    public void Ready()
-    {
 
+    public void Ready() {
         photonView.RPC("IncreaseCount", PhotonTargets.AllBuffered); // PhotonTargets.AllBufferedを使用
         PlayObj.SetActive(false);
         ReadyObj.SetActive(true);
-        
     }
 
     [PunRPC]
-    void IncreaseCount()
-    {
+    void IncreaseCount() {
         count++;
         Debug.Log("Ready is called. Count is now: " + count);
 
@@ -57,8 +53,7 @@ public class ReadyCounter : PunBehaviour // PunBehaviourを継承
 {
     string currentScene = SceneManager.GetActiveScene().name;
 
-    if (count >= 2)
-    {
+    if (count >= 2) {
         if (currentScene == "Launcher") // "Launcher"からtest_Ruleへ
         {
             PhotonNetwork.LoadLevel("test_Rule");
