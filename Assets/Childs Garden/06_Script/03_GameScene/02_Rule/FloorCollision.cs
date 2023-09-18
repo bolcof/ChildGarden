@@ -2,7 +2,7 @@ using UnityEngine;
 using Photon;
 using System.Collections.Generic;
 
-public class OnbutuCollision1 : Photon.PunBehaviour
+public class FloorCollision : Photon.PunBehaviour
 {
     private int collisionCount = 0; // 衝突回数をカウント
     public BoxCollider2D areaCollider; // 監視エリアのコライダー
@@ -15,7 +15,6 @@ public class OnbutuCollision1 : Photon.PunBehaviour
     private bool losePlayer = false; // 敗北プレイヤーフラグ（ローカル変数）
 
     public GameObject winPrefab; // 勝利時に表示するプレハブ
-
     private bool hasLogged = false; // ログが出力されたかどうかのフラグ
 
     private int winningPlayerID = -1; // 勝利プレイヤーのPlayerIDを保存する変数
@@ -35,14 +34,15 @@ public class OnbutuCollision1 : Photon.PunBehaviour
             if (pv != null && pv.isMine)
             {
                 collisionCount++;
-                Debug.Log("台の上に落とした個数: " + collisionCount);
+                Debug.Log("床の上に落とした個数: " + collisionCount);
 
-           if (collisionCount >= 7)
+           if (collisionCount >= 10)
         {
-            Debug.Log("02目標達成: " + collisionCount);
+            Debug.Log("01目標達成: " + collisionCount);
             photonView.RPC("SetSharedFlagTrue", PhotonTargets.AllBuffered);
             photonView.RPC("SetWinningPlayerID", PhotonTargets.AllBuffered, PhotonNetwork.player.ID); // PlayerIDを送信
             Instantiate(winPrefab, new Vector3(0, 0, -0.1f), Quaternion.identity);
+
         }
             }
         }

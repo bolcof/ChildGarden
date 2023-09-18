@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class LauncherScript_2 : Photon.PunBehaviour
+public class RoomConector : Photon.PunBehaviour
 {
     #region Private変数
     string _gameVersion = "test"; 
@@ -48,12 +48,6 @@ public class LauncherScript_2 : Photon.PunBehaviour
     {
         Debug.Log("ルームの入室に失敗しました。");
         PhotonNetwork.CreateRoom("TestRoom");
-    }
-
-    public override void OnJoinedRoom()
-    {
-        Debug.Log("ルームに入りました。");
-        //PhotonNetwork.LoadLevel("testA_0822");
     }
     #endregion
 }

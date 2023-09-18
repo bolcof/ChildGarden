@@ -23,9 +23,9 @@ public class PlayerIDSpawner : Photon.PunBehaviour
 
     private void Update()
     {
-        if (hasSpawned || FindObjectOfType<OnbutuCollision>().GetWinningPlayerID() == -1) return;
+        if (hasSpawned || FindObjectOfType<FloorCollision>().GetWinningPlayerID() == -1) return;
 
-        int winningPlayerID = FindObjectOfType<OnbutuCollision>().GetWinningPlayerID();
+        int winningPlayerID = FindObjectOfType<FloorCollision>().GetWinningPlayerID();
         string currentScene = SceneManager.GetActiveScene().name;
 
         GameObject winPrefab = null;
