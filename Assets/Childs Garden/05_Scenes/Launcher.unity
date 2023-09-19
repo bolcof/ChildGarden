@@ -1018,11 +1018,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5903803611291626504, guid: 27d483796a632e54b903d520372de0ec, type: 3}
       propertyPath: viewIdField
-      value: 1
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 5903803611291626504, guid: 27d483796a632e54b903d520372de0ec, type: 3}
       propertyPath: instantiationId
-      value: 1
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 6419869568090711289, guid: 27d483796a632e54b903d520372de0ec, type: 3}
       propertyPath: m_Name
