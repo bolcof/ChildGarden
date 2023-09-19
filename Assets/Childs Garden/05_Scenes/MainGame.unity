@@ -201,7 +201,7 @@ GameObject:
   - component: {fileID: 376276458}
   - component: {fileID: 376276460}
   m_Layer: 0
-  m_Name: "\u5E8A"
+  m_Name: StaticFloor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -344,7 +344,7 @@ GameObject:
   - component: {fileID: 416879808}
   - component: {fileID: 416879810}
   m_Layer: 0
-  m_Name: "\u80CC\u666F"
+  m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -814,6 +814,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1293520240}
   - component: {fileID: 1293520239}
+  - component: {fileID: 1293520242}
   - component: {fileID: 1293520241}
   m_Layer: 0
   m_Name: GameManager
@@ -834,15 +835,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43b2e5e07218c7145b91c3ebad3c19b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerPrefab: {fileID: 1008348657628407914, guid: 927b10ad5486da74291bc531566b1040, type: 3}
-  myBoxStand: {fileID: 7810039791910776433, guid: 6434851dc3934574e85aa49164bf8c52, type: 3}
-  myFloorObject: {fileID: 5974127771125067840, guid: 0b4153f1c10ecac41b8e0a8011dfb286, type: 3}
-  spawnPoints:
-  - {x: -6.3, y: -2.5, z: 0}
-  - {x: -2.3, y: -2.5, z: 0}
-  - {x: 2.3, y: -2.5, z: 0}
-  - {x: 6.3, y: -2.5, z: 0}
-  photonView: {fileID: 1293520241}
 --- !u!4 &1293520240
 Transform:
   m_ObjectHideFlags: 0
@@ -886,6 +878,27 @@ MonoBehaviour:
   instantiationId: 99
   currentMasterID: -1
   isRuntimeInstantiated: 0
+--- !u!114 &1293520242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1293520238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c378749de8884024e9e8dd557e38154a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerPrefab: {fileID: 1008348657628407914, guid: 927b10ad5486da74291bc531566b1040, type: 3}
+  myBoxStand: {fileID: 7810039791910776433, guid: 6434851dc3934574e85aa49164bf8c52, type: 3}
+  myFloorObject: {fileID: 5974127771125067840, guid: 0b4153f1c10ecac41b8e0a8011dfb286, type: 3}
+  spawnPoints:
+  - {x: -6.3, y: -2.5, z: 0}
+  - {x: -2.3, y: -2.5, z: 0}
+  - {x: 2.3, y: -2.5, z: 0}
+  - {x: 6.3, y: -2.5, z: 0}
+  photonView: {fileID: 1293520241}
 --- !u!1 &1570753558
 GameObject:
   m_ObjectHideFlags: 0
