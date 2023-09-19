@@ -48,6 +48,7 @@ public class DisablePrefabs : Photon.MonoBehaviour
     }
     void Start()
     {
+        //Checked シンプルに不要
         currentCamera = Instantiate(initialCameraPrefab, new Vector3(0, 0, -10), Quaternion.identity);
     }
 
