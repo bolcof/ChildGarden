@@ -9,7 +9,7 @@ public class ReadyCounter : PunBehaviour // PunBehaviourを継承
     private int count = 0;
     public TextMeshProUGUI countdownText;
 
-    public string nextSceneName = "YourNextSceneName"; 
+    public string nextSceneName = "YourNextSceneName";
 
     public GameObject PlayObj;
 
@@ -33,12 +33,10 @@ public class ReadyCounter : PunBehaviour // PunBehaviourを継承
         }
     }
 
-    IEnumerator StartCountdown()
-    {
-        int countdownTime = 6; 
-        while(countdownTime > 0)
-        {
-            countdownText.text = countdownTime.ToString(); 
+    IEnumerator StartCountdown() {
+        int countdownTime = 6;
+        while (countdownTime > 0) {
+            countdownText.text = countdownTime.ToString();
             yield return new WaitForSeconds(1);
             countdownTime--;
         }
@@ -49,37 +47,41 @@ public class ReadyCounter : PunBehaviour // PunBehaviourを継承
         HandleSceneChange();
     }
 
-    void HandleSceneChange()
-{
-    string currentScene = SceneManager.GetActiveScene().name;
+    void HandleSceneChange() {
+        string currentScene = SceneManager.GetActiveScene().name;
 
-    if (count >= 2) {
-        if (currentScene == "Launcher") // "Launcher"からtest_Ruleへ
-        {
-            PhotonNetwork.LoadLevel("test_Rule");
-        }
-        else if (currentScene == "test_Rule") // "test_Rule"からゲームシーンへ
-        {
-            PhotonNetwork.LoadLevel("MainGame");
-        }
-        // 必要に応じて他のシーンの条件も追加してください
-    }
-    else
-    {
-        if (currentScene == "Launcher") // "Launcher"時に一人しか押していない
-        {
-            SceneManager.LoadScene(currentScene); // 現在のシーンをリロード
-        }
-        else if (currentScene == "test_Rule") //"test_Rule"時にカウントダウンをリセット
-        {
-            PlayObj.SetActive(true);
-            ReadyObj.SetActive(false);
+        if (count >= 2) {
+            if (currentScene == "Launcher") // "Launcher"からtest_Ruleへ
+            {
+                PhotonNetwork.LoadLevel("test_Rule");
+            } else if (currentScene == "test_Rule") // "test_Rule"からゲームシーンへ
+              {
+                PhotonNetwork.LoadLevel("MainGame");
+            }
+            // 必要に応じて他のシーンの条件も追加してください
+        } else {
+            if (currentScene == "Launcher") // "Launcher"時に一人しか押していない
+            {
+                SceneManager.LoadScene(currentScene); // 現在のシーンをリロード
+            } else if (currentScene == "test_Rule") //"test_Rule"時にカウントダウンをリセット
+              {
+                PlayObj.SetActive(true);
+                ReadyObj.SetActive(false);
 
-            // カウントダウンの値とテキストをリセット
-            countdownText.text = "10"; // 初期値に戻す
-            count = 0; // カウント値をリセット
-            StopAllCoroutines(); // 既に実行中のカウントダウンを停止
+                // カウントダウンの値とテキストをリセット
+                countdownText.text = "10"; // 初期値に戻す
+                count = 0; // カウント値をリセット
+                StopAllCoroutines(); // 既に実行中のカウントダウンを停止
+            }
         }
     }
-}
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
+        //これが無いと動くけどエラーが出る
+        if (stream.isWriting) {
+            // ここにオブジェクトの状態を送信するコードを書きます
+        } else {
+            // ここにオブジェクトの状態を受信して更新するコードを書きます
+        }
+    }
 }

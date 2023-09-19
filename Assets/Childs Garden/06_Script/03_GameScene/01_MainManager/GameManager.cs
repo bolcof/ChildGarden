@@ -81,8 +81,17 @@ public class GameManager : Photon.PunBehaviour {
 
         return randomizeList;
     }
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
+        //これが無いと動くけどエラーが出る
+        if (stream.isWriting) {
+            // ここにオブジェクトの状態を送信するコードを書きます
+        } else {
+            // ここにオブジェクトの状態を受信して更新するコードを書きます
+        }
+    }
 
-    [PunRPC] public void SetSpawnId_2player(int player1posId, int player2posId) {
+    [PunRPC]
+    public void SetSpawnId_2player(int player1posId, int player2posId) {
         //PlayerIDは1から始まる
         switch (StateManager.instance.MyPlayerId()) {
             case 1:

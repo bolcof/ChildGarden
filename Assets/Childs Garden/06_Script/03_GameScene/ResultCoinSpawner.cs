@@ -1,15 +1,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ResultCoinSpawner : MonoBehaviour
-{
+public class ResultCoinSpawner : MonoBehaviour {
     [SerializeField]
     private GameObject prefabToInstantiate;
 
     private bool hasInstantiated = false;
 
-    private void Update()
-    {
+    private void Update() {
         if (hasInstantiated) return;
 
         //TODO TagRegistryÇ™è¡Ç¶ÇΩÅHÅH

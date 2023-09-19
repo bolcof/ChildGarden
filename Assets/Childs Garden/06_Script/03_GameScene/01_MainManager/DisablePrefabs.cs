@@ -51,95 +51,79 @@ public class DisablePrefabs : Photon.MonoBehaviour
         currentCamera = Instantiate(initialCameraPrefab, new Vector3(0, 0, -10), Quaternion.identity);
     }
 
-    void Update()
-    {
-//----------------------勝者が決まった時そのIDを取得し、カメラを切り替えてクリックが利かないようにする----------------------------------
+    void Update() {
+        //----------------------勝者が決まった時そのIDを取得し、カメラを切り替えてクリックが利かないようにする----------------------------------
 
-         bool currentFlagState = false;
+        bool currentFlagState = false;
 
-        foreach (var flagSource in sharedFlagSources)
-        {
+        foreach (var flagSource in sharedFlagSources) {
             GameObject clone = GameObject.Find(flagSource.prefab.name + "(Clone)");
-            if (clone)
-            {
+            if (clone) {
                 UnityEngine.MonoBehaviour sourceComponent = clone.GetComponent(flagSource.sourceComponent.GetType()) as UnityEngine.MonoBehaviour;
-                if (sourceComponent)
-                {
+                if (sourceComponent) {
                     bool sharedFlag = (bool)sourceComponent.GetType().GetMethod(flagSource.sharedFlagMethodName).Invoke(sourceComponent, null);
                     currentFlagState = currentFlagState || sharedFlag;
 
-                    if (sharedFlag)
-                    {
+                    if (sharedFlag) {
                         winningPlayerID = (int)sourceComponent.GetType().GetMethod(flagSource.winningPlayerIDMethodName).Invoke(sourceComponent, null);
                     }
                 }
             }
         }
 
-        if (currentFlagState)
-        {
-            foreach (GameObject prefab in prefabsToDisable)
-            {
+        if (currentFlagState) {
+            foreach (GameObject prefab in prefabsToDisable) {
                 GameObject clone = GameObject.Find(prefab.name + "(Clone)");
-                if (clone)
-                {
+                if (clone) {
                     Destroy(clone);
                 }
             }
 
-            if (!previousFlagState)
-            {
+            if (!previousFlagState) {
                 Debug.Log("地蔵召喚条件をすべてOFFにします");
                 previousFlagState = true;
 
                 Destroy(currentCamera);
                 currentCamera = Instantiate(alternateCameraPrefab, new Vector3(0, 0, -10), Quaternion.identity);
 
-                if (PhotonNetwork.player.ID != winningPlayerID)
-                {
+                if (PhotonNetwork.player.ID != winningPlayerID) {
                     Instantiate(losePrefab, new Vector3(0, 0, -0.1f), Quaternion.identity);
                     //Instantiate(loseCoinPrefab, new Vector3(0, 0, -0.1f), Quaternion.identity);
                 }
 
                 StartCoroutine(SpawnAndDestroyZizou(winningPlayerID));
-               // IncreaseWinningPlayerCount(winningPlayerID);  // <-- この行を追加
+                // IncreaseWinningPlayerCount(winningPlayerID);  // <-- この行を追加
             }
 
         }
 
-//----------------------ルール選択ボタンを押した数をカウントする----------------------------------
+        //----------------------ルール選択ボタンを押した数をカウントする----------------------------------
 
         GameObject[] objectsWithTag = GameObject.FindGameObjectsWithTag(targetTag);
         // ターゲットのタグを持つオブジェクトの数が増加している場合、カウントを増やす
-        if (objectsWithTag.Length > lastCount)
-        {
+        if (objectsWithTag.Length > lastCount) {
             count += (objectsWithTag.Length - lastCount);
             Debug.Log("現状のint値: " + count);
         }
 
         lastCount = objectsWithTag.Length;
 
-       // int値が2になった瞬間にprefabNextStageを一つだけ生成する
-        if (count == 2 && !nextStagePrefabCreated)
-        {
+        // int値が2になった瞬間にprefabNextStageを一つだけ生成する
+        if (count == 2 && !nextStagePrefabCreated) {
             Instantiate(prefabNextStage, new Vector3(0, 0, 0), Quaternion.identity);
             nextStagePrefabCreated = true;
             StartCoroutine(NextStage());
             count = 0;
         }
-
     }
-//----------------------カウントダウンタイマー---------------------------------
-    IEnumerator DelayedStart()
-    {
+    //----------------------カウントダウンタイマー---------------------------------
+    IEnumerator DelayedStart() {
         yield return new WaitForSeconds(5.0f);  // 5秒待つ
         StartCoroutine(StartCountdown());
     }
 
-    IEnumerator StartCountdown()
-    {
-        while (countdownTime > 0)
-        {
+    IEnumerator StartCountdown() {
+        while (countdownTime > 0) {
             //分と秒に変換
             int minutes = Mathf.FloorToInt(countdownTime / 60);
             int seconds = Mathf.FloorToInt(countdownTime % 60);
@@ -153,18 +137,17 @@ public class DisablePrefabs : Photon.MonoBehaviour
 
         countdownText.text = "00:00";
 
-       RequestSceneChange();
+        RequestSceneChange();
     }
 
    
 
-//----------------------ルール選択ボタンを押した数を返す----------------------------------
-     public int GetCount()
-    {
+    //----------------------ルール選択ボタンを押した数を返す----------------------------------
+    public int GetCount() {
         return count;
     }
 
-//----------------------地蔵菩薩を出して消す----------------------------------------------------
+    //----------------------地蔵菩薩を出して消す----------------------------------------------------
     IEnumerator SpawnAndDestroyZizou(int winningPlayerID)
     {
     yield return new WaitForSeconds(4f);
@@ -179,8 +162,7 @@ public class DisablePrefabs : Photon.MonoBehaviour
         Debug.Log("Current scene is testC_0822");
     }
 
-
-//----------------------勝者のIDを取得し、勝者と敗者それぞれにルールプレハブを生成。勝者以外はボタンのついてないパネルを出す----------------------------------
+        //----------------------勝者のIDを取得し、勝者と敗者それぞれにルールプレハブを生成。勝者以外はボタンのついてないパネルを出す----------------------------------
         if (PhotonNetwork.player.ID == winningPlayerID)
         {
             Instantiate(ruleSelectPrefab, new Vector3(0, 0, 0), Quaternion.identity);
@@ -191,13 +173,21 @@ public class DisablePrefabs : Photon.MonoBehaviour
             Instantiate(ruleWaitingPrefab, new Vector3(0, 0, 0), Quaternion.identity);
         }
     }
-//-----------------------Photonを用いたシーン移動------------------------------
+    //-----------------------Photonを用いたシーン移動------------------------------
 
- // この関数を呼び出すと、マスタークライアントにシーンの変更をリクエストします。
+    // この関数を呼び出すと、マスタークライアントにシーンの変更をリクエストします。
     public void RequestSceneChange()
     {
         // RPCを使用して、MasterSceneChangerAのRequestSceneChangeを呼び出します。
         photonView.RPC("RequestSceneChangeRPC", PhotonTargets.MasterClient);
+    }
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
+        //これが無いと動くけどエラーが出る
+        if (stream.isWriting) {
+            // ここにオブジェクトの状態を送信するコードを書きます
+        } else {
+            // ここにオブジェクトの状態を受信して更新するコードを書きます
+        }
     }
 
     [PunRPC]

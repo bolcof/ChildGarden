@@ -22,8 +22,8 @@ public class StateManager : MonoBehaviour {
     }
 
     private void Update() {
-        InfomationText.instance.ChangeText("MyPlayerId : " + MyPlayerId().ToString() + "\n" +
-                              "mySpawnPositionId : " + mySpawnPositionId.ToString());
+        //InfomationText.instance.ChangeText("MyPlayerId : " + MyPlayerId().ToString() + "\n" +
+        "mySpawnPositionId : " + mySpawnPositionId.ToString());
     }
 
     //PlayerのRoom内ID
