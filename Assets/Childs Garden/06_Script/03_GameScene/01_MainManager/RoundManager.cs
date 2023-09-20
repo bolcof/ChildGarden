@@ -1,18 +1,19 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RoundManager : MonoBehaviour
-{
-    // Start is called before the first frame update
-    void Start()
-    {
+public class RoundManager : Photon.PunBehaviour {
+
+    public void FirstRoundStart() {
         
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    //これが無いと動くけどエラーが出る
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
+        if (stream.isWriting) {
+            // ここにオブジェクトの状態を送信するコードを書きます
+        } else {
+            // ここにオブジェクトの状態を受信して更新するコードを書きます
+        }
     }
 }

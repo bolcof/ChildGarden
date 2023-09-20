@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class RuleManager : Photon.PunBehaviour {
 
-    public struct Rule {
+    [System.Serializable] public struct Rule {
         public int id;
-        public string checkMethodName;
         public string explainText;
     }
 
@@ -14,6 +13,10 @@ public class RuleManager : Photon.PunBehaviour {
 
     //TODO 複数になるかも
     public Rule currentRule;
+
+    public void SetFirstRound() {
+        currentRule = rules[0];
+    }
 
     private void Update() {
         switch (currentRule.id) {

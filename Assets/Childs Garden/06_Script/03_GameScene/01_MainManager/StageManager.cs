@@ -13,7 +13,7 @@ public class StageManager : MonoBehaviour {
     public int mySpawnPositionId = -1;
 
     //TODO 本当はStartで始めるのもイマイチ。シーンが始まること自体をどこかで一元管理したい
-    void Start() {
+    public void SetStage() {
 
         Debug.Log("Game Start");
 
