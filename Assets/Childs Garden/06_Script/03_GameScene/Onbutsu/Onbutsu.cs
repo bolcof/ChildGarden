@@ -5,7 +5,7 @@ using UnityEngine;
 public class Onbutsu : MonoBehaviour {
     public bool isMine;
 
-    public int SpawnerID, StagingID;
+    public int holderID, StagingID;
 
     public bool hasLand_Stage, hasLand_Floor;
     public bool Landing_Stage, Landing_Floor;
@@ -16,7 +16,7 @@ public class Onbutsu : MonoBehaviour {
         Landing_Floor = false;
         Landing_Stage = false;
 
-        SpawnerID = MatchingStateManager.instance.MyPlayerId();
+        holderID = MatchingStateManager.instance.MyPlayerId();
         StagingID = -1;
     }
 }

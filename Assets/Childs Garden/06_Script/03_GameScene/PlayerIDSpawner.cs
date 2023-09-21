@@ -23,9 +23,9 @@ public class PlayerIDSpawner : Photon.PunBehaviour
 
     private void Update()
     {
-        if (hasSpawned || FindObjectOfType<FloorCollision>().GetWinningPlayerID() == -1) return;
+        //if (hasSpawned || FindObjectOfType<FloorCollision>().GetWinningPlayerID() == -1) return;
 
-        int winningPlayerID = FindObjectOfType<FloorCollision>().GetWinningPlayerID();
+        //int winningPlayerID = FindObjectOfType<FloorCollision>().GetWinningPlayerID();
         string currentScene = SceneManager.GetActiveScene().name;
 
         GameObject winPrefab = null;
@@ -55,14 +55,14 @@ public class PlayerIDSpawner : Photon.PunBehaviour
                 break;
         }
 
-        if (PhotonNetwork.player.ID == winningPlayerID)
+        /*if (PhotonNetwork.player.ID == winningPlayerID)
         {
             Instantiate(winPrefab, new Vector3(0, 0, -0.1f), Quaternion.identity);
         }
         else
         {
             Instantiate(otherPrefab, new Vector3(0, 0, -0.1f), Quaternion.identity);
-        }
+        }*/
 
         hasSpawned = true;
     }
