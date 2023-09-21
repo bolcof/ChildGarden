@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 1113080413354913990}
   - component: {fileID: 6796365695608782511}
   - component: {fileID: 5016651911332977807}
+  - component: {fileID: 740175262518066898}
   m_Layer: 0
   m_Name: big04
   m_TagString: Onbutu
@@ -255,3 +256,15 @@ CircleCollider2D:
   m_Offset: {x: 0.0011504611, y: -0.0013336365}
   serializedVersion: 2
   m_Radius: 0.009054538
+--- !u!114 &740175262518066898
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5395433203299632838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11d5834e54fea194a8f904605c1d9c95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
