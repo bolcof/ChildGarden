@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MachingStateManager : MonoBehaviour {
-    public static MachingStateManager instance;
+public class MatchingStateManager : MonoBehaviour {
+    public static MatchingStateManager instance;
 
     //対戦人数
     public int PlayerNum = 2;
