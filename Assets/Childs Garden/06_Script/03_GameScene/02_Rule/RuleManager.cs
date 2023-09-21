@@ -43,6 +43,7 @@ public class RuleManager : Photon.PunBehaviour {
 
     //Ruleごとに作る
     public bool CheckRule1() {
+        //自分のうつわに自分のオブジェクトが１つ乗ったらクリア
         return false;
     }
 }
