@@ -24,7 +24,7 @@ public class StageManager : MonoBehaviour {
                 // DONE ID全部ここから振り分けないと、クライアント側で処理が並行して被るリスクがある
                 List<int> positionIdList = RandomizedIdList();
                 Debug.Log("positionID list :  " + string.Join(",", positionIdList));
-                switch (MachingStateManager.instance.PlayerNum) {
+                switch (MatchingStateManager.instance.PlayerNum) {
                     case 2:
                         Debug.Log("2player Play");
                         photonView.RPC(nameof(SetSpawnId_2player), PhotonTargets.All, positionIdList[0], positionIdList[1]);
@@ -61,7 +61,7 @@ public class StageManager : MonoBehaviour {
 
     private List<int> RandomizedIdList() {
 
-        if (MachingStateManager.instance.PlayerNum > spawnPoints.Count) {
+        if (MatchingStateManager.instance.PlayerNum > spawnPoints.Count) {
             Debug.LogError("playerNum cannot be greater than spawnPositionIds");
             return new List<int>();
         }
@@ -73,7 +73,7 @@ public class StageManager : MonoBehaviour {
             positionIdList.Add(i);
         }
 
-        for (int i = 0; i < MachingStateManager.instance.PlayerNum; i++) {
+        for (int i = 0; i < MatchingStateManager.instance.PlayerNum; i++) {
             int index = Random.Range(0, positionIdList.Count);
             randomizeList.Add(positionIdList[index]);
             positionIdList.RemoveAt(index);
@@ -93,14 +93,14 @@ public class StageManager : MonoBehaviour {
     [PunRPC]
     public void SetSpawnId_2player(int player1posId, int player2posId) {
         //PlayerIDは1から始まる
-        switch (MachingStateManager.instance.MyPlayerId()) {
+        switch (MatchingStateManager.instance.MyPlayerId()) {
             case 1:
                 mySpawnPositionId = player1posId;
-                Debug.Log("Set Player" + MachingStateManager.instance.MyPlayerId().ToString() + " -> PositionID:" + player1posId.ToString());
+                Debug.Log("Set Player" + MatchingStateManager.instance.MyPlayerId().ToString() + " -> PositionID:" + player1posId.ToString());
                 break;
             case 2:
                 mySpawnPositionId = player2posId;
-                Debug.Log("Set Player" + MachingStateManager.instance.MyPlayerId().ToString() + " -> PositionID:" + player2posId.ToString());
+                Debug.Log("Set Player" + MatchingStateManager.instance.MyPlayerId().ToString() + " -> PositionID:" + player2posId.ToString());
                 break;
             default:
                 Debug.LogError("wrong Player Num int SetSpawnPlayerId");
