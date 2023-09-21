@@ -53,10 +53,8 @@ public class StageManager : MonoBehaviour {
         // ランダムな座標を選択
         Vector3 spawnPoint = spawnPoints[mySpawnPositionId];
         GameObject Player = PhotonNetwork.Instantiate("Box/" + this.playerPrefab.name, spawnPoint, Quaternion.identity, 0);
-        // 同じ座標のY軸+2に別のプレハブを生成
+        // 同じ座標のY軸+2にStageを生成
         PhotonNetwork.Instantiate("StageObject/" + this.myBoxStand.name, new Vector3(spawnPoint.x, spawnPoint.y + 2, spawnPoint.z), Quaternion.identity, 0);
-        // 同じ座標に別のプレハブを生成
-        PhotonNetwork.Instantiate("StageObject/" + this.myFloorObject.name, new Vector3(spawnPoint.x, spawnPoint.y, spawnPoint.z), Quaternion.identity, 0);
     }
 
     private List<int> RandomizedIdList() {

@@ -14,30 +14,29 @@ public class FloorCollision : UnityEngine.MonoBehaviour {
     }
 
     private void OnTriggerEnter2D(Collider2D collider) {
-
-        PhotonView photonView = GetComponent<PhotonView>();
-        if (collider.gameObject.CompareTag("Onbutu") && photonView.owner.ID == MatchingStateManager.instance.MyPlayerId()) {
+        if (collider.gameObject.CompareTag("Onbutu")) {
             var currentOnbutsu = collider.gameObject.GetComponent<Onbutsu>();
+            if (!currentOnbutsu.hasLand_Floor) {
 
-            currentOnbutsu.hasLand_Floor = true;
-            currentOnbutsu.Landing_Floor = true;
+                currentOnbutsu.hasLand_Floor = true;
+                currentOnbutsu.Landing_Floor = true;
 
-            if (currentOnbutsu.holderID == -1) {
-                Debug.LogError("Onbutsu ID is Wrong!");
-            } else if (currentOnbutsu.holderID == MatchingStateManager.instance.MyPlayerId()) {
-                Debug.Log("Land Floor My Onbutsu");
-                myOnbutsuCount++;
-                sumOnbutsuCount++;
-            } else {
-                Debug.Log("Land Floor Others Onbutsu");
-                othersOnbutsuCount++;
-                sumOnbutsuCount++;
+                if (currentOnbutsu.holderID == -1) {
+                    Debug.LogError("Onbutsu ID is Wrong!");
+                } else if (currentOnbutsu.holderID == MatchingStateManager.instance.MyPlayerId()) {
+                    Debug.Log("Land Floor My Onbutsu");
+                    myOnbutsuCount++;
+                    sumOnbutsuCount++;
+                } else {
+                    Debug.Log("Land Floor Others Onbutsu");
+                    othersOnbutsuCount++;
+                    sumOnbutsuCount++;
+                }
+                Debug.Log(
+                    "床の自分のおんぶつ:" + myOnbutsuCount.ToString()
+                    + "床の相手のおんぶつ:" + othersOnbutsuCount.ToString()
+                    + "合計:" + sumOnbutsuCount.ToString());
             }
-            Debug.Log(
-                photonView.owner.ID.ToString() + " → " 
-                +"床の自分のおんぶつ:" + myOnbutsuCount.ToString()
-                + "床の相手のおんぶつ:" + othersOnbutsuCount.ToString()
-                + "合計:" + sumOnbutsuCount.ToString());
         }
     }
 
