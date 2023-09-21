@@ -10,4 +10,13 @@ public class PlayingView : MonoBehaviour {
     [SerializeField] List<Image> roundResults;
     [SerializeField] TMP_Text timerLabel;
     [SerializeField] Image progressBar;
+    [SerializeField] GameObject winObject, loseObject;
+
+    public void AppearWinObject() {
+        winObject.SetActive(true);
+    }
+
+    public void AppearLoseObject() {
+        loseObject.SetActive(true);
+    }
 }

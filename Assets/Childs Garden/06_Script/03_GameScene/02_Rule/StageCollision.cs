@@ -2,8 +2,10 @@ using UnityEngine;
 using Photon;
 using System.Collections.Generic;
 
-public class StageCollision : Photon.PunBehaviour
-{
+public class StageCollision : Photon.PunBehaviour {
+    public bool isMine;
+    public int holderId;
+
     private int collisionCount = 0; // 衝突回数をカウント
     public BoxCollider2D areaCollider; // 監視エリアのコライダー
 
@@ -35,8 +37,8 @@ public class StageCollision : Photon.PunBehaviour
 
                 if (collisionCount >= 7) {
                     Debug.Log("02目標達成: " + collisionCount);
-                    photonView.RPC("SetSharedFlagTrue", PhotonTargets.AllBuffered);
-                    photonView.RPC("SetWinningPlayerID", PhotonTargets.AllBuffered, PhotonNetwork.player.ID); // PlayerIDを送信
+                    photonView.RPC(nameof(SetSharedFlagTrue), PhotonTargets.AllBuffered);
+                    photonView.RPC(nameof(SetWinningPlayerID), PhotonTargets.AllBuffered, PhotonNetwork.player.ID); // PlayerIDを送信
                     Instantiate(winPrefab, new Vector3(0, 0, -0.1f), Quaternion.identity);
                 }
             }
@@ -53,24 +55,20 @@ public class StageCollision : Photon.PunBehaviour
     }
 
     [PunRPC]
-    void SetWinningPlayerID(int playerID)
-    {
+    void SetWinningPlayerID(int playerID) {
         winningPlayerID = playerID;
     }
 
-    public int GetWinningPlayerID()
-    {
+    public int GetWinningPlayerID() {
         return winningPlayerID;
     }
 
     [PunRPC]
-    void SetSharedFlagTrue()
-    {
+    void SetSharedFlagTrue() {
         sharedFlag = true;
     }
 
-    public bool GetSharedFlag()
-    {
+    public bool GetSharedFlag() {
         return sharedFlag;
     }
 }

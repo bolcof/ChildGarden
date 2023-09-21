@@ -3,25 +3,50 @@ using Photon;
 using System.Collections.Generic;
 
 public class FloorCollision : UnityEngine.MonoBehaviour {
-    private int collisionCount = 0; // 衝突回数をカウント
-    public BoxCollider2D areaCollider; // 監視エリアのコライダー
+    public int sumOnbutsuCount = 0;
+    public int othersOnbutsuCount = 0;
+    public int myOnbutsuCount = 0;
 
-    public GameObject winPrefab; // 勝利時に表示するプレハブ
-
-    private int winningPlayerID = -1; // 勝利プレイヤーのPlayerIDを保存する変数
-
-    private void Start() {
-        
+    public void ResetCount() {
+        sumOnbutsuCount = 0;
+        othersOnbutsuCount = 0;
+        myOnbutsuCount= 0;
     }
 
     private void OnTriggerEnter2D(Collider2D collider) {
-        if (collider.gameObject.CompareTag("Onbutu")) {
 
-            PhotonView pv = collider.gameObject.GetComponent<PhotonView>();
-            if (pv != null && pv.isMine) {
-                collisionCount++;
-                Debug.Log("床の上に落とした個数: " + collisionCount);
+        PhotonView photonView = GetComponent<PhotonView>();
+        if (collider.gameObject.CompareTag("Onbutu") && photonView.owner.ID == MatchingStateManager.instance.MyPlayerId()) {
+            var currentOnbutsu = collider.gameObject.GetComponent<Onbutsu>();
+
+            currentOnbutsu.hasLand_Floor = true;
+            currentOnbutsu.Landing_Floor = true;
+
+            if (currentOnbutsu.holderID == -1) {
+                Debug.LogError("Onbutsu ID is Wrong!");
+            } else if (currentOnbutsu.holderID == MatchingStateManager.instance.MyPlayerId()) {
+                Debug.Log("Land Floor My Onbutsu");
+                myOnbutsuCount++;
+                sumOnbutsuCount++;
+            } else {
+                Debug.Log("Land Floor Others Onbutsu");
+                othersOnbutsuCount++;
+                sumOnbutsuCount++;
             }
+            Debug.Log(
+                photonView.owner.ID.ToString() + " → " 
+                +"床の自分のおんぶつ:" + myOnbutsuCount.ToString()
+                + "床の相手のおんぶつ:" + othersOnbutsuCount.ToString()
+                + "合計:" + sumOnbutsuCount.ToString());
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collider) {
+
+        if (collider.gameObject.CompareTag("Onbutu")) {
+            var currentOnbutsu = collider.gameObject.GetComponent<Onbutsu>();
+
+            currentOnbutsu.Landing_Floor = false;
         }
     }
 

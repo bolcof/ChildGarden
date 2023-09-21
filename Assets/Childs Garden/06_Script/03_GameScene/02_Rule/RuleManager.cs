@@ -46,4 +46,8 @@ public class RuleManager : Photon.PunBehaviour {
         //自分のうつわに自分のオブジェクトが１つ乗ったらクリア
         return false;
     }
+
+    [PunRPC] public void DecideWinner() {
+
+    }
 }

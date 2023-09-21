@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Onbutsu : MonoBehaviour {
-    public bool isMine;
-
     public int holderID, StagingID;
 
     public bool hasLand_Stage, hasLand_Floor;
@@ -16,7 +14,8 @@ public class Onbutsu : MonoBehaviour {
         Landing_Floor = false;
         Landing_Stage = false;
 
-        holderID = MatchingStateManager.instance.MyPlayerId();
+        PhotonView photonView = GetComponent<PhotonView>();
+        holderID = photonView.owner.ID;
         StagingID = -1;
     }
 }
