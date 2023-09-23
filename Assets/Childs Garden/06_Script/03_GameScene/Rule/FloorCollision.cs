@@ -10,7 +10,7 @@ public class FloorCollision : UnityEngine.MonoBehaviour {
     public void ResetCount() {
         sumOnbutsuCount = 0;
         othersOnbutsuCount = 0;
-        myOnbutsuCount= 0;
+        myOnbutsuCount = 0;
     }
 
     private void OnTriggerEnter2D(Collider2D collider) {
@@ -21,9 +21,9 @@ public class FloorCollision : UnityEngine.MonoBehaviour {
                 currentOnbutsu.hasLand_Floor = true;
                 currentOnbutsu.Landing_Floor = true;
 
-                if (currentOnbutsu.holderID == -1) {
+                if (currentOnbutsu.holderId == -1) {
                     Debug.LogError("Onbutsu ID is Wrong!");
-                } else if (currentOnbutsu.holderID == MatchingStateManager.instance.MyPlayerId()) {
+                } else if (currentOnbutsu.holderId == MatchingStateManager.instance.MyPlayerId()) {
                     Debug.Log("Land Floor My Onbutsu");
                     myOnbutsuCount++;
                     sumOnbutsuCount++;
