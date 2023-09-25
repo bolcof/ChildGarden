@@ -13,7 +13,7 @@ public class RuleSelectView : Photon.PunBehaviour {
     [SerializeField] private GameObject RuleSubjectButton;
     [SerializeField] private GameObject DecideButton;
 
-    private List<RuleSubjectButton> buttonsList = new List<RuleSubjectButton>();
+    public List<RuleSubjectButton> buttonsList = new List<RuleSubjectButton>();
     private int currentSelectRuleId;
 
     public void Set(bool isWinner) {
@@ -83,5 +83,6 @@ public class RuleSelectView : Photon.PunBehaviour {
         foreach (var rsb in buttonsList) {
             Destroy(rsb.gameObject);
         }
+        buttonsList.Clear();
     }
 }
