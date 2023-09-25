@@ -146,6 +146,7 @@ GameObject:
   - component: {fileID: 3554106113455095057}
   - component: {fileID: 3166467343589746658}
   - component: {fileID: 4820280205380213294}
+  - component: {fileID: 5210750633111739109}
   m_Layer: 5
   m_Name: RuleSubjectButton
   m_TagString: Untagged
@@ -254,4 +255,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3166467343589746658}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5210750633111739109}
+        m_TargetAssemblyTypeName: RuleSubjectButton, Assembly-CSharp
+        m_MethodName: PushRuleButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &5210750633111739109
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4473809504833402531}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebb7fa84546264d358fafb40cdccfc33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  label: {fileID: 3195862656068761547}
+  appearedId: 0
+  thisButtonsRuleId: 0

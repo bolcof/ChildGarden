@@ -17,6 +17,7 @@ public class PlayingView : MonoBehaviour {
     [SerializeField] GameObject winObject, loseObject;
     private bool hasWin;
     [SerializeField] GameObject toRuleSelectButton;
+    [SerializeField] GameObject ruleSelectView;
 
     public void RoundStart(int round, RuleManager.Rule currentRule) {
         purposeLabel.text = currentRule.explainText;
@@ -41,6 +42,8 @@ public class PlayingView : MonoBehaviour {
     }
 
     public void ToRuleSelect() {
-
+        gameObject.SetActive(false);
+        ruleSelectView.SetActive(true);
+        ruleSelectView.GetComponent<RuleSelectView>().Set();
     }
 }

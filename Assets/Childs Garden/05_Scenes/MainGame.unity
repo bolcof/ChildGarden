@@ -1103,16 +1103,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rules:
-  - id: 1
-    checkMethodName: CheckRule1
-    explainText: "\u3066\u3059\u3068 \u304A\u3093\u3076\u3064\u304F\u3093\u3092\uFF12\u3064\u3086\u304B\u306B\u304A\u3068\u3059"
   - id: 0
-    checkMethodName: 
-    explainText: 
+    explainText: "\u3066\u3059\u3068 \u304A\u3093\u3076\u3064\u304F\u3093\u3092\uFF12\u3064\u3086\u304B\u306B\u304A\u3068\u3059"
+  - id: 1
+    explainText: "\u3066\u3059\u30682 \u304A\u3093\u3076\u3064\u304F\u3093\u3092\uFF12\u3064\u3086\u304B\u306B\u304A\u3068\u3059"
+  - id: 2
+    explainText: "\u3066\u3059\u30683 \u304A\u3093\u3076\u3064\u304F\u3093\u3092\uFF12\u3064\u3086\u304B\u306B\u304A\u3068\u3059"
   currentRule:
     id: 0
-    checkMethodName: 
-    explainText: 
+    explainText: aaa
   isWinnerDecided: 0
   myFloor: {fileID: 2062927717}
   myStage: {fileID: 0}
@@ -1516,6 +1515,11 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3274779370737936788, guid: 79fdd92e612eeb34caa83225d037325d, type: 3}
   m_PrefabInstance: {fileID: 4019513905952933413}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &4019513905952933415 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8642631841407453328, guid: 79fdd92e612eeb34caa83225d037325d, type: 3}
+  m_PrefabInstance: {fileID: 4019513905952933413}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7560027048441369459
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1524,6 +1528,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1130378759}
     m_Modifications:
+    - target: {fileID: 2611291263556488316, guid: 1a3aaaeb52ac0f849905f84dd1d8e072, type: 3}
+      propertyPath: ruleSelectView
+      value: 
+      objectReference: {fileID: 4019513905952933415}
     - target: {fileID: 5958775138788325510, guid: 1a3aaaeb52ac0f849905f84dd1d8e072, type: 3}
       propertyPath: m_Name
       value: PlayingView

@@ -42,6 +42,10 @@ public class GameManager : Photon.PunBehaviour {
         winnerIsMine = -1;
     }
 
+    public void NextRoundStart() {
+        Debug.Log("NextRound!");
+    }
+
     public void MyPlayerWin() {
         photonView.RPC(nameof(OtherPlayerWin), PhotonTargets.OthersBuffered, MatchingStateManager.instance.MyPlayerId());
         winnerIsMine = 0;
@@ -60,7 +64,6 @@ public class GameManager : Photon.PunBehaviour {
             default:
                 break;
         }
-        //
     }
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {

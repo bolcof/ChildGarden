@@ -8,7 +8,6 @@ public class RuleManager : Photon.PunBehaviour {
     [System.Serializable]
     public struct Rule {
         public int id;
-        public string checkMethodName;
         public string explainText;
     }
 
@@ -16,6 +15,7 @@ public class RuleManager : Photon.PunBehaviour {
 
     //TODO 複数になるかも
     public Rule currentRule;
+
     public bool isWinnerDecided;
 
     [SerializeField] private FloorCollision myFloor;
@@ -31,7 +31,7 @@ public class RuleManager : Photon.PunBehaviour {
     }
 
     public void SetFirstRound() {
-        currentRule = rules.Find(r => r.id == 1);
+        currentRule = rules.Find(r => r.id == 0);
     }
 
     public void SetRule(int _id) {
@@ -43,8 +43,10 @@ public class RuleManager : Photon.PunBehaviour {
             case -1:
                 Debug.LogError("Rule is not set yet!");
                 break;
+            case 0:
             case 1:
-                CheckRule1();
+            case 2:
+                CheckRule_0();
                 break;
             default:
                 Debug.LogError("RuleID is out of range!");
@@ -62,7 +64,7 @@ public class RuleManager : Photon.PunBehaviour {
     }
 
     //Ruleごとに作る
-    public bool CheckRule1() {
+    public bool CheckRule_0() {
         if (myFloor.myOnbutsuCount >= 2) {
             GameManager.Instance.MyPlayerWin();
             return true;
