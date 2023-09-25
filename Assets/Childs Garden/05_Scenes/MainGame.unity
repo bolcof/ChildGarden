@@ -1022,6 +1022,8 @@ MonoBehaviour:
   ruleManager: {fileID: 1293520243}
   stageManager: {fileID: 1293520242}
   playingVew: {fileID: 7560027048441369460}
+  isPlaying: 0
+  winnerIsMine: 0
 --- !u!4 &1293520240
 Transform:
   m_ObjectHideFlags: 0
@@ -1111,6 +1113,7 @@ MonoBehaviour:
     id: 0
     checkMethodName: 
     explainText: 
+  isWinnerDecided: 0
   myFloor: {fileID: 2062927717}
   myStage: {fileID: 0}
 --- !u!114 &1293520244

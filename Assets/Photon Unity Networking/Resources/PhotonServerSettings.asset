@@ -76,4 +76,6 @@ MonoBehaviour:
   - TestRPC
   - SetSpawnId_2player
   - DecideWinner
+  - DecideRoundWinner
+  - OtherPlayerWin
   DisableAutoOpenWizard: 1

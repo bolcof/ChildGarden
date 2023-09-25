@@ -13,7 +13,10 @@ public class PlayingView : MonoBehaviour {
 
     [SerializeField] TMP_Text timerLabel;
     [SerializeField] Image progressBar;
+
     [SerializeField] GameObject winObject, loseObject;
+    private bool hasWin;
+    [SerializeField] GameObject toRuleSelectButton;
 
     public void RoundStart(int round, RuleManager.Rule currentRule) {
         purposeLabel.text = currentRule.explainText;
@@ -28,9 +31,16 @@ public class PlayingView : MonoBehaviour {
 
     public void AppearWinObject() {
         winObject.SetActive(true);
+        hasWin = true;
+        toRuleSelectButton.SetActive(true);
     }
 
     public void AppearLoseObject() {
         loseObject.SetActive(true);
+        hasWin = false;
+    }
+
+    public void ToRuleSelect() {
+
     }
 }

@@ -64,6 +64,7 @@ public class RuleManager : Photon.PunBehaviour {
     //Ruleごとに作る
     public bool CheckRule1() {
         if (myFloor.myOnbutsuCount >= 2) {
+            GameManager.Instance.MyPlayerWin();
             return true;
         } else {
             return false;

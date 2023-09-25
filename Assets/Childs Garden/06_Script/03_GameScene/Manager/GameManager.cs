@@ -14,6 +14,9 @@ public class GameManager : Photon.PunBehaviour {
 
     [SerializeField] PlayingView playingVew;
 
+    public bool isPlaying;
+    public int winnerIsMine; /* -1:not yet 0:me 1:other*/
+
     private void Awake() {
         if (Instance == null) {
             Instance = this;
@@ -21,6 +24,7 @@ public class GameManager : Photon.PunBehaviour {
         } else {
             Destroy(gameObject);
         }
+        isPlaying = false;
     }
 
     private void Start() {
@@ -33,6 +37,30 @@ public class GameManager : Photon.PunBehaviour {
         ruleManager.SetFirstRound();
 
         playingVew.RoundStart(1, ruleManager.currentRule);
+
+        isPlaying = true;
+        winnerIsMine = -1;
+    }
+
+    public void MyPlayerWin() {
+        photonView.RPC(nameof(OtherPlayerWin), PhotonTargets.OthersBuffered, MatchingStateManager.instance.MyPlayerId());
+        winnerIsMine = 0;
+        DecideWinner();
+    }
+
+    public void DecideWinner() {
+        isPlaying = false;
+        switch (winnerIsMine) {
+            case 0:
+                playingVew.AppearWinObject();
+                break;
+            case 1:
+                playingVew.AppearLoseObject();
+                break;
+            default:
+                break;
+        }
+        //
     }
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
@@ -42,5 +70,11 @@ public class GameManager : Photon.PunBehaviour {
         } else {
             // ここにオブジェクトの状態を受信して更新するコードを書きます
         }
+    }
+
+    [PunRPC]
+    public void OtherPlayerWin(int winnerID) {
+        winnerIsMine = 1;
+        DecideWinner();
     }
 }
