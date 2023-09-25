@@ -21,6 +21,7 @@ public class RuleSelectView : Photon.PunBehaviour {
             var subject = Instantiate(RuleSubjectButton, RuleSubjectRoot.transform);
             //TODO:randomize
             subject.GetComponent<RuleSubjectButton>().SetInfomation(i, this);
+            subject.GetComponent<Button>().enabled = isWinner;
             buttonsList.Add(subject.GetComponent<RuleSubjectButton>());
         }
         DecideButton.SetActive(isWinner);
