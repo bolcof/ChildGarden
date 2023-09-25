@@ -32,25 +32,34 @@ public class RuleManager : Photon.PunBehaviour {
 
     public void SetFirstRound() {
         currentRule = rules.Find(r => r.id == 0);
+        isWinnerDecided = false;
     }
 
     public void SetRule(int _id) {
         currentRule = rules.Find(r => r.id == _id);
     }
 
+    public void ResetCount() {
+        myFloor.ResetCount();
+        myStage.ResetCount();
+        isWinnerDecided = false;
+    }
+
     private void Update() {
-        switch (currentRule.id) {
-            case -1:
-                Debug.LogError("Rule is not set yet!");
-                break;
-            case 0:
-            case 1:
-            case 2:
-                CheckRule_0();
-                break;
-            default:
-                Debug.LogError("RuleID is out of range!");
-                break;
+        if (GameManager.Instance.isPlaying) {
+            switch (currentRule.id) {
+                case -1:
+                    Debug.LogError("Rule is not set yet!");
+                    break;
+                case 0:
+                case 1:
+                case 2:
+                    CheckRule_0();
+                    break;
+                default:
+                    Debug.LogError("RuleID is out of range!");
+                    break;
+            }
         }
     }
 
@@ -65,7 +74,7 @@ public class RuleManager : Photon.PunBehaviour {
 
     //Ruleごとに作る
     public bool CheckRule_0() {
-        if (myFloor.myOnbutsuCount >= 2) {
+        if (myFloor.myOnbutsuCount >= 3) {
             GameManager.Instance.MyPlayerWin();
             return true;
         } else {

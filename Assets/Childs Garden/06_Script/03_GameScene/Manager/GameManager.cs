@@ -44,11 +44,28 @@ public class GameManager : Photon.PunBehaviour {
 
     public void NextRoundStart() {
         Debug.Log("NextRound!");
+        ResetWorld();
+        ruleManager.ResetCount();
+
+        roundManager.currentRound++;
+
+        playingVew.gameObject.SetActive(true);
+        playingVew.RoundStart(roundManager.currentRound, ruleManager.currentRule);
+
+        isPlaying = true;
+        winnerIsMine = -1;
+    }
+
+    private void ResetWorld() {
+        foreach(var obj in GameObject.FindGameObjectsWithTag("Onbutu")) {
+            Destroy(obj);
+        }
     }
 
     public void MyPlayerWin() {
         photonView.RPC(nameof(OtherPlayerWin), PhotonTargets.OthersBuffered, MatchingStateManager.instance.MyPlayerId());
         winnerIsMine = 0;
+        roundManager.FinishRound(true);
         DecideWinner();
     }
 
@@ -78,6 +95,7 @@ public class GameManager : Photon.PunBehaviour {
     [PunRPC]
     public void OtherPlayerWin(int winnerID) {
         winnerIsMine = 1;
+        roundManager.FinishRound(false);
         DecideWinner();
     }
 }

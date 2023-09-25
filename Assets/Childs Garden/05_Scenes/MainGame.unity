@@ -1127,6 +1127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf5d906d47ec5604a8a0941e0a104df0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  RoundNum: 4
   currentRound: 0
   isWin: 
 --- !u!1 &1570753558
@@ -1229,6 +1230,37 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 7462011348789551605, guid: 1a3aaaeb52ac0f849905f84dd1d8e072, type: 3}
   m_PrefabInstance: {fileID: 7560027048441369459}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1849728690
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1849728691}
+  m_Layer: 0
+  m_Name: OnbutsuRoot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1849728691
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1849728690}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2062927716
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1694,3 +1726,4 @@ SceneRoots:
   - {fileID: 1226900301}
   - {fileID: 493557423}
   - {fileID: 1130378759}
+  - {fileID: 1849728691}

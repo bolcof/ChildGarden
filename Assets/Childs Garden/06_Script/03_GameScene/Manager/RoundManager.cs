@@ -5,7 +5,7 @@ using UnityEngine;
 public class RoundManager : Photon.PunBehaviour {
 
     //static
-    private int RoundNum;
+    [SerializeField] private int RoundNum;
     public int currentRound;
     public List<bool> isWin;
 
@@ -15,8 +15,8 @@ public class RoundManager : Photon.PunBehaviour {
         }
     }
 
-    public void FinishRound(int round, bool _isWin) {
-        isWin[round - 1] = _isWin;
+    public void FinishRound(bool _isWin) {
+        isWin[currentRound - 1] = _isWin;
     }
 
     //これが無いと動くけどエラーが出る

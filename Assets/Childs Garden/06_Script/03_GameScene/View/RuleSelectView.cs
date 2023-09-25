@@ -65,6 +65,7 @@ public class RuleSelectView : Photon.PunBehaviour {
         foreach(var rsb in buttonsList) {
             rsb.SetHighlight(false);
         }
+        currentSelectRuleId = ruleId;
         switch(ruleId) {
             case -1:
                 break;
@@ -77,6 +78,10 @@ public class RuleSelectView : Photon.PunBehaviour {
     [PunRPC]
     public void ToNextRound() {
         gameObject.SetActive(false);
+        RuleManager.instance.SetRule(currentSelectRuleId);
         GameManager.Instance.NextRoundStart();
+        foreach (var rsb in buttonsList) {
+            Destroy(rsb.gameObject);
+        }
     }
 }

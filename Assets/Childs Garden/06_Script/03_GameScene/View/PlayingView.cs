@@ -28,6 +28,11 @@ public class PlayingView : Photon.PunBehaviour {
             //TODO:Result Hannei
             roundResults[i].sprite = roundResultImage[1];
         }
+
+        winObject.SetActive(false);
+        loseObject.SetActive(false);
+        hasWin = false;
+        toRuleSelectButton.SetActive(false);
     }
 
     public void AppearWinObject() {
@@ -54,7 +59,8 @@ public class PlayingView : Photon.PunBehaviour {
         }
     }
 
-    [PunRPC]public void ToRuleSelect() {
+    [PunRPC]
+    public void ToRuleSelect() {
         gameObject.SetActive(false);
         ruleSelectView.SetActive(true);
         ruleSelectView.GetComponent<RuleSelectView>().Set(hasWin);
