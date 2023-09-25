@@ -79,4 +79,6 @@ MonoBehaviour:
   - DecideRoundWinner
   - OtherPlayerWin
   - ToRuleSelect
+  - ChangeOthersHighlight
+  - ToNextRound
   DisableAutoOpenWizard: 1

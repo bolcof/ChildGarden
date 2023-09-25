@@ -1499,6 +1499,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7111295734352506592, guid: 79fdd92e612eeb34caa83225d037325d, type: 3}
+      propertyPath: viewIdField
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7111295734352506592, guid: 79fdd92e612eeb34caa83225d037325d, type: 3}
+      propertyPath: instantiationId
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 8642631841407453328, guid: 79fdd92e612eeb34caa83225d037325d, type: 3}
       propertyPath: m_Name
       value: RuleSelectView
