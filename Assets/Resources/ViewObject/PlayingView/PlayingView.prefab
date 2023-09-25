@@ -418,8 +418,8 @@ MonoBehaviour:
   - {fileID: 2963568446688732440}
   - {fileID: 4649780604229409918}
   roundResultImage:
-  - {fileID: 21300000, guid: 005a2f2abc2dc504295a67c3b1da5fca, type: 3}
   - {fileID: 21300000, guid: 87a400faf7a2e8f4ba6114ae355679fb, type: 3}
+  - {fileID: 21300000, guid: 005a2f2abc2dc504295a67c3b1da5fca, type: 3}
   timerLabel: {fileID: 8624171988244932391}
   progressBar: {fileID: 0}
   winObject: {fileID: 4675039150668437253}

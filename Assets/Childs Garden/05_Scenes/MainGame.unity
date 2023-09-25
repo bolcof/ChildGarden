@@ -1570,6 +1570,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1130378759}
     m_Modifications:
+    - target: {fileID: 613228407629752001, guid: 1a3aaaeb52ac0f849905f84dd1d8e072, type: 3}
+      propertyPath: m_fontSize
+      value: 42
+      objectReference: {fileID: 0}
+    - target: {fileID: 613228407629752001, guid: 1a3aaaeb52ac0f849905f84dd1d8e072, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 42
+      objectReference: {fileID: 0}
     - target: {fileID: 2611291263556488316, guid: 1a3aaaeb52ac0f849905f84dd1d8e072, type: 3}
       propertyPath: ruleSelectView
       value: 

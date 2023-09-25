@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class RoundManager : Photon.PunBehaviour {
 
+    public static RoundManager Instance;
+
     //static
     [SerializeField] private int RoundNum;
     public int currentRound;
@@ -12,6 +14,12 @@ public class RoundManager : Photon.PunBehaviour {
     private void Awake() {
         for (int i = 0; i < RoundNum; i++) {
             isWin.Add(false);
+        }
+        if (Instance == null) {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        } else {
+            Destroy(gameObject);
         }
     }
 

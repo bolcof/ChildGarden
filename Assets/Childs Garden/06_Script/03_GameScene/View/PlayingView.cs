@@ -22,11 +22,15 @@ public class PlayingView : Photon.PunBehaviour {
     public void RoundStart(int round, RuleManager.Rule currentRule) {
         purposeLabel.text = currentRule.explainText;
         for (int i = 0; i < 4; i++) {
-            roundResults[i].sprite = null;
+            roundResults[i].enabled = false;
         }
         for (int i = 0; i < round - 1; i++) {
-            //TODO:Result Hannei
-            roundResults[i].sprite = roundResultImage[1];
+            roundResults[i].enabled = true;
+            if (RoundManager.Instance.isWin[i]) {
+                roundResults[i].sprite = roundResultImage[0];
+            } else {
+                roundResults[i].sprite = roundResultImage[1];
+            }
         }
 
         winObject.SetActive(false);
