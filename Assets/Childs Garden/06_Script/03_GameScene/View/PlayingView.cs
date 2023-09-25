@@ -1,10 +1,10 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class PlayingView : MonoBehaviour {
+public class PlayingView : Photon.PunBehaviour {
     [SerializeField] Image background;
     [SerializeField] TMP_Text purposeLabel;
 
@@ -39,11 +39,24 @@ public class PlayingView : MonoBehaviour {
     public void AppearLoseObject() {
         loseObject.SetActive(true);
         hasWin = false;
+        toRuleSelectButton.SetActive(false);
     }
 
-    public void ToRuleSelect() {
+    public void PushToRuleSelect() {
+        photonView.RPC(nameof(ToRuleSelect), PhotonTargets.AllBuffered);
+    }
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
+        //これが無いと動くけどエラーが出る
+        if (stream.isWriting) {
+            // ここにオブジェクトの状態を送信するコードを書きます
+        } else {
+            // ここにオブジェクトの状態を受信して更新するコードを書きます
+        }
+    }
+
+    [PunRPC]public void ToRuleSelect() {
         gameObject.SetActive(false);
         ruleSelectView.SetActive(true);
-        ruleSelectView.GetComponent<RuleSelectView>().Set();
+        ruleSelectView.GetComponent<RuleSelectView>().Set(hasWin);
     }
 }

@@ -9,20 +9,21 @@ public class RuleSelectView : MonoBehaviour {
     //static
     [SerializeField] private int selectableRuleNum;
 
-    private int round;
     [SerializeField] private GameObject RuleSubjectRoot;
     [SerializeField] private GameObject RuleSubjectButton;
+    [SerializeField] private GameObject DecideButton;
 
     private List<RuleSubjectButton> buttonsList = new List<RuleSubjectButton>();
     private int currentSelectRuleId;
 
-    public void Set() {
+    public void Set(bool isWinner) {
         for (int i = 0; i < selectableRuleNum; i++) {
             var subject = Instantiate(RuleSubjectButton, RuleSubjectRoot.transform);
             //TODO:randomize
             subject.GetComponent<RuleSubjectButton>().SetInfomation(i, this);
             buttonsList.Add(subject.GetComponent<RuleSubjectButton>());
         }
+        DecideButton.SetActive(isWinner);
     }
 
     public void PushRule(int index) {
@@ -41,7 +42,7 @@ public class RuleSelectView : MonoBehaviour {
     }
 
     public void PushDecide() {
-        this.gameObject.SetActive(false);
+        gameObject.SetActive(false);
         GameManager.Instance.NextRoundStart();
     }
 }

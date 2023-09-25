@@ -4,8 +4,19 @@ using UnityEngine;
 
 public class RoundManager : Photon.PunBehaviour {
 
-    public void FirstRoundStart() {
-        
+    //static
+    private int RoundNum;
+    public int currentRound;
+    public List<bool> isWin;
+
+    private void Awake() {
+        for (int i = 0; i < RoundNum; i++) {
+            isWin.Add(false);
+        }
+    }
+
+    public void FinishRound(int round, bool _isWin) {
+        isWin[round - 1] = _isWin;
     }
 
     //これが無いと動くけどエラーが出る

@@ -33,7 +33,7 @@ public class GameManager : Photon.PunBehaviour {
 
     private void FirstRoundStart() {
         stageManager.SetStage();
-        roundManager.FirstRoundStart();
+        roundManager.currentRound = 1;
         ruleManager.SetFirstRound();
 
         playingVew.RoundStart(1, ruleManager.currentRule);

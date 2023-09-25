@@ -462,3 +462,4 @@ MonoBehaviour:
   selectableRuleNum: 3
   RuleSubjectRoot: {fileID: 6167780786469146732}
   RuleSubjectButton: {fileID: 4473809504833402531, guid: 21c28848bd0f7440eb28c7df2a1d2df1, type: 3}
+  DecideButton: {fileID: 425483170010343606}

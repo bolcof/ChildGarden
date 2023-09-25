@@ -4,7 +4,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class StageManager : MonoBehaviour {
+public class StageManager : Photon.PunBehaviour {
     [SerializeField] private GameObject playerPrefab;
     [SerializeField] private GameObject myBoxStand;
     [SerializeField] private GameObject myFloorObject;
