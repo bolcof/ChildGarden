@@ -19,7 +19,12 @@ public class StageCollision : Photon.PunBehaviour {
     private void Awake() {
         PhotonView photonView = GetComponent<PhotonView>();
         holderId = photonView.owner.ID;
-        if (holderId == MatchingStateManager.instance.MyPlayerId()) { isMine = true; } else { isMine = false; }
+        if (holderId == MatchingStateManager.instance.MyPlayerId()) {
+            isMine = true;
+            RuleManager.instance.myStage = this;
+        } else {
+            isMine = false;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collider) {

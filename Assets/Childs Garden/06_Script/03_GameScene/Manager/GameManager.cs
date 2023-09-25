@@ -12,6 +12,8 @@ public class GameManager : Photon.PunBehaviour {
     [SerializeField] RuleManager ruleManager;
     [SerializeField] StageManager stageManager;
 
+    [SerializeField] PlayingView playingVew;
+
     private void Awake() {
         if (Instance == null) {
             Instance = this;
@@ -29,6 +31,8 @@ public class GameManager : Photon.PunBehaviour {
         stageManager.SetStage();
         roundManager.FirstRoundStart();
         ruleManager.SetFirstRound();
+
+        playingVew.RoundStart(1, ruleManager.currentRule);
     }
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {

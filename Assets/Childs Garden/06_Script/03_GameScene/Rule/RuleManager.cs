@@ -3,19 +3,39 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class RuleManager : Photon.PunBehaviour {
+    public static RuleManager instance;
 
-    [System.Serializable] public struct Rule {
+    [System.Serializable]
+    public struct Rule {
         public int id;
+        public string checkMethodName;
         public string explainText;
     }
 
-    public List<Rule> rules;
+    [SerializeField] public List<Rule> rules;
 
     //TODO 複数になるかも
     public Rule currentRule;
+    public bool isWinnerDecided;
+
+    [SerializeField] private FloorCollision myFloor;
+    public StageCollision myStage;
+
+    private void Awake() {
+        if (instance == null) {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        } else {
+            Destroy(gameObject);
+        }
+    }
 
     public void SetFirstRound() {
-        currentRule = rules[0];
+        currentRule = rules.Find(r => r.id == 1);
+    }
+
+    public void SetRule(int _id) {
+        currentRule = rules.Find(r => r.id == _id);
     }
 
     private void Update() {
@@ -43,11 +63,10 @@ public class RuleManager : Photon.PunBehaviour {
 
     //Ruleごとに作る
     public bool CheckRule1() {
-        //自分のうつわに自分のオブジェクトが１つ乗ったらクリア
-        return false;
-    }
-
-    [PunRPC] public void DecideWinner() {
-
+        if (myFloor.myOnbutsuCount >= 2) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }
