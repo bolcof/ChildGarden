@@ -34,75 +34,77 @@ public class CreateRayPoint : Photon.PunBehaviour {
     }
 
     void Update() {
-        if (Input.GetMouseButton(0) && currentHp <= 100) {
-            SmallObj.SetActive(true);
-        }
+        if (GameManager.Instance.isPlaying) {
+            if (Input.GetMouseButton(0) && currentHp <= 100) {
+                SmallObj.SetActive(true);
+            }
 
-        if (Input.GetMouseButton(0) && currentHp > 100 && currentHp < 200) {
-            MiddleObj.SetActive(true);
-            SmallObj.SetActive(false);
-        }
-
-        if (Input.GetMouseButton(0) && currentHp >= 200) {
-            targetSlider3.SetActive(true);
-            MiddleObj.SetActive(false);
-        }
-
-        if (Input.GetMouseButton(0)) {
-            ++currentHp;
-            currentHp = Mathf.Clamp(currentHp, 0, 200);
-            UpdateSliderFromInt();
-            UpdateSliderFromInt2();
-        }
-
-        if (Input.GetMouseButtonUp(0) && currentHp <= 100) {
-            Ray ray = camera.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-
-            if (Physics.Raycast(ray, out hit, distance)) {
-                number = Random.Range(0, s1Prefabs.Length);
-                Vector3 spawnPosition = hit.point + Vector3.up * 0.5f;
-                PhotonNetwork.Instantiate(onbutsuFolderName + s1Prefabs[number].name, spawnPosition, Quaternion.identity, 0);
-                currentHp = 0;
-                Debug.Log("value : " + currentHp);
+            if (Input.GetMouseButton(0) && currentHp > 100 && currentHp < 200) {
+                MiddleObj.SetActive(true);
                 SmallObj.SetActive(false);
             }
-        }
 
-        if (Input.GetMouseButtonUp(0) && currentHp > 100 && currentHp < 200) {
-            Ray ray = camera.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-
-            if (Physics.Raycast(ray, out hit, distance)) {
-                number = Random.Range(0, s2Prefabs.Length);
-                Vector3 spawnPosition = hit.point + Vector3.up * 0.5f;
-                PhotonNetwork.Instantiate(onbutsuFolderName + s2Prefabs[number].name, spawnPosition, Quaternion.identity, 0);
-                currentHp = 0;
-                Debug.Log("value : " + currentHp);
+            if (Input.GetMouseButton(0) && currentHp >= 200) {
+                targetSlider3.SetActive(true);
                 MiddleObj.SetActive(false);
             }
 
-        }
+            if (Input.GetMouseButton(0)) {
+                ++currentHp;
+                currentHp = Mathf.Clamp(currentHp, 0, 200);
+                UpdateSliderFromInt();
+                UpdateSliderFromInt2();
+            }
 
-        if (Input.GetMouseButtonUp(0) && currentHp >= 200) {
-            Ray ray = camera.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
+            if (Input.GetMouseButtonUp(0) && currentHp <= 100) {
+                Ray ray = camera.ScreenPointToRay(Input.mousePosition);
+                RaycastHit hit;
 
-            if (Physics.Raycast(ray, out hit, distance)) {
-                number = Random.Range(0, s3Prefabs.Length);
-                Vector3 spawnPosition = hit.point + Vector3.up * 0.5f;
-                PhotonNetwork.Instantiate(onbutsuFolderName + s3Prefabs[number].name, spawnPosition, Quaternion.identity, 0);
-                currentHp = 0;
-                Debug.Log("value : " + currentHp);
-                targetSlider3.SetActive(false);
-                //2秒後にオブジェクトを消す
-                //Invoke("Slider3Active", 1);
+                if (Physics.Raycast(ray, out hit, distance)) {
+                    number = Random.Range(0, s1Prefabs.Length);
+                    Vector3 spawnPosition = hit.point + Vector3.up * 0.5f;
+                    PhotonNetwork.Instantiate(onbutsuFolderName + s1Prefabs[number].name, spawnPosition, Quaternion.identity, 0);
+                    currentHp = 0;
+                    Debug.Log("value : " + currentHp);
+                    SmallObj.SetActive(false);
+                }
+            }
+
+            if (Input.GetMouseButtonUp(0) && currentHp > 100 && currentHp < 200) {
+                Ray ray = camera.ScreenPointToRay(Input.mousePosition);
+                RaycastHit hit;
+
+                if (Physics.Raycast(ray, out hit, distance)) {
+                    number = Random.Range(0, s2Prefabs.Length);
+                    Vector3 spawnPosition = hit.point + Vector3.up * 0.5f;
+                    PhotonNetwork.Instantiate(onbutsuFolderName + s2Prefabs[number].name, spawnPosition, Quaternion.identity, 0);
+                    currentHp = 0;
+                    Debug.Log("value : " + currentHp);
+                    MiddleObj.SetActive(false);
+                }
 
             }
-        }
 
-        if (currentHp == 0) {
-            ResetIntValue();
+            if (Input.GetMouseButtonUp(0) && currentHp >= 200) {
+                Ray ray = camera.ScreenPointToRay(Input.mousePosition);
+                RaycastHit hit;
+
+                if (Physics.Raycast(ray, out hit, distance)) {
+                    number = Random.Range(0, s3Prefabs.Length);
+                    Vector3 spawnPosition = hit.point + Vector3.up * 0.5f;
+                    PhotonNetwork.Instantiate(onbutsuFolderName + s3Prefabs[number].name, spawnPosition, Quaternion.identity, 0);
+                    currentHp = 0;
+                    Debug.Log("value : " + currentHp);
+                    targetSlider3.SetActive(false);
+                    //2秒後にオブジェクトを消す
+                    //Invoke("Slider3Active", 1);
+
+                }
+            }
+
+            if (currentHp == 0) {
+                ResetIntValue();
+            }
         }
     }
 
