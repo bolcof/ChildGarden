@@ -24,6 +24,7 @@ public class RuleSelectView : Photon.PunBehaviour {
             buttonsList.Add(subject.GetComponent<RuleSubjectButton>());
         }
         DecideButton.SetActive(isWinner);
+        DecideButton.GetComponent<Button>().enabled = false;
     }
 
     public void PushRule(int index) {
@@ -33,6 +34,8 @@ public class RuleSelectView : Photon.PunBehaviour {
         buttonsList[index].SetHighlight(true);
         currentSelectRuleId = buttonsList[index].thisButtonsRuleId;
         photonView.RPC(nameof(ChangeOthersHighlight), PhotonTargets.OthersBuffered, currentSelectRuleId);
+
+        DecideButton.GetComponent<Button>().enabled = true;
     }
 
     public void RepushRule() {
@@ -41,6 +44,8 @@ public class RuleSelectView : Photon.PunBehaviour {
         }
         currentSelectRuleId = -1;
         photonView.RPC(nameof(ChangeOthersHighlight), PhotonTargets.OthersBuffered, currentSelectRuleId);
+
+        DecideButton.GetComponent<Button>().enabled = false;
     }
 
     public void PushDecide() {
