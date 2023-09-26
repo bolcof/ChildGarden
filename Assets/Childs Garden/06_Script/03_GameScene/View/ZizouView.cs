@@ -25,8 +25,8 @@ public class ZizouView : Photon.PunBehaviour {
 
     public void PushTopButton() {
         Debug.Log("aaaa push button...");
+        photonView.RPC(nameof(DestroyGameManager), PhotonTargets.All);
         photonView.RPC(nameof(SendPushingTopButton), PhotonTargets.MasterClient);
-        Destroy(GameManager.Instance.gameObject);
     }
 
     [PunRPC]
@@ -34,5 +34,10 @@ public class ZizouView : Photon.PunBehaviour {
         Debug.Log("aaaa send pushing...");
         PhotonNetwork.automaticallySyncScene = true;
         PhotonNetwork.LoadLevel("Launcher");
+    }
+
+    [PunRPC]
+    public void DestroyGameManager() {
+        Destroy(GameManager.Instance.gameObject);
     }
 }
