@@ -81,4 +81,8 @@ MonoBehaviour:
   - ToRuleSelect
   - ChangeOthersHighlight
   - ToNextRound
+  - ToZizouView
+  - PushTopButton
+  - SendPushingTopButton
+  - OnGUI
   DisableAutoOpenWizard: 1

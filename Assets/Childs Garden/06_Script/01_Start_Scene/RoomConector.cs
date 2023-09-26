@@ -47,7 +47,9 @@ public class RoomConector : Photon.PunBehaviour
     public override void OnPhotonRandomJoinFailed(object[] codeAndMsg)
     {
         Debug.Log("ルームの入室に失敗しました。");
-        PhotonNetwork.CreateRoom("TestRoom");
+        RoomOptions roomOptions = new RoomOptions();
+        roomOptions.PublishUserId = true;
+        PhotonNetwork.CreateRoom("TestRoom", roomOptions, TypedLobby.Default);
     }
     #endregion
 }

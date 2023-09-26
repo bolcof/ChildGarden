@@ -1345,6 +1345,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1130378759}
     m_Modifications:
+    - target: {fileID: 507131201532545913, guid: 6b6853984d0585748934584baccfa130, type: 3}
+      propertyPath: viewIdField
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 507131201532545913, guid: 6b6853984d0585748934584baccfa130, type: 3}
+      propertyPath: instantiationId
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 2778139114998302658, guid: 6b6853984d0585748934584baccfa130, type: 3}
       propertyPath: m_Name
       value: ZizouBosatsuView
@@ -1441,6 +1449,11 @@ PrefabInstance:
 --- !u!224 &3835472187753683127 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6161658692996912777, guid: 6b6853984d0585748934584baccfa130, type: 3}
+  m_PrefabInstance: {fileID: 3835472187753683126}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &3835472187753683128 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2778139114998302658, guid: 6b6853984d0585748934584baccfa130, type: 3}
   m_PrefabInstance: {fileID: 3835472187753683126}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4019513905952933413
@@ -1578,6 +1591,10 @@ PrefabInstance:
       propertyPath: m_fontSizeBase
       value: 42
       objectReference: {fileID: 0}
+    - target: {fileID: 2611291263556488316, guid: 1a3aaaeb52ac0f849905f84dd1d8e072, type: 3}
+      propertyPath: zizouView
+      value: 
+      objectReference: {fileID: 3835472187753683128}
     - target: {fileID: 2611291263556488316, guid: 1a3aaaeb52ac0f849905f84dd1d8e072, type: 3}
       propertyPath: ruleSelectView
       value: 
