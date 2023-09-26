@@ -36,7 +36,7 @@ public class ConsoleDisplay : Photon.MonoBehaviour {
         string combinedLog = $"{logString} ({logSource})";
 
         // ログを追加
-        photonView.RPC(nameof(AddLog), PhotonTargets.AllBuffered, combinedLog);
+        //photonView.RPC(nameof(AddLog), PhotonTargets.AllBuffered, combinedLog);
     }
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
         //これが無いと動くけどエラーが出る
@@ -48,14 +48,14 @@ public class ConsoleDisplay : Photon.MonoBehaviour {
     }
 
     [PunRPC]
-    public void AddLog(string logString) {
+    /*public void AddLog(string logString) {
         logs.Add(logString);
 
         // ログの最大数を超えたら古いものから削除
         if (logs.Count > maxLogs) {
             logs.RemoveAt(0);
         }
-    }
+    }*/
 
     void OnGUI() {
         GUI.skin.label.fontSize = fontSize;
