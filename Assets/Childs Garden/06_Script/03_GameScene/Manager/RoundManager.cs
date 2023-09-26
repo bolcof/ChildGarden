@@ -7,7 +7,7 @@ public class RoundManager : Photon.PunBehaviour {
     public static RoundManager Instance;
 
     //static
-    [SerializeField] private int RoundNum;
+    public int RoundNum;
     public int currentRound;
     public List<bool> isWin;
 

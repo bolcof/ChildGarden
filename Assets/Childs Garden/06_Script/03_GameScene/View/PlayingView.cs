@@ -17,7 +17,7 @@ public class PlayingView : Photon.PunBehaviour {
     [SerializeField] GameObject winObject, loseObject;
     private bool hasWin;
     [SerializeField] GameObject toRuleSelectButton;
-    [SerializeField] GameObject ruleSelectView;
+    [SerializeField] GameObject ruleSelectView, zizouView;
 
     public void RoundStart(int round, RuleManager.Rule currentRule) {
         purposeLabel.text = currentRule.explainText;
@@ -52,7 +52,11 @@ public class PlayingView : Photon.PunBehaviour {
     }
 
     public void PushToRuleSelect() {
-        photonView.RPC(nameof(ToRuleSelect), PhotonTargets.AllBuffered);
+        if (RoundManager.Instance.currentRound != RoundManager.Instance.RoundNum) {
+            photonView.RPC(nameof(ToRuleSelect), PhotonTargets.AllBuffered);
+        } else {
+            photonView.RPC(nameof(ToZizouView), PhotonTargets.AllBuffered);
+        }
     }
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
         //これが無いと動くけどエラーが出る
@@ -68,5 +72,12 @@ public class PlayingView : Photon.PunBehaviour {
         gameObject.SetActive(false);
         ruleSelectView.SetActive(true);
         ruleSelectView.GetComponent<RuleSelectView>().Set(hasWin);
+    }
+
+    [PunRPC]
+    public void ToZizouView() {
+        gameObject.SetActive(false);
+        zizouView.SetActive(true);
+        zizouView.GetComponent<ZizouView>().Set(RuleManager.instance.WholeWinnerIsMe());
     }
 }

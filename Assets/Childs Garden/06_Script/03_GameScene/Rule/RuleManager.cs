@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class RuleManager : Photon.PunBehaviour {
     public static RuleManager instance;
@@ -76,6 +77,14 @@ public class RuleManager : Photon.PunBehaviour {
     public bool CheckRule_0() {
         if (myFloor.myOnbutsuCount >= 3) {
             GameManager.Instance.MyPlayerWin();
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public bool WholeWinnerIsMe() {
+        if (RoundManager.Instance.isWin.Count(r => r) >= 3) {
             return true;
         } else {
             return false;
