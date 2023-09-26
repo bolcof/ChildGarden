@@ -32,8 +32,6 @@ public class ZizouView : Photon.PunBehaviour {
     [PunRPC]
     public void SendPushingTopButton() {
         Debug.Log("aaaa send pushing...");
-        GameManager.Instance.MoveTopScene();
-        Debug.Log("aaaa move scene...");
         PhotonNetwork.automaticallySyncScene = true;
         PhotonNetwork.LoadLevel("Launcher");
     }
