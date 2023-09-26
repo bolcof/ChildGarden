@@ -152,7 +152,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 837be64195bead54585243d53a2104a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mySpawnPositionId: 0
   PlayerNum: 2
 --- !u!4 &13166029
 Transform:
@@ -303,50 +302,6 @@ RectTransform:
   m_AnchoredPosition: {x: 78.24, y: -98.69}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1 &431197203
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 431197205}
-  - component: {fileID: 431197204}
-  m_Layer: 0
-  m_Name: LauncherObject
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!114 &431197204
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 431197203}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a28be91c993696d4d86d032f7da705a1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &431197205
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 431197203}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.4712021, y: 0.21711397, z: -1.4161372}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &459743431
 GameObject:
   m_ObjectHideFlags: 0
@@ -495,7 +450,7 @@ GameObject:
   - component: {fileID: 549837091}
   - component: {fileID: 549837090}
   m_Layer: 0
-  m_Name: LauncherObject_2
+  m_Name: LauncherObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1062,11 +1017,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5903803611291626504, guid: 27d483796a632e54b903d520372de0ec, type: 3}
       propertyPath: viewIdField
-      value: 1
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 5903803611291626504, guid: 27d483796a632e54b903d520372de0ec, type: 3}
       propertyPath: instantiationId
-      value: 1
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 6419869568090711289, guid: 27d483796a632e54b903d520372de0ec, type: 3}
       propertyPath: m_Name
@@ -1502,7 +1457,6 @@ SceneRoots:
   - {fileID: 1020377227}
   - {fileID: 1818134090}
   - {fileID: 698820417}
-  - {fileID: 431197205}
   - {fileID: 549837091}
   - {fileID: 1679567084}
   - {fileID: 1375159511}

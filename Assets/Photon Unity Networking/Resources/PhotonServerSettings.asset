@@ -75,4 +75,14 @@ MonoBehaviour:
   - SetSpawnId
   - TestRPC
   - SetSpawnId_2player
+  - DecideWinner
+  - DecideRoundWinner
+  - OtherPlayerWin
+  - ToRuleSelect
+  - ChangeOthersHighlight
+  - ToNextRound
+  - ToZizouView
+  - PushTopButton
+  - SendPushingTopButton
+  - OnGUI
   DisableAutoOpenWizard: 1
