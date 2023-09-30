@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,8 +15,14 @@ public class GameManager : Photon.PunBehaviour {
 
     [SerializeField] PlayingView playingVew;
 
-    public bool isPlaying;
+    public bool canPutOnbutsu;
+    public bool canOperateUI;
+    private bool isPlaying;
+
     public int winnerIsMine; /* -1:not yet 0:me 1:other*/
+
+    [SerializeField] float BeginningCountDownTime;
+    public float timeLimit, remainingTimeLimit;
 
     private void Awake() {
         if (Instance == null) {
@@ -24,6 +31,8 @@ public class GameManager : Photon.PunBehaviour {
         } else {
             Destroy(gameObject);
         }
+        canPutOnbutsu = false;
+        canOperateUI = false;
         isPlaying = false;
     }
 
@@ -32,13 +41,13 @@ public class GameManager : Photon.PunBehaviour {
     }
 
     private void FirstRoundStart() {
+        CountDownStart(BeginningCountDownTime).Forget();
+
         stageManager.SetStage();
         roundManager.currentRound = 1;
         ruleManager.SetFirstRound();
 
         playingVew.RoundStart(1, ruleManager.currentRule);
-
-        isPlaying = true;
         winnerIsMine = -1;
     }
 
@@ -52,8 +61,33 @@ public class GameManager : Photon.PunBehaviour {
         playingVew.gameObject.SetActive(true);
         playingVew.RoundStart(roundManager.currentRound, ruleManager.currentRule);
 
-        isPlaying = true;
+        canPutOnbutsu = true;
         winnerIsMine = -1;
+    }
+
+    private async UniTask CountDownStart(float sec) {
+        float remainingTime = sec;
+
+        while (remainingTime > 0.0f) {
+            ViewManager.Instance.playingView.BeginningCountDown((int)remainingTime);
+            await UniTask.Delay(1000);
+            remainingTime -= 1.0f;
+        }
+
+        ViewManager.Instance.playingView.BeginningCountDown(0);
+
+        canPutOnbutsu = true;
+        isPlaying = true;
+    }
+
+    private void Update() {
+        if(isPlaying) {
+            timeLimit -= Time.deltaTime;
+            ViewManager.Instance.playingView.ApplyTimeLimit((int)timeLimit);
+            if (timeLimit < 0.0f) {
+                TimeOver();
+            }
+        }
     }
 
     private void ResetWorld() {
@@ -69,14 +103,21 @@ public class GameManager : Photon.PunBehaviour {
         DecideWinner();
     }
 
+    public void TimeOver() {
+
+    }
+
     public void DecideWinner() {
-        isPlaying = false;
+        canPutOnbutsu = false;
         switch (winnerIsMine) {
             case 0:
                 playingVew.AppearWinObject();
                 break;
             case 1:
                 playingVew.AppearLoseObject();
+                break;
+            case 2:
+                playingVew.AppearDrawObject();
                 break;
             default:
                 break;

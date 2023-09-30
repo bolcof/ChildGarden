@@ -6,6 +6,9 @@ using TMPro;
 
 public class PlayingView : Photon.PunBehaviour {
     [SerializeField] Image background;
+
+    [SerializeField] TextMeshProUGUI countDownLabel;
+
     [SerializeField] TMP_Text purposeLabel;
 
     [SerializeField] List<Image> roundResults;
@@ -44,6 +47,19 @@ public class PlayingView : Photon.PunBehaviour {
         }
     }
 
+    public void BeginningCountDown(int sec) {
+        if (sec != 0) {
+            countDownLabel.gameObject.SetActive(true);
+            countDownLabel.text = sec.ToString();
+        } else {
+            countDownLabel.gameObject.SetActive(false);
+        }
+    }
+
+    public void ApplyTimeLimit(int sec) {
+        timerLabel.text = (sec / 60).ToString() + ":" + (sec % 60).ToString();
+    }
+
     public void AppearWinObject() {
         winObject.SetActive(true);
         hasWin = true;
@@ -51,6 +67,13 @@ public class PlayingView : Photon.PunBehaviour {
     }
 
     public void AppearLoseObject() {
+        loseObject.SetActive(true);
+        hasWin = false;
+        toRuleSelectButton.SetActive(false);
+    }
+
+    public void AppearDrawObject() {
+        //TODO:change to draw
         loseObject.SetActive(true);
         hasWin = false;
         toRuleSelectButton.SetActive(false);
