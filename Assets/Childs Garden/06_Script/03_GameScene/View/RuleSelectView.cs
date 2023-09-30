@@ -20,7 +20,12 @@ public class RuleSelectView : Photon.PunBehaviour {
     private ViewManager viewManager;
 
     public async UniTask Set(bool isWinner) {
+        //TODO:これ2回呼ばれちゃってんのよ
         Debug.Log("rule select view set");
+        foreach (var rsb in buttonsList) {
+            Destroy(rsb.gameObject);
+        }
+        buttonsList.Clear();
         for (int i = 0; i < selectableRuleNum; i++) {
             var subject = Instantiate(RuleSubjectButton, RuleSubjectRoot.transform);
             //TODO:randomize
@@ -98,9 +103,5 @@ public class RuleSelectView : Photon.PunBehaviour {
         gameObject.SetActive(false);
         RuleManager.instance.SetRule(currentSelectRuleId);
         GameManager.Instance.NextRoundStart();
-        foreach (var rsb in buttonsList) {
-            Destroy(rsb.gameObject);
-        }
-        buttonsList.Clear();
     }
 }
