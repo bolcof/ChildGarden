@@ -48,11 +48,15 @@ public class GameManager : Photon.PunBehaviour {
         ruleManager.SetFirstRound();
 
         playingVew.RoundStart(1, ruleManager.currentRule);
+        remainingTimeLimit = timeLimit;
         winnerIsMine = -1;
     }
 
     public void NextRoundStart() {
         Debug.Log("NextRound!");
+        ViewManager.Instance.playingView.ApplyTimeLimit((int)timeLimit);
+        CountDownStart(BeginningCountDownTime).Forget();
+
         ResetWorld();
         ruleManager.ResetCount();
 
@@ -61,7 +65,8 @@ public class GameManager : Photon.PunBehaviour {
         playingVew.gameObject.SetActive(true);
         playingVew.RoundStart(roundManager.currentRound, ruleManager.currentRule);
 
-        canPutOnbutsu = true;
+        remainingTimeLimit = timeLimit;
+
         winnerIsMine = -1;
     }
 
@@ -82,9 +87,11 @@ public class GameManager : Photon.PunBehaviour {
 
     private void Update() {
         if(isPlaying) {
-            timeLimit -= Time.deltaTime;
-            ViewManager.Instance.playingView.ApplyTimeLimit((int)timeLimit);
-            if (timeLimit < 0.0f) {
+            remainingTimeLimit -= Time.deltaTime;
+            ViewManager.Instance.playingView.ApplyTimeLimit((int)remainingTimeLimit);
+            if (remainingTimeLimit < 0.0f) {
+                isPlaying = false;
+                ViewManager.Instance.playingView.ApplyTimeLimit(0);
                 TimeOver();
             }
         }
@@ -109,6 +116,7 @@ public class GameManager : Photon.PunBehaviour {
 
     public void DecideWinner() {
         canPutOnbutsu = false;
+        isPlaying = false;
         switch (winnerIsMine) {
             case 0:
                 playingVew.AppearWinObject();
