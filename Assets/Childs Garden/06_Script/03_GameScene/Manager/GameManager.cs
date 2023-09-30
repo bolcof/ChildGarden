@@ -44,6 +44,7 @@ public class GameManager : Photon.PunBehaviour {
         CountDownStart(BeginningCountDownTime).Forget();
 
         stageManager.SetStage();
+
         roundManager.currentRound = 1;
         ruleManager.SetFirstRound();
 
@@ -56,6 +57,8 @@ public class GameManager : Photon.PunBehaviour {
         Debug.Log("NextRound!");
         ViewManager.Instance.playingView.ApplyTimeLimit((int)timeLimit);
         CountDownStart(BeginningCountDownTime).Forget();
+
+        stageManager.AppearMyPlayerPin().Forget();
 
         ResetWorld();
         ruleManager.ResetCount();

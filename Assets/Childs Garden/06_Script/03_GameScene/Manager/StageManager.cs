@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Cysharp.Threading.Tasks;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -7,12 +8,12 @@ using UnityEngine.SceneManagement;
 public class StageManager : Photon.PunBehaviour {
     [SerializeField] private GameObject playerPrefab;
     [SerializeField] private GameObject myBoxStand;
-    [SerializeField] private GameObject myFloorObject;
     [SerializeField] private List<Vector3> spawnPoints;
     [SerializeField] private PhotonView photonView;
-    public int mySpawnPositionId = -1;
 
-    //TODO 本当はStartで始めるのもイマイチ。シーンが始まること自体をどこかで一元管理したい
+    public int mySpawnPositionId = -1;
+    public Utsuwa myUtsuwa;
+
     public void SetStage() {
 
         Debug.Log("Game Start");
@@ -53,8 +54,16 @@ public class StageManager : Photon.PunBehaviour {
         // ランダムな座標を選択
         Vector3 spawnPoint = spawnPoints[mySpawnPositionId];
         GameObject Player = PhotonNetwork.Instantiate("Box/" + this.playerPrefab.name, spawnPoint, Quaternion.identity, 0);
+        myUtsuwa = Player.GetComponent<Utsuwa>();
         // 同じ座標のY軸+2にStageを生成
         PhotonNetwork.Instantiate("StageObject/" + this.myBoxStand.name, new Vector3(spawnPoint.x, spawnPoint.y + 2, spawnPoint.z), Quaternion.identity, 0);
+        AppearMyPlayerPin().Forget();
+    }
+
+    public async UniTask AppearMyPlayerPin() {
+        myUtsuwa.SignEnabled(true);
+        await UniTask.Delay(4000);
+        myUtsuwa.SignEnabled(false);
     }
 
     private List<int> RandomizedIdList() {
