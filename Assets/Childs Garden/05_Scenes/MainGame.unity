@@ -1320,6 +1320,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: ViewManager
       objectReference: {fileID: 0}
+    - target: {fileID: 6296577792446821356, guid: 73fec1ab5d0d341798c02780d8064799, type: 3}
+      propertyPath: viewIdField
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6296577792446821356, guid: 73fec1ab5d0d341798c02780d8064799, type: 3}
+      propertyPath: instantiationId
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 6668235249083816637, guid: 73fec1ab5d0d341798c02780d8064799, type: 3}
       propertyPath: viewIdField
       value: 5

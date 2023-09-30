@@ -56,7 +56,8 @@ public class PlayingView : Photon.PunBehaviour {
         toRuleSelectButton.SetActive(false);
     }
 
-    public void PushToRuleSelect() {
+    public void PushToZizou() {
+        Debug.Log("to zizou");
         if (RoundManager.Instance.currentRound != RoundManager.Instance.RoundNum) {
             photonView.RPC(nameof(ToZizouView), PhotonTargets.AllBuffered);
         } else {
@@ -74,6 +75,7 @@ public class PlayingView : Photon.PunBehaviour {
 
     [PunRPC]
     public void ToZizouView() {
+        Debug.Log("to zizou");
         gameObject.SetActive(false);
         viewManager.zizouViewObj.SetActive(true);
         viewManager.zizouView.GetComponent<ZizouView>().Set(hasWin);

@@ -39,6 +39,7 @@ public class ZizouView : Photon.PunBehaviour {
 
     [PunRPC]
     public void ToRuleSelect() {
+        Debug.Log("Rule Select");
         gameObject.SetActive(false);
         viewManager.ruleSelectViewObj.SetActive(true);
         viewManager.ruleSelectView.GetComponent<RuleSelectView>().Set(hasWin);

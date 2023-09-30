@@ -257,7 +257,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2611291263556488316}
         m_TargetAssemblyTypeName: PlayingView, Assembly-CSharp
-        m_MethodName: PushToRuleSelect
+        m_MethodName: PushToZizou
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
