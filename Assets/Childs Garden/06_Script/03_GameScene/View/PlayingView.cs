@@ -17,7 +17,8 @@ public class PlayingView : Photon.PunBehaviour {
     [SerializeField] GameObject winObject, loseObject;
     private bool hasWin;
     [SerializeField] GameObject toRuleSelectButton;
-    [SerializeField] GameObject ruleSelectView, zizouView;
+
+    private ViewManager viewManager;
 
     public void RoundStart(int round, RuleManager.Rule currentRule) {
         purposeLabel.text = currentRule.explainText;
@@ -37,6 +38,10 @@ public class PlayingView : Photon.PunBehaviour {
         loseObject.SetActive(false);
         hasWin = false;
         toRuleSelectButton.SetActive(false);
+
+        if (viewManager == null) {
+            viewManager = GameObject.Find("ViewManager").GetComponent<ViewManager>();
+        }
     }
 
     public void AppearWinObject() {
@@ -51,12 +56,9 @@ public class PlayingView : Photon.PunBehaviour {
         toRuleSelectButton.SetActive(false);
     }
 
-    public void PushToRuleSelect() {
-        if (RoundManager.Instance.currentRound != RoundManager.Instance.RoundNum) {
-            photonView.RPC(nameof(ToRuleSelect), PhotonTargets.AllBuffered);
-        } else {
-            photonView.RPC(nameof(ToZizouView), PhotonTargets.AllBuffered);
-        }
+    public void PushToZizou() {
+        Debug.Log("to zizou");
+        photonView.RPC(nameof(ToZizouView), PhotonTargets.AllBuffered);
     }
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
         //これが無いと動くけどエラーが出る
@@ -68,16 +70,10 @@ public class PlayingView : Photon.PunBehaviour {
     }
 
     [PunRPC]
-    public void ToRuleSelect() {
-        gameObject.SetActive(false);
-        ruleSelectView.SetActive(true);
-        ruleSelectView.GetComponent<RuleSelectView>().Set(hasWin);
-    }
-
-    [PunRPC]
     public void ToZizouView() {
+        Debug.Log("to zizou");
         gameObject.SetActive(false);
-        zizouView.SetActive(true);
-        zizouView.GetComponent<ZizouView>().Set(RuleManager.instance.WholeWinnerIsMe());
+        viewManager.zizouViewObj.SetActive(true);
+        viewManager.zizouView.GetComponent<ZizouView>().Set(hasWin);
     }
 }

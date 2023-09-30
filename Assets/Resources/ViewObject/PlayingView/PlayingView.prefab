@@ -147,7 +147,7 @@ GameObject:
   - component: {fileID: 2510470012552820328}
   - component: {fileID: 7078374916943329215}
   m_Layer: 5
-  m_Name: ToRuleSelectButton
+  m_Name: tmp-ToZizouButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -257,7 +257,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2611291263556488316}
         m_TargetAssemblyTypeName: PlayingView, Assembly-CSharp
-        m_MethodName: PushToRuleSelect
+        m_MethodName: PushToZizou
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -425,7 +425,6 @@ MonoBehaviour:
   winObject: {fileID: 4675039150668437253}
   loseObject: {fileID: 7943182043814029137}
   toRuleSelectButton: {fileID: 4172275253901498228}
-  ruleSelectView: {fileID: 0}
 --- !u!1 &7143741072914872565
 GameObject:
   m_ObjectHideFlags: 0
@@ -1044,7 +1043,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: RuleSelect
+  m_text: ZIzou
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
