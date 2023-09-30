@@ -368,8 +368,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: ZizouView, Assembly-CSharp
+      - m_Target: {fileID: 37537217540987623}
+        m_TargetAssemblyTypeName: EndingView, Assembly-CSharp
         m_MethodName: PushTopButton
         m_Mode: 1
         m_Arguments:
@@ -499,7 +499,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   videoPlayer: {fileID: 370852131518234806}
-  endingVideos: []
+  testLabel: {fileID: 5359785427680043078}
+  endingVideos:
+  - {fileID: 32900000, guid: 8b3bd4ca118681449b8ff4395f4320ad, type: 3}
+  - {fileID: 32900000, guid: 8b3bd4ca118681449b8ff4395f4320ad, type: 3}
+  - {fileID: 32900000, guid: 8b3bd4ca118681449b8ff4395f4320ad, type: 3}
+  - {fileID: 32900000, guid: 8b3bd4ca118681449b8ff4395f4320ad, type: 3}
 --- !u!1 &5212324284387980077
 GameObject:
   m_ObjectHideFlags: 0

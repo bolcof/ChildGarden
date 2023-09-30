@@ -1,10 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using UnityEngine.Video;
 
 public class ZizouView : Photon.PunBehaviour {
-    [SerializeField] GameObject oldZizouObject;
-    [SerializeField] GameObject winZizouObject, loseZizouObject;
+    [SerializeField] List<VideoClip> zizouVideoList = new List<VideoClip>();
+    [SerializeField] VideoPlayer zizouVideoPlayer;
+    [SerializeField] GameObject zizouRoot;
+    [SerializeField] TextMeshProUGUI zizouInfoLabel;
     [SerializeField] GameObject toRuleSelectButton;
 
     private bool hasWin;
@@ -12,9 +16,15 @@ public class ZizouView : Photon.PunBehaviour {
     private ViewManager viewManager;
 
     public void Set(bool isWinner) {
-        Instantiate(oldZizouObject, new Vector3(0, 0, -0.1f), Quaternion.identity);
-        winZizouObject.SetActive(isWinner);
-        loseZizouObject.SetActive(!isWinner);
+        if(PhotonNetwork.isMasterClient) {
+            int id = -1;
+            if (RoundManager.Instance.currentRound == RoundManager.Instance.RoundNum) {
+                id = zizouVideoList.Count - 1;
+            } else {
+                id = Random.Range(0, zizouVideoList.Count - 1);
+            }
+            photonView.RPC(nameof(SetZizouMovieId), PhotonTargets.All, id);
+        }
         //TODO:Unitask timing
         toRuleSelectButton.SetActive(isWinner);
 
@@ -34,7 +44,18 @@ public class ZizouView : Photon.PunBehaviour {
     }
 
     public void PushToRuleSelect() {
-        photonView.RPC(nameof(ToRuleSelect), PhotonTargets.AllBuffered);
+        Debug.Log("Rule Select");
+        if (RoundManager.Instance.currentRound != RoundManager.Instance.RoundNum) {
+            photonView.RPC(nameof(ToRuleSelect), PhotonTargets.AllBuffered);
+        } else {
+            photonView.RPC(nameof(ToEndingView), PhotonTargets.AllBuffered);
+        }
+    }
+
+    [PunRPC]
+    public void SetZizouMovieId(int id) {
+        zizouVideoPlayer.clip = zizouVideoList[id];
+        zizouInfoLabel.text = "Zizou " + id.ToString();
     }
 
     [PunRPC]
@@ -43,5 +64,12 @@ public class ZizouView : Photon.PunBehaviour {
         gameObject.SetActive(false);
         viewManager.ruleSelectViewObj.SetActive(true);
         viewManager.ruleSelectView.GetComponent<RuleSelectView>().Set(hasWin);
+    }
+
+    [PunRPC]
+    public void ToEndingView() {
+        gameObject.SetActive(false);
+        viewManager.endingViewObj.SetActive(true);
+        viewManager.endingView.GetComponent<EndingView>().Set();
     }
 }

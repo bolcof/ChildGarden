@@ -58,11 +58,7 @@ public class PlayingView : Photon.PunBehaviour {
 
     public void PushToZizou() {
         Debug.Log("to zizou");
-        if (RoundManager.Instance.currentRound != RoundManager.Instance.RoundNum) {
-            photonView.RPC(nameof(ToZizouView), PhotonTargets.AllBuffered);
-        } else {
-            photonView.RPC(nameof(ToEndingView), PhotonTargets.AllBuffered);
-        }
+        photonView.RPC(nameof(ToZizouView), PhotonTargets.AllBuffered);
     }
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
         //これが無いと動くけどエラーが出る
@@ -79,12 +75,5 @@ public class PlayingView : Photon.PunBehaviour {
         gameObject.SetActive(false);
         viewManager.zizouViewObj.SetActive(true);
         viewManager.zizouView.GetComponent<ZizouView>().Set(hasWin);
-    }
-
-    [PunRPC]
-    public void ToEndingView() {
-        gameObject.SetActive(false);
-        viewManager.endingViewObj.SetActive(true);
-        viewManager.endingView.GetComponent<EndingView>().Set(1);
     }
 }

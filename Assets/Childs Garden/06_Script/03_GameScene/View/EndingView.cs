@@ -2,16 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Video;
+using TMPro;
+using System.Linq;
 
 public class EndingView : Photon.PunBehaviour {
     [SerializeField] private VideoPlayer videoPlayer;
+    [SerializeField] private TextMeshProUGUI testLabel;
     [SerializeField] private List<VideoClip> endingVideos = new List<VideoClip>();
 
     private ViewManager viewManager;
 
-    public void Set(int id) {
-        videoPlayer.clip = endingVideos[id];
-        videoPlayer.Play();
+    public void Set() {
+        if (RuleManager.instance.WholeWinnerIsMe()) {
+            videoPlayer.clip = endingVideos.Last();
+            videoPlayer.Play();
+            testLabel.text = "Win End";
+        } else {
+            int id = Random.Range(0, endingVideos.Count - 1);
+            videoPlayer.clip = endingVideos[id];
+            videoPlayer.Play();
+            testLabel.text = "Lose End " + id.ToString();
+        }
 
         if (viewManager == null) {
             viewManager = GameObject.Find("ViewManager").GetComponent<ViewManager>();
@@ -42,6 +53,6 @@ public class EndingView : Photon.PunBehaviour {
     public void PushTopButton() {
         Debug.Log("aaaa push button...");
         photonView.RPC(nameof(DestroyGameManager), PhotonTargets.All);
-        photonView.RPC(nameof(SendPushingTopButton), PhotonTargets.MasterClient);
+        photonView.RPC(nameof(SendPushingTopButton), PhotonTargets.All);
     }
 }
