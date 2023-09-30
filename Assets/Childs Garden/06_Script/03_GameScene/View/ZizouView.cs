@@ -5,13 +5,23 @@ using UnityEngine;
 public class ZizouView : Photon.PunBehaviour {
     [SerializeField] GameObject oldZizouObject;
     [SerializeField] GameObject winZizouObject, loseZizouObject;
-    [SerializeField] GameObject topButton;
+    [SerializeField] GameObject toRuleSelectButton;
+
+    private bool hasWin;
+
+    private ViewManager viewManager;
 
     public void Set(bool isWinner) {
         Instantiate(oldZizouObject, new Vector3(0, 0, -0.1f), Quaternion.identity);
         winZizouObject.SetActive(isWinner);
         loseZizouObject.SetActive(!isWinner);
-        topButton.SetActive(isWinner);
+        //TODO:Unitask timing
+        toRuleSelectButton.SetActive(isWinner);
+
+        if (viewManager == null) {
+            viewManager = GameObject.Find("ViewManager").GetComponent<ViewManager>();
+        }
+        hasWin = isWinner;
     }
 
     //これが無いと動くけどエラーが出る
@@ -23,21 +33,14 @@ public class ZizouView : Photon.PunBehaviour {
         }
     }
 
-    public void PushTopButton() {
-        Debug.Log("aaaa push button...");
-        photonView.RPC(nameof(DestroyGameManager), PhotonTargets.All);
-        photonView.RPC(nameof(SendPushingTopButton), PhotonTargets.MasterClient);
+    public void PushToRuleSelect() {
+        photonView.RPC(nameof(ToRuleSelect), PhotonTargets.AllBuffered);
     }
 
     [PunRPC]
-    public void SendPushingTopButton() {
-        Debug.Log("aaaa send pushing...");
-        PhotonNetwork.automaticallySyncScene = true;
-        PhotonNetwork.LoadLevel("Launcher");
-    }
-
-    [PunRPC]
-    public void DestroyGameManager() {
-        Destroy(GameManager.Instance.gameObject);
+    public void ToRuleSelect() {
+        gameObject.SetActive(false);
+        viewManager.ruleSelectViewObj.SetActive(true);
+        viewManager.ruleSelectView.GetComponent<RuleSelectView>().Set(hasWin);
     }
 }

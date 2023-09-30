@@ -16,6 +16,8 @@ public class RuleSelectView : Photon.PunBehaviour {
     public List<RuleSubjectButton> buttonsList = new List<RuleSubjectButton>();
     private int currentSelectRuleId;
 
+    private ViewManager viewManager;
+
     public void Set(bool isWinner) {
         for (int i = 0; i < selectableRuleNum; i++) {
             var subject = Instantiate(RuleSubjectButton, RuleSubjectRoot.transform);
@@ -26,10 +28,14 @@ public class RuleSelectView : Photon.PunBehaviour {
         }
         DecideButton.SetActive(isWinner);
         DecideButton.GetComponent<Button>().enabled = false;
+
+        if (viewManager == null) {
+            viewManager = GameObject.Find("ViewManager").GetComponent<ViewManager>();
+        }
     }
 
     public void PushRule(int index) {
-        foreach(var rsb in buttonsList) {
+        foreach (var rsb in buttonsList) {
             rsb.SetHighlight(false);
         }
         buttonsList[index].SetHighlight(true);
@@ -63,11 +69,11 @@ public class RuleSelectView : Photon.PunBehaviour {
 
     [PunRPC]
     public void ChangeOthersHighlight(int ruleId) {
-        foreach(var rsb in buttonsList) {
+        foreach (var rsb in buttonsList) {
             rsb.SetHighlight(false);
         }
         currentSelectRuleId = ruleId;
-        switch(ruleId) {
+        switch (ruleId) {
             case -1:
                 break;
             default:

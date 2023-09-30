@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ViewManager : MonoBehaviour {
-    [SerializeField] GameObject playingViewObj;
-    [SerializeField] PlayingView playingView;
+    public GameObject playingViewObj;
+    public PlayingView playingView;
 
-    [SerializeField] GameObject zizouViewObj;
-    [SerializeField] ZizouView zizouView;
+    public GameObject zizouViewObj;
+    public ZizouView zizouView;
 
-    [SerializeField] GameObject ruleSelectViewObj;
-    [SerializeField] RuleSelectView ruleSelectView;
+    public GameObject ruleSelectViewObj;
+    public RuleSelectView ruleSelectView;
 
-    [SerializeField] GameObject endingViewObj;
-    [SerializeField] EndingView endingView;
+    public GameObject endingViewObj;
+    public EndingView endingView;
 }

@@ -86,4 +86,5 @@ MonoBehaviour:
   - SendPushingTopButton
   - OnGUI
   - DestroyGameManager
+  - ToEndingView
   DisableAutoOpenWizard: 1

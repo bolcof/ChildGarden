@@ -17,7 +17,8 @@ public class PlayingView : Photon.PunBehaviour {
     [SerializeField] GameObject winObject, loseObject;
     private bool hasWin;
     [SerializeField] GameObject toRuleSelectButton;
-    [SerializeField] GameObject ruleSelectView, zizouView;
+
+    private ViewManager viewManager;
 
     public void RoundStart(int round, RuleManager.Rule currentRule) {
         purposeLabel.text = currentRule.explainText;
@@ -37,6 +38,10 @@ public class PlayingView : Photon.PunBehaviour {
         loseObject.SetActive(false);
         hasWin = false;
         toRuleSelectButton.SetActive(false);
+
+        if (viewManager == null) {
+            viewManager = GameObject.Find("ViewManager").GetComponent<ViewManager>();
+        }
     }
 
     public void AppearWinObject() {
@@ -53,9 +58,9 @@ public class PlayingView : Photon.PunBehaviour {
 
     public void PushToRuleSelect() {
         if (RoundManager.Instance.currentRound != RoundManager.Instance.RoundNum) {
-            photonView.RPC(nameof(ToRuleSelect), PhotonTargets.AllBuffered);
-        } else {
             photonView.RPC(nameof(ToZizouView), PhotonTargets.AllBuffered);
+        } else {
+            photonView.RPC(nameof(ToEndingView), PhotonTargets.AllBuffered);
         }
     }
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
@@ -68,16 +73,16 @@ public class PlayingView : Photon.PunBehaviour {
     }
 
     [PunRPC]
-    public void ToRuleSelect() {
+    public void ToZizouView() {
         gameObject.SetActive(false);
-        ruleSelectView.SetActive(true);
-        ruleSelectView.GetComponent<RuleSelectView>().Set(hasWin);
+        viewManager.zizouViewObj.SetActive(true);
+        viewManager.zizouView.GetComponent<ZizouView>().Set(hasWin);
     }
 
     [PunRPC]
-    public void ToZizouView() {
+    public void ToEndingView() {
         gameObject.SetActive(false);
-        zizouView.SetActive(true);
-        zizouView.GetComponent<ZizouView>().Set(RuleManager.instance.WholeWinnerIsMe());
+        viewManager.endingViewObj.SetActive(true);
+        viewManager.endingView.GetComponent<EndingView>().Set(1);
     }
 }
