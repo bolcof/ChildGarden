@@ -20,13 +20,14 @@ public class RuleSelectView : Photon.PunBehaviour {
     private ViewManager viewManager;
 
     public async UniTask Set(bool isWinner) {
-
+        Debug.Log("rule select view set");
         for (int i = 0; i < selectableRuleNum; i++) {
             var subject = Instantiate(RuleSubjectButton, RuleSubjectRoot.transform);
             //TODO:randomize
             subject.GetComponent<RuleSubjectButton>().SetInfomation(i, this);
             subject.GetComponent<Button>().enabled = isWinner;
             buttonsList.Add(subject.GetComponent<RuleSubjectButton>());
+            Debug.Log("rule select view add");
         }
         DecideButton.SetActive(isWinner);
         DecideButton.GetComponent<Button>().enabled = false;

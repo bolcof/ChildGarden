@@ -16,6 +16,10 @@ public class ZizouView : Photon.PunBehaviour {
 
     private ViewManager viewManager;
 
+    private void Awake() {
+        zizouVideoPlayer.loopPointReached += PushToRuleSelect;
+    }
+
     public void Set(bool isWinner) {
         if(PhotonNetwork.isMasterClient) {
             int id = -1;
@@ -34,7 +38,6 @@ public class ZizouView : Photon.PunBehaviour {
 
         //TODO:Unitask timing
         toRuleSelectButton.SetActive(false);
-        zizouVideoPlayer.loopPointReached += PushToRuleSelect;
         zizouVideoPlayer.Play();
     }
 
@@ -48,7 +51,7 @@ public class ZizouView : Photon.PunBehaviour {
     }
 
     public void PushToRuleSelect(VideoPlayer vp) {
-        Debug.Log("Rule Select");
+        Debug.Log("Rule Select vp");
         if (RoundManager.Instance.currentRound != RoundManager.Instance.RoundNum) {
             photonView.RPC(nameof(ToRuleSelect), PhotonTargets.AllBuffered);
         } else {
@@ -64,7 +67,6 @@ public class ZizouView : Photon.PunBehaviour {
 
     [PunRPC]
     public void ToRuleSelect() {
-        Debug.Log("Rule Select");
         gameObject.SetActive(false);
         viewManager.ruleSelectViewObj.SetActive(true);
         viewManager.ruleSelectView.GetComponent<RuleSelectView>().Set(hasWin).Forget();

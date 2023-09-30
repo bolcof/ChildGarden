@@ -13,7 +13,7 @@ public class PlayingView : Photon.PunBehaviour {
     [SerializeField] TMP_Text purposeLabel;
 
     [SerializeField] List<Image> roundResults;
-    [SerializeField] List<Sprite> roundResultImage;/*0:lose 1:win*/
+    [SerializeField] List<Sprite> roundResultImage;/*0:lose 1:win 2:draw*/
 
     [SerializeField] TMP_Text timerLabel;
     [SerializeField] Image progressBar;
@@ -21,7 +21,7 @@ public class PlayingView : Photon.PunBehaviour {
     [SerializeField] GameObject finishLabel;
     [SerializeField] GameObject winObject, loseObject;
     private bool hasWin;
-    [SerializeField] GameObject toRuleSelectButton;
+    [SerializeField] GameObject test_toZizouButton;
 
     private ViewManager viewManager;
 
@@ -42,7 +42,7 @@ public class PlayingView : Photon.PunBehaviour {
         winObject.SetActive(false);
         loseObject.SetActive(false);
         hasWin = false;
-        toRuleSelectButton.SetActive(false);
+        test_toZizouButton.SetActive(false);
 
         if (viewManager == null) {
             viewManager = GameObject.Find("ViewManager").GetComponent<ViewManager>();
@@ -64,40 +64,51 @@ public class PlayingView : Photon.PunBehaviour {
 
     public async UniTask RoundFinish(int result) {
         finishLabel.SetActive(true);
+
         await UniTask.Delay(4000);
 
         finishLabel.SetActive(false);
+
         switch (result) {
             case 0:
-                AppearWinObject();
+                AppearWinObject().Forget();
                 break;
             case 1:
-                AppearLoseObject();
+                AppearLoseObject().Forget();
                 break;
             case 2:
-                AppearDrawObject();
+                AppearDrawObject().Forget();
                 break;
             default:
                 break;
         }
     }
-    public void AppearWinObject() {
+    public async UniTask AppearWinObject() {
         winObject.SetActive(true);
         hasWin = true;
-        toRuleSelectButton.SetActive(true);
+        test_toZizouButton.SetActive(false);
+
+        await UniTask.Delay(5000);
+        PushToZizou();
     }
 
-    public void AppearLoseObject() {
+    public async UniTask AppearLoseObject() {
         loseObject.SetActive(true);
         hasWin = false;
-        toRuleSelectButton.SetActive(false);
+        test_toZizouButton.SetActive(false);
+
+        await UniTask.Delay(5000);
+        PushToZizou();
     }
 
-    public void AppearDrawObject() {
+    public async UniTask AppearDrawObject() {
         //TODO:change to draw
         loseObject.SetActive(true);
         hasWin = false;
-        toRuleSelectButton.SetActive(false);
+        test_toZizouButton.SetActive(false);
+
+        await UniTask.Delay(5000);
+        PushToZizou();
     }
 
     public void PushToZizou() {
@@ -115,7 +126,6 @@ public class PlayingView : Photon.PunBehaviour {
 
     [PunRPC]
     public void ToZizouView() {
-        Debug.Log("to zizou");
         gameObject.SetActive(false);
         viewManager.zizouViewObj.SetActive(true);
         viewManager.zizouView.GetComponent<ZizouView>().Set(hasWin);

@@ -9,10 +9,14 @@ public class EndingView : Photon.PunBehaviour {
     [SerializeField] private VideoPlayer videoPlayer;
     [SerializeField] private TextMeshProUGUI testLabel;
     [SerializeField] private List<VideoClip> endingVideos = new List<VideoClip>();
+    [SerializeField] private GameObject testTopButton;
 
     private ViewManager viewManager;
 
     public void Set() {
+        testTopButton.SetActive(false);
+        videoPlayer.loopPointReached += PushTopButton;
+
         if (RuleManager.instance.WholeWinnerIsMe()) {
             videoPlayer.clip = endingVideos.Last();
             videoPlayer.Play();
@@ -38,9 +42,16 @@ public class EndingView : Photon.PunBehaviour {
         }
     }
 
+    public void PushTopButton(VideoPlayer vp) {
+        Debug.Log("aaaa push button...");
+        photonView.RPC(nameof(DestroyGameManager), PhotonTargets.All);
+        photonView.RPC(nameof(SendPushingTopButton), PhotonTargets.All);
+    }
+
     [PunRPC]
     public void DestroyGameManager() {
         Destroy(GameManager.Instance.gameObject);
+        Destroy(ViewManager.Instance.gameObject);
     }
 
     [PunRPC]
@@ -48,11 +59,5 @@ public class EndingView : Photon.PunBehaviour {
         Debug.Log("aaaa send pushing...");
         PhotonNetwork.automaticallySyncScene = true;
         PhotonNetwork.LoadLevel("Launcher");
-    }
-
-    public void PushTopButton() {
-        Debug.Log("aaaa push button...");
-        photonView.RPC(nameof(DestroyGameManager), PhotonTargets.All);
-        photonView.RPC(nameof(SendPushingTopButton), PhotonTargets.All);
     }
 }

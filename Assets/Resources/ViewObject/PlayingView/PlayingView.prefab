@@ -696,7 +696,7 @@ MonoBehaviour:
   finishLabel: {fileID: 509801800856226730}
   winObject: {fileID: 4675039150668437253}
   loseObject: {fileID: 7943182043814029137}
-  toRuleSelectButton: {fileID: 4172275253901498228}
+  test_toZizouButton: {fileID: 4172275253901498228}
 --- !u!1 &7143741072914872565
 GameObject:
   m_ObjectHideFlags: 0
