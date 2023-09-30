@@ -120,19 +120,7 @@ public class GameManager : Photon.PunBehaviour {
     public void DecideWinner() {
         canPutOnbutsu = false;
         isPlaying = false;
-        switch (winnerIsMine) {
-            case 0:
-                playingVew.AppearWinObject();
-                break;
-            case 1:
-                playingVew.AppearLoseObject();
-                break;
-            case 2:
-                playingVew.AppearDrawObject();
-                break;
-            default:
-                break;
-        }
+        ViewManager.Instance.playingView.RoundFinish(winnerIsMine).Forget();
     }
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Cysharp.Threading.Tasks;
 
 public class PlayingView : Photon.PunBehaviour {
     [SerializeField] Image background;
@@ -17,6 +18,7 @@ public class PlayingView : Photon.PunBehaviour {
     [SerializeField] TMP_Text timerLabel;
     [SerializeField] Image progressBar;
 
+    [SerializeField] GameObject finishLabel;
     [SerializeField] GameObject winObject, loseObject;
     private bool hasWin;
     [SerializeField] GameObject toRuleSelectButton;
@@ -60,6 +62,25 @@ public class PlayingView : Photon.PunBehaviour {
         timerLabel.text = (sec / 60).ToString() + ":" + (sec % 60).ToString("D2");
     }
 
+    public async UniTask RoundFinish(int result) {
+        finishLabel.SetActive(true);
+        await UniTask.Delay(4000);
+
+        finishLabel.SetActive(false);
+        switch (result) {
+            case 0:
+                AppearWinObject();
+                break;
+            case 1:
+                AppearLoseObject();
+                break;
+            case 2:
+                AppearDrawObject();
+                break;
+            default:
+                break;
+        }
+    }
     public void AppearWinObject() {
         winObject.SetActive(true);
         hasWin = true;
