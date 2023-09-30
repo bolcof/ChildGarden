@@ -71,9 +71,16 @@ public class RuleSelectView : Photon.PunBehaviour {
 
     public void PushDecide() {
         if (GameManager.Instance.canOperateUI) {
-            photonView.RPC(nameof(ToNextRound), PhotonTargets.AllBuffered);
+            Decide().Forget();
+            GameManager.Instance.canOperateUI = false;
         }
     }
+
+    public async UniTask Decide() {
+        await UniTask.Delay(5000);
+        photonView.RPC(nameof(ToNextRound), PhotonTargets.AllBuffered);
+    }
+    
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
         //これが無いと動くけどエラーが出る
         if (stream.isWriting) {
