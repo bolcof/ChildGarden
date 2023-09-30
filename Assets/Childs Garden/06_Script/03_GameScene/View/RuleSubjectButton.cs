@@ -8,19 +8,21 @@ public class RuleSubjectButton : MonoBehaviour {
     [SerializeField] TextMeshProUGUI label;
     public int appearedId, thisButtonsRuleId;
     public bool selected;
-    private RuleSelectView ruleSeletView;
+    private RuleSelectView ruleSelectView;
     public void SetInfomation(int _index, RuleSelectView _view) {
         label.text = RuleManager.instance.rules.Find(r => r.id == _index).explainText;
         //TODO:randomize
         thisButtonsRuleId = _index;
         appearedId = _index;
-        ruleSeletView = _view;
+        ruleSelectView = _view;
     }
     public void PushRuleButton() {
-        if (!selected) {
-            ruleSeletView.PushRule(appearedId);
-        } else {
-            ruleSeletView.RepushRule();
+        if (GameManager.Instance.canOperateUI) {
+            if (!selected) {
+                ruleSelectView.PushRule(appearedId);
+            } else {
+                ruleSelectView.RepushRule();
+            }
         }
     }
 

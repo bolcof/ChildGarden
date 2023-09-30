@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.Video;
+using Cysharp.Threading.Tasks;
 
 public class ZizouView : Photon.PunBehaviour {
     [SerializeField] List<VideoClip> zizouVideoList = new List<VideoClip>();
@@ -15,6 +16,11 @@ public class ZizouView : Photon.PunBehaviour {
 
     private ViewManager viewManager;
 
+    private void Awake() {
+        Debug.Log("awake");
+        zizouVideoPlayer.loopPointReached += PushToRuleSelect;
+    }
+
     public void Set(bool isWinner) {
         if(PhotonNetwork.isMasterClient) {
             int id = -1;
@@ -25,13 +31,15 @@ public class ZizouView : Photon.PunBehaviour {
             }
             photonView.RPC(nameof(SetZizouMovieId), PhotonTargets.All, id);
         }
-        //TODO:Unitask timing
-        toRuleSelectButton.SetActive(isWinner);
 
         if (viewManager == null) {
             viewManager = GameObject.Find("ViewManager").GetComponent<ViewManager>();
         }
         hasWin = isWinner;
+
+        //TODO:Unitask timing
+        toRuleSelectButton.SetActive(false);
+        zizouVideoPlayer.Play();
     }
 
     //これが無いと動くけどエラーが出る
@@ -43,8 +51,8 @@ public class ZizouView : Photon.PunBehaviour {
         }
     }
 
-    public void PushToRuleSelect() {
-        Debug.Log("Rule Select");
+    public void PushToRuleSelect(VideoPlayer vp) {
+        Debug.Log("Rule Select vp");
         if (RoundManager.Instance.currentRound != RoundManager.Instance.RoundNum) {
             photonView.RPC(nameof(ToRuleSelect), PhotonTargets.AllBuffered);
         } else {
@@ -60,10 +68,9 @@ public class ZizouView : Photon.PunBehaviour {
 
     [PunRPC]
     public void ToRuleSelect() {
-        Debug.Log("Rule Select");
         gameObject.SetActive(false);
         viewManager.ruleSelectViewObj.SetActive(true);
-        viewManager.ruleSelectView.GetComponent<RuleSelectView>().Set(hasWin);
+        viewManager.ruleSelectView.GetComponent<RuleSelectView>().Set(hasWin).Forget();
     }
 
     [PunRPC]

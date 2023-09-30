@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ViewManager : MonoBehaviour {
+    public static ViewManager Instance;
+
     public GameObject playingViewObj;
     public PlayingView playingView;
 
@@ -14,4 +16,13 @@ public class ViewManager : MonoBehaviour {
 
     public GameObject endingViewObj;
     public EndingView endingView;
+
+    private void Awake() {
+        if (Instance == null) {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        } else {
+            Destroy(gameObject);
+        }
+    }
 }

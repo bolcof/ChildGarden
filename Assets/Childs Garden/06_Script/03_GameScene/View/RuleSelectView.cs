@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using UnityEngine;
 using UnityEngine.UI;
+using Cysharp.Threading.Tasks;
 
 public class RuleSelectView : Photon.PunBehaviour {
 
@@ -18,13 +19,20 @@ public class RuleSelectView : Photon.PunBehaviour {
 
     private ViewManager viewManager;
 
-    public void Set(bool isWinner) {
+    public async UniTask Set(bool isWinner) {
+        //TODO:これ2回呼ばれちゃってんのよ
+        Debug.Log("rule select view set");
+        foreach (var rsb in buttonsList) {
+            Destroy(rsb.gameObject);
+        }
+        buttonsList.Clear();
         for (int i = 0; i < selectableRuleNum; i++) {
             var subject = Instantiate(RuleSubjectButton, RuleSubjectRoot.transform);
             //TODO:randomize
             subject.GetComponent<RuleSubjectButton>().SetInfomation(i, this);
             subject.GetComponent<Button>().enabled = isWinner;
             buttonsList.Add(subject.GetComponent<RuleSubjectButton>());
+            Debug.Log("rule select view add");
         }
         DecideButton.SetActive(isWinner);
         DecideButton.GetComponent<Button>().enabled = false;
@@ -32,6 +40,12 @@ public class RuleSelectView : Photon.PunBehaviour {
         if (viewManager == null) {
             viewManager = GameObject.Find("ViewManager").GetComponent<ViewManager>();
         }
+
+        GameManager.Instance.canOperateUI = false;
+
+        await UniTask.Delay(5000);
+
+        GameManager.Instance.canOperateUI = true;
     }
 
     public void PushRule(int index) {
@@ -56,8 +70,17 @@ public class RuleSelectView : Photon.PunBehaviour {
     }
 
     public void PushDecide() {
+        if (GameManager.Instance.canOperateUI) {
+            Decide().Forget();
+            GameManager.Instance.canOperateUI = false;
+        }
+    }
+
+    public async UniTask Decide() {
+        await UniTask.Delay(5000);
         photonView.RPC(nameof(ToNextRound), PhotonTargets.AllBuffered);
     }
+    
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
         //これが無いと動くけどエラーが出る
         if (stream.isWriting) {
@@ -87,9 +110,5 @@ public class RuleSelectView : Photon.PunBehaviour {
         gameObject.SetActive(false);
         RuleManager.instance.SetRule(currentSelectRuleId);
         GameManager.Instance.NextRoundStart();
-        foreach (var rsb in buttonsList) {
-            Destroy(rsb.gameObject);
-        }
-        buttonsList.Clear();
     }
 }

@@ -918,8 +918,12 @@ MonoBehaviour:
   ruleManager: {fileID: 1293520243}
   stageManager: {fileID: 1293520242}
   playingVew: {fileID: 7560027048441369460}
-  isPlaying: 0
+  canPutOnbutsu: 0
+  canOperateUI: 0
   winnerIsMine: 0
+  BeginningCountDownTime: 5
+  timeLimit: 90
+  remainingTimeLimit: 0
 --- !u!4 &1293520240
 Transform:
   m_ObjectHideFlags: 0

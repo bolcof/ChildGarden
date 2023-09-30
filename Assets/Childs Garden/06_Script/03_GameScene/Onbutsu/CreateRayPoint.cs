@@ -34,7 +34,7 @@ public class CreateRayPoint : Photon.PunBehaviour {
     }
 
     void Update() {
-        if (GameManager.Instance.isPlaying) {
+        if (GameManager.Instance.canPutOnbutsu) {
             if (Input.GetMouseButton(0) && currentHp <= 100) {
                 SmallObj.SetActive(true);
             }
