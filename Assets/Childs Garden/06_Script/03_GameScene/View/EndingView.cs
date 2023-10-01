@@ -13,9 +13,12 @@ public class EndingView : Photon.PunBehaviour {
 
     private ViewManager viewManager;
 
+    private void Awake() {
+        videoPlayer.loopPointReached += PushTopButton;
+    }
+
     public void Set() {
         testTopButton.SetActive(false);
-        videoPlayer.loopPointReached += PushTopButton;
 
         if (RuleManager.instance.WholeWinnerIsMe()) {
             videoPlayer.clip = endingVideos.Last();

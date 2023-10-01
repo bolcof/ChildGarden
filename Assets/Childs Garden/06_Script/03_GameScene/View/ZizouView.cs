@@ -17,7 +17,6 @@ public class ZizouView : Photon.PunBehaviour {
     private ViewManager viewManager;
 
     private void Awake() {
-        Debug.Log("awake");
         zizouVideoPlayer.loopPointReached += PushToRuleSelect;
     }
 

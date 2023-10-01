@@ -13,10 +13,12 @@ public class PlayingView : Photon.PunBehaviour {
     [SerializeField] TMP_Text purposeLabel;
 
     [SerializeField] List<Image> roundResults;
-    [SerializeField] List<Sprite> roundResultImage;/*0:lose 1:win 2:draw*/
+    [SerializeField] List<Sprite> roundResultImage; /*0:lose 1:win 2:draw*/
 
     [SerializeField] TMP_Text timerLabel;
-    [SerializeField] Image progressBar;
+
+    [SerializeField] RectTransform progressBar;
+    private Vector2 progressBarDefaultSize;
 
     [SerializeField] GameObject finishLabel;
     [SerializeField] GameObject winObject, loseObject;
@@ -24,6 +26,11 @@ public class PlayingView : Photon.PunBehaviour {
     [SerializeField] GameObject test_toZizouButton;
 
     private ViewManager viewManager;
+
+    private void Awake() {
+        progressBarDefaultSize = progressBar.sizeDelta;
+        ApplyProgressBar(0.0f);
+    }
 
     public void RoundStart(int round, RuleManager.Rule currentRule) {
         purposeLabel.text = currentRule.explainText;
@@ -60,6 +67,10 @@ public class PlayingView : Photon.PunBehaviour {
 
     public void ApplyTimeLimit(int sec) {
         timerLabel.text = (sec / 60).ToString() + ":" + (sec % 60).ToString("D2");
+    }
+
+    public void ApplyProgressBar(float progress) {
+        progressBar.GetComponent<RectTransform>().sizeDelta = new Vector2(progressBarDefaultSize.x, progressBarDefaultSize.y * progress);
     }
 
     public async UniTask RoundFinish(int result) {
