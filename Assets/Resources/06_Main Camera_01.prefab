@@ -1989,19 +1989,10 @@ MonoBehaviour:
   onbutsuFolderName: OnbutsuObject/
   s1Prefabs:
   - {fileID: 6152419725730226328, guid: 00c6ba13179034941967b17f58a25f16, type: 3}
-  - {fileID: 1937855356934801115, guid: d1778da417c82b840a50668428f06596, type: 3}
-  - {fileID: 7251131570846455133, guid: 53546253caff068478590cdd12ca4990, type: 3}
-  - {fileID: 5036259651583780770, guid: d47d35efd000aa2428ad3c5a453caf17, type: 3}
   s2Prefabs:
-  - {fileID: 2863201707063866586, guid: 43705d36ac2c64f43be8d959bda08cc2, type: 3}
   - {fileID: 5874587981177037943, guid: c454eab2652ea2d4caeed82a2f5f0a20, type: 3}
-  - {fileID: 4278573491905831234, guid: a80139e29a167744f948641f86c9e8c1, type: 3}
-  - {fileID: 3647912422496044914, guid: 3f73681e36d020a4d98b6611cf5c3587, type: 3}
   s3Prefabs:
-  - {fileID: 781498176590149002, guid: 6ff204a9b3c48fd45a375c1eb6f90d50, type: 3}
   - {fileID: 3857633914681591013, guid: 7c159306121ec474093dbf67d2a39048, type: 3}
-  - {fileID: 2884596214533799477, guid: 49a1cc0ed4c19aa45a90ccdfb2553992, type: 3}
-  - {fileID: 5395433203299632838, guid: 0bf05e4f9de3a1c4595332ab07d59b5e, type: 3}
   targetSlider: {fileID: 2940602283579941340}
   targetSlider2: {fileID: 1993429284089495861}
   SmallObj: {fileID: 4468343886123467383}
