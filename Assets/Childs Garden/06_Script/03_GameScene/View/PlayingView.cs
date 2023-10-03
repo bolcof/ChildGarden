@@ -13,7 +13,7 @@ public class PlayingView : Photon.PunBehaviour {
     [SerializeField] TMP_Text purposeLabel;
 
     [SerializeField] List<Image> roundResults;
-    [SerializeField] List<Sprite> roundResultImage; /*0:lose 1:win 2:draw*/
+    [SerializeField] List<Sprite> roundResultImage; /* 0:win 1:lose 2:draw */
 
     [SerializeField] TMP_Text timerLabel;
 
@@ -21,8 +21,8 @@ public class PlayingView : Photon.PunBehaviour {
     private Vector2 progressBarDefaultSize;
 
     [SerializeField] GameObject finishLabel;
-    [SerializeField] GameObject winObject, loseObject;
-    private bool hasWin;
+    [SerializeField] GameObject winObject, loseObject, drawObject;
+    private int hasWin;
     [SerializeField] GameObject test_toZizouButton;
 
     private ViewManager viewManager;
@@ -39,16 +39,13 @@ public class PlayingView : Photon.PunBehaviour {
         }
         for (int i = 0; i < round - 1; i++) {
             roundResults[i].enabled = true;
-            if (RoundManager.Instance.isWin[i]) {
-                roundResults[i].sprite = roundResultImage[0];
-            } else {
-                roundResults[i].sprite = roundResultImage[1];
-            }
+            roundResults[i].sprite = roundResultImage[RoundManager.Instance.isWin[i]];
         }
 
         winObject.SetActive(false);
         loseObject.SetActive(false);
-        hasWin = false;
+        drawObject.SetActive(false);
+        hasWin = -1;
         test_toZizouButton.SetActive(false);
 
         if (viewManager == null) {
@@ -80,6 +77,8 @@ public class PlayingView : Photon.PunBehaviour {
 
         finishLabel.SetActive(false);
 
+        hasWin = result;
+
         switch (result) {
             case 0:
                 AppearWinObject().Forget();
@@ -96,7 +95,6 @@ public class PlayingView : Photon.PunBehaviour {
     }
     public async UniTask AppearWinObject() {
         winObject.SetActive(true);
-        hasWin = true;
         test_toZizouButton.SetActive(false);
 
         await UniTask.Delay(5000);
@@ -105,7 +103,6 @@ public class PlayingView : Photon.PunBehaviour {
 
     public async UniTask AppearLoseObject() {
         loseObject.SetActive(true);
-        hasWin = false;
         test_toZizouButton.SetActive(false);
 
         await UniTask.Delay(5000);
@@ -113,9 +110,7 @@ public class PlayingView : Photon.PunBehaviour {
     }
 
     public async UniTask AppearDrawObject() {
-        //TODO:change to draw
-        loseObject.SetActive(true);
-        hasWin = false;
+        drawObject.SetActive(true);
         test_toZizouButton.SetActive(false);
 
         await UniTask.Delay(5000);
