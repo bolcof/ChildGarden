@@ -19,7 +19,7 @@ public class GameManager : Photon.PunBehaviour {
     public bool canOperateUI;
     private bool isPlaying;
 
-    public int winnerIsMine; /* -1:not yet 0:me 1:other*/
+    public int winnerIsMine; /* -1:not yet 0:me 1:other 2:draw */
 
     [SerializeField] float BeginningCountDownTime;
     public float timeLimit, remainingTimeLimit;
@@ -89,7 +89,7 @@ public class GameManager : Photon.PunBehaviour {
     }
 
     private void Update() {
-        if(isPlaying) {
+        if (isPlaying) {
             remainingTimeLimit -= Time.deltaTime;
             ViewManager.Instance.playingView.ApplyTimeLimit((int)remainingTimeLimit);
             if (remainingTimeLimit < 0.0f) {
@@ -101,7 +101,7 @@ public class GameManager : Photon.PunBehaviour {
     }
 
     private void ResetWorld() {
-        foreach(var obj in GameObject.FindGameObjectsWithTag("Onbutu")) {
+        foreach (var obj in GameObject.FindGameObjectsWithTag("Onbutu")) {
             Destroy(obj);
         }
     }
@@ -109,12 +109,13 @@ public class GameManager : Photon.PunBehaviour {
     public void MyPlayerWin() {
         photonView.RPC(nameof(OtherPlayerWin), PhotonTargets.OthersBuffered, MatchingStateManager.instance.MyPlayerId());
         winnerIsMine = 0;
-        roundManager.FinishRound(true);
+        roundManager.FinishRound(0);
         DecideWinner();
     }
 
     public void TimeOver() {
-
+        canPutOnbutsu = false;
+        photonView.RPC(nameof(Draw), PhotonTargets.All);
     }
 
     public void DecideWinner() {
@@ -135,7 +136,14 @@ public class GameManager : Photon.PunBehaviour {
     [PunRPC]
     public void OtherPlayerWin(int winnerID) {
         winnerIsMine = 1;
-        roundManager.FinishRound(false);
+        roundManager.FinishRound(1);
+        DecideWinner();
+    }
+
+    [PunRPC]
+    public void Draw() {
+        winnerIsMine = 2;
+        roundManager.FinishRound(2);
         DecideWinner();
     }
 }

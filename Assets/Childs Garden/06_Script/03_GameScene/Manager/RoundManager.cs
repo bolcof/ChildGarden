@@ -9,11 +9,11 @@ public class RoundManager : Photon.PunBehaviour {
     //static
     public int RoundNum;
     public int currentRound;
-    public List<bool> isWin;
+    public List<int> isWin; /* 0:lose 1:win 2:draw */
 
     private void Awake() {
         for (int i = 0; i < RoundNum; i++) {
-            isWin.Add(false);
+            isWin.Add(-1);
         }
         if (Instance == null) {
             Instance = this;
@@ -23,7 +23,7 @@ public class RoundManager : Photon.PunBehaviour {
         }
     }
 
-    public void FinishRound(bool _isWin) {
+    public void FinishRound(int _isWin) {
         isWin[currentRound - 1] = _isWin;
     }
 

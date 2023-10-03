@@ -88,4 +88,5 @@ MonoBehaviour:
   - DestroyGameManager
   - ToEndingView
   - SetZizouMovieId
+  - Draw
   DisableAutoOpenWizard: 1

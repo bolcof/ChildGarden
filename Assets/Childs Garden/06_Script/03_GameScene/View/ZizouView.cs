@@ -12,7 +12,7 @@ public class ZizouView : Photon.PunBehaviour {
     [SerializeField] TextMeshProUGUI zizouInfoLabel;
     [SerializeField] GameObject toRuleSelectButton;
 
-    private bool hasWin;
+    private int hasWin;
 
     private ViewManager viewManager;
 
@@ -20,8 +20,8 @@ public class ZizouView : Photon.PunBehaviour {
         zizouVideoPlayer.loopPointReached += PushToRuleSelect;
     }
 
-    public void Set(bool isWinner) {
-        if(PhotonNetwork.isMasterClient) {
+    public void Set(int isWinner) {
+        if (PhotonNetwork.isMasterClient) {
             int id = -1;
             if (RoundManager.Instance.currentRound == RoundManager.Instance.RoundNum) {
                 id = zizouVideoList.Count - 1;
@@ -69,7 +69,14 @@ public class ZizouView : Photon.PunBehaviour {
     public void ToRuleSelect() {
         gameObject.SetActive(false);
         viewManager.ruleSelectViewObj.SetActive(true);
-        viewManager.ruleSelectView.GetComponent<RuleSelectView>().Set(hasWin).Forget();
+        if (hasWin == 0) {
+            viewManager.ruleSelectView.GetComponent<RuleSelectView>().Set(true).Forget();
+        } else if (hasWin == 1) {
+            viewManager.ruleSelectView.GetComponent<RuleSelectView>().Set(false).Forget();
+        } else {
+            //TODO:selector
+            viewManager.ruleSelectView.GetComponent<RuleSelectView>().Set(PhotonNetwork.isMasterClient).Forget();
+        }
     }
 
     [PunRPC]

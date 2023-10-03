@@ -19,7 +19,7 @@ public class RuleSelectView : Photon.PunBehaviour {
 
     private ViewManager viewManager;
 
-    public async UniTask Set(bool isWinner) {
+    public async UniTask Set(bool isSelector) {
         //TODO:これ2回呼ばれちゃってんのよ
         Debug.Log("rule select view set");
         foreach (var rsb in buttonsList) {
@@ -30,11 +30,11 @@ public class RuleSelectView : Photon.PunBehaviour {
             var subject = Instantiate(RuleSubjectButton, RuleSubjectRoot.transform);
             //TODO:randomize
             subject.GetComponent<RuleSubjectButton>().SetInfomation(i, this);
-            subject.GetComponent<Button>().enabled = isWinner;
+            subject.GetComponent<Button>().enabled = isSelector;
             buttonsList.Add(subject.GetComponent<RuleSubjectButton>());
             Debug.Log("rule select view add");
         }
-        DecideButton.SetActive(isWinner);
+        DecideButton.SetActive(isSelector);
         DecideButton.GetComponent<Button>().enabled = false;
 
         if (viewManager == null) {
@@ -80,7 +80,7 @@ public class RuleSelectView : Photon.PunBehaviour {
         await UniTask.Delay(5000);
         photonView.RPC(nameof(ToNextRound), PhotonTargets.AllBuffered);
     }
-    
+
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
         //これが無いと動くけどエラーが出る
         if (stream.isWriting) {
