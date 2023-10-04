@@ -18,9 +18,9 @@ public class CreateRayPoint : Photon.PunBehaviour {
     [SerializeField] private float chargingTime;
     [SerializeField] private float levelUpTime;
 
-    public List<Slider> chargeSliders = new List<Slider>();
-
-    public List<GameObject> sizeSignKnob = new List<GameObject>();
+    [SerializeField] private Slider chargeSlider;
+    [SerializeField] private GameObject sizeSignKnob;
+    [SerializeField] private List<Color> sliderColors = new List<Color>();
 
     private void Start() {
         camera = GetComponent<Camera>();
@@ -30,35 +30,18 @@ public class CreateRayPoint : Photon.PunBehaviour {
     void Update() {
         if (GameManager.Instance.canPutOnbutsu) {
             int level = FloatDivide(chargingTime, levelUpTime);
-            Debug.Log(level);
 
             if (Input.GetMouseButton(0)) {
                 chargingTime += Time.deltaTime;
-                for (int i = 0; i < 4; i++) {
-                    sizeSignKnob[i].SetActive(false);
-                    chargeSliders[i].gameObject.SetActive(false);
-                }
-                switch (level) {
-                    case 0:
-                        sizeSignKnob[0].SetActive(true);
-                        chargeSliders[0].gameObject.SetActive(true);
-                        chargeSliders[0].value = FloatDivideRemain(chargingTime, levelUpTime) / levelUpTime * 1000;
-                        break;
-                    case 1:
-                        sizeSignKnob[1].SetActive(true);
-                        chargeSliders[1].gameObject.SetActive(true);
-                        chargeSliders[1].value = FloatDivideRemain(chargingTime, levelUpTime) / levelUpTime * 1000;
-                        break;
-                    case 2:
-                        sizeSignKnob[2].SetActive(true);
-                        chargeSliders[2].gameObject.SetActive(true);
-                        chargeSliders[2].value = FloatDivideRemain(chargingTime, levelUpTime) / levelUpTime * 1000;
-                        break;
-                    default:
-                        sizeSignKnob[3].SetActive(true);
-                        chargeSliders[3].gameObject.SetActive(true);
-                        chargeSliders[3].value = 1000.0f;
-                        break;
+                chargeSlider.gameObject.SetActive(true);
+                sizeSignKnob.SetActive(true);
+
+                chargeSlider.fillRect.GetComponent<Image>().color = sliderColors[level];
+                sizeSignKnob.GetComponent<Image>().color = sliderColors[level];
+                if (level <= 2) {
+                    chargeSlider.value = FloatDivideRemain(chargingTime, levelUpTime) / levelUpTime * 1000;
+                } else {
+                    chargeSlider.value = 1000f;
                 }
             }
 
@@ -84,11 +67,8 @@ public class CreateRayPoint : Photon.PunBehaviour {
                             PhotonNetwork.Instantiate(onbutsuFolderName + OnbutsuList_Level4[PhotonNetwork.player.ID - 1].name, spawnPosition, Quaternion.identity, 0);
                             break;
                     }
-
-                    for (int i = 0; i < 4; i++) {
-                        sizeSignKnob[i].SetActive(false);
-                        chargeSliders[i].gameObject.SetActive(false);
-                    }
+                    sizeSignKnob.SetActive(false);
+                    chargeSlider.gameObject.SetActive(false);
                 }
             }
         }
