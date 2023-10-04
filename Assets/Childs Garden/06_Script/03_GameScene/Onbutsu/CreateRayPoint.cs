@@ -15,6 +15,8 @@ public class CreateRayPoint : Photon.PunBehaviour {
     public List<GameObject> OnbutsuList_Level3 = new List<GameObject>();
     public List<GameObject> OnbutsuList_Level4 = new List<GameObject>();
 
+    [SerializeField] List<GameObject> ChargingEffects = new List<GameObject>();
+
     [SerializeField] private float chargingTime;
     [SerializeField] private float levelUpTime;
 
