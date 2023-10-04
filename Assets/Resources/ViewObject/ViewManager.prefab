@@ -1402,6 +1402,22 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3495916850761250332, guid: 6b6853984d0585748934584baccfa130, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3495916850761250332, guid: 6b6853984d0585748934584baccfa130, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3495916850761250332, guid: 6b6853984d0585748934584baccfa130, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4613708070370004374, guid: 6b6853984d0585748934584baccfa130, type: 3}
+      propertyPath: m_VideoClip
+      value: 
+      objectReference: {fileID: 32900000, guid: 0bb7d782b279a4198bbff19c7161d1a5, type: 3}
     - target: {fileID: 6161658692996912777, guid: 6b6853984d0585748934584baccfa130, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
