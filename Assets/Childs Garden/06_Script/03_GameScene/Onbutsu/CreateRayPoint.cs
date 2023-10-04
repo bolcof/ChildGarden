@@ -6,133 +6,91 @@ using UnityEngine.UI;
 
 public class CreateRayPoint : Photon.PunBehaviour {
     [SerializeField]
-    private float distance = 20.0f;
+    private float rayDistance = 20.0f;
     private Camera camera;
 
     [SerializeField] string onbutsuFolderName;
-    public GameObject[] s1Prefabs;
-    private int number;
-    private GameObject spawnPosition;
+    public List<GameObject> OnbutsuList_Level1 = new List<GameObject>();
+    public List<GameObject> OnbutsuList_Level2 = new List<GameObject>();
+    public List<GameObject> OnbutsuList_Level3 = new List<GameObject>();
+    public List<GameObject> OnbutsuList_Level4 = new List<GameObject>();
 
-    public GameObject[] s2Prefabs;
-    public GameObject[] s3Prefabs;
-    private int currentHp = 0;
+    [SerializeField] List<GameObject> ChargingEffects = new List<GameObject>();
 
-    public Slider targetSlider;  // 対象となるSlider
-    public Slider targetSlider2;  // 対象となるSlider
+    [SerializeField] private float chargingTime;
+    [SerializeField] private float levelUpTime;
 
-    public GameObject SmallObj;
-    public GameObject MiddleObj;
-    public GameObject targetSlider3;
+    [SerializeField] private Slider chargeSlider;
+    [SerializeField] private GameObject sizeSignKnob;
+    [SerializeField] private List<Color> sliderColors = new List<Color>();
 
     private void Start() {
         camera = GetComponent<Camera>();
-
-        // Sliderの初期値を設定
-        UpdateSliderFromInt();
-        UpdateSliderFromInt2();
+        chargingTime = 0.0f;
+        sizeSignKnob.SetActive(false);
+        chargeSlider.gameObject.SetActive(false);
     }
 
     void Update() {
         if (GameManager.Instance.canPutOnbutsu) {
-            if (Input.GetMouseButton(0) && currentHp <= 100) {
-                SmallObj.SetActive(true);
-            }
-
-            if (Input.GetMouseButton(0) && currentHp > 100 && currentHp < 200) {
-                MiddleObj.SetActive(true);
-                SmallObj.SetActive(false);
-            }
-
-            if (Input.GetMouseButton(0) && currentHp >= 200) {
-                targetSlider3.SetActive(true);
-                MiddleObj.SetActive(false);
-            }
+            int level = FloatDivide(chargingTime, levelUpTime);
 
             if (Input.GetMouseButton(0)) {
-                ++currentHp;
-                currentHp = Mathf.Clamp(currentHp, 0, 200);
-                UpdateSliderFromInt();
-                UpdateSliderFromInt2();
-            }
+                chargingTime += Time.deltaTime;
+                chargeSlider.gameObject.SetActive(true);
+                sizeSignKnob.SetActive(true);
 
-            if (Input.GetMouseButtonUp(0) && currentHp <= 100) {
-                Ray ray = camera.ScreenPointToRay(Input.mousePosition);
-                RaycastHit hit;
-
-                if (Physics.Raycast(ray, out hit, distance)) {
-                    number = Random.Range(0, s1Prefabs.Length);
-                    Vector3 spawnPosition = hit.point + Vector3.up * 0.5f;
-                    PhotonNetwork.Instantiate(onbutsuFolderName + s1Prefabs[number].name, spawnPosition, Quaternion.identity, 0);
-                    currentHp = 0;
-                    Debug.Log("value : " + currentHp);
-                    SmallObj.SetActive(false);
+                chargeSlider.fillRect.GetComponent<Image>().color = sliderColors[level];
+                sizeSignKnob.GetComponent<Image>().color = sliderColors[level];
+                if (level <= 2) {
+                    chargeSlider.value = FloatDivideRemain(chargingTime, levelUpTime) / levelUpTime * 1000;
+                } else {
+                    chargeSlider.value = 1000f;
                 }
             }
 
-            if (Input.GetMouseButtonUp(0) && currentHp > 100 && currentHp < 200) {
+            if (Input.GetMouseButtonUp(0)) {
+                chargingTime = 0.0f;
+
                 Ray ray = camera.ScreenPointToRay(Input.mousePosition);
                 RaycastHit hit;
 
-                if (Physics.Raycast(ray, out hit, distance)) {
-                    number = Random.Range(0, s2Prefabs.Length);
+                if (Physics.Raycast(ray, out hit, rayDistance)) {
                     Vector3 spawnPosition = hit.point + Vector3.up * 0.5f;
-                    PhotonNetwork.Instantiate(onbutsuFolderName + s2Prefabs[number].name, spawnPosition, Quaternion.identity, 0);
-                    currentHp = 0;
-                    Debug.Log("value : " + currentHp);
-                    MiddleObj.SetActive(false);
+                    switch (level) {
+                        case 0:
+                            PhotonNetwork.Instantiate(onbutsuFolderName + OnbutsuList_Level1[PhotonNetwork.player.ID - 1].name, spawnPosition, Quaternion.identity, 0);
+                            break;
+                        case 1:
+                            PhotonNetwork.Instantiate(onbutsuFolderName + OnbutsuList_Level2[PhotonNetwork.player.ID - 1].name, spawnPosition, Quaternion.identity, 0);
+                            break;
+                        case 2:
+                            PhotonNetwork.Instantiate(onbutsuFolderName + OnbutsuList_Level3[PhotonNetwork.player.ID - 1].name, spawnPosition, Quaternion.identity, 0);
+                            break;
+                        default:
+                            PhotonNetwork.Instantiate(onbutsuFolderName + OnbutsuList_Level4[PhotonNetwork.player.ID - 1].name, spawnPosition, Quaternion.identity, 0);
+                            break;
+                    }
+                    sizeSignKnob.SetActive(false);
+                    chargeSlider.gameObject.SetActive(false);
                 }
-
-            }
-
-            if (Input.GetMouseButtonUp(0) && currentHp >= 200) {
-                Ray ray = camera.ScreenPointToRay(Input.mousePosition);
-                RaycastHit hit;
-
-                if (Physics.Raycast(ray, out hit, distance)) {
-                    number = Random.Range(0, s3Prefabs.Length);
-                    Vector3 spawnPosition = hit.point + Vector3.up * 0.5f;
-                    PhotonNetwork.Instantiate(onbutsuFolderName + s3Prefabs[number].name, spawnPosition, Quaternion.identity, 0);
-                    currentHp = 0;
-                    Debug.Log("value : " + currentHp);
-                    targetSlider3.SetActive(false);
-                    //2秒後にオブジェクトを消す
-                    //Invoke("Slider3Active", 1);
-
-                }
-            }
-
-            if (currentHp == 0) {
-                ResetIntValue();
             }
         }
     }
 
-    public void SetIntValue(int newValue) {
-        currentHp = Mathf.Clamp(newValue, 0, 100);
-        UpdateSliderFromInt();
+    private int FloatDivide(float n1, float n2) {
+        int count = 0;
+        while (n1 >= n2) {
+            count++;
+            n1 -= n2;
+        }
+        return count;
     }
 
-    private void UpdateSliderFromInt() {
-        targetSlider.value = currentHp;
+    private float FloatDivideRemain(float n1, float n2) {
+        while (n1 >= n2) {
+            n1 -= n2;
+        }
+        return n1;
     }
-
-    public void ResetIntValue() {
-        currentHp = 0;
-        UpdateSliderFromInt();
-        UpdateSliderFromInt2();
-    }
-
-    public void SetIntValue2(int newValue) {
-        currentHp = Mathf.Clamp(newValue, 100, 200);
-        UpdateSliderFromInt2();
-    }
-
-    private void UpdateSliderFromInt2() {
-        targetSlider2.value = currentHp;
-    }
-    // private void Slider3Active()
-    // {
-    //     targetSlider3.SetActive (false);
-    // }
 }
