@@ -591,22 +591,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7382917408416437119, guid: 1ddbe3b6227155a40a9c819384cd0d79, type: 3}
-      propertyPath: OnbutsuList_Level1.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 7382917408416437119, guid: 1ddbe3b6227155a40a9c819384cd0d79, type: 3}
-      propertyPath: OnbutsuList_Level2.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 7382917408416437119, guid: 1ddbe3b6227155a40a9c819384cd0d79, type: 3}
-      propertyPath: OnbutsuList_Level3.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 7382917408416437119, guid: 1ddbe3b6227155a40a9c819384cd0d79, type: 3}
-      propertyPath: OnbutsuList_Level4.Array.size
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 8072724028197875564, guid: 1ddbe3b6227155a40a9c819384cd0d79, type: 3}
       propertyPath: m_Name
       value: MainCamera
@@ -1211,7 +1195,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2000092366725774221, guid: 0b4153f1c10ecac41b8e0a8011dfb286, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.3
+      value: -1.75
       objectReference: {fileID: 0}
     - target: {fileID: 2000092366725774221, guid: 0b4153f1c10ecac41b8e0a8011dfb286, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1373,6 +1357,10 @@ PrefabInstance:
       propertyPath: instantiationId
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 5376751677973331372, guid: 73fec1ab5d0d341798c02780d8064799, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6296577792446821356, guid: 73fec1ab5d0d341798c02780d8064799, type: 3}
       propertyPath: viewIdField
       value: 8
@@ -1388,6 +1376,14 @@ PrefabInstance:
     - target: {fileID: 6668235249083816637, guid: 73fec1ab5d0d341798c02780d8064799, type: 3}
       propertyPath: instantiationId
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6749850085555756539, guid: 73fec1ab5d0d341798c02780d8064799, type: 3}
+      propertyPath: m_Name
+      value: DrawVideo
+      objectReference: {fileID: 0}
+    - target: {fileID: 6749850085555756539, guid: 73fec1ab5d0d341798c02780d8064799, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7652550324831937578, guid: 73fec1ab5d0d341798c02780d8064799, type: 3}
       propertyPath: viewIdField

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028326, g: 0.22571333, b: 0.30692202, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -820,6 +820,14 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7266262818075099424, guid: 34f2a45943521284694139c1bc326b92, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -168
+      objectReference: {fileID: 0}
+    - target: {fileID: 7266262818075099424, guid: 34f2a45943521284694139c1bc326b92, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 241
+      objectReference: {fileID: 0}
     - target: {fileID: 8808351447550526204, guid: 34f2a45943521284694139c1bc326b92, type: 3}
       propertyPath: m_Name
       value: DisplaySceneNameObj
@@ -1005,7 +1013,6 @@ SceneRoots:
   m_Roots:
   - {fileID: 459743434}
   - {fileID: 1020377227}
-  - {fileID: 5375465423719387697}
   - {fileID: 698820417}
   - {fileID: 549837091}
   - {fileID: 1679567084}
@@ -1014,3 +1021,4 @@ SceneRoots:
   - {fileID: 6599247921461870471}
   - {fileID: 606183275073394549}
   - {fileID: 13166029}
+  - {fileID: 5375465423719387697}
