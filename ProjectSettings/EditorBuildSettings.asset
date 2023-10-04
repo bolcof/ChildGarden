@@ -14,22 +14,4 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Childs Garden/05_Scenes/MainGame.unity
     guid: 1e7184a22b7951045a01392bfcaffd53
-  - enabled: 1
-    path: Assets/Childs Garden/05_Scenes/testA_0822.unity
-    guid: c27b924b6ba49c444ba07725eea42955
-  - enabled: 1
-    path: Assets/Childs Garden/05_Scenes/testB_0822.unity
-    guid: 1d50897a02014b84b82c82910f700687
-  - enabled: 1
-    path: Assets/Childs Garden/05_Scenes/testC_0822.unity
-    guid: d541577f73977404c873bff749fa01a0
-  - enabled: 1
-    path: Assets/Childs Garden/05_Scenes/trueEND_A.unity
-    guid: e652b75caefb2de4a855ebb6a546c22f
-  - enabled: 1
-    path: Assets/Childs Garden/05_Scenes/badEND_A.unity
-    guid: d559d2fde3b7aec409ec6c1a081c16e9
-  - enabled: 1
-    path: Assets/Childs Garden/05_Scenes/badEND_B.unity
-    guid: 0a8d86b90ac30be4a972bf2e2bd5567d
   m_configObjects: {}
