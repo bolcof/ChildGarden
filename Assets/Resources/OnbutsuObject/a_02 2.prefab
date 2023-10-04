@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 5044954309642259416}
   - component: {fileID: 1441819364909595096}
   m_Layer: 0
-  m_Name: a_02
+  m_Name: a_02 2
   m_TagString: Onbutu
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
