@@ -25,6 +25,8 @@ public class CreateRayPoint : Photon.PunBehaviour {
     private void Start() {
         camera = GetComponent<Camera>();
         chargingTime = 0.0f;
+        sizeSignKnob.SetActive(false);
+        chargeSlider.gameObject.SetActive(false);
     }
 
     void Update() {
