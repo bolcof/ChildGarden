@@ -1293,7 +1293,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 2280523504530264948}
         m_TargetAssemblyTypeName: TextBoxControl, Assembly-CSharp
         m_MethodName: SwitchToNextObject
         m_Mode: 1
