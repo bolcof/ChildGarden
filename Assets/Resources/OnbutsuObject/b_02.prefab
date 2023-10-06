@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: 5288468526417225219}
   - component: {fileID: 5092366099567499783}
   - component: {fileID: 173813754427947773}
-  - component: {fileID: 5044954309642259416}
-  - component: {fileID: 1441819364909595096}
   - component: {fileID: 145150227414240295}
+  - component: {fileID: 6258191667325480032}
+  - component: {fileID: 5875955755043588913}
   m_Layer: 0
   m_Name: b_02
   m_TagString: Onbutu
@@ -63,8 +63,8 @@ MonoBehaviour:
   - {fileID: 7693932003042695884}
   - {fileID: 764219463528073109}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 0
-  instantiationId: -1
+  viewIdField: 9
+  instantiationId: 9
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &764219463528073109
@@ -242,7 +242,28 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!60 &5044954309642259416
+--- !u!95 &145150227414240295
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5874587981177037943}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b00e71201287e480989fbf9f59754128, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!60 &6258191667325480032
 PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -286,25 +307,32 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.04, y: -3.98}
-      - {x: 2.85, y: -3.9499998}
-      - {x: 4.83, y: -3.51}
-      - {x: 5.25, y: -3.1}
-      - {x: 3.36, y: -0.64}
-      - {x: 2.49, y: 1.14}
-      - {x: 0.68, y: 3.9199998}
-      - {x: 0, y: 4.2799997}
-      - {x: -0.55, y: 4.0099998}
-      - {x: -1.12, y: 3.29}
-      - {x: -2.82, y: 0.41}
-      - {x: -5.08, y: -2.08}
-      - {x: -5.6299996, y: -3.1}
-      - {x: -5.3399997, y: -3.6999998}
-      - {x: -4.65, y: -3.9399998}
-      - {x: -2.82, y: -3.75}
-      - {x: -0.12, y: -3.99}
+    - - {x: 0.08, y: -3.77}
+      - {x: 1.81, y: -3.75}
+      - {x: 2.49, y: -3.48}
+      - {x: 4.15, y: -3.6}
+      - {x: 4.91, y: -3.53}
+      - {x: 5.29, y: -3.33}
+      - {x: 5.33, y: -3.1}
+      - {x: 5.1, y: -2.6299999}
+      - {x: 3.34, y: -0.68}
+      - {x: 3, y: -0.13}
+      - {x: 1.9799999, y: 1.0799999}
+      - {x: 1.2099999, y: 2.1699998}
+      - {x: 0.78999996, y: 3.01}
+      - {x: 0.25, y: 3.84}
+      - {x: 0.01, y: 3.99}
+      - {x: -0.19999999, y: 3.9099998}
+      - {x: -1.16, y: 2.35}
+      - {x: -3.76, y: -1.03}
+      - {x: -4.0699997, y: -1.66}
+      - {x: -4.99, y: -2.98}
+      - {x: -5.0299997, y: -3.1699998}
+      - {x: -1.74, y: -3.72}
+      - {x: -0.69, y: -3.82}
+      - {x: 0.07, y: -3.78}
   m_UseDelaunayMesh: 0
---- !u!114 &1441819364909595096
+--- !u!114 &5875955755043588913
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -316,25 +344,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6876803ba35184bf9b6a393e33a2f264, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tolerance: 0.15
---- !u!95 &145150227414240295
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5874587981177037943}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: b00e71201287e480989fbf9f59754128, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
+  tolerance: 0.05
