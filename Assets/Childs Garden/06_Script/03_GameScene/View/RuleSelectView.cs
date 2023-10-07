@@ -4,36 +4,46 @@ using System.Data;
 using UnityEngine;
 using UnityEngine.UI;
 using Cysharp.Threading.Tasks;
+using UnityEngine.Video;
 
 public class RuleSelectView : Photon.PunBehaviour {
 
     //static
     [SerializeField] private int selectableRuleNum;
 
-    [SerializeField] private GameObject RuleSubjectRoot;
     [SerializeField] private GameObject RuleSubjectButton;
     [SerializeField] private GameObject DecideButton;
 
     public List<RuleSubjectButton> buttonsList = new List<RuleSubjectButton>();
     private int currentSelectRuleId;
 
+    [SerializeField] private VideoPlayer openingVideo, closingVideo;
+
     private ViewManager viewManager;
 
     public async UniTask Set(bool isSelector) {
         //TODO:これ2回呼ばれちゃってんのよ
         Debug.Log("rule select view set");
-        foreach (var rsb in buttonsList) {
+        /*foreach (var rsb in buttonsList) {
             Destroy(rsb.gameObject);
-        }
-        buttonsList.Clear();
+        }*/
+        //buttonsList.Clear();
         for (int i = 0; i < selectableRuleNum; i++) {
-            var subject = Instantiate(RuleSubjectButton, RuleSubjectRoot.transform);
             //TODO:randomize
+            /*var subject = Instantiate(RuleSubjectButton, RuleSubjectRoot.transform);
             subject.GetComponent<RuleSubjectButton>().SetInfomation(i, this);
             subject.GetComponent<Button>().enabled = isSelector;
             buttonsList.Add(subject.GetComponent<RuleSubjectButton>());
             Debug.Log("rule select view add");
+            */
         }
+
+        //TODO:for 1007
+        foreach (var subject in buttonsList) {
+            subject.GetComponent<RuleSubjectButton>().SetInfomation(this);
+            subject.GetComponent<Button>().enabled = isSelector;
+        }
+
         DecideButton.SetActive(isSelector);
         DecideButton.GetComponent<Button>().enabled = false;
 
@@ -41,9 +51,15 @@ public class RuleSelectView : Photon.PunBehaviour {
             viewManager = GameObject.Find("ViewManager").GetComponent<ViewManager>();
         }
 
+        openingVideo.gameObject.GetComponent<RawImage>().color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+        openingVideo.Play();
+        closingVideo.Prepare();
+        closingVideo.time = 0f;
+        closingVideo.gameObject.GetComponent<RawImage>().color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
+
         GameManager.Instance.canOperateUI = false;
 
-        await UniTask.Delay(5000);
+        await UniTask.Delay(3200);
 
         GameManager.Instance.canOperateUI = true;
     }
@@ -71,13 +87,18 @@ public class RuleSelectView : Photon.PunBehaviour {
 
     public void PushDecide() {
         if (GameManager.Instance.canOperateUI) {
+            closingVideo.gameObject.GetComponent<RawImage>().color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+            closingVideo.time = 0f;
+            closingVideo.Play();
+            openingVideo.gameObject.GetComponent<RawImage>().color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
+            openingVideo.time = 0f;
             Decide().Forget();
             GameManager.Instance.canOperateUI = false;
         }
     }
 
-    public async UniTask Decide() {
-        await UniTask.Delay(5000);
+    public async UniTask Decide() { //TODO Archive
+        await UniTask.Delay(3200);
         photonView.RPC(nameof(ToNextRound), PhotonTargets.AllBuffered);
     }
 

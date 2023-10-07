@@ -283,3 +283,7 @@ MonoBehaviour:
   label: {fileID: 3195862656068761547}
   appearedId: 0
   thisButtonsRuleId: 0
+  selected: 0
+  image: {fileID: 3166467343589746658}
+  disSelectedImage: {fileID: 0}
+  selcetedImage: {fileID: 0}
