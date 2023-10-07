@@ -604,11 +604,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7111295734352506592, guid: 79fdd92e612eeb34caa83225d037325d, type: 3}
       propertyPath: viewIdField
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7111295734352506592, guid: 79fdd92e612eeb34caa83225d037325d, type: 3}
       propertyPath: instantiationId
-      value: 6
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 7208930912939342019, guid: 79fdd92e612eeb34caa83225d037325d, type: 3}
       propertyPath: m_RaycastTarget
@@ -681,11 +681,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 508830618896168883, guid: 1a3aaaeb52ac0f849905f84dd1d8e072, type: 3}
       propertyPath: viewIdField
-      value: 8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 508830618896168883, guid: 1a3aaaeb52ac0f849905f84dd1d8e072, type: 3}
       propertyPath: instantiationId
-      value: 8
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 2304853940186361172, guid: 1a3aaaeb52ac0f849905f84dd1d8e072, type: 3}
       propertyPath: m_SortingLayer
@@ -735,6 +735,34 @@ PrefabInstance:
       propertyPath: m_VideoClip
       value: 
       objectReference: {fileID: 32900000, guid: 2a773c2ba24dd498cac20428f7e84b55, type: 3}
+    - target: {fileID: 5664730062622319527, guid: 1a3aaaeb52ac0f849905f84dd1d8e072, type: 3}
+      propertyPath: m_ControlledAudioTrackCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5664730062622319527, guid: 1a3aaaeb52ac0f849905f84dd1d8e072, type: 3}
+      propertyPath: m_DirectAudioMutes.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5664730062622319527, guid: 1a3aaaeb52ac0f849905f84dd1d8e072, type: 3}
+      propertyPath: m_DirectAudioVolumes.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5664730062622319527, guid: 1a3aaaeb52ac0f849905f84dd1d8e072, type: 3}
+      propertyPath: m_EnabledAudioTracks.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5664730062622319527, guid: 1a3aaaeb52ac0f849905f84dd1d8e072, type: 3}
+      propertyPath: m_TargetAudioSources.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5664730062622319527, guid: 1a3aaaeb52ac0f849905f84dd1d8e072, type: 3}
+      propertyPath: m_DirectAudioVolumes.Array.data[0]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5664730062622319527, guid: 1a3aaaeb52ac0f849905f84dd1d8e072, type: 3}
+      propertyPath: m_EnabledAudioTracks.Array.data[0]
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5958775138788325510, guid: 1a3aaaeb52ac0f849905f84dd1d8e072, type: 3}
       propertyPath: m_Name
       value: PlayingView
@@ -907,11 +935,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 507131201532545913, guid: 700fa35eb5afc4342a4ece7e3a4f1233, type: 3}
       propertyPath: viewIdField
-      value: 5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 507131201532545913, guid: 700fa35eb5afc4342a4ece7e3a4f1233, type: 3}
       propertyPath: instantiationId
-      value: 5
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 2778139114998302658, guid: 700fa35eb5afc4342a4ece7e3a4f1233, type: 3}
       propertyPath: m_Name
@@ -1037,11 +1065,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 507131201532545913, guid: 6b6853984d0585748934584baccfa130, type: 3}
       propertyPath: viewIdField
-      value: 7
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 507131201532545913, guid: 6b6853984d0585748934584baccfa130, type: 3}
       propertyPath: instantiationId
-      value: 7
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 2778139114998302658, guid: 6b6853984d0585748934584baccfa130, type: 3}
       propertyPath: m_Name

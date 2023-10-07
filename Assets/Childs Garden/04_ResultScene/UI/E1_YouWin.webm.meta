@@ -18,7 +18,7 @@ VideoClipImporter:
       codec: 0
       resizeFormat: 0
       aspectRatio: 0
-      customWidth: 2880
+      customWidth: 1920
       customHeight: 1080
       bitrateMode: 2
       spatialQuality: 2
