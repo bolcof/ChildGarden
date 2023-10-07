@@ -59,7 +59,7 @@ public class RuleSelectView : Photon.PunBehaviour {
 
         GameManager.Instance.canOperateUI = false;
 
-        await UniTask.Delay(5000);
+        await UniTask.Delay(3200);
 
         GameManager.Instance.canOperateUI = true;
     }
