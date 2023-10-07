@@ -10,7 +10,6 @@ public class RuleSelectView : Photon.PunBehaviour {
     //static
     [SerializeField] private int selectableRuleNum;
 
-    [SerializeField] private GameObject RuleSubjectRoot;
     [SerializeField] private GameObject RuleSubjectButton;
     [SerializeField] private GameObject DecideButton;
 
@@ -27,12 +26,19 @@ public class RuleSelectView : Photon.PunBehaviour {
         }
         buttonsList.Clear();
         for (int i = 0; i < selectableRuleNum; i++) {
-            var subject = Instantiate(RuleSubjectButton, RuleSubjectRoot.transform);
             //TODO:randomize
+            /*var subject = Instantiate(RuleSubjectButton, RuleSubjectRoot.transform);
             subject.GetComponent<RuleSubjectButton>().SetInfomation(i, this);
             subject.GetComponent<Button>().enabled = isSelector;
             buttonsList.Add(subject.GetComponent<RuleSubjectButton>());
             Debug.Log("rule select view add");
+            */
+
+            //TODO:for 1007
+            foreach (var subject in buttonsList) {
+                subject.GetComponent<RuleSubjectButton>().SetInfomation(i, this);
+                subject.GetComponent<Button>().enabled = isSelector;
+            }
         }
         DecideButton.SetActive(isSelector);
         DecideButton.GetComponent<Button>().enabled = false;

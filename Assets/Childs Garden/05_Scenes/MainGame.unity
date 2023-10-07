@@ -1087,7 +1087,7 @@ MonoBehaviour:
   canOperateUI: 0
   winnerIsMine: 0
   BeginningCountDownTime: 5
-  timeLimit: 40
+  timeLimit: 60
   remainingTimeLimit: 0
 --- !u!4 &1293520240
 Transform:
@@ -1588,7 +1588,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6961369006538854646, guid: 73fec1ab5d0d341798c02780d8064799, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8492502674580649606, guid: 73fec1ab5d0d341798c02780d8064799, type: 3}
       propertyPath: viewIdField
