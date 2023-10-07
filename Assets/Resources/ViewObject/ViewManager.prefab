@@ -214,6 +214,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7111295734352506592, guid: 79fdd92e612eeb34caa83225d037325d, type: 3}
+      propertyPath: viewIdField
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7111295734352506592, guid: 79fdd92e612eeb34caa83225d037325d, type: 3}
+      propertyPath: instantiationId
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 8642631841407453328, guid: 79fdd92e612eeb34caa83225d037325d, type: 3}
       propertyPath: m_Name
       value: RuleSelectView
@@ -258,11 +266,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 507131201532545913, guid: 700fa35eb5afc4342a4ece7e3a4f1233, type: 3}
       propertyPath: viewIdField
-      value: 0
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 507131201532545913, guid: 700fa35eb5afc4342a4ece7e3a4f1233, type: 3}
       propertyPath: instantiationId
-      value: -1
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2778139114998302658, guid: 700fa35eb5afc4342a4ece7e3a4f1233, type: 3}
       propertyPath: m_Name
@@ -386,14 +394,34 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3072746111910759177}
     m_Modifications:
+    - target: {fileID: 508830618896168883, guid: 1a3aaaeb52ac0f849905f84dd1d8e072, type: 3}
+      propertyPath: viewIdField
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 508830618896168883, guid: 1a3aaaeb52ac0f849905f84dd1d8e072, type: 3}
+      propertyPath: instantiationId
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 2304853940186361172, guid: 1a3aaaeb52ac0f849905f84dd1d8e072, type: 3}
       propertyPath: m_SortingLayer
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4936734863905186534, guid: 1a3aaaeb52ac0f849905f84dd1d8e072, type: 3}
+      propertyPath: m_Texture
+      value: 
+      objectReference: {fileID: 8400000, guid: 5288599bd4a184d5297c5e626638be60, type: 2}
+    - target: {fileID: 5664730062622319527, guid: 1a3aaaeb52ac0f849905f84dd1d8e072, type: 3}
+      propertyPath: m_VideoClip
+      value: 
+      objectReference: {fileID: 32900000, guid: 655a988a3779f49259e23aa8dcb16be9, type: 3}
     - target: {fileID: 5958775138788325510, guid: 1a3aaaeb52ac0f849905f84dd1d8e072, type: 3}
       propertyPath: m_Name
       value: PlayingView
       objectReference: {fileID: 0}
+    - target: {fileID: 6311494224575415231, guid: 1a3aaaeb52ac0f849905f84dd1d8e072, type: 3}
+      propertyPath: m_TargetTexture
+      value: 
+      objectReference: {fileID: 8400000, guid: f43de09cc78c74af1b956fded1bc9dbb, type: 2}
     - target: {fileID: 7462011348789551605, guid: 1a3aaaeb52ac0f849905f84dd1d8e072, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -474,6 +502,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8640865580322727676, guid: 1a3aaaeb52ac0f849905f84dd1d8e072, type: 3}
+      propertyPath: m_TargetTexture
+      value: 
+      objectReference: {fileID: 8400000, guid: 5288599bd4a184d5297c5e626638be60, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -510,11 +542,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 507131201532545913, guid: 6b6853984d0585748934584baccfa130, type: 3}
       propertyPath: viewIdField
-      value: 0
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 507131201532545913, guid: 6b6853984d0585748934584baccfa130, type: 3}
       propertyPath: instantiationId
-      value: -1
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 2778139114998302658, guid: 6b6853984d0585748934584baccfa130, type: 3}
       propertyPath: m_Name
