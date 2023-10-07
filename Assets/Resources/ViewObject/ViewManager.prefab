@@ -413,7 +413,7 @@ PrefabInstance:
     - target: {fileID: 5664730062622319527, guid: 1a3aaaeb52ac0f849905f84dd1d8e072, type: 3}
       propertyPath: m_VideoClip
       value: 
-      objectReference: {fileID: 32900000, guid: 655a988a3779f49259e23aa8dcb16be9, type: 3}
+      objectReference: {fileID: 32900000, guid: 2a773c2ba24dd498cac20428f7e84b55, type: 3}
     - target: {fileID: 5958775138788325510, guid: 1a3aaaeb52ac0f849905f84dd1d8e072, type: 3}
       propertyPath: m_Name
       value: PlayingView
@@ -548,6 +548,34 @@ PrefabInstance:
       propertyPath: instantiationId
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 2496135195782420231, guid: 6b6853984d0585748934584baccfa130, type: 3}
+      propertyPath: zizouVideoList.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2496135195782420231, guid: 6b6853984d0585748934584baccfa130, type: 3}
+      propertyPath: zizouVideoList.Array.data[0]
+      value: 
+      objectReference: {fileID: 32900000, guid: 2e527cfc3d92c467c9e27ad7adb5cae3, type: 3}
+    - target: {fileID: 2496135195782420231, guid: 6b6853984d0585748934584baccfa130, type: 3}
+      propertyPath: zizouVideoList.Array.data[1]
+      value: 
+      objectReference: {fileID: 32900000, guid: f9a5bf157301844b7a53dd9da502d3e0, type: 3}
+    - target: {fileID: 2496135195782420231, guid: 6b6853984d0585748934584baccfa130, type: 3}
+      propertyPath: zizouVideoList.Array.data[2]
+      value: 
+      objectReference: {fileID: 32900000, guid: a70aef5c7149f4fb9b6274ea9265b8af, type: 3}
+    - target: {fileID: 2496135195782420231, guid: 6b6853984d0585748934584baccfa130, type: 3}
+      propertyPath: zizouVideoList.Array.data[3]
+      value: 
+      objectReference: {fileID: 32900000, guid: 713aef80abb0d43138ee6060a22fbbf6, type: 3}
+    - target: {fileID: 2496135195782420231, guid: 6b6853984d0585748934584baccfa130, type: 3}
+      propertyPath: zizouVideoList.Array.data[4]
+      value: 
+      objectReference: {fileID: 32900000, guid: 5e0ca2c7b35c245608248bd693b7e010, type: 3}
+    - target: {fileID: 2496135195782420231, guid: 6b6853984d0585748934584baccfa130, type: 3}
+      propertyPath: zizouVideoList.Array.data[5]
+      value: 
+      objectReference: {fileID: 32900000, guid: 239f7fe8a3ba144b9969c148c63f98c0, type: 3}
     - target: {fileID: 2778139114998302658, guid: 6b6853984d0585748934584baccfa130, type: 3}
       propertyPath: m_Name
       value: ZizouBosatsuView
@@ -571,7 +599,7 @@ PrefabInstance:
     - target: {fileID: 4613708070370004374, guid: 6b6853984d0585748934584baccfa130, type: 3}
       propertyPath: m_VideoClip
       value: 
-      objectReference: {fileID: 32900000, guid: 0bb7d782b279a4198bbff19c7161d1a5, type: 3}
+      objectReference: {fileID: 32900000, guid: 2e527cfc3d92c467c9e27ad7adb5cae3, type: 3}
     - target: {fileID: 6161658692996912777, guid: 6b6853984d0585748934584baccfa130, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
