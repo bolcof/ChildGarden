@@ -216,11 +216,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7111295734352506592, guid: 79fdd92e612eeb34caa83225d037325d, type: 3}
       propertyPath: viewIdField
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7111295734352506592, guid: 79fdd92e612eeb34caa83225d037325d, type: 3}
       propertyPath: instantiationId
-      value: 6
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 8642631841407453328, guid: 79fdd92e612eeb34caa83225d037325d, type: 3}
       propertyPath: m_Name
@@ -266,11 +266,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 507131201532545913, guid: 700fa35eb5afc4342a4ece7e3a4f1233, type: 3}
       propertyPath: viewIdField
-      value: 5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 507131201532545913, guid: 700fa35eb5afc4342a4ece7e3a4f1233, type: 3}
       propertyPath: instantiationId
-      value: 5
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 2778139114998302658, guid: 700fa35eb5afc4342a4ece7e3a4f1233, type: 3}
       propertyPath: m_Name
@@ -396,11 +396,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 508830618896168883, guid: 1a3aaaeb52ac0f849905f84dd1d8e072, type: 3}
       propertyPath: viewIdField
-      value: 8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 508830618896168883, guid: 1a3aaaeb52ac0f849905f84dd1d8e072, type: 3}
       propertyPath: instantiationId
-      value: 8
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 2304853940186361172, guid: 1a3aaaeb52ac0f849905f84dd1d8e072, type: 3}
       propertyPath: m_SortingLayer
@@ -542,11 +542,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 507131201532545913, guid: 6b6853984d0585748934584baccfa130, type: 3}
       propertyPath: viewIdField
-      value: 7
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 507131201532545913, guid: 6b6853984d0585748934584baccfa130, type: 3}
       propertyPath: instantiationId
-      value: 7
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 2496135195782420231, guid: 6b6853984d0585748934584baccfa130, type: 3}
       propertyPath: zizouVideoList.Array.size

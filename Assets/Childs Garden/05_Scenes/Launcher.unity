@@ -179,7 +179,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 5375465423719387697}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 207893509}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
@@ -849,14 +849,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 153894831885082734, guid: 7ed6150a5bdc248028ef139daa140493, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 70
-      objectReference: {fileID: 0}
-    - target: {fileID: 153894831885082734, guid: 7ed6150a5bdc248028ef139daa140493, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -240
-      objectReference: {fileID: 0}
     - target: {fileID: 2753651909503131511, guid: 7ed6150a5bdc248028ef139daa140493, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -864,26 +856,6 @@ PrefabInstance:
     - target: {fileID: 3223602604319531174, guid: 7ed6150a5bdc248028ef139daa140493, type: 3}
       propertyPath: m_Name
       value: Launcher_Canvas
-      objectReference: {fileID: 0}
-    - target: {fileID: 6258920357221253398, guid: 7ed6150a5bdc248028ef139daa140493, type: 3}
-      propertyPath: m_Name
-      value: logo
-      objectReference: {fileID: 0}
-    - target: {fileID: 6798560737454656611, guid: 7ed6150a5bdc248028ef139daa140493, type: 3}
-      propertyPath: m_Type
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6798560737454656611, guid: 7ed6150a5bdc248028ef139daa140493, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 92cd2154e791349999d5e6067700501e, type: 3}
-    - target: {fileID: 7983760669406424599, guid: 7ed6150a5bdc248028ef139daa140493, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -223.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 8270120697845586523, guid: 7ed6150a5bdc248028ef139daa140493, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 130
       objectReference: {fileID: 0}
     - target: {fileID: 8543117323271345828, guid: 7ed6150a5bdc248028ef139daa140493, type: 3}
       propertyPath: m_Pivot.x
@@ -966,8 +938,7 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects:
-    - {fileID: 119856644807614829, guid: 7ed6150a5bdc248028ef139daa140493, type: 3}
+    m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7ed6150a5bdc248028ef139daa140493, type: 3}
