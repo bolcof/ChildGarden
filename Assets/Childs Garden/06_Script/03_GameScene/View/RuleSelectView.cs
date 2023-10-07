@@ -51,6 +51,12 @@ public class RuleSelectView : Photon.PunBehaviour {
             viewManager = GameObject.Find("ViewManager").GetComponent<ViewManager>();
         }
 
+        openingVideo.gameObject.GetComponent<RawImage>().color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+        openingVideo.Play();
+        closingVideo.Prepare();
+        closingVideo.time = 0f;
+        closingVideo.gameObject.GetComponent<RawImage>().color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
+
         GameManager.Instance.canOperateUI = false;
 
         await UniTask.Delay(5000);
@@ -81,13 +87,18 @@ public class RuleSelectView : Photon.PunBehaviour {
 
     public void PushDecide() {
         if (GameManager.Instance.canOperateUI) {
+            closingVideo.gameObject.GetComponent<RawImage>().color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+            closingVideo.time = 0f;
+            closingVideo.Play();
+            openingVideo.gameObject.GetComponent<RawImage>().color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
+            openingVideo.time = 0f;
             Decide().Forget();
             GameManager.Instance.canOperateUI = false;
         }
     }
 
     public async UniTask Decide() { //TODO Archive
-        await UniTask.Delay(5000);
+        await UniTask.Delay(3200);
         photonView.RPC(nameof(ToNextRound), PhotonTargets.AllBuffered);
     }
 

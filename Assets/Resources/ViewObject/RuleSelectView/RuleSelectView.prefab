@@ -284,7 +284,7 @@ VideoPlayer:
   m_EnabledAudioTracks: 01
   m_DirectAudioMutes: 00
   m_ControlledAudioTrackCount: 1
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_SkipOnDrop: 1
   m_Looping: 0
   m_WaitForFirstFrame: 1
@@ -558,7 +558,7 @@ GameObject:
   - component: {fileID: 377321858634673303}
   - component: {fileID: 4540119061380146046}
   m_Layer: 5
-  m_Name: RuleWaite
+  m_Name: RuleSelectLabel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -785,7 +785,7 @@ GameObject:
   - component: {fileID: 8173178006657779921}
   - component: {fileID: 6303554601370146236}
   m_Layer: 5
-  m_Name: RuleSelect
+  m_Name: RuleSelectWaitingLabel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1360,7 +1360,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &3290264809641917288
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1396,11 +1396,11 @@ VideoPlayer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7873600182419159102}
   m_Enabled: 1
-  m_VideoClip: {fileID: 32900000, guid: e15fb68f5d24d411e97af8950e194428, type: 3}
+  m_VideoClip: {fileID: 32900000, guid: a81e31d9b6979a2499a8ffdd2198649a, type: 3}
   m_TargetCameraAlpha: 1
   m_TargetCamera3DLayout: 0
   m_TargetCamera: {fileID: 0}
-  m_TargetTexture: {fileID: 8400000, guid: 89f09c367b7526447857e725ed17f871, type: 2}
+  m_TargetTexture: {fileID: 8400000, guid: b39a553f748582d41968774597e560fe, type: 2}
   m_TimeReference: 0
   m_TargetMaterialRenderer: {fileID: 0}
   m_TargetMaterialProperty: <noninit>
@@ -1416,7 +1416,7 @@ VideoPlayer:
   m_EnabledAudioTracks: 
   m_DirectAudioMutes: 
   m_ControlledAudioTrackCount: 0
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_SkipOnDrop: 1
   m_Looping: 0
   m_WaitForFirstFrame: 1
@@ -1442,7 +1442,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 8400000, guid: 89f09c367b7526447857e725ed17f871, type: 2}
+  m_Texture: {fileID: 8400000, guid: b39a553f748582d41968774597e560fe, type: 2}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -1682,6 +1682,8 @@ MonoBehaviour:
   - {fileID: 3632381185664522678}
   - {fileID: 583177695979509449}
   - {fileID: 6275423971880511655}
+  openingVideo: {fileID: 3282505787973835036}
+  closingVideo: {fileID: 6714177342614290658}
 --- !u!114 &7111295734352506592
 MonoBehaviour:
   m_ObjectHideFlags: 0
