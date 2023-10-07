@@ -1446,6 +1446,14 @@ PrefabInstance:
       propertyPath: instantiationId
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 7088379176967309990, guid: 73fec1ab5d0d341798c02780d8064799, type: 3}
+      propertyPath: viewIdField
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7088379176967309990, guid: 73fec1ab5d0d341798c02780d8064799, type: 3}
+      propertyPath: instantiationId
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 8492502674580649606, guid: 73fec1ab5d0d341798c02780d8064799, type: 3}
       propertyPath: viewIdField
       value: 6

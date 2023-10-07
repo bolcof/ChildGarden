@@ -20,10 +20,8 @@ public class RuleSubjectButton : MonoBehaviour {
     }*/
 
     //TODO:for 1007
-    public void SetInfomation(int _index, RuleSelectView _view) {
+    public void SetInfomation(RuleSelectView _view) {
         //TODO:randomize
-        thisButtonsRuleId = _index;
-        appearedId = _index;
         ruleSelectView = _view;
     }
 

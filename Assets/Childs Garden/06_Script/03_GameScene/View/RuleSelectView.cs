@@ -4,6 +4,7 @@ using System.Data;
 using UnityEngine;
 using UnityEngine.UI;
 using Cysharp.Threading.Tasks;
+using UnityEngine.Video;
 
 public class RuleSelectView : Photon.PunBehaviour {
 
@@ -16,15 +17,17 @@ public class RuleSelectView : Photon.PunBehaviour {
     public List<RuleSubjectButton> buttonsList = new List<RuleSubjectButton>();
     private int currentSelectRuleId;
 
+    [SerializeField] private VideoPlayer openingVideo, closingVideo;
+
     private ViewManager viewManager;
 
     public async UniTask Set(bool isSelector) {
         //TODO:これ2回呼ばれちゃってんのよ
         Debug.Log("rule select view set");
-        foreach (var rsb in buttonsList) {
+        /*foreach (var rsb in buttonsList) {
             Destroy(rsb.gameObject);
-        }
-        buttonsList.Clear();
+        }*/
+        //buttonsList.Clear();
         for (int i = 0; i < selectableRuleNum; i++) {
             //TODO:randomize
             /*var subject = Instantiate(RuleSubjectButton, RuleSubjectRoot.transform);
@@ -33,13 +36,14 @@ public class RuleSelectView : Photon.PunBehaviour {
             buttonsList.Add(subject.GetComponent<RuleSubjectButton>());
             Debug.Log("rule select view add");
             */
-
-            //TODO:for 1007
-            foreach (var subject in buttonsList) {
-                subject.GetComponent<RuleSubjectButton>().SetInfomation(i, this);
-                subject.GetComponent<Button>().enabled = isSelector;
-            }
         }
+
+        //TODO:for 1007
+        foreach (var subject in buttonsList) {
+            subject.GetComponent<RuleSubjectButton>().SetInfomation(this);
+            subject.GetComponent<Button>().enabled = isSelector;
+        }
+
         DecideButton.SetActive(isSelector);
         DecideButton.GetComponent<Button>().enabled = false;
 
@@ -82,7 +86,7 @@ public class RuleSelectView : Photon.PunBehaviour {
         }
     }
 
-    public async UniTask Decide() {
+    public async UniTask Decide() { //TODO Archive
         await UniTask.Delay(5000);
         photonView.RPC(nameof(ToNextRound), PhotonTargets.AllBuffered);
     }

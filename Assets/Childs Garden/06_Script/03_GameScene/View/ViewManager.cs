@@ -24,5 +24,10 @@ public class ViewManager : MonoBehaviour {
         } else {
             Destroy(gameObject);
         }
+
+        playingViewObj.SetActive(true);
+        zizouViewObj.SetActive(false);
+        ruleSelectViewObj.SetActive(false);
+        endingViewObj.SetActive(false);
     }
 }
