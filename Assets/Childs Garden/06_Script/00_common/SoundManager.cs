@@ -45,6 +45,12 @@ public class SoundManager : MonoBehaviour {
         BgmSource.Play();
     }
 
+    public void ChangeChargeEffect(int level) {
+        ChargeSource.Stop();
+        ChargeSource.clip = SE_OnbutsuCharging[level];
+        ChargeSource.Play();
+    }
+
     public void StopSoundEffect() {
         SeSource.loop = false;
         SeSource.Stop();
