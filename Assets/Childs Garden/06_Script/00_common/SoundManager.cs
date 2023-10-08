@@ -12,7 +12,7 @@ public class SoundManager : MonoBehaviour {
     [SerializeField] public AudioClip SE_CountDown;
     [SerializeField] public AudioClip SE_Progress;
     [SerializeField] public AudioClip SE_PutOnbutsu;
-    [SerializeField] public AudioClip SE_OnbutsuCharging;
+    [SerializeField] public List<AudioClip> SE_OnbutsuCharging = new List<AudioClip>();
     [SerializeField] public AudioClip SE_ChargeLevelUp;
     [SerializeField] public AudioClip SE_RoundFinish;
     [SerializeField] public AudioClip SE_SpawnZizou;
@@ -21,9 +21,11 @@ public class SoundManager : MonoBehaviour {
     [SerializeField] public AudioClip SE_RuleSelectViewOpening; /* to webm */
 
     [SerializeField] public AudioClip BGM_TitleAndRule;
-    [SerializeField] public AudioClip BGM_GameScene;
+    [SerializeField] public List<AudioClip> BGM_GameScene = new List<AudioClip>();
     [SerializeField] public AudioClip BGM_RuleSelect;
     [SerializeField] public AudioClip BGM_Ending;
+
+    [SerializeField] public AudioSource BgmSource, SeSource;
 
     private void Awake() {
         if (Instance == null) {
@@ -32,5 +34,19 @@ public class SoundManager : MonoBehaviour {
         } else {
             Destroy(gameObject);
         }
+    }
+
+    public void PlaySoundEffect(AudioClip sound) {
+        SeSource.PlayOneShot(sound);
+    }
+
+    public void PlayBgm(AudioClip bgm) {
+        BgmSource.clip = bgm;
+        BgmSource.Play();
+    }
+
+    public void StopSoundEffect() {
+        SeSource.loop = false;
+        SeSource.Stop();
     }
 }
