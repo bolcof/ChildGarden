@@ -25,7 +25,7 @@ public class SoundManager : MonoBehaviour {
     [SerializeField] public AudioClip BGM_RuleSelect;
     [SerializeField] public AudioClip BGM_Ending;
 
-    [SerializeField] public AudioSource BgmSource, SeSource;
+    [SerializeField] public AudioSource BgmSource, SeSource, ChargeSource;
 
     private void Awake() {
         if (Instance == null) {
