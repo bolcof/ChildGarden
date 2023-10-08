@@ -1098,10 +1098,10 @@ MonoBehaviour:
   - {fileID: 1008348657628407914, guid: 53a1042a414cc464ba5458767804b350, type: 3}
   myBoxCollision: {fileID: 7810039791910776433, guid: 6434851dc3934574e85aa49164bf8c52, type: 3}
   spawnPoints:
-  - {x: -6.3, y: -2.5, z: 0}
+  - {x: -5.3, y: -2.5, z: 0}
   - {x: -2.3, y: -2.5, z: 0}
-  - {x: 2.3, y: -2.5, z: 0}
-  - {x: 4.8, y: -2.5, z: 0}
+  - {x: 1.3, y: -2.5, z: 0}
+  - {x: 4.3, y: -2.5, z: 0}
   photonView: {fileID: 1293520241}
   mySpawnPositionId: -1
   myUtsuwaId: -1
