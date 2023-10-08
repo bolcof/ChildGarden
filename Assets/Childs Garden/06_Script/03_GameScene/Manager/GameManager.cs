@@ -19,7 +19,7 @@ public class GameManager : Photon.PunBehaviour {
     public bool canOperateUI;
     private bool isPlaying;
 
-    public int winnerIsMine; /* -1:not yet 0:me 1:other 2:draw */
+    public int winnerIsMine; /* -1:not yet 0:other 1:me 2:draw */
 
     [SerializeField] float BeginningCountDownTime;
     public float timeLimit, remainingTimeLimit;
