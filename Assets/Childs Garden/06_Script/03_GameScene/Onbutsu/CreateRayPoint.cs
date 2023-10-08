@@ -50,6 +50,8 @@ public class CreateRayPoint : Photon.PunBehaviour {
             }
 
             if (Input.GetMouseButtonUp(0)) {
+                SoundManager.Instance.StopSoundEffect();
+                SoundManager.Instance.PlaySoundEffect(SoundManager.Instance.SE_PutOnbutsu);
                 chargingTime = 0.0f;
 
                 Ray ray = camera.ScreenPointToRay(Input.mousePosition);
@@ -76,6 +78,10 @@ public class CreateRayPoint : Photon.PunBehaviour {
                 }
             }
         }
+    }
+
+    private void ChargeLevelUp() {
+
     }
 
     private int FloatDivide(float n1, float n2) {

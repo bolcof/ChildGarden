@@ -43,6 +43,7 @@ public class RuleSelectView : Photon.PunBehaviour {
             subject.GetComponent<RuleSubjectButton>().SetInfomation(this);
             subject.GetComponent<Button>().enabled = isSelector;
         }
+        RepushRule();
 
         DecideButton.SetActive(isSelector);
         DecideButton.GetComponent<Button>().enabled = false;
@@ -56,6 +57,8 @@ public class RuleSelectView : Photon.PunBehaviour {
         closingVideo.Prepare();
         closingVideo.time = 0f;
         closingVideo.gameObject.GetComponent<RawImage>().color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
+
+        SoundManager.Instance.PlayBgm(SoundManager.Instance.BGM_RuleSelect);
 
         GameManager.Instance.canOperateUI = false;
 

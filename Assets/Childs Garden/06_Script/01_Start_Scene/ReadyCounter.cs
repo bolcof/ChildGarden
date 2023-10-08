@@ -17,6 +17,8 @@ public class ReadyCounter : PunBehaviour // PunBehaviourを継承
 
 
     public void Ready() {
+        string currentScene = SceneManager.GetActiveScene().name;
+        SoundManager.Instance.PlaySoundEffect(SoundManager.Instance.SE_PushGamePlay);
         photonView.RPC("IncreaseCount", PhotonTargets.AllBuffered); // PhotonTargets.AllBufferedを使用
         PlayObj.SetActive(false);
         ReadyObj.SetActive(true);

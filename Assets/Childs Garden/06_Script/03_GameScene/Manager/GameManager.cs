@@ -51,6 +51,8 @@ public class GameManager : Photon.PunBehaviour {
         playingVew.RoundStart(1, ruleManager.currentRule);
         remainingTimeLimit = timeLimit;
         winnerIsMine = -1;
+
+        SoundManager.Instance.PlayBgm(SoundManager.Instance.BGM_GameScene[0]);
     }
 
     public void NextRoundStart() {
@@ -64,6 +66,7 @@ public class GameManager : Photon.PunBehaviour {
         ruleManager.ResetCount();
 
         roundManager.currentRound++;
+        SoundManager.Instance.PlayBgm(SoundManager.Instance.BGM_GameScene[roundManager.currentRound]);
 
         playingVew.gameObject.SetActive(true);
         playingVew.RoundStart(roundManager.currentRound, ruleManager.currentRule);

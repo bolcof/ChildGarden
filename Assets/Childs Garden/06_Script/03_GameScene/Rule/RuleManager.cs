@@ -17,7 +17,7 @@ public class RuleManager : Photon.PunBehaviour {
     //TODO 複数になるかも
     public Rule currentRule;
 
-    public float progressRatio;
+    public float progressRatio, pastProgressRatio;
     public bool isWinnerDecided;
 
     [SerializeField] private FloorCollision myFloor;
@@ -45,6 +45,7 @@ public class RuleManager : Photon.PunBehaviour {
         myFloor.ResetCount();
         myStage.ResetCount();
         isWinnerDecided = false;
+        progressRatio = pastProgressRatio = 0.0f;
     }
 
     private void Update() {
@@ -76,9 +77,12 @@ public class RuleManager : Photon.PunBehaviour {
 
     //Ruleごとに作る
     public bool CheckRule_0() {
-        float progressRatio = (float)myFloor.myOnbutsuCount / 3.0f;
-        ViewManager.Instance.playingView.ApplyProgressBar(progressRatio);
-
+        progressRatio = (float)myFloor.myOnbutsuCount / 3.0f;
+        if (pastProgressRatio != progressRatio) {
+            SoundManager.Instance.PlaySoundEffect(SoundManager.Instance.SE_Progress);
+            pastProgressRatio = progressRatio;
+            ViewManager.Instance.playingView.ApplyProgressBar(progressRatio);
+        }
         if (myFloor.myOnbutsuCount >= 3) {
             GameManager.Instance.MyPlayerWin();
             return true;

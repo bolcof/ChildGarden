@@ -32,6 +32,7 @@ public class RoomConector : Photon.PunBehaviour
         {
             PhotonNetwork.ConnectUsingSettings(_gameVersion);
             Debug.Log("Photonに接続しました。");
+            SoundManager.Instance.PlayBgm(SoundManager.Instance.BGM_TitleAndRule);
         }
     }
     #endregion
