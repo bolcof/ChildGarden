@@ -6,8 +6,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class StageManager : Photon.PunBehaviour {
-    [SerializeField] private GameObject playerPrefab;
-    [SerializeField] private List<GameObject> myBoxStands = new List<GameObject>() ;
+    [SerializeField] private List<GameObject> UtsuwaList = new List<GameObject>();
+    [SerializeField] private GameObject myBoxCollision;
     [SerializeField] private List<Vector3> spawnPoints;
     [SerializeField] private PhotonView photonView;
 
@@ -54,10 +54,10 @@ public class StageManager : Photon.PunBehaviour {
     void SpawnPlayer() {
         // ランダムな座標を選択
         Vector3 spawnPoint = spawnPoints[mySpawnPositionId];
-        GameObject Player = PhotonNetwork.Instantiate("Box/" + this.playerPrefab.name, spawnPoint, Quaternion.identity, 0);
+        GameObject Player = PhotonNetwork.Instantiate("Box/" + this.UtsuwaList[MatchingStateManager.instance.MyPlayerId() - 1].name, spawnPoint, Quaternion.identity, 0);
         myUtsuwa = Player.GetComponent<Utsuwa>();
         // 同じ座標のY軸+2にStageを生成
-        PhotonNetwork.Instantiate("Box/" + this.myBoxStands[MatchingStateManager.instance.MyPlayerId() - 1].name, new Vector3(spawnPoint.x, spawnPoint.y + 2, spawnPoint.z), Quaternion.identity, 0);
+        PhotonNetwork.Instantiate("StageObject/" + this.myBoxCollision.name, new Vector3(spawnPoint.x, spawnPoint.y + 2, spawnPoint.z), Quaternion.identity, 0);
         AppearMyPlayerPin().Forget();
     }
 
@@ -93,7 +93,7 @@ public class StageManager : Photon.PunBehaviour {
     //TODO:必要だったら使う
     private List<int> RandomizedUtsuwaIdList() {
 
-        if (MatchingStateManager.instance.PlayerNum > myBoxStands.Count) {
+        if (MatchingStateManager.instance.PlayerNum > UtsuwaList.Count) {
             Debug.LogError("playerNum cannot be greater than utsuwaList");
             return new List<int>();
         }
