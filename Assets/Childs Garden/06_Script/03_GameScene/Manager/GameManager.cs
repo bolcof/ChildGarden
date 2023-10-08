@@ -66,7 +66,7 @@ public class GameManager : Photon.PunBehaviour {
         ruleManager.ResetCount();
 
         roundManager.currentRound++;
-        SoundManager.Instance.PlayBgm(SoundManager.Instance.BGM_GameScene[roundManager.currentRound]);
+        SoundManager.Instance.PlayBgm(SoundManager.Instance.BGM_GameScene[roundManager.currentRound - 1]);
 
         playingVew.gameObject.SetActive(true);
         playingVew.RoundStart(roundManager.currentRound, ruleManager.currentRule);
@@ -125,6 +125,7 @@ public class GameManager : Photon.PunBehaviour {
         canPutOnbutsu = false;
         isPlaying = false;
         ViewManager.Instance.playingView.RoundFinish(winnerIsMine).Forget();
+        SoundManager.Instance.BgmSource.Stop();
     }
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {

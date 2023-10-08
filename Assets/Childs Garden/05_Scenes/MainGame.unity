@@ -1101,7 +1101,7 @@ MonoBehaviour:
   - {x: -6.3, y: -2.5, z: 0}
   - {x: -2.3, y: -2.5, z: 0}
   - {x: 2.3, y: -2.5, z: 0}
-  - {x: 6.3, y: -2.5, z: 0}
+  - {x: 4.8, y: -2.5, z: 0}
   photonView: {fileID: 1293520241}
   mySpawnPositionId: -1
   myUtsuwaId: -1
