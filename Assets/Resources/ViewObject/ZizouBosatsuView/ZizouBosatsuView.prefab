@@ -436,11 +436,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   zizouVideoList:
-  - {fileID: 32900000, guid: 36d467c0abcf244fc83edc5382622559, type: 3}
-  - {fileID: 32900000, guid: 36d467c0abcf244fc83edc5382622559, type: 3}
-  - {fileID: 32900000, guid: 36d467c0abcf244fc83edc5382622559, type: 3}
-  - {fileID: 32900000, guid: 36d467c0abcf244fc83edc5382622559, type: 3}
-  - {fileID: 32900000, guid: 8a0d8d70878d44adbb08e1c8f32a2d99, type: 3}
+  - {fileID: 32900000, guid: 2e527cfc3d92c467c9e27ad7adb5cae3, type: 3}
+  - {fileID: 32900000, guid: f9a5bf157301844b7a53dd9da502d3e0, type: 3}
+  - {fileID: 32900000, guid: a70aef5c7149f4fb9b6274ea9265b8af, type: 3}
+  - {fileID: 32900000, guid: 713aef80abb0d43138ee6060a22fbbf6, type: 3}
+  - {fileID: 32900000, guid: 5e0ca2c7b35c245608248bd693b7e010, type: 3}
+  - {fileID: 32900000, guid: 239f7fe8a3ba144b9969c148c63f98c0, type: 3}
   zizouVideoPlayer: {fileID: 4613708070370004374}
   zizouRoot: {fileID: 2778139114998302658}
   zizouInfoLabel: {fileID: 5359785427680043078}
