@@ -59,13 +59,7 @@ public class CreateRayPoint : Photon.PunBehaviour {
                 chargeSlider.gameObject.SetActive(true);
                 sizeSignKnob.SetActive(true);
 
-                var mousePos = Input.mousePosition;
-                var magnification = canvasRect.sizeDelta.x / Screen.width;
-                mousePos.x = mousePos.x * magnification;
-                mousePos.y = mousePos.y * magnification;
-                mousePos.z = transform.localPosition.z;
-
-                sizeSignKnob.transform.position = mousePos;
+                sizeSignKnob.transform.position = Input.mousePosition;
 
                 currentChargeLevel = FloatDivide(chargingTime, levelUpTime);
                 if (currentChargeLevel >= 3) { currentChargeLevel = 3; }
