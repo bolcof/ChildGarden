@@ -9,6 +9,7 @@ public class CreateRayPoint : Photon.PunBehaviour {
     [SerializeField]
     private float rayDistance = 20.0f;
     private Camera camera;
+    [SerializeField] private RectTransform canvasRect;
 
     [SerializeField] string onbutsuFolderName;
     public List<GameObject> OnbutsuList_Level1 = new List<GameObject>();
@@ -50,7 +51,7 @@ public class CreateRayPoint : Photon.PunBehaviour {
             }
 
             if (Input.GetMouseButton(0)) {
-                //TODO:èáî‘êÆóù
+                //TODO:????????
                 chargingTime += Time.deltaTime;
                 chargeSlider.gameObject.SetActive(true);
                 sizeSignKnob.SetActive(true);
@@ -74,7 +75,7 @@ public class CreateRayPoint : Photon.PunBehaviour {
                     chargeSlider.value = 1000f;
                 }
 
-                if(pastChargeLevel != currentChargeLevel) {
+                if (pastChargeLevel != currentChargeLevel) {
                     ChargeLevelUp();
                 }
 
@@ -106,11 +107,15 @@ public class CreateRayPoint : Photon.PunBehaviour {
                             PhotonNetwork.Instantiate(onbutsuFolderName + OnbutsuList_Level4[PhotonNetwork.player.ID - 1].name, spawnPosition, Quaternion.identity, 0);
                             break;
                     }
-                    sizeSignKnob.SetActive(false);
-                    chargeSlider.gameObject.SetActive(false);
+                    DisappearGauge();
                 }
             }
         }
+    }
+
+    public void DisappearGauge() {
+        sizeSignKnob.SetActive(false);
+        chargeSlider.gameObject.SetActive(false);
     }
 
     private void ChargeLevelUp() {
