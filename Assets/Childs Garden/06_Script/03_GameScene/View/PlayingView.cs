@@ -51,6 +51,7 @@ public class PlayingView : Photon.PunBehaviour {
         if (viewManager == null) {
             viewManager = GameObject.Find("ViewManager").GetComponent<ViewManager>();
         }
+        progressBar.GetComponent<RectTransform>().sizeDelta = new Vector2(progressBarDefaultSize.x, 0.0f);
     }
 
     public void BeginningCountDown(int sec) {

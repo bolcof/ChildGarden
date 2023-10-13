@@ -498,6 +498,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7382917408416437119, guid: 1ddbe3b6227155a40a9c819384cd0d79, type: 3}
+      propertyPath: canvas
+      value: 
+      objectReference: {fileID: 657770311}
+    - target: {fileID: 7382917408416437119, guid: 1ddbe3b6227155a40a9c819384cd0d79, type: 3}
+      propertyPath: canvasRect
+      value: 
+      objectReference: {fileID: 657770312}
     - target: {fileID: 8072724028197875564, guid: 1ddbe3b6227155a40a9c819384cd0d79, type: 3}
       propertyPath: m_Name
       value: MainCamera
@@ -593,6 +601,16 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!223 &657770311 stripped
+Canvas:
+  m_CorrespondingSourceObject: {fileID: 4919895716318009265, guid: 73fec1ab5d0d341798c02780d8064799, type: 3}
+  m_PrefabInstance: {fileID: 1931540178}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &657770312 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 3072746111910759177, guid: 73fec1ab5d0d341798c02780d8064799, type: 3}
+  m_PrefabInstance: {fileID: 1931540178}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &702426487
 GameObject:
   m_ObjectHideFlags: 0
@@ -1210,6 +1228,7 @@ MonoBehaviour:
   roundManager: {fileID: 1293520244}
   ruleManager: {fileID: 1293520243}
   stageManager: {fileID: 1293520242}
+  createRayPoint: {fileID: 0}
   playingVew: {fileID: 1931540179}
   canPutOnbutsu: 0
   canOperateUI: 0

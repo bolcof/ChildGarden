@@ -9,6 +9,8 @@ public class CreateRayPoint : Photon.PunBehaviour {
     [SerializeField]
     private float rayDistance = 20.0f;
     private Camera camera;
+    [SerializeField] private Canvas canvas;
+    [SerializeField] private RectTransform canvasRect;
 
     [SerializeField] string onbutsuFolderName;
     public List<GameObject> OnbutsuList_Level1 = new List<GameObject>();
@@ -35,6 +37,8 @@ public class CreateRayPoint : Photon.PunBehaviour {
         currentChargeLevel = -1;
         pastChargeLevel = -1;
 
+        canvasRect = GameObject.Find("ViewManager").GetComponent<RectTransform>();
+
         /*foreach (var ef in chargeEffectObject) {
             ef.SetActive(false);
         }*/
@@ -50,10 +54,18 @@ public class CreateRayPoint : Photon.PunBehaviour {
             }
 
             if (Input.GetMouseButton(0)) {
-                //TODO:‡”Ô®—
+                //TODO:????????
                 chargingTime += Time.deltaTime;
                 chargeSlider.gameObject.SetActive(true);
                 sizeSignKnob.SetActive(true);
+
+                var mousePos = Input.mousePosition;
+                var magnification = canvasRect.sizeDelta.x / Screen.width;
+                mousePos.x = mousePos.x * magnification;
+                mousePos.y = mousePos.y * magnification;
+                mousePos.z = transform.localPosition.z;
+
+                sizeSignKnob.transform.position = mousePos;
 
                 currentChargeLevel = FloatDivide(chargingTime, levelUpTime);
                 if (currentChargeLevel >= 3) { currentChargeLevel = 3; }
@@ -74,7 +86,7 @@ public class CreateRayPoint : Photon.PunBehaviour {
                     chargeSlider.value = 1000f;
                 }
 
-                if(pastChargeLevel != currentChargeLevel) {
+                if (pastChargeLevel != currentChargeLevel) {
                     ChargeLevelUp();
                 }
 
@@ -106,11 +118,15 @@ public class CreateRayPoint : Photon.PunBehaviour {
                             PhotonNetwork.Instantiate(onbutsuFolderName + OnbutsuList_Level4[PhotonNetwork.player.ID - 1].name, spawnPosition, Quaternion.identity, 0);
                             break;
                     }
-                    sizeSignKnob.SetActive(false);
-                    chargeSlider.gameObject.SetActive(false);
+                    DisappearGauge();
                 }
             }
         }
+    }
+
+    public void DisappearGauge() {
+        sizeSignKnob.SetActive(false);
+        chargeSlider.gameObject.SetActive(false);
     }
 
     private void ChargeLevelUp() {

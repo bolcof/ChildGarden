@@ -13,6 +13,8 @@ public class GameManager : Photon.PunBehaviour {
     [SerializeField] RuleManager ruleManager;
     [SerializeField] StageManager stageManager;
 
+    [SerializeField] CreateRayPoint createRayPoint;
+
     [SerializeField] PlayingView playingVew;
 
     public bool canPutOnbutsu;
@@ -126,6 +128,7 @@ public class GameManager : Photon.PunBehaviour {
         isPlaying = false;
         ViewManager.Instance.playingView.RoundFinish(winnerIsMine).Forget();
         SoundManager.Instance.BgmSource.Stop();
+        createRayPoint.DisappearGauge();
     }
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
