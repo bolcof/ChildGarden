@@ -23,9 +23,6 @@ public class RuleManager : Photon.PunBehaviour {
     [SerializeField] private FloorCollision myFloor;
     public StageCollision myStage;
 
-    public List<FloorCollision> otherFloors;
-    public List<StageCollision> otherStages;
-
     private void Awake() {
         if (instance == null) {
             instance = this;
