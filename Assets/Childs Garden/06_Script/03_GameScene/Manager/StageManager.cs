@@ -13,7 +13,11 @@ public class StageManager : Photon.PunBehaviour {
 
     public int mySpawnPositionId = -1;
     public int myUtsuwaId = -1;
+
     public Utsuwa myUtsuwa;
+
+    public List<FloorCollision> otherFloors;
+    public List<StageCollision> otherStages;
 
     public void SetStage() {
 

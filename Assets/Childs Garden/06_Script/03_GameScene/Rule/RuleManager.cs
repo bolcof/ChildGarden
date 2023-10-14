@@ -55,9 +55,13 @@ public class RuleManager : Photon.PunBehaviour {
                     Debug.LogError("Rule is not set yet!");
                     break;
                 case 0:
-                case 1:
-                case 2:
                     CheckRule_0();
+                    break;
+                case 1:
+                    CheckRule_1();
+                    break;
+                case 2:
+                    CheckRule_2();
                     break;
                 default:
                     Debug.LogError("RuleID is out of range!");
@@ -77,6 +81,36 @@ public class RuleManager : Photon.PunBehaviour {
 
     //Ruleごとに作る
     public bool CheckRule_0() {
+        progressRatio = (float)myFloor.myOnbutsuCount / 3.0f;
+        if (pastProgressRatio != progressRatio) {
+            SoundManager.Instance.PlaySoundEffect(SoundManager.Instance.SE_Progress);
+            pastProgressRatio = progressRatio;
+            ViewManager.Instance.playingView.ApplyProgressBar(progressRatio);
+        }
+        if (myFloor.myOnbutsuCount >= 3) {
+            GameManager.Instance.MyPlayerWin();
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public bool CheckRule_1() {
+        progressRatio = (float)myFloor.myOnbutsuCount / 5.0f;
+        if (pastProgressRatio != progressRatio) {
+            SoundManager.Instance.PlaySoundEffect(SoundManager.Instance.SE_Progress);
+            pastProgressRatio = progressRatio;
+            ViewManager.Instance.playingView.ApplyProgressBar(progressRatio);
+        }
+        if (myStage.myOnbutsuCount + myStage.othersOnbutsuCount >= 5) {
+            GameManager.Instance.MyPlayerWin();
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public bool CheckRule_2() {
         progressRatio = (float)myFloor.myOnbutsuCount / 3.0f;
         if (pastProgressRatio != progressRatio) {
             SoundManager.Instance.PlaySoundEffect(SoundManager.Instance.SE_Progress);
