@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -54,11 +54,9 @@ public class Onbutsu : MonoBehaviour {
                             StagingId = 1;
                         }
                     }
-
-                    stoppingTime = 0f; // ƒ^ƒCƒ}[‚ğƒŠƒZƒbƒg‚·‚éi‰½“x‚àÃ~‚Ì”»’f‚ğs‚¢‚½‚¢ê‡j
                 }
             } else {
-                stoppingTime = 0f; // “®‚¢‚Ä‚¢‚éê‡Aƒ^ƒCƒ}[‚ğƒŠƒZƒbƒg
+                stoppingTime = 0f; // å‹•ã„ã¦ã„ã‚‹å ´åˆã€ã‚¿ã‚¤ãƒãƒ¼ã‚’ãƒªã‚»ãƒƒãƒˆ
                 //Debug.Log("move! " + spawnedId.ToString() + " " + rb.velocity.magnitude.ToString());
                 landing_Utsuwa = false;
             }
@@ -92,10 +90,10 @@ public class Onbutsu : MonoBehaviour {
         }
     }
     private int CountTouchingObjects() {
-        // Œ»İ‚ÌGameObject‚ÌˆÊ’u‚ğ’†S‚É‚µ‚½‹…Œ`—Ìˆæ“à‚Ì‘S‚Ä‚ÌCollider‚ğæ“¾
+        // ç¾åœ¨ã®GameObjectã®ä½ç½®ã‚’ä¸­å¿ƒã«ã—ãŸçƒå½¢é ˜åŸŸå†…ã®å…¨ã¦ã®Colliderã‚’å–å¾—
         Collider[] colliders = Physics.OverlapSphere(transform.position, checkRadius);
 
-        // ©•ª©g‚ÌCollider‚ğœŠO‚·‚é
+        // è‡ªåˆ†è‡ªèº«ã®Colliderã‚’é™¤å¤–ã™ã‚‹
         int count = 0;
         foreach (Collider col in colliders) {
             if (col.gameObject != gameObject) {
@@ -107,6 +105,7 @@ public class Onbutsu : MonoBehaviour {
 
     private void Dropped() {
         dropped = true;
+        landing_Utsuwa = false;
         if (_polygonCollider != null) {
             _polygonCollider.enabled = false;
         }
