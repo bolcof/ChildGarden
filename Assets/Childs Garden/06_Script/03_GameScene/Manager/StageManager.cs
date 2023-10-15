@@ -58,10 +58,10 @@ public class StageManager : Photon.PunBehaviour {
     void SpawnPlayer() {
         // ランダムな座標を選択
         Vector3 spawnPoint = spawnPoints[mySpawnPositionId];
-        GameObject Player = PhotonNetwork.Instantiate("Box/" + this.UtsuwaList[MatchingStateManager.instance.MyPlayerId() - 1].name, spawnPoint, Quaternion.identity, 0);
+        GameObject Player = PhotonNetwork.Instantiate("Box/" + this.UtsuwaList[MatchingStateManager.instance.MyPlayerId() - 1].name, new Vector3(spawnPoint.x, spawnPoint.y + 2, spawnPoint.z), Quaternion.identity, 0);
         myUtsuwa = Player.GetComponent<Utsuwa>();
-        // 同じ座標のY軸+2にStageを生成
-        PhotonNetwork.Instantiate("StageObject/" + this.myBoxCollision.name, new Vector3(spawnPoint.x, spawnPoint.y + 2, spawnPoint.z), Quaternion.identity, 0);
+        // 同じ座標のY軸+2にStageを生成 が不要
+        //PhotonNetwork.Instantiate("StageObject/" + this.myBoxCollision.name, new Vector3(spawnPoint.x, spawnPoint.y + 2, spawnPoint.z), Quaternion.identity, 0);
         AppearMyPlayerPin().Forget();
     }
 

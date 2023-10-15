@@ -20,7 +20,6 @@ public class RuleManager : Photon.PunBehaviour {
     public float progressRatio, pastProgressRatio;
     public bool isWinnerDecided;
 
-    [SerializeField] private FloorCollision myFloor;
     public Utsuwa myUtsuwa;
     public Utsuwa otherUtsuwa;
 
@@ -65,6 +64,9 @@ public class RuleManager : Photon.PunBehaviour {
                 case 2:
                     CheckRule_2();
                     break;
+                case 3:
+                    CheckRule_3();
+                    break;
                 default:
                     Debug.LogError("RuleID is out of range!");
                     break;
@@ -83,13 +85,13 @@ public class RuleManager : Photon.PunBehaviour {
 
     //Ruleごとに作る
     public bool CheckRule_0() {
-        progressRatio = OnbutsuList.FindAll(on => on.dropped).Count / 3.0f;
+        progressRatio = OnbutsuList.FindAll(on => on.dropped && on.holderId == MatchingStateManager.instance.MyPlayerId()).Count / 3.0f;
         if (pastProgressRatio != progressRatio) {
             SoundManager.Instance.PlaySoundEffect(SoundManager.Instance.SE_Progress);
             pastProgressRatio = progressRatio;
             ViewManager.Instance.playingView.ApplyProgressBar(progressRatio);
         }
-        if (OnbutsuList.FindAll(on => on.dropped).Count >= 3) {
+        if (OnbutsuList.FindAll(on => on.dropped && on.holderId == MatchingStateManager.instance.MyPlayerId()).Count >= 3) {
             GameManager.Instance.MyPlayerWin();
             return true;
         } else {
@@ -98,13 +100,13 @@ public class RuleManager : Photon.PunBehaviour {
     }
 
     public bool CheckRule_1() {
-        progressRatio = OnbutsuList.FindAll(on => on.landing_Utsuwa && on.StagingId == MatchingStateManager.instance.MyPlayerId()).Count / 5.0f;
+        progressRatio = OnbutsuList.FindAll(on => on.landing_Utsuwa && on.StagingId == MatchingStateManager.instance.MyPlayerId()).Count / 10.0f;
         if (pastProgressRatio != progressRatio) {
             SoundManager.Instance.PlaySoundEffect(SoundManager.Instance.SE_Progress);
             pastProgressRatio = progressRatio;
             ViewManager.Instance.playingView.ApplyProgressBar(progressRatio);
         }
-        if (OnbutsuList.FindAll(on => on.landing_Utsuwa && on.StagingId == MatchingStateManager.instance.MyPlayerId()).Count >= 5) {
+        if (OnbutsuList.FindAll(on => on.landing_Utsuwa && on.StagingId == MatchingStateManager.instance.MyPlayerId()).Count >= 10) {
             GameManager.Instance.MyPlayerWin();
             return true;
         } else {
@@ -120,6 +122,20 @@ public class RuleManager : Photon.PunBehaviour {
             ViewManager.Instance.playingView.ApplyProgressBar(progressRatio);
         }
         if (OnbutsuList.FindAll(on => on.landing_Utsuwa && on.holderId == MatchingStateManager.instance.MyPlayerId()).Count >= 15) {
+            GameManager.Instance.MyPlayerWin();
+            return true;
+        } else {
+            return false;
+        }
+    }
+    public bool CheckRule_3() {
+        progressRatio = OnbutsuList.FindAll(on => on.dropped && on.holderId == MatchingStateManager.instance.MyPlayerId()).Count / 3.0f;
+        if (pastProgressRatio != progressRatio) {
+            SoundManager.Instance.PlaySoundEffect(SoundManager.Instance.SE_Progress);
+            pastProgressRatio = progressRatio;
+            ViewManager.Instance.playingView.ApplyProgressBar(progressRatio);
+        }
+        if (OnbutsuList.FindAll(on => on.dropped && on.holderId == MatchingStateManager.instance.MyPlayerId()).Count >= 3) {
             GameManager.Instance.MyPlayerWin();
             return true;
         } else {

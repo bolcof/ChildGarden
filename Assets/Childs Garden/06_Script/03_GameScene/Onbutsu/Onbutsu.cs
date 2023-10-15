@@ -4,14 +4,15 @@ using UnityEngine;
 
 public class Onbutsu : MonoBehaviour {
     public int holderId, StagingId;
+    [SerializeField] private int spawnedId;
 
     public bool hasLand_Utsuwa;
     public bool landing_Utsuwa;
     public bool dropped;
 
     private float stoppingTime = 0f;
-    [SerializeField] float threshold = 0.01f;
-    private Rigidbody rb;
+    [SerializeField] float threshold = 1.0f;
+    private Rigidbody2D rb;
 
     public float checkRadius = 1.0f;
     public int touchingObjectsCount = 0;
@@ -29,9 +30,10 @@ public class Onbutsu : MonoBehaviour {
         holderId = photonView.owner.ID;
         StagingId = -1;
 
-        rb = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody2D>();
 
         RuleManager.instance.OnbutsuList.Add(this);
+        spawnedId = RuleManager.instance.OnbutsuList.Count - 1;
     }
     void Update() {
         if (!dropped) {
@@ -57,6 +59,7 @@ public class Onbutsu : MonoBehaviour {
                 }
             } else {
                 stoppingTime = 0f; // 動いている場合、タイマーをリセット
+                Debug.Log("move! " + spawnedId.ToString() + " " + rb.velocity.magnitude.ToString());
                 landing_Utsuwa = false;
             }
         }
@@ -70,9 +73,6 @@ public class Onbutsu : MonoBehaviour {
     }
 
     private void OnCollisionEnter2D(Collision2D collision) {
-        if (collision.gameObject.CompareTag("Floor")) {
-            Dropped();
-        }
         switch(collision.gameObject.tag) {
             case "Utsuwa":
                 hasLand_Utsuwa = true;
@@ -81,6 +81,10 @@ public class Onbutsu : MonoBehaviour {
                 if (collision.gameObject.GetComponent<Onbutsu>().landing_Utsuwa) {
                     hasLand_Utsuwa = true;
                 }
+                break;
+            case "Floor":
+                Debug.Log("Touch Floor int switch");
+                Dropped();
                 break;
             default:
                 Debug.Log("Touch " + collision.gameObject.tag);
