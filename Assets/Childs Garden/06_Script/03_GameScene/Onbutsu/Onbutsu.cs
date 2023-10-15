@@ -11,7 +11,7 @@ public class Onbutsu : MonoBehaviour {
     public bool dropped;
 
     private float stoppingTime = 0f;
-    [SerializeField] float threshold = 1.0f;
+    private float threshold = 1.0f;
     private Rigidbody2D rb;
 
     public float checkRadius = 1.0f;
