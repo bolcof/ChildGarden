@@ -9,6 +9,7 @@ public class RuleManager : Photon.PunBehaviour {
     [System.Serializable]
     public struct Rule {
         public int id;
+        public float missionNum;
         public string explainText;
     }
 
@@ -85,7 +86,7 @@ public class RuleManager : Photon.PunBehaviour {
 
     //Ruleごとに作る
     public bool CheckRule_0() {
-        float missionNum = 3;
+        float missionNum = rules[0].missionNum;
         progressRatio = OnbutsuList.FindAll(on => on.dropped && on.holderId == MatchingStateManager.instance.MyPlayerId()).Count / missionNum;
         if (pastProgressRatio != progressRatio) {
             SoundManager.Instance.PlaySoundEffect(SoundManager.Instance.SE_Progress);
@@ -101,7 +102,7 @@ public class RuleManager : Photon.PunBehaviour {
     }
 
     public bool CheckRule_1() {
-        float missionNum = 10;
+        float missionNum = rules[1].missionNum;
         progressRatio = OnbutsuList.FindAll(on => on.landing_Utsuwa && on.StagingId == MatchingStateManager.instance.MyPlayerId()).Count / missionNum;
         if (pastProgressRatio != progressRatio) {
             SoundManager.Instance.PlaySoundEffect(SoundManager.Instance.SE_Progress);
@@ -117,7 +118,7 @@ public class RuleManager : Photon.PunBehaviour {
     }
 
     public bool CheckRule_2() {
-        float missionNum = 15;
+        float missionNum = rules[2].missionNum;
         progressRatio = OnbutsuList.FindAll(on => on.landing_Utsuwa && on.holderId == MatchingStateManager.instance.MyPlayerId()).Count / missionNum;
         if (pastProgressRatio != progressRatio) {
             SoundManager.Instance.PlaySoundEffect(SoundManager.Instance.SE_Progress);
@@ -132,7 +133,7 @@ public class RuleManager : Photon.PunBehaviour {
         }
     }
     public bool CheckRule_3() {
-        float missionNum = 5;
+        float missionNum = rules[3].missionNum;
         progressRatio = OnbutsuList.FindAll(on => on.dropped && on.holderId == MatchingStateManager.instance.MyPlayerId() && on.hasLand_Utsuwa).Count / missionNum;
         if (pastProgressRatio != progressRatio) {
             SoundManager.Instance.PlaySoundEffect(SoundManager.Instance.SE_Progress);
