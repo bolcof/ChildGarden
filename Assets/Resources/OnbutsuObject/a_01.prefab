@@ -267,8 +267,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0.2
-  m_AngularDrag: 0.1
+  m_LinearDrag: 5
+  m_AngularDrag: 0.2
   m_GravityScale: 1
   m_Material: {fileID: 6200000, guid: 567c3e1c229207743a7398d9f2980a88, type: 2}
   m_IncludeLayers:
@@ -295,10 +295,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   holderId: 0
   StagingId: 0
+  spawnedId: 0
   hasLand_Utsuwa: 0
   landing_Utsuwa: 0
   dropped: 0
-  threshold: 0.01
   checkRadius: 1
   touchingObjectsCount: 0
   _spriteRenderer: {fileID: 5105255762904968793}
