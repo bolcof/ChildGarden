@@ -74,7 +74,7 @@ PrefabInstance:
       objectReference: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
     - target: {fileID: 919132149155446097, guid: 7e24a3a1e250a6e4cb15b77b9ca1c5fe, type: 3}
       propertyPath: m_Name
-      value: a_01
+      value: d_01
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 7e24a3a1e250a6e4cb15b77b9ca1c5fe, type: 3}
       propertyPath: m_TagString
@@ -295,10 +295,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   holderId: 0
   StagingId: 0
-  hasLand_Stage: 0
-  hasLand_Floor: 0
-  Landing_Stage: 0
-  Landing_Floor: 0
+  hasLand_Utsuwa: 0
+  landing_Utsuwa: 0
+  dropped: 0
+  threshold: 0.01
+  checkRadius: 1
+  touchingObjectsCount: 0
+  _spriteRenderer: {fileID: 5105255762904968793}
+  _polygonCollider: {fileID: 0}
+  _circleCollider: {fileID: 1887379314983669261}
 --- !u!95 &570485063397695978
 Animator:
   serializedVersion: 5

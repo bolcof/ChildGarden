@@ -1,11 +1,24 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using UnityEngine;
 
 public class Utsuwa : Photon.PunBehaviour {
     public GameObject myPlayerSign;
+    public bool isMine;
+    public int holderId;
 
     private void Awake() {
+        PhotonView photonView = GetComponent<PhotonView>();
+        holderId = photonView.owner.ID;
+        if (holderId == MatchingStateManager.instance.MyPlayerId()) {
+            isMine = true;
+            RuleManager.instance.myUtsuwa = this;
+        } else {
+            isMine = false;
+            RuleManager.instance.otherUtsuwa = this;
+        }
+
         if (!photonView.isMine) {
             myPlayerSign.SetActive(false);
         }

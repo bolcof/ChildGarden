@@ -21,7 +21,7 @@ public class StageCollision : Photon.PunBehaviour {
         holderId = photonView.owner.ID;
         if (holderId == MatchingStateManager.instance.MyPlayerId()) {
             isMine = true;
-            RuleManager.instance.myStage = this;
+            RuleManager.instance.myUtsuwa = null; //TODO delete
         } else {
             isMine = false;
         }
@@ -30,10 +30,10 @@ public class StageCollision : Photon.PunBehaviour {
     private void OnTriggerEnter2D(Collider2D collider) {
         if (collider.gameObject.CompareTag("Onbutu") && isMine) {
             var currentOnbutsu = collider.gameObject.GetComponent<Onbutsu>();
-            if (!currentOnbutsu.hasLand_Stage) {
+            if (!currentOnbutsu.hasLand_Utsuwa) {
 
-                currentOnbutsu.hasLand_Stage = true;
-                currentOnbutsu.Landing_Stage = true;
+                currentOnbutsu.hasLand_Utsuwa = true;
+                currentOnbutsu.landing_Utsuwa = true;
 
                 if (currentOnbutsu.holderId == holderId) {
                     Debug.Log("Land Stage My Onbutsu");
@@ -57,7 +57,7 @@ public class StageCollision : Photon.PunBehaviour {
         if (collider.gameObject.CompareTag("Onbutu")) {
             var currentOnbutsu = collider.gameObject.GetComponent<Onbutsu>();
 
-            currentOnbutsu.Landing_Stage = false;
+            currentOnbutsu.landing_Utsuwa = false;
         }
     }
 
