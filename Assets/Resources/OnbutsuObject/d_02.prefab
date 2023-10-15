@@ -186,6 +186,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   holderId: 0
   StagingId: 0
+  spawnedId: 0
   hasLand_Utsuwa: 0
   landing_Utsuwa: 0
   dropped: 0

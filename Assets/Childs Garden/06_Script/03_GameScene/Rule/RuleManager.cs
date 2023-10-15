@@ -129,13 +129,13 @@ public class RuleManager : Photon.PunBehaviour {
         }
     }
     public bool CheckRule_3() {
-        progressRatio = OnbutsuList.FindAll(on => on.dropped && on.holderId == MatchingStateManager.instance.MyPlayerId()).Count / 3.0f;
+        progressRatio = OnbutsuList.FindAll(on => on.dropped && on.holderId == MatchingStateManager.instance.MyPlayerId() && on.hasLand_Utsuwa).Count / 5.0f;
         if (pastProgressRatio != progressRatio) {
             SoundManager.Instance.PlaySoundEffect(SoundManager.Instance.SE_Progress);
             pastProgressRatio = progressRatio;
             ViewManager.Instance.playingView.ApplyProgressBar(progressRatio);
         }
-        if (OnbutsuList.FindAll(on => on.dropped && on.holderId == MatchingStateManager.instance.MyPlayerId()).Count >= 3) {
+        if (OnbutsuList.FindAll(on => on.dropped && on.holderId == MatchingStateManager.instance.MyPlayerId() && on.hasLand_Utsuwa).Count >= 5) {
             GameManager.Instance.MyPlayerWin();
             return true;
         } else {

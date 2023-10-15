@@ -59,7 +59,7 @@ public class Onbutsu : MonoBehaviour {
                 }
             } else {
                 stoppingTime = 0f; // 動いている場合、タイマーをリセット
-                Debug.Log("move! " + spawnedId.ToString() + " " + rb.velocity.magnitude.ToString());
+                //Debug.Log("move! " + spawnedId.ToString() + " " + rb.velocity.magnitude.ToString());
                 landing_Utsuwa = false;
             }
         }

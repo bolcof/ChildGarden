@@ -124,7 +124,8 @@ public class RuleSelectView : Photon.PunBehaviour {
             case -1:
                 break;
             default:
-                buttonsList[ruleId].SetHighlight(true);
+                //TODO FIX AppearedId
+                buttonsList[ruleId - 1].SetHighlight(true);
                 break;
         }
     }
