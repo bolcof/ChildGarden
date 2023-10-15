@@ -506,6 +506,10 @@ PrefabInstance:
       propertyPath: canvasRect
       value: 
       objectReference: {fileID: 657770312}
+    - target: {fileID: 7382917408416437119, guid: 1ddbe3b6227155a40a9c819384cd0d79, type: 3}
+      propertyPath: levelUpTime
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8072724028197875564, guid: 1ddbe3b6227155a40a9c819384cd0d79, type: 3}
       propertyPath: m_Name
       value: MainCamera

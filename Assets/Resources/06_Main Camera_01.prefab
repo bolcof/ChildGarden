@@ -554,7 +554,7 @@ MonoBehaviour:
   - {fileID: 2808136558133204950}
   - {fileID: 5103552492455646551}
   chargingTime: 0
-  levelUpTime: 2
+  levelUpTime: 1
   chargeSlider: {fileID: 2940602283579941340}
   sizeSignKnob: {fileID: 4468343886123467383}
   sliderColors:

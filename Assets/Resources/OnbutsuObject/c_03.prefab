@@ -190,7 +190,6 @@ MonoBehaviour:
   hasLand_Utsuwa: 0
   landing_Utsuwa: 0
   dropped: 0
-  threshold: 0.01
   checkRadius: 1
   touchingObjectsCount: 0
   _spriteRenderer: {fileID: 7935873673556208872}
