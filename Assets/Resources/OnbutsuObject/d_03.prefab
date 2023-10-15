@@ -186,10 +186,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   holderId: 0
   StagingId: 0
-  hasLand_Stage: 0
-  hasLand_Floor: 0
-  Landing_Stage: 0
-  Landing_Floor: 0
+  spawnedId: 0
+  hasLand_Utsuwa: 0
+  landing_Utsuwa: 0
+  dropped: 0
+  threshold: 0.01
+  checkRadius: 1
+  touchingObjectsCount: 0
+  _spriteRenderer: {fileID: 7935873673556208872}
+  _polygonCollider: {fileID: 1258772630509041570}
+  _circleCollider: {fileID: 0}
 --- !u!212 &7935873673556208872
 SpriteRenderer:
   m_ObjectHideFlags: 0

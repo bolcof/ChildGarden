@@ -485,7 +485,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   label: {fileID: 0}
   appearedId: 1
-  thisButtonsRuleId: 1
+  thisButtonsRuleId: 2
   selected: 0
   image: {fileID: 3388884224051405647}
   disSelectedImage: {fileID: 21300000, guid: ed398b35897424e449fc781ab9111e11, type: 3}
@@ -995,7 +995,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   label: {fileID: 0}
   appearedId: 0
-  thisButtonsRuleId: 0
+  thisButtonsRuleId: 1
   selected: 0
   image: {fileID: 6248270185536801606}
   disSelectedImage: {fileID: 21300000, guid: fe4490f6ae8e84a7d9beddf3093a0a36, type: 3}
@@ -1166,7 +1166,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   label: {fileID: 0}
   appearedId: 2
-  thisButtonsRuleId: 2
+  thisButtonsRuleId: 3
   selected: 0
   image: {fileID: 3201767784177680889}
   disSelectedImage: {fileID: 21300000, guid: 1dfec88e3f7a641b190c2f0f99b447f5, type: 3}

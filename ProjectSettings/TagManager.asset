@@ -14,6 +14,7 @@ TagManager:
   - UI_Rule_01
   - UI_Rule_02
   - playerCount
+  - Utsuwa
   layers:
   - Default
   - TransparentFX

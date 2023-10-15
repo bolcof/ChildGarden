@@ -3,6 +3,7 @@ using Photon;
 using System.Collections.Generic;
 
 public class FloorCollision : UnityEngine.MonoBehaviour {
+    /*
     public int sumOnbutsuCount = 0;
     public int othersOnbutsuCount = 0;
     public int myOnbutsuCount = 0;
@@ -56,5 +57,5 @@ public class FloorCollision : UnityEngine.MonoBehaviour {
         } else {
             // ここにオブジェクトの状態を受信して更新するコードを書きます
         }
-    }
+    }*/
 }

@@ -20,8 +20,10 @@ public class RuleManager : Photon.PunBehaviour {
     public float progressRatio, pastProgressRatio;
     public bool isWinnerDecided;
 
-    [SerializeField] private FloorCollision myFloor;
-    public StageCollision myStage;
+    public Utsuwa myUtsuwa;
+    public Utsuwa otherUtsuwa;
+
+    public List<Onbutsu> OnbutsuList = new List<Onbutsu>();
 
     private void Awake() {
         if (instance == null) {
@@ -42,8 +44,7 @@ public class RuleManager : Photon.PunBehaviour {
     }
 
     public void ResetCount() {
-        myFloor.ResetCount();
-        myStage.ResetCount();
+        OnbutsuList.Clear();
         isWinnerDecided = false;
         progressRatio = pastProgressRatio = 0.0f;
     }
@@ -63,6 +64,9 @@ public class RuleManager : Photon.PunBehaviour {
                 case 2:
                     CheckRule_2();
                     break;
+                case 3:
+                    CheckRule_3();
+                    break;
                 default:
                     Debug.LogError("RuleID is out of range!");
                     break;
@@ -81,13 +85,14 @@ public class RuleManager : Photon.PunBehaviour {
 
     //Ruleごとに作る
     public bool CheckRule_0() {
-        progressRatio = (float)myFloor.myOnbutsuCount / 3.0f;
+        float missionNum = 3;
+        progressRatio = OnbutsuList.FindAll(on => on.dropped && on.holderId == MatchingStateManager.instance.MyPlayerId()).Count / missionNum;
         if (pastProgressRatio != progressRatio) {
             SoundManager.Instance.PlaySoundEffect(SoundManager.Instance.SE_Progress);
             pastProgressRatio = progressRatio;
             ViewManager.Instance.playingView.ApplyProgressBar(progressRatio);
         }
-        if (myFloor.myOnbutsuCount >= 3) {
+        if (OnbutsuList.FindAll(on => on.dropped && on.holderId == MatchingStateManager.instance.MyPlayerId()).Count >= missionNum) {
             GameManager.Instance.MyPlayerWin();
             return true;
         } else {
@@ -96,13 +101,14 @@ public class RuleManager : Photon.PunBehaviour {
     }
 
     public bool CheckRule_1() {
-        progressRatio = (float)myFloor.myOnbutsuCount / 5.0f;
+        float missionNum = 10;
+        progressRatio = OnbutsuList.FindAll(on => on.landing_Utsuwa && on.StagingId == MatchingStateManager.instance.MyPlayerId()).Count / missionNum;
         if (pastProgressRatio != progressRatio) {
             SoundManager.Instance.PlaySoundEffect(SoundManager.Instance.SE_Progress);
             pastProgressRatio = progressRatio;
             ViewManager.Instance.playingView.ApplyProgressBar(progressRatio);
         }
-        if (myStage.myOnbutsuCount + myStage.othersOnbutsuCount >= 5) {
+        if (OnbutsuList.FindAll(on => on.landing_Utsuwa && on.StagingId == MatchingStateManager.instance.MyPlayerId()).Count >= missionNum) {
             GameManager.Instance.MyPlayerWin();
             return true;
         } else {
@@ -111,13 +117,29 @@ public class RuleManager : Photon.PunBehaviour {
     }
 
     public bool CheckRule_2() {
-        progressRatio = (float)myFloor.myOnbutsuCount / 3.0f;
+        float missionNum = 15;
+        progressRatio = OnbutsuList.FindAll(on => on.landing_Utsuwa && on.holderId == MatchingStateManager.instance.MyPlayerId()).Count / missionNum;
         if (pastProgressRatio != progressRatio) {
             SoundManager.Instance.PlaySoundEffect(SoundManager.Instance.SE_Progress);
             pastProgressRatio = progressRatio;
             ViewManager.Instance.playingView.ApplyProgressBar(progressRatio);
         }
-        if (myFloor.myOnbutsuCount >= 3) {
+        if (OnbutsuList.FindAll(on => on.landing_Utsuwa && on.holderId == MatchingStateManager.instance.MyPlayerId()).Count >= missionNum) {
+            GameManager.Instance.MyPlayerWin();
+            return true;
+        } else {
+            return false;
+        }
+    }
+    public bool CheckRule_3() {
+        float missionNum = 5;
+        progressRatio = OnbutsuList.FindAll(on => on.dropped && on.holderId == MatchingStateManager.instance.MyPlayerId() && on.hasLand_Utsuwa).Count / missionNum;
+        if (pastProgressRatio != progressRatio) {
+            SoundManager.Instance.PlaySoundEffect(SoundManager.Instance.SE_Progress);
+            pastProgressRatio = progressRatio;
+            ViewManager.Instance.playingView.ApplyProgressBar(progressRatio);
+        }
+        if (OnbutsuList.FindAll(on => on.dropped && on.holderId == MatchingStateManager.instance.MyPlayerId() && on.hasLand_Utsuwa).Count >= missionNum) {
             GameManager.Instance.MyPlayerWin();
             return true;
         } else {

@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 6569510345204470555}
   m_Layer: 0
   m_Name: Utuwa_C
-  m_TagString: Player
+  m_TagString: Utsuwa
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -190,6 +190,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myPlayerSign: {fileID: 4576383964907326611}
+  isMine: 0
+  holderId: 0
 --- !u!222 &1166634299184180371
 CanvasRenderer:
   m_ObjectHideFlags: 0
