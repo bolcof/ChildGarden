@@ -484,7 +484,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   label: {fileID: 0}
-  appearedId: 1
   thisButtonsRuleId: 2
   selected: 0
   image: {fileID: 3388884224051405647}
@@ -994,7 +993,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   label: {fileID: 0}
-  appearedId: 0
   thisButtonsRuleId: 1
   selected: 0
   image: {fileID: 6248270185536801606}
@@ -1058,7 +1056,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1165,7 +1163,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   label: {fileID: 0}
-  appearedId: 2
   thisButtonsRuleId: 3
   selected: 0
   image: {fileID: 3201767784177680889}
@@ -2365,6 +2362,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectableRuleNum: 3
+  selectorLabel: {fileID: 4540119061380146046}
+  waiterLabel: {fileID: 6303554601370146236}
   RuleSubjectButton: {fileID: 4473809504833402531, guid: 21c28848bd0f7440eb28c7df2a1d2df1, type: 3}
   DecideButton: {fileID: 425483170010343606}
   buttonsList:

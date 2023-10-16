@@ -46,6 +46,13 @@ public class RuleSelectView : Photon.PunBehaviour {
         RepushRule();
 
         DecideButton.SetActive(isSelector);
+        if(isSelector) {
+            waiterLabel.gameObject.SetActive(false);
+            selectorLabel.gameObject.SetActive(true);
+        } else {
+            waiterLabel.gameObject.SetActive(true);
+            selectorLabel.gameObject.SetActive(false);
+        }
         DecideButton.GetComponent<Button>().enabled = false;
 
         if (viewManager == null) {
