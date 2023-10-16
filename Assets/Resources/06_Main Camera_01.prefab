@@ -555,6 +555,7 @@ MonoBehaviour:
   - {fileID: 5103552492455646551}
   chargingTime: 0
   levelUpTime: 1
+  chargeLevelMax: 4
   chargeSlider: {fileID: 2940602283579941340}
   sizeSignKnob: {fileID: 4468343886123467383}
   sliderColors:
@@ -562,6 +563,7 @@ MonoBehaviour:
   - {r: 0.2901961, g: 0, b: 1, a: 1}
   - {r: 1, g: 0, b: 0.8627451, a: 1}
   - {r: 1, g: 0.73333335, b: 0, a: 1}
+  - {r: 1, g: 0, b: 0, a: 1}
 --- !u!1 &8666260953847662163
 GameObject:
   m_ObjectHideFlags: 0

@@ -458,6 +458,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 609ff20a4f42ab043bd57fdd4cbd3925, type: 3}
   - {fileID: 8300000, guid: 10b0a4bd744390849b3681d6ea6618e3, type: 3}
   - {fileID: 8300000, guid: 69f5d3b49122d1b4c87079bfbe8abd9e, type: 3}
+  - {fileID: 8300000, guid: 69f5d3b49122d1b4c87079bfbe8abd9e, type: 3}
   SE_ChargeLevelUp: {fileID: 8300000, guid: 21968d4e87ea74c47b528fb97d15695e, type: 3}
   SE_RoundFinish: {fileID: 8300000, guid: 3dec87bdce08e324d8bebdb177d60783, type: 3}
   SE_SpawnZizou: {fileID: 8300000, guid: 3dec87bdce08e324d8bebdb177d60783, type: 3}

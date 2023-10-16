@@ -9,8 +9,6 @@ public class CreateRayPoint : Photon.PunBehaviour {
     [SerializeField]
     private float rayDistance = 20.0f;
     private Camera camera;
-    [SerializeField] private Canvas canvas;
-    [SerializeField] private RectTransform canvasRect;
 
     [SerializeField] string onbutsuFolderName;
     public List<GameObject> OnbutsuList_Level1 = new List<GameObject>();
@@ -23,6 +21,7 @@ public class CreateRayPoint : Photon.PunBehaviour {
     [SerializeField] private float chargingTime;
     private int currentChargeLevel, pastChargeLevel;
     [SerializeField] private float levelUpTime;
+    [SerializeField] private int chargeLevelMax;
 
     [SerializeField] private Slider chargeSlider;
     [SerializeField] private GameObject sizeSignKnob;
@@ -36,8 +35,6 @@ public class CreateRayPoint : Photon.PunBehaviour {
         chargeSlider.gameObject.SetActive(false);
         currentChargeLevel = -1;
         pastChargeLevel = -1;
-
-        canvasRect = GameObject.Find("ViewManager").GetComponent<RectTransform>();
 
         /*foreach (var ef in chargeEffectObject) {
             ef.SetActive(false);
@@ -62,7 +59,7 @@ public class CreateRayPoint : Photon.PunBehaviour {
                 sizeSignKnob.transform.position = Input.mousePosition;
 
                 currentChargeLevel = FloatDivide(chargingTime, levelUpTime);
-                if (currentChargeLevel >= 3) { currentChargeLevel = 3; }
+                if (currentChargeLevel >= chargeLevelMax) { currentChargeLevel = chargeLevelMax; }
 
                 Ray ray = camera.ScreenPointToRay(Input.mousePosition);
                 RaycastHit hit;
@@ -74,7 +71,7 @@ public class CreateRayPoint : Photon.PunBehaviour {
 
                 chargeSlider.fillRect.GetComponent<Image>().color = sliderColors[currentChargeLevel];
                 sizeSignKnob.GetComponent<Image>().color = sliderColors[currentChargeLevel];
-                if (currentChargeLevel <= 2) {
+                if (currentChargeLevel <= chargeLevelMax - 1) {
                     chargeSlider.value = FloatDivideRemain(chargingTime, levelUpTime) / levelUpTime * 1000;
                 } else {
                     chargeSlider.value = 1000f;
@@ -100,12 +97,14 @@ public class CreateRayPoint : Photon.PunBehaviour {
                     Vector3 spawnPosition = hit.point + Vector3.up * 0.5f;
                     switch (currentChargeLevel) {
                         case 0:
-                            PhotonNetwork.Instantiate(onbutsuFolderName + OnbutsuList_Level1[PhotonNetwork.player.ID - 1].name, spawnPosition, Quaternion.identity, 0);
                             break;
                         case 1:
-                            PhotonNetwork.Instantiate(onbutsuFolderName + OnbutsuList_Level2[PhotonNetwork.player.ID - 1].name, spawnPosition, Quaternion.identity, 0);
+                            PhotonNetwork.Instantiate(onbutsuFolderName + OnbutsuList_Level1[PhotonNetwork.player.ID - 1].name, spawnPosition, Quaternion.identity, 0);
                             break;
                         case 2:
+                            PhotonNetwork.Instantiate(onbutsuFolderName + OnbutsuList_Level2[PhotonNetwork.player.ID - 1].name, spawnPosition, Quaternion.identity, 0);
+                            break;
+                        case 3:
                             PhotonNetwork.Instantiate(onbutsuFolderName + OnbutsuList_Level3[PhotonNetwork.player.ID - 1].name, spawnPosition, Quaternion.identity, 0);
                             break;
                         default:
@@ -124,7 +123,7 @@ public class CreateRayPoint : Photon.PunBehaviour {
     }
 
     private void ChargeLevelUp() {
-        if (currentChargeLevel > 3) { currentChargeLevel = 3; }
+        if (currentChargeLevel > chargeLevelMax) { currentChargeLevel = chargeLevelMax; }
         /*foreach (var ef in chargeEffectObject) {
             ef.SetActive(false);
         }*/
