@@ -40,8 +40,8 @@ public class RuleManager : Photon.PunBehaviour {
         isWinnerDecided = false;
     }
 
-    public void SetRule(int _id) {
-        currentRule = rules.Find(r => r.id == _id);
+    public void SetRule(int _ruleId) {
+        currentRule = rules.Find(r => r.id == _ruleId);
     }
 
     public void ResetCount() {

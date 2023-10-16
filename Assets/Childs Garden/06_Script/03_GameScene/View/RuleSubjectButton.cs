@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class RuleSubjectButton : MonoBehaviour {
     [SerializeField] TextMeshProUGUI label;
-    public int appearedId, thisButtonsRuleId;
+    public int thisButtonsRuleId;
     public bool selected;
     [SerializeField] private Image image;
     [SerializeField] private Sprite disSelectedImage, selcetedImage;
@@ -28,7 +28,7 @@ public class RuleSubjectButton : MonoBehaviour {
     public void PushRuleButton() {
         if (GameManager.Instance.canOperateUI) {
             if (!selected) {
-                ruleSelectView.PushRule(appearedId);
+                ruleSelectView.PushRule(thisButtonsRuleId);
             } else {
                 ruleSelectView.RepushRule();
             }

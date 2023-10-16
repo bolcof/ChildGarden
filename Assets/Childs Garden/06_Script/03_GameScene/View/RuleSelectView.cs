@@ -5,17 +5,19 @@ using UnityEngine;
 using UnityEngine.UI;
 using Cysharp.Threading.Tasks;
 using UnityEngine.Video;
+using static RuleManager;
 
 public class RuleSelectView : Photon.PunBehaviour {
 
     //static
     [SerializeField] private int selectableRuleNum;
 
+    [SerializeField] private Image selectorLabel, waiterLabel;
     [SerializeField] private GameObject RuleSubjectButton;
     [SerializeField] private GameObject DecideButton;
 
     public List<RuleSubjectButton> buttonsList = new List<RuleSubjectButton>();
-    private int currentSelectRuleId;
+    private int ruleIndex;
 
     [SerializeField] private VideoPlayer openingVideo, closingVideo;
 
@@ -74,13 +76,13 @@ public class RuleSelectView : Photon.PunBehaviour {
         GameManager.Instance.canOperateUI = true;
     }
 
-    public void PushRule(int index) {
+    public void PushRule(int ruleId) {
         foreach (var rsb in buttonsList) {
             rsb.SetHighlight(false);
         }
-        buttonsList[index].SetHighlight(true);
-        currentSelectRuleId = buttonsList[index].thisButtonsRuleId;
-        photonView.RPC(nameof(ChangeOthersHighlight), PhotonTargets.OthersBuffered, currentSelectRuleId);
+        buttonsList.Find(r => r.thisButtonsRuleId == ruleId).SetHighlight(true);
+        ruleIndex = ruleId;
+        photonView.RPC(nameof(ChangeOthersHighlight), PhotonTargets.OthersBuffered, ruleIndex);
 
         DecideButton.GetComponent<Button>().enabled = true;
     }
@@ -89,8 +91,8 @@ public class RuleSelectView : Photon.PunBehaviour {
         foreach (var rsb in buttonsList) {
             rsb.SetHighlight(false);
         }
-        currentSelectRuleId = -1;
-        photonView.RPC(nameof(ChangeOthersHighlight), PhotonTargets.OthersBuffered, currentSelectRuleId);
+        ruleIndex = -1;
+        photonView.RPC(nameof(ChangeOthersHighlight), PhotonTargets.OthersBuffered, ruleIndex);
 
         DecideButton.GetComponent<Button>().enabled = false;
     }
@@ -126,13 +128,13 @@ public class RuleSelectView : Photon.PunBehaviour {
         foreach (var rsb in buttonsList) {
             rsb.SetHighlight(false);
         }
-        currentSelectRuleId = ruleId;
+        ruleIndex = ruleId;
         switch (ruleId) {
             case -1:
                 break;
             default:
                 //TODO FIX AppearedId
-                buttonsList[ruleId - 1].SetHighlight(true);
+                buttonsList.Find(r => r.thisButtonsRuleId == ruleId).SetHighlight(true);
                 break;
         }
     }
@@ -140,7 +142,7 @@ public class RuleSelectView : Photon.PunBehaviour {
     [PunRPC]
     public void ToNextRound() {
         gameObject.SetActive(false);
-        RuleManager.instance.SetRule(currentSelectRuleId);
+        RuleManager.instance.SetRule(ruleIndex);
         GameManager.Instance.NextRoundStart();
     }
 }
