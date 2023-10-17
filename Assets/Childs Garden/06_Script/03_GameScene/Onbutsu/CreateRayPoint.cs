@@ -23,16 +23,18 @@ public class CreateRayPoint : Photon.PunBehaviour {
     [SerializeField] private float levelUpTime;
     [SerializeField] private int chargeLevelMax;
 
-    [SerializeField] private Slider chargeSlider;
-    [SerializeField] private GameObject sizeSignKnob;
-    //[SerializeField] private List<GameObject> chargeEffectObject;
+    [SerializeField] private GameObject guageRoot;
+    [SerializeField] private Image chargeGuage;
+    [SerializeField] private List<Image> objectImages = new List<Image>();
+
     [SerializeField] private List<Color> sliderColors = new List<Color>();
 
     private void Start() {
         camera = GetComponent<Camera>();
         chargingTime = 0.0f;
-        sizeSignKnob.SetActive(false);
-        chargeSlider.gameObject.SetActive(false);
+        guageRoot.SetActive(false);
+        //chargeSlider.gameObject.SetActive(false);
+        chargeGuage.fillAmount = 0.0f;
         currentChargeLevel = -1;
         pastChargeLevel = -1;
 
@@ -53,28 +55,30 @@ public class CreateRayPoint : Photon.PunBehaviour {
             if (Input.GetMouseButton(0)) {
                 //TODO:????????
                 chargingTime += Time.deltaTime;
-                chargeSlider.gameObject.SetActive(true);
-                sizeSignKnob.SetActive(true);
+                //chargeSlider.gameObject.SetActive(true);
+                guageRoot.SetActive(true);
 
-                sizeSignKnob.transform.position = Input.mousePosition;
+                guageRoot.transform.position = Input.mousePosition;
 
                 currentChargeLevel = FloatDivide(chargingTime, levelUpTime);
                 if (currentChargeLevel >= chargeLevelMax) { currentChargeLevel = chargeLevelMax; }
 
-                Ray ray = camera.ScreenPointToRay(Input.mousePosition);
-                RaycastHit hit;
-
-                if (Physics.Raycast(ray, out hit, rayDistance)) {
-                    Vector3 effectPosition = hit.point + Vector3.up;
-                    //chargeEffectObject[currentChargeLevel].transform.position = effectPosition;
+                chargeGuage.color = sliderColors[currentChargeLevel];
+                if (currentChargeLevel == 0) {
+                    foreach(var im in objectImages) {
+                        im.gameObject.SetActive(false);
+                    }
+                } else {
+                    foreach (var im in objectImages) {
+                        im.gameObject.SetActive(false);
+                    }
+                    objectImages[currentChargeLevel - 1].gameObject.SetActive(true);
                 }
 
-                chargeSlider.fillRect.GetComponent<Image>().color = sliderColors[currentChargeLevel];
-                sizeSignKnob.GetComponent<Image>().color = sliderColors[currentChargeLevel];
                 if (currentChargeLevel <= chargeLevelMax - 1) {
-                    chargeSlider.value = FloatDivideRemain(chargingTime, levelUpTime) / levelUpTime * 1000;
+                    chargeGuage.fillAmount = FloatDivideRemain(chargingTime, levelUpTime) / levelUpTime;
                 } else {
-                    chargeSlider.value = 1000f;
+                    chargeGuage.fillAmount = 1.0f;
                 }
 
                 if (pastChargeLevel != currentChargeLevel) {
@@ -118,8 +122,7 @@ public class CreateRayPoint : Photon.PunBehaviour {
     }
 
     public void DisappearGauge() {
-        sizeSignKnob.SetActive(false);
-        chargeSlider.gameObject.SetActive(false);
+        guageRoot.SetActive(false);
     }
 
     private void ChargeLevelUp() {
