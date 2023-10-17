@@ -36,7 +36,7 @@ public class RuleManager : Photon.PunBehaviour {
     }
 
     public void SetFirstRound() {
-        currentRule = rules.Find(r => r.id == 0);
+        currentRule = rules.Find(r => r.id == 1);
         isWinnerDecided = false;
     }
 
