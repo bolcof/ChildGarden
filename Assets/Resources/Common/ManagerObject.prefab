@@ -299,10 +299,10 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -454,11 +454,11 @@ MonoBehaviour:
   SE_Progress: {fileID: 8300000, guid: cd09e894639fe814f833f53b63d6a84a, type: 3}
   SE_PutOnbutsu: {fileID: 8300000, guid: 3dec87bdce08e324d8bebdb177d60783, type: 3}
   SE_OnbutsuCharging:
-  - {fileID: 8300000, guid: bdd1d1cda39d8e149b49edca58c75448, type: 3}
-  - {fileID: 8300000, guid: 609ff20a4f42ab043bd57fdd4cbd3925, type: 3}
-  - {fileID: 8300000, guid: 10b0a4bd744390849b3681d6ea6618e3, type: 3}
-  - {fileID: 8300000, guid: 69f5d3b49122d1b4c87079bfbe8abd9e, type: 3}
-  - {fileID: 8300000, guid: 69f5d3b49122d1b4c87079bfbe8abd9e, type: 3}
+  - {fileID: 8300000, guid: 4c4cd26fce8a5a9438c0632c0532a4a2, type: 3}
+  - {fileID: 8300000, guid: ce43736b31c74424a89ef6bf412f836d, type: 3}
+  - {fileID: 8300000, guid: 32d36bc8307463548a3b2dc929ec9478, type: 3}
+  - {fileID: 8300000, guid: 483e2fac634d8e54cae75e3244413ad7, type: 3}
+  - {fileID: 8300000, guid: 268ec925eb1cbbc47a66b06045b7e2ad, type: 3}
   SE_ChargeLevelUp: {fileID: 8300000, guid: 21968d4e87ea74c47b528fb97d15695e, type: 3}
   SE_RoundFinish: {fileID: 8300000, guid: 3dec87bdce08e324d8bebdb177d60783, type: 3}
   SE_SpawnZizou: {fileID: 8300000, guid: 3dec87bdce08e324d8bebdb177d60783, type: 3}
