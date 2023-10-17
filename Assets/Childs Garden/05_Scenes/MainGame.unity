@@ -1227,7 +1227,7 @@ MonoBehaviour:
   canOperateUI: 0
   winnerIsMine: 0
   BeginningCountDownTime: 5
-  timeLimit: 60
+  timeLimit: 90
   remainingTimeLimit: 0
 --- !u!4 &1293520240
 Transform:
