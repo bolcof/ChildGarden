@@ -690,10 +690,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6d16436842c72643b3f803f775fcb0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  countdownText: {fileID: 8151796752425542835}
   nextSceneName: testA_0822
-  PlayObj: {fileID: 8151796752425542834}
-  ReadyObj: {fileID: 916684628}
+  playButton: {fileID: 8151796752425542834}
+  readyText: {fileID: 916684628}
+  buttonShadow: {fileID: 0}
 --- !u!4 &1679567084
 Transform:
   m_ObjectHideFlags: 0
@@ -849,10 +849,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: IntroductionCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 1336012597420054138, guid: c85004fe93aa547b7b9396c427bd5899, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3371043074681805278, guid: c85004fe93aa547b7b9396c427bd5899, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1679567083}
+    - target: {fileID: 4266176739511391225, guid: c85004fe93aa547b7b9396c427bd5899, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4880253181110813071, guid: c85004fe93aa547b7b9396c427bd5899, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -943,17 +951,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7743574874382517392, guid: c85004fe93aa547b7b9396c427bd5899, type: 3}
   m_PrefabInstance: {fileID: 8151796752425542833}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &8151796752425542835 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7189869552589144289, guid: c85004fe93aa547b7b9396c427bd5899, type: 3}
-  m_PrefabInstance: {fileID: 8151796752425542833}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
