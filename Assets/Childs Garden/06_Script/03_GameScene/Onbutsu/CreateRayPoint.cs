@@ -123,6 +123,7 @@ public class CreateRayPoint : Photon.PunBehaviour {
 
     public void DisappearGauge() {
         guageRoot.SetActive(false);
+        SoundManager.Instance.ChargeSource.Stop();
     }
 
     private void ChargeLevelUp() {
