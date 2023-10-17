@@ -67,8 +67,8 @@ public class StageManager : Photon.PunBehaviour {
 
     public async UniTask AppearMyPlayerPin() {
         myUtsuwa.SignEnabled(true);
-        await UniTask.Delay(4000);
-        myUtsuwa.SignEnabled(false);
+        //await UniTask.Delay(4000);
+        //myUtsuwa.SignEnabled(false);
     }
 
     private List<int> RandomizedPositionIdList() {

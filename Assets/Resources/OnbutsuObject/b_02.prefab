@@ -193,7 +193,7 @@ MonoBehaviour:
   checkRadius: 1
   touchingObjectsCount: 0
   _spriteRenderer: {fileID: 173813754427947773}
-  _polygonCollider: {fileID: 0}
+  _polygonCollider: {fileID: -3326533274789528082}
   _circleCollider: {fileID: 0}
 --- !u!212 &173813754427947773
 SpriteRenderer:
