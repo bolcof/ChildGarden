@@ -39,18 +39,16 @@ public class RoomConector : Photon.PunBehaviour
 
     #region Photonコールバック
 
-    public override void OnJoinedLobby()
-    {
+    public override void OnJoinedLobby() {
         Debug.Log("ロビーに入りました。");
-        PhotonNetwork.JoinRandomRoom();
+        PhotonNetwork.JoinRoom("KanaiWorking");
     }
 
-    public override void OnPhotonRandomJoinFailed(object[] codeAndMsg)
-    {
+    public override void OnPhotonJoinRoomFailed(object[] codeAndMsg) {
         Debug.Log("ルームの入室に失敗しました。");
         RoomOptions roomOptions = new RoomOptions();
         roomOptions.PublishUserId = true;
-        PhotonNetwork.CreateRoom("TestRoom", roomOptions, TypedLobby.Default);
+        PhotonNetwork.CreateRoom("KanaiWorking", roomOptions, TypedLobby.Default);
     }
     #endregion
 }
