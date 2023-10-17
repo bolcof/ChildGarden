@@ -15,8 +15,8 @@ GameObject:
   - component: {fileID: 5092366099567499783}
   - component: {fileID: 173813754427947773}
   - component: {fileID: 8593501753611200659}
-  - component: {fileID: 5044954309642259416}
-  - component: {fileID: 1441819364909595096}
+  - component: {fileID: 6936171605211382858}
+  - component: {fileID: 6965815689359471659}
   m_Layer: 0
   m_Name: c_02
   m_TagString: Onbutu
@@ -193,7 +193,7 @@ MonoBehaviour:
   checkRadius: 1
   touchingObjectsCount: 0
   _spriteRenderer: {fileID: 173813754427947773}
-  _polygonCollider: {fileID: 5044954309642259416}
+  _polygonCollider: {fileID: 0}
   _circleCollider: {fileID: 0}
 --- !u!212 &173813754427947773
 SpriteRenderer:
@@ -268,7 +268,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!60 &5044954309642259416
+--- !u!60 &6936171605211382858
 PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -312,25 +312,27 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.04, y: -3.98}
-      - {x: 2.85, y: -3.9499998}
-      - {x: 4.83, y: -3.51}
-      - {x: 5.25, y: -3.1}
-      - {x: 3.36, y: -0.64}
-      - {x: 2.49, y: 1.14}
-      - {x: 0.68, y: 3.9199998}
-      - {x: 0, y: 4.2799997}
-      - {x: -0.55, y: 4.0099998}
-      - {x: -1.12, y: 3.29}
-      - {x: -2.82, y: 0.41}
-      - {x: -5.08, y: -2.08}
-      - {x: -5.6299996, y: -3.1}
-      - {x: -5.3399997, y: -3.6999998}
-      - {x: -4.65, y: -3.9399998}
-      - {x: -2.82, y: -3.75}
-      - {x: -0.12, y: -3.99}
+    - - {x: 0.42, y: -4.12}
+      - {x: 1.9399999, y: -2.04}
+      - {x: 3, y: -0.17}
+      - {x: 5.38, y: 2.49}
+      - {x: 5.6099997, y: 2.95}
+      - {x: 5.52, y: 3.53}
+      - {x: 5.24, y: 3.77}
+      - {x: 4.56, y: 3.9499998}
+      - {x: 2.82, y: 3.75}
+      - {x: 0.78, y: 4.04}
+      - {x: -2.6499999, y: 3.98}
+      - {x: -5.1099997, y: 3.3799999}
+      - {x: -5.25, y: 3.1599998}
+      - {x: -5.18, y: 2.8999999}
+      - {x: -3.36, y: 0.64}
+      - {x: -2.49, y: -1.14}
+      - {x: -0.68, y: -3.9199998}
+      - {x: -0.26, y: -4.2599998}
+      - {x: 0.35, y: -4.17}
   m_UseDelaunayMesh: 0
---- !u!114 &1441819364909595096
+--- !u!114 &6965815689359471659
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -342,4 +344,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6876803ba35184bf9b6a393e33a2f264, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tolerance: 0.15
+  tolerance: 0.1
