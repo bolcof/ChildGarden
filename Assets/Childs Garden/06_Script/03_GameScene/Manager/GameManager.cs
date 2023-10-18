@@ -22,6 +22,7 @@ public class GameManager : Photon.PunBehaviour {
     private bool isPlaying;
 
     public int winnerIsMine; /* -1:not yet 0:other 1:me 2:draw */
+    private float myProgress, otherProgress;
 
     [SerializeField] float BeginningCountDownTime;
     public float timeLimit, remainingTimeLimit;
@@ -120,7 +121,16 @@ public class GameManager : Photon.PunBehaviour {
 
     public void TimeOver() {
         canPutOnbutsu = false;
-        photonView.RPC(nameof(Draw), PhotonTargets.All);
+        if (PhotonNetwork.isMasterClient) {
+            photonView.RPC(nameof(GuestProgressCheck), PhotonTargets.OthersBuffered);
+            if (RuleManager.instance.progressRatio > otherProgress) {
+                MyPlayerWin();
+            } else if (RuleManager.instance.progressRatio > otherProgress) {
+
+            } else {
+                photonView.RPC(nameof(Draw), PhotonTargets.All);
+            }
+        }
     }
 
     public void DecideWinner() {
@@ -152,5 +162,11 @@ public class GameManager : Photon.PunBehaviour {
         winnerIsMine = 2;
         roundManager.FinishRound(2);
         DecideWinner();
+    }
+
+    [PunRPC]
+    void GuestProgressCheck(float masterProgress) {
+
+        otherProgress = RuleManager.instance.progressRatio;
     }
 }
