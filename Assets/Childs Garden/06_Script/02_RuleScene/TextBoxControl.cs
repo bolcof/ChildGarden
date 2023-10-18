@@ -7,6 +7,8 @@ public class TextBoxControl : MonoBehaviour {
     public GameObject startObj;
 
     private void Start() {
+        SoundManager.Instance.PlayBgm(SoundManager.Instance.BGM_Introduction);
+
         // スタート時に全てのオブジェクトを非アクティブにします
         for (int i = 0; i < objects.Length; i++) {
             objects[i].SetActive(false);

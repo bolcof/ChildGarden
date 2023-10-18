@@ -20,7 +20,8 @@ public class SoundManager : MonoBehaviour {
     [SerializeField] public AudioClip SE_OpenDoor;
     [SerializeField] public AudioClip SE_RuleSelectViewOpening; /* to webm */
 
-    [SerializeField] public AudioClip BGM_TitleAndRule;
+    [SerializeField] public AudioClip BGM_Title;
+    [SerializeField] public AudioClip BGM_Introduction;
     [SerializeField] public List<AudioClip> BGM_GameScene = new List<AudioClip>();
     [SerializeField] public AudioClip BGM_RuleSelect;
     [SerializeField] public AudioClip BGM_Ending;

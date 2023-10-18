@@ -465,7 +465,8 @@ MonoBehaviour:
   SE_CloseDoor: {fileID: 8300000, guid: 3dec87bdce08e324d8bebdb177d60783, type: 3}
   SE_OpenDoor: {fileID: 8300000, guid: 3dec87bdce08e324d8bebdb177d60783, type: 3}
   SE_RuleSelectViewOpening: {fileID: 8300000, guid: 3dec87bdce08e324d8bebdb177d60783, type: 3}
-  BGM_TitleAndRule: {fileID: 8300000, guid: 9615a34b6e75f4f4496cd57007c1043f, type: 3}
+  BGM_Title: {fileID: 8300000, guid: 9615a34b6e75f4f4496cd57007c1043f, type: 3}
+  BGM_Introduction: {fileID: 8300000, guid: 68a566d1224214e09905534b80e769e7, type: 3}
   BGM_GameScene:
   - {fileID: 8300000, guid: d97b5437c7e884348a77414f3454dbd1, type: 3}
   - {fileID: 8300000, guid: 95fee01501ec15d4bbd43c91e516238e, type: 3}
