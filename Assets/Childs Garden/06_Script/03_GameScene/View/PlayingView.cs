@@ -21,9 +21,9 @@ public class PlayingView : Photon.PunBehaviour {
     private Vector2 progressBarDefaultSize;
 
     [SerializeField] GameObject finishLabel;
+    [SerializeField] private Animator gateAnimator;
     [SerializeField] GameObject winObject, loseObject, drawObject;
     private int hasWin;
-    [SerializeField] GameObject test_toZizouButton;
 
     private ViewManager viewManager;
 
@@ -45,8 +45,8 @@ public class PlayingView : Photon.PunBehaviour {
         winObject.SetActive(false);
         loseObject.SetActive(false);
         drawObject.SetActive(false);
+        gateAnimator.SetBool("Open", false);
         hasWin = -1;
-        test_toZizouButton.SetActive(false);
 
         if (viewManager == null) {
             viewManager = GameObject.Find("ViewManager").GetComponent<ViewManager>();
@@ -96,7 +96,7 @@ public class PlayingView : Photon.PunBehaviour {
     }
     public async UniTask AppearWinObject() {
         winObject.SetActive(true);
-        test_toZizouButton.SetActive(false);
+        gateAnimator.SetBool("Open", true);
 
         await UniTask.Delay(5000);
         PushToZizou();
@@ -104,7 +104,7 @@ public class PlayingView : Photon.PunBehaviour {
 
     public async UniTask AppearLoseObject() {
         loseObject.SetActive(true);
-        test_toZizouButton.SetActive(false);
+        gateAnimator.SetBool("Open", true);
 
         await UniTask.Delay(5000);
         PushToZizou();
@@ -112,7 +112,7 @@ public class PlayingView : Photon.PunBehaviour {
 
     public async UniTask AppearDrawObject() {
         drawObject.SetActive(true);
-        test_toZizouButton.SetActive(false);
+        gateAnimator.SetBool("Open", true);
 
         await UniTask.Delay(5000);
         PushToZizou();
