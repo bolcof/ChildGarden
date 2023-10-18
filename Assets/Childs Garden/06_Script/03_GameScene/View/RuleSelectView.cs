@@ -24,6 +24,9 @@ public class RuleSelectView : Photon.PunBehaviour {
     private ViewManager viewManager;
 
     public async UniTask Set(bool isSelector) {
+        //TODO: fuckin code
+        isSelector = !isSelector;
+
         //TODO:これ2回呼ばれちゃってんのよ
         Debug.Log("rule select view set");
         /*foreach (var rsb in buttonsList) {
@@ -48,7 +51,7 @@ public class RuleSelectView : Photon.PunBehaviour {
         RepushRule();
 
         DecideButton.SetActive(isSelector);
-        if(isSelector) {
+        if (isSelector) {
             waiterLabel.gameObject.SetActive(false);
             selectorLabel.gameObject.SetActive(true);
         } else {
