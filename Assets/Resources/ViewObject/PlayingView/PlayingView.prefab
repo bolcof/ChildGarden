@@ -523,8 +523,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u3042\u3042\u3042\u3042\u3042\u3042\u3042\u3042\u3042\u3042\u3042\u3042\u3042\u3042"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: c6bb31137301043249611a95d2e2e11d, type: 2}
-  m_sharedMaterial: {fileID: 4992988120866342568, guid: c6bb31137301043249611a95d2e2e11d, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 4177d423fdc8843d2a4760ccc8d5d8f4, type: 2}
+  m_sharedMaterial: {fileID: 6472529278208974499, guid: 4177d423fdc8843d2a4760ccc8d5d8f4, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3274,8 +3274,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 1:30
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: c6bb31137301043249611a95d2e2e11d, type: 2}
-  m_sharedMaterial: {fileID: 4992988120866342568, guid: c6bb31137301043249611a95d2e2e11d, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 7fecdf31a3c5e481798fc21e9b5f5668, type: 2}
+  m_sharedMaterial: {fileID: 8171389828090664632, guid: 7fecdf31a3c5e481798fc21e9b5f5668, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -4004,6 +4004,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4899773599866330750}
     m_Modifications:
+    - target: {fileID: 836293857260217446, guid: 5c755f9bc5253ea418e919994537dcc7, type: 3}
+      propertyPath: m_SortingLayer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1052845918758112616, guid: 5c755f9bc5253ea418e919994537dcc7, type: 3}
+      propertyPath: m_SortingLayer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4021103657954561942, guid: 5c755f9bc5253ea418e919994537dcc7, type: 3}
       propertyPath: m_LocalScale.x
       value: 50
@@ -4060,6 +4068,10 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4021103657954561943, guid: 5c755f9bc5253ea418e919994537dcc7, type: 3}
+      propertyPath: m_SortingLayer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4021103657954561961, guid: 5c755f9bc5253ea418e919994537dcc7, type: 3}
       propertyPath: m_Name
       value: CFXR Hit A (Red)
@@ -4067,6 +4079,10 @@ PrefabInstance:
     - target: {fileID: 4021103657954561961, guid: 5c755f9bc5253ea418e919994537dcc7, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4096995433319591838, guid: 5c755f9bc5253ea418e919994537dcc7, type: 3}
+      propertyPath: m_SortingLayer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5588876038941996706, guid: 5c755f9bc5253ea418e919994537dcc7, type: 3}
       propertyPath: m_Color.g
@@ -4078,6 +4094,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5588876038941996706, guid: 5c755f9bc5253ea418e919994537dcc7, type: 3}
       propertyPath: m_Intensity
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7934836172243473550, guid: 5c755f9bc5253ea418e919994537dcc7, type: 3}
+      propertyPath: m_SortingLayer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8622112092983863465, guid: 5c755f9bc5253ea418e919994537dcc7, type: 3}
+      propertyPath: m_SortingLayer
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
