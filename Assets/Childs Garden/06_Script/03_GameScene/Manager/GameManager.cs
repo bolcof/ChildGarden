@@ -113,7 +113,7 @@ public class GameManager : Photon.PunBehaviour {
 
     public void MyPlayerWin() {
         photonView.RPC(nameof(OtherPlayerWin), PhotonTargets.OthersBuffered, MatchingStateManager.instance.MyPlayerId());
-        winnerIsMine = 0;
+        winnerIsMine = 1;
         roundManager.FinishRound(1);
         DecideWinner();
     }
@@ -142,7 +142,7 @@ public class GameManager : Photon.PunBehaviour {
 
     [PunRPC]
     public void OtherPlayerWin(int winnerID) {
-        winnerIsMine = 1;
+        winnerIsMine = 0;
         roundManager.FinishRound(0);
         DecideWinner();
     }
