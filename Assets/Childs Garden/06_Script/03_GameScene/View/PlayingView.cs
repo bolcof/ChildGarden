@@ -94,7 +94,7 @@ public class PlayingView : Photon.PunBehaviour {
         gateLabel.DOFade(1.0f, 0.25f);
 
         await UniTask.Delay(3000);
-        photonView.RPC(nameof(PlayZizowMovie), PhotonTargets.AllBuffered);
+        PlayZizowMovie();
 
         await UniTask.Delay(250);
         OpenGate().Forget();
@@ -115,10 +115,13 @@ public class PlayingView : Photon.PunBehaviour {
         gateLabel.DOFade(1.0f, 0.25f);
 
         await UniTask.Delay(500);
-        if (RoundManager.Instance.currentRound != RoundManager.Instance.RoundNum) {
-            photonView.RPC(nameof(ToRuleSelect), PhotonTargets.AllBuffered);
-        } else {
-            photonView.RPC(nameof(ToEndingView), PhotonTargets.AllBuffered);
+
+        if (PhotonNetwork.isMasterClient) {
+            if (RoundManager.Instance.currentRound != RoundManager.Instance.RoundNum) {
+                photonView.RPC(nameof(ToRuleSelect), PhotonTargets.AllBuffered);
+            } else {
+                photonView.RPC(nameof(ToEndingView), PhotonTargets.AllBuffered);
+            }
         }
     }
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
@@ -130,9 +133,7 @@ public class PlayingView : Photon.PunBehaviour {
         }
     }
 
-    [PunRPC]
     public void PlayZizowMovie() {
-        gameObject.SetActive(false);
         zizowMovie.gameObject.SetActive(true);
         zizowMovie.Set(hasWin);
     }

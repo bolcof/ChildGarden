@@ -10,8 +10,6 @@ public class ZizouMovie : Photon.PunBehaviour {
     [SerializeField] VideoPlayer myVideoPlayer;
     [SerializeField] List<VideoClip> zizouVideoList = new List<VideoClip>();
 
-    private int hasWin;
-
     private void Awake() {
         myVideoPlayer.loopPointReached += ZizouMovieEnd;
     }
@@ -26,8 +24,6 @@ public class ZizouMovie : Photon.PunBehaviour {
             }
             photonView.RPC(nameof(SetZizouMovieId), PhotonTargets.All, id);
         }
-        hasWin = isWinner;
-        myVideoPlayer.Play();
     }
 
     //Ç±ÇÍÇ™ñ≥Ç¢Ç∆ìÆÇ≠ÇØÇ«ÉGÉâÅ[Ç™èoÇÈ
@@ -46,5 +42,6 @@ public class ZizouMovie : Photon.PunBehaviour {
     [PunRPC]
     public void SetZizouMovieId(int id) {
         myVideoPlayer.clip = zizouVideoList[id];
+        myVideoPlayer.Play();
     }
 }
