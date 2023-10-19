@@ -103,6 +103,7 @@ public class PlayingView : Photon.PunBehaviour {
         gateLabel.DOFade(0.0f, 0.25f);
         gateBack.DOFade(0.5f, 0.25f);
         await UniTask.Delay(250);
+        zizowMovie.gameObject.SetActive(false);
         gateR.DOAnchorPos(new Vector2(1500f, 0f), 0.25f);
         gateL.DOAnchorPos(new Vector2(-1500f, 0f), 0.25f);
     }
@@ -124,6 +125,7 @@ public class PlayingView : Photon.PunBehaviour {
             }
         }
     }
+
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
         //これが無いと動くけどエラーが出る
         if (stream.isWriting) {

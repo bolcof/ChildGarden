@@ -120,8 +120,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playingViewObj: {fileID: 30894812167153666}
   playingView: {fileID: 8566193182530182392}
-  zizouViewObj: {fileID: 9011152322434946566}
-  zizouView: {fileID: 8730201735303939779}
   ruleSelectViewObj: {fileID: 8583391790372957398}
   ruleSelectView: {fileID: 3488815928485174780}
   endingViewObj: {fileID: 8567447167129435991}
@@ -554,6 +552,10 @@ PrefabInstance:
       propertyPath: m_Texture
       value: 
       objectReference: {fileID: 8400000, guid: 5288599bd4a184d5297c5e626638be60, type: 2}
+    - target: {fileID: 5277040362350338144, guid: 1a3aaaeb52ac0f849905f84dd1d8e072, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5447502442883577156, guid: 1a3aaaeb52ac0f849905f84dd1d8e072, type: 3}
       propertyPath: m_SortingLayer
       value: 0
@@ -1061,21 +1063,5 @@ PrefabInstance:
 --- !u!224 &1009226787168388941 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6161658692996912777, guid: 6b6853984d0585748934584baccfa130, type: 3}
-  m_PrefabInstance: {fileID: 6594366638890176964}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &8730201735303939779 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2496135195782420231, guid: 6b6853984d0585748934584baccfa130, type: 3}
-  m_PrefabInstance: {fileID: 6594366638890176964}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9011152322434946566}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64e0a89445ca8aa43a178068c6ac6bbd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!1 &9011152322434946566 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2778139114998302658, guid: 6b6853984d0585748934584baccfa130, type: 3}
   m_PrefabInstance: {fileID: 6594366638890176964}
   m_PrefabAsset: {fileID: 0}

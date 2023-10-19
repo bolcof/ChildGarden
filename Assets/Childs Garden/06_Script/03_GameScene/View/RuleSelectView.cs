@@ -113,7 +113,9 @@ public class RuleSelectView : Photon.PunBehaviour {
     }
 
     public async UniTask Decide() { //TODO Archive
-        await UniTask.Delay(3200);
+        await UniTask.Delay(2700);
+        photonView.RPC(nameof(OpenGate), PhotonTargets.AllBuffered);
+        await UniTask.Delay(500);
         photonView.RPC(nameof(ToNextRound), PhotonTargets.AllBuffered);
     }
 
@@ -143,6 +145,11 @@ public class RuleSelectView : Photon.PunBehaviour {
     }
 
     [PunRPC]
+    public void OpenGate() {
+        ViewManager.Instance.playingView.OpenGate().Forget();
+    }
+
+        [PunRPC]
     public void ToNextRound() {
         gameObject.SetActive(false);
         RuleManager.instance.SetRule(ruleIndex);
