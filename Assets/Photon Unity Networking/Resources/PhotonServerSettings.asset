@@ -90,4 +90,6 @@ MonoBehaviour:
   - SetZizouMovieId
   - Draw
   - PlayZizowMovie
+  - OpenGate
+  - CloseRuleSelectPanel
   DisableAutoOpenWizard: 1

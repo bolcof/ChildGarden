@@ -19,7 +19,7 @@ public class RuleSelectView : Photon.PunBehaviour {
     public List<RuleSubjectButton> buttonsList = new List<RuleSubjectButton>();
     private int ruleIndex;
 
-    [SerializeField] private VideoPlayer openingVideo, closingVideo;
+    [SerializeField] private Animator _animator;
 
     private ViewManager viewManager;
 
@@ -64,12 +64,6 @@ public class RuleSelectView : Photon.PunBehaviour {
             viewManager = GameObject.Find("ViewManager").GetComponent<ViewManager>();
         }
 
-        openingVideo.gameObject.GetComponent<RawImage>().color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
-        openingVideo.Play();
-        closingVideo.Prepare();
-        closingVideo.time = 0f;
-        closingVideo.gameObject.GetComponent<RawImage>().color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
-
         SoundManager.Instance.PlayBgm(SoundManager.Instance.BGM_RuleSelect);
 
         GameManager.Instance.canOperateUI = false;
@@ -102,18 +96,14 @@ public class RuleSelectView : Photon.PunBehaviour {
 
     public void PushDecide() {
         if (GameManager.Instance.canOperateUI) {
-            closingVideo.gameObject.GetComponent<RawImage>().color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
-            closingVideo.time = 0f;
-            closingVideo.Play();
-            openingVideo.gameObject.GetComponent<RawImage>().color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
-            openingVideo.time = 0f;
             Decide().Forget();
             GameManager.Instance.canOperateUI = false;
         }
     }
 
     public async UniTask Decide() { //TODO Archive
-        await UniTask.Delay(2700);
+        photonView.RPC(nameof(CloseRuleSelectPanel), PhotonTargets.AllBuffered);
+        await UniTask.Delay(3200);
         photonView.RPC(nameof(OpenGate), PhotonTargets.AllBuffered);
         await UniTask.Delay(500);
         photonView.RPC(nameof(ToNextRound), PhotonTargets.AllBuffered);
@@ -142,6 +132,10 @@ public class RuleSelectView : Photon.PunBehaviour {
                 buttonsList.Find(r => r.thisButtonsRuleId == ruleId).SetHighlight(true);
                 break;
         }
+    }
+    [PunRPC]
+    public void CloseRuleSelectPanel () {
+        _animator.SetBool("Close", true);
     }
 
     [PunRPC]
