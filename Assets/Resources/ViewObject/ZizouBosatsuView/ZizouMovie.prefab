@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 9160671999001973326}
   - component: {fileID: 8318210120190266188}
   - component: {fileID: 2320817731740541224}
+  - component: {fileID: 2281747425910683315}
   m_Layer: 5
   m_Name: ZizouMovie
   m_TagString: Untagged
@@ -54,7 +55,7 @@ VideoPlayer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4834914462287475600}
   m_Enabled: 1
-  m_VideoClip: {fileID: 32900000, guid: 36d467c0abcf244fc83edc5382622559, type: 3}
+  m_VideoClip: {fileID: 32900000, guid: 2e527cfc3d92c467c9e27ad7adb5cae3, type: 3}
   m_TargetCameraAlpha: 1
   m_TargetCamera3DLayout: 0
   m_TargetCamera: {fileID: 0}
@@ -76,9 +77,9 @@ VideoPlayer:
   m_EnabledAudioTracks: 01
   m_DirectAudioMutes: 00
   m_ControlledAudioTrackCount: 1
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_SkipOnDrop: 1
-  m_Looping: 1
+  m_Looping: 0
   m_WaitForFirstFrame: 1
   m_FrameReadyEventEnabled: 0
   m_VideoShaders: []
@@ -109,3 +110,23 @@ MonoBehaviour:
     y: 0
     width: 1
     height: 1
+--- !u!114 &2281747425910683315
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4834914462287475600}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d330b0dd1834cce4ea17c984168e88a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myVideoPlayer: {fileID: 8318210120190266188}
+  zizouVideoList:
+  - {fileID: 32900000, guid: 2e527cfc3d92c467c9e27ad7adb5cae3, type: 3}
+  - {fileID: 32900000, guid: f9a5bf157301844b7a53dd9da502d3e0, type: 3}
+  - {fileID: 32900000, guid: a70aef5c7149f4fb9b6274ea9265b8af, type: 3}
+  - {fileID: 32900000, guid: 713aef80abb0d43138ee6060a22fbbf6, type: 3}
+  - {fileID: 32900000, guid: 5e0ca2c7b35c245608248bd693b7e010, type: 3}
+  - {fileID: 32900000, guid: 239f7fe8a3ba144b9969c148c63f98c0, type: 3}

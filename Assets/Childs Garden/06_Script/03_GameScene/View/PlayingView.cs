@@ -21,7 +21,8 @@ public class PlayingView : Photon.PunBehaviour {
     [SerializeField] RectTransform progressBar;
     private Vector2 progressBarDefaultSize;
 
-    [SerializeField] GameObject finishLabel;
+    [SerializeField] private GameObject finishLabel;
+    [SerializeField] private Image gateBack;
     [SerializeField] private RectTransform gateR, gateL;
     [SerializeField] private Image gateLabel;
     [SerializeField] private List<Sprite> gateR_Images = new List<Sprite>();
@@ -29,6 +30,7 @@ public class PlayingView : Photon.PunBehaviour {
     [SerializeField] private List<Sprite> gateC_Images = new List<Sprite>();
 
     private int hasWin;
+    [SerializeField] private ZizouMovie zizowMovie;
 
     private ViewManager viewManager;
 
@@ -87,19 +89,37 @@ public class PlayingView : Photon.PunBehaviour {
 
         gateR.DOAnchorPos(new Vector2(480f, 0f), 0.25f);
         gateL.DOAnchorPos(new Vector2(-480f, 0f), 0.25f);
-        await UniTask.Delay(150);
+        await UniTask.Delay(250);
+        gateBack.DOFade(0.75f, 0.25f);
         gateLabel.DOFade(1.0f, 0.25f);
+
         await UniTask.Delay(3000);
-        PlayZizouMovie();
+        photonView.RPC(nameof(PlayZizowMovie), PhotonTargets.AllBuffered);
+
+        await UniTask.Delay(250);
+        OpenGate().Forget();
+    }
+    public async UniTask OpenGate() {
+        gateLabel.DOFade(0.0f, 0.25f);
+        gateBack.DOFade(0.5f, 0.25f);
+        await UniTask.Delay(250);
+        gateR.DOAnchorPos(new Vector2(1500f, 0f), 0.25f);
+        gateL.DOAnchorPos(new Vector2(-1500f, 0f), 0.25f);
     }
 
-    public async UniTask CloseGate() {
+    public async UniTask CloseGateAndGoNext() {
+        gateR.DOAnchorPos(new Vector2(480f, 0f), 0.25f);
+        gateL.DOAnchorPos(new Vector2(-480f, 0f), 0.25f);
+        await UniTask.Delay(250);
+        gateBack.DOFade(0.75f, 0.25f);
+        gateLabel.DOFade(1.0f, 0.25f);
 
-    }
-
-    public void PlayZizouMovie() {
-        Debug.Log("to zizou");
-        photonView.RPC(nameof(ToZizouView), PhotonTargets.AllBuffered);
+        await UniTask.Delay(500);
+        if (RoundManager.Instance.currentRound != RoundManager.Instance.RoundNum) {
+            photonView.RPC(nameof(ToRuleSelect), PhotonTargets.AllBuffered);
+        } else {
+            photonView.RPC(nameof(ToEndingView), PhotonTargets.AllBuffered);
+        }
     }
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
         //これが無いと動くけどエラーが出る
@@ -111,9 +131,30 @@ public class PlayingView : Photon.PunBehaviour {
     }
 
     [PunRPC]
-    public void ToZizouView() {
+    public void PlayZizowMovie() {
         gameObject.SetActive(false);
-        viewManager.zizouViewObj.SetActive(true);
-        viewManager.zizouView.GetComponent<ZizouView>().Set(hasWin);
+        zizowMovie.gameObject.SetActive(true);
+        zizowMovie.Set(hasWin);
+    }
+
+    [PunRPC]
+    public void ToRuleSelect() {
+        gameObject.SetActive(false);
+        viewManager.ruleSelectViewObj.SetActive(true);
+        if (hasWin == 0) {
+            viewManager.ruleSelectView.GetComponent<RuleSelectView>().Set(true).Forget();
+        } else if (hasWin == 1) {
+            viewManager.ruleSelectView.GetComponent<RuleSelectView>().Set(false).Forget();
+        } else {
+            //TODO:selector
+            viewManager.ruleSelectView.GetComponent<RuleSelectView>().Set(PhotonNetwork.isMasterClient).Forget();
+        }
+    }
+
+    [PunRPC]
+    public void ToEndingView() {
+        gameObject.SetActive(false);
+        viewManager.endingViewObj.SetActive(true);
+        viewManager.endingView.GetComponent<EndingView>().Set();
     }
 }

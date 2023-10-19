@@ -89,4 +89,5 @@ MonoBehaviour:
   - ToEndingView
   - SetZizouMovieId
   - Draw
+  - PlayZizowMovie
   DisableAutoOpenWizard: 1
