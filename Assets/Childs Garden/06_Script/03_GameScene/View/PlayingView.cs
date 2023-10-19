@@ -83,6 +83,7 @@ public class PlayingView : Photon.PunBehaviour {
     }
 
     public async UniTask AppearGate(int winner /* -1:not yet 0:other 1:me 2:draw */) {
+        Debug.Log("AppearGate");
         gateR.gameObject.GetComponent<Image>().sprite = gateR_Images[winner];
         gateL.gameObject.GetComponent<Image>().sprite = gateL_Images[winner];
         gateLabel.sprite = gateC_Images[winner];
@@ -97,18 +98,30 @@ public class PlayingView : Photon.PunBehaviour {
         PlayZizowMovie();
 
         await UniTask.Delay(250);
-        OpenGate().Forget();
+        OpenGateToZizou().Forget();
     }
-    public async UniTask OpenGate() {
+    public async UniTask OpenGateToZizou() {
+        Debug.Log("OpenGate");
+        gateLabel.DOFade(0.0f, 0.25f);
+        gateBack.DOFade(0.5f, 0.25f);
+        await UniTask.Delay(250);
+        gateBack.DOFade(0.0f, 0.1f);
+        gateR.DOAnchorPos(new Vector2(1500f, 0f), 0.25f);
+        gateL.DOAnchorPos(new Vector2(-1500f, 0f), 0.25f);
+    }
+    public async UniTask OpenGateToNext() {
+        Debug.Log("OpenGate");
         gateLabel.DOFade(0.0f, 0.25f);
         gateBack.DOFade(0.5f, 0.25f);
         await UniTask.Delay(250);
         zizowMovie.gameObject.SetActive(false);
+        gateBack.DOFade(0.0f, 0.1f);
         gateR.DOAnchorPos(new Vector2(1500f, 0f), 0.25f);
         gateL.DOAnchorPos(new Vector2(-1500f, 0f), 0.25f);
     }
 
     public async UniTask CloseGateAndGoNext() {
+        Debug.Log("CloseGateAndGoNext");
         gateR.DOAnchorPos(new Vector2(480f, 0f), 0.25f);
         gateL.DOAnchorPos(new Vector2(-480f, 0f), 0.25f);
         await UniTask.Delay(250);
@@ -136,13 +149,14 @@ public class PlayingView : Photon.PunBehaviour {
     }
 
     public void PlayZizowMovie() {
+        Debug.Log("PlayZizowMovie");
         zizowMovie.gameObject.SetActive(true);
         zizowMovie.Set(hasWin);
     }
 
     [PunRPC]
     public void ToRuleSelect() {
-        gameObject.SetActive(false);
+        Debug.Log("To Rule Select");
         viewManager.ruleSelectViewObj.SetActive(true);
         if (hasWin == 0) {
             viewManager.ruleSelectView.GetComponent<RuleSelectView>().Set(true).Forget();
@@ -156,6 +170,7 @@ public class PlayingView : Photon.PunBehaviour {
 
     [PunRPC]
     public void ToEndingView() {
+        Debug.Log("To Ending View");
         gameObject.SetActive(false);
         viewManager.endingViewObj.SetActive(true);
         viewManager.endingView.GetComponent<EndingView>().Set();

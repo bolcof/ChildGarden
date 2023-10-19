@@ -15,7 +15,9 @@ public class ZizouMovie : Photon.PunBehaviour {
     }
 
     public void Set(int isWinner) {
+        Debug.Log("ZizowMovie Set");
         if (PhotonNetwork.isMasterClient) {
+            Debug.Log("ZizowMovie Master");
             int id = -1;
             if (RoundManager.Instance.currentRound == RoundManager.Instance.RoundNum) {
                 id = zizouVideoList.Count - 1;
@@ -36,13 +38,14 @@ public class ZizouMovie : Photon.PunBehaviour {
     }
 
     public void ZizouMovieEnd(VideoPlayer vp) {
+        Debug.Log("ZizowMovie End");
         ViewManager.Instance.playingView.CloseGateAndGoNext().Forget();
     }
 
     [PunRPC]
     public void SetZizouMovieId(int id) {
+        Debug.Log("ZizowMovie SetMovieId");
         myVideoPlayer.clip = zizouVideoList[id];
-        Debug.Log("aaaaa");
         myVideoPlayer.Play();
     }
 }

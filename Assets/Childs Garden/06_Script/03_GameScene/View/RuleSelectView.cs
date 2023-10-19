@@ -146,7 +146,7 @@ public class RuleSelectView : Photon.PunBehaviour {
 
     [PunRPC]
     public void OpenGate() {
-        ViewManager.Instance.playingView.OpenGate().Forget();
+        ViewManager.Instance.playingView.OpenGateToNext().Forget();
     }
 
         [PunRPC]
