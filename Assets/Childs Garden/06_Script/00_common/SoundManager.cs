@@ -11,6 +11,7 @@ public class SoundManager : MonoBehaviour {
     [SerializeField] public AudioClip SE_RuleTextAppearing;
     [SerializeField] public AudioClip SE_CountDown;
     [SerializeField] public AudioClip SE_Progress;
+    [SerializeField] public AudioClip SE_Progress_minus;
     [SerializeField] public AudioClip SE_PutOnbutsu;
     [SerializeField] public List<AudioClip> SE_OnbutsuCharging = new List<AudioClip>();
     [SerializeField] public AudioClip SE_ChargeLevelUp;

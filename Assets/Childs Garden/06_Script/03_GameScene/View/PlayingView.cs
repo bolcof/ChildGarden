@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using Cysharp.Threading.Tasks;
+using DG.Tweening;
 
 public class PlayingView : Photon.PunBehaviour {
     [SerializeField] Image background;
@@ -20,10 +21,16 @@ public class PlayingView : Photon.PunBehaviour {
     [SerializeField] RectTransform progressBar;
     private Vector2 progressBarDefaultSize;
 
-    [SerializeField] GameObject finishLabel;
-    [SerializeField] private Animator gateAnimator;
-    [SerializeField] GameObject winObject, loseObject, drawObject;
+    [SerializeField] private GameObject finishLabel;
+    [SerializeField] private Image gateBack;
+    [SerializeField] private RectTransform gateR, gateL;
+    [SerializeField] private Image gateLabel;
+    [SerializeField] private List<Sprite> gateR_Images = new List<Sprite>();
+    [SerializeField] private List<Sprite> gateL_Images = new List<Sprite>();
+    [SerializeField] private List<Sprite> gateC_Images = new List<Sprite>();
+
     private int hasWin;
+    [SerializeField] private ZizouMovie zizowMovie;
 
     private ViewManager viewManager;
 
@@ -41,11 +48,6 @@ public class PlayingView : Photon.PunBehaviour {
             roundResults[i].enabled = true;
             roundResults[i].sprite = roundResultImage[RoundManager.Instance.isWin[i]];
         }
-
-        winObject.SetActive(false);
-        loseObject.SetActive(false);
-        drawObject.SetActive(false);
-        gateAnimator.SetBool("Open", false);
         hasWin = -1;
 
         if (viewManager == null) {
@@ -64,7 +66,7 @@ public class PlayingView : Photon.PunBehaviour {
     }
 
     public void ApplyTimeLimit(int sec) {
-        timerLabel.text = (sec / 60).ToString() + ":" + (sec % 60).ToString("D2");
+        timerLabel.text = sec.ToString();
     }
 
     public void ApplyProgressBar(float progress) {
@@ -73,55 +75,76 @@ public class PlayingView : Photon.PunBehaviour {
 
     public async UniTask RoundFinish(int result) {
         finishLabel.SetActive(true);
-
         await UniTask.Delay(4000);
-
         finishLabel.SetActive(false);
 
         hasWin = result;
+        AppearGate(result).Forget();
+    }
 
-        switch (result) {
-            case 0:
-                AppearWinObject().Forget();
-                break;
-            case 1:
-                AppearLoseObject().Forget();
-                break;
-            case 2:
-                AppearDrawObject().Forget();
-                break;
-            default:
-                break;
+    public async UniTask AppearGate(int winner /* -1:not yet 0:other 1:me 2:draw */) {
+        Debug.Log("AppearGate");
+        SoundManager.Instance.PlaySoundEffect(SoundManager.Instance.SE_OpenDoor);
+
+        gateR.gameObject.GetComponent<Image>().sprite = gateR_Images[winner];
+        gateL.gameObject.GetComponent<Image>().sprite = gateL_Images[winner];
+        gateLabel.sprite = gateC_Images[winner];
+
+        gateR.DOAnchorPos(new Vector2(480f, 0f), 0.25f);
+        gateL.DOAnchorPos(new Vector2(-480f, 0f), 0.25f);
+        await UniTask.Delay(250);
+        gateBack.DOFade(0.75f, 0.25f);
+        gateLabel.DOFade(1.0f, 0.25f);
+
+        await UniTask.Delay(3000);
+        PlayZizowMovie();
+
+        await UniTask.Delay(250);
+        OpenGateToZizou().Forget();
+    }
+    public async UniTask OpenGateToZizou() {
+        Debug.Log("OpenGate");
+        SoundManager.Instance.PlaySoundEffect(SoundManager.Instance.SE_OpenDoor);
+
+        gateLabel.DOFade(0.0f, 0.25f);
+        gateBack.DOFade(0.5f, 0.25f);
+        await UniTask.Delay(250);
+        gateBack.DOFade(0.0f, 0.1f);
+        gateR.DOAnchorPos(new Vector2(1500f, 0f), 0.25f);
+        gateL.DOAnchorPos(new Vector2(-1500f, 0f), 0.25f);
+    }
+    public async UniTask OpenGateToNext() {
+        Debug.Log("OpenGate");
+        gateLabel.DOFade(0.0f, 0.25f);
+        gateBack.DOFade(0.5f, 0.25f);
+        await UniTask.Delay(250);
+        zizowMovie.gameObject.SetActive(false);
+        gateBack.DOFade(0.0f, 0.1f);
+        gateR.DOAnchorPos(new Vector2(1500f, 0f), 0.25f);
+        gateL.DOAnchorPos(new Vector2(-1500f, 0f), 0.25f);
+    }
+
+    public async UniTask CloseGateAndGoNext() {
+        Debug.Log("CloseGateAndGoNext");
+        SoundManager.Instance.PlaySoundEffect(SoundManager.Instance.SE_CloseDoor);
+
+        gateR.DOAnchorPos(new Vector2(480f, 0f), 0.25f);
+        gateL.DOAnchorPos(new Vector2(-480f, 0f), 0.25f);
+        await UniTask.Delay(250);
+        gateBack.DOFade(0.75f, 0.25f);
+        gateLabel.DOFade(1.0f, 0.25f);
+
+        await UniTask.Delay(500);
+
+        if (PhotonNetwork.isMasterClient) {
+            if (RoundManager.Instance.currentRound != RoundManager.Instance.RoundNum) {
+                photonView.RPC(nameof(ToRuleSelect), PhotonTargets.AllBuffered);
+            } else {
+                photonView.RPC(nameof(ToEndingView), PhotonTargets.AllBuffered);
+            }
         }
     }
-    public async UniTask AppearWinObject() {
-        winObject.SetActive(true);
-        gateAnimator.SetBool("Open", true);
 
-        await UniTask.Delay(5000);
-        PushToZizou();
-    }
-
-    public async UniTask AppearLoseObject() {
-        loseObject.SetActive(true);
-        gateAnimator.SetBool("Open", true);
-
-        await UniTask.Delay(5000);
-        PushToZizou();
-    }
-
-    public async UniTask AppearDrawObject() {
-        drawObject.SetActive(true);
-        gateAnimator.SetBool("Open", true);
-
-        await UniTask.Delay(5000);
-        PushToZizou();
-    }
-
-    public void PushToZizou() {
-        Debug.Log("to zizou");
-        photonView.RPC(nameof(ToZizouView), PhotonTargets.AllBuffered);
-    }
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
         //これが無いと動くけどエラーが出る
         if (stream.isWriting) {
@@ -131,10 +154,31 @@ public class PlayingView : Photon.PunBehaviour {
         }
     }
 
+    public void PlayZizowMovie() {
+        Debug.Log("PlayZizowMovie");
+        zizowMovie.gameObject.SetActive(true);
+        zizowMovie.Set(hasWin);
+    }
+
     [PunRPC]
-    public void ToZizouView() {
+    public void ToRuleSelect() {
+        Debug.Log("To Rule Select");
+        viewManager.ruleSelectViewObj.SetActive(true);
+        if (hasWin == 0) {
+            viewManager.ruleSelectView.GetComponent<RuleSelectView>().Set(true).Forget();
+        } else if (hasWin == 1) {
+            viewManager.ruleSelectView.GetComponent<RuleSelectView>().Set(false).Forget();
+        } else {
+            //TODO:selector
+            viewManager.ruleSelectView.GetComponent<RuleSelectView>().Set(PhotonNetwork.isMasterClient).Forget();
+        }
+    }
+
+    [PunRPC]
+    public void ToEndingView() {
+        Debug.Log("To Ending View");
         gameObject.SetActive(false);
-        viewManager.zizouViewObj.SetActive(true);
-        viewManager.zizouView.GetComponent<ZizouView>().Set(hasWin);
+        viewManager.endingViewObj.SetActive(true);
+        viewManager.endingView.GetComponent<EndingView>().Set();
     }
 }

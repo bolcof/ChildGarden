@@ -2370,8 +2370,7 @@ MonoBehaviour:
   - {fileID: 3632381185664522678}
   - {fileID: 583177695979509449}
   - {fileID: 6275423971880511655}
-  openingVideo: {fileID: 3282505787973835036}
-  closingVideo: {fileID: 6714177342614290658}
+  _animator: {fileID: 697504472388894994}
 --- !u!114 &7111295734352506592
 MonoBehaviour:
   m_ObjectHideFlags: 0
