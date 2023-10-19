@@ -66,7 +66,7 @@ public class PlayingView : Photon.PunBehaviour {
     }
 
     public void ApplyTimeLimit(int sec) {
-        timerLabel.text = (sec / 60).ToString() + ":" + (sec % 60).ToString("D2");
+        timerLabel.text = sec.ToString();
     }
 
     public void ApplyProgressBar(float progress) {
