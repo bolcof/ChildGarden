@@ -65,6 +65,7 @@ public class RuleSelectView : Photon.PunBehaviour {
         }
 
         SoundManager.Instance.PlayBgm(SoundManager.Instance.BGM_RuleSelect);
+        SoundManager.Instance.PlaySoundEffect(SoundManager.Instance.SE_RuleSelectViewOpening);
 
         GameManager.Instance.canOperateUI = false;
 

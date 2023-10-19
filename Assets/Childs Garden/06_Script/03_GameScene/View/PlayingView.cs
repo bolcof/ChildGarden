@@ -84,6 +84,8 @@ public class PlayingView : Photon.PunBehaviour {
 
     public async UniTask AppearGate(int winner /* -1:not yet 0:other 1:me 2:draw */) {
         Debug.Log("AppearGate");
+        SoundManager.Instance.PlaySoundEffect(SoundManager.Instance.SE_OpenDoor);
+
         gateR.gameObject.GetComponent<Image>().sprite = gateR_Images[winner];
         gateL.gameObject.GetComponent<Image>().sprite = gateL_Images[winner];
         gateLabel.sprite = gateC_Images[winner];
@@ -102,6 +104,8 @@ public class PlayingView : Photon.PunBehaviour {
     }
     public async UniTask OpenGateToZizou() {
         Debug.Log("OpenGate");
+        SoundManager.Instance.PlaySoundEffect(SoundManager.Instance.SE_OpenDoor);
+
         gateLabel.DOFade(0.0f, 0.25f);
         gateBack.DOFade(0.5f, 0.25f);
         await UniTask.Delay(250);
@@ -122,6 +126,8 @@ public class PlayingView : Photon.PunBehaviour {
 
     public async UniTask CloseGateAndGoNext() {
         Debug.Log("CloseGateAndGoNext");
+        SoundManager.Instance.PlaySoundEffect(SoundManager.Instance.SE_CloseDoor);
+
         gateR.DOAnchorPos(new Vector2(480f, 0f), 0.25f);
         gateL.DOAnchorPos(new Vector2(-480f, 0f), 0.25f);
         await UniTask.Delay(250);
