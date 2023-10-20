@@ -20,7 +20,7 @@ GameObject:
   - component: {fileID: 3603512459264543227}
   m_Layer: 0
   m_Name: Utuwa_A
-  m_TagString: Player
+  m_TagString: Utsuwa
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
