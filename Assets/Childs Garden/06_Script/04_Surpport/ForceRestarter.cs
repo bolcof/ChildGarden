@@ -61,6 +61,7 @@ public class ForceRestarter : Photon.PunBehaviour {
     public void SendPushingTopButton() {
         Debug.Log("Send pushing...");
         PhotonNetwork.automaticallySyncScene = true;
+        SoundManager.Instance.PlayBgm(SoundManager.Instance.BGM_Title);
         PhotonNetwork.LoadLevel("Launcher");
     }
 }
