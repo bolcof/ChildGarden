@@ -46,7 +46,7 @@ public class EndingView : Photon.PunBehaviour {
     }
 
     public void PushTopButton(VideoPlayer vp) {
-        Debug.Log("aaaa push button...");
+        Debug.Log("Push button...");
         photonView.RPC(nameof(DestroyGameManager), PhotonTargets.All);
         photonView.RPC(nameof(SendPushingTopButton), PhotonTargets.All);
     }
@@ -59,7 +59,7 @@ public class EndingView : Photon.PunBehaviour {
 
     [PunRPC]
     public void SendPushingTopButton() {
-        Debug.Log("aaaa send pushing...");
+        Debug.Log("Send pushing...");
         PhotonNetwork.automaticallySyncScene = true;
         PhotonNetwork.LoadLevel("Launcher");
     }
