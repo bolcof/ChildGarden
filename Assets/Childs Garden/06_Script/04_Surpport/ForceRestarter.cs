@@ -20,8 +20,8 @@ public class ForceRestarter : Photon.PunBehaviour {
             }
         }
 
-        if(Input.GetKeyDown(KeyCode.Space)) {
-            Debug.Log("SPACEでの再起動");
+        if(Input.GetKeyDown(KeyCode.R)) {
+            Debug.Log("Rでの再起動");
             OnInactivityDetected();
             timer = 0f;
         }
