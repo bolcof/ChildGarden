@@ -5,6 +5,7 @@ public class RoomConector : Photon.PunBehaviour {
     #region Private変数
     string _gameVersion = "test";
     #endregion
+    [SerializeField] private string roomId;
 
     private void OnEnable() {
         SceneManager.sceneLoaded += OnSceneLoaded;
@@ -35,14 +36,14 @@ public class RoomConector : Photon.PunBehaviour {
 
     public override void OnJoinedLobby() {
         Debug.Log("ロビーに入りました。");
-        PhotonNetwork.JoinRoom("KanaiWorking");
+        PhotonNetwork.JoinRoom(roomId);
     }
 
     public override void OnPhotonJoinRoomFailed(object[] codeAndMsg) {
         Debug.Log("ルームの入室に失敗しました。");
         RoomOptions roomOptions = new RoomOptions();
         roomOptions.PublishUserId = true;
-        PhotonNetwork.CreateRoom("KanaiWorking", roomOptions, TypedLobby.Default);
+        PhotonNetwork.CreateRoom(roomId, roomOptions, TypedLobby.Default);
     }
     #endregion
 }
