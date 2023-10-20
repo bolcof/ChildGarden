@@ -25,7 +25,6 @@ public class RuleSelectView : Photon.PunBehaviour {
 
     public async UniTask Set(bool isSelector) {
         //TODO: fuckin code
-        isSelector = !isSelector;
 
         //TODO:これ2回呼ばれちゃってんのよ
         Debug.Log("rule select view set");
