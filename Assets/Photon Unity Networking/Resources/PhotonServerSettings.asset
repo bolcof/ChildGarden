@@ -93,4 +93,6 @@ MonoBehaviour:
   - OpenGate
   - CloseRuleSelectPanel
   - OnInactivityDetected
+  - GoToMainGame
+  - FirstRoundStart
   DisableAutoOpenWizard: 1
