@@ -43,6 +43,7 @@ public class RoomConector : Photon.PunBehaviour {
         Debug.Log("ルームの入室に失敗しました。");
         RoomOptions roomOptions = new RoomOptions();
         roomOptions.PublishUserId = true;
+        roomOptions.MaxPlayers = 2;
         PhotonNetwork.CreateRoom(roomId, roomOptions, TypedLobby.Default);
     }
     #endregion
