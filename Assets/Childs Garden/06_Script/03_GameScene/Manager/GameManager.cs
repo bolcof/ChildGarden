@@ -42,9 +42,12 @@ public class GameManager : Photon.PunBehaviour {
     }
 
     private void Start() {
-        FirstRoundStart();
+        if (PhotonNetwork.isMasterClient) {
+            photonView.RPC(nameof(FirstRoundStart), PhotonTargets.AllBuffered);
+        }
     }
 
+    [PunRPC]
     private void FirstRoundStart() {
         CountDownStart(BeginningCountDownTime).Forget();
 

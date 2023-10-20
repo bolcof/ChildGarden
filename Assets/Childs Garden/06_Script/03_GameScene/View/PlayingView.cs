@@ -168,6 +168,7 @@ public class PlayingView : Photon.PunBehaviour {
     public void ToRuleSelect() {
         Debug.Log("To Rule Select");
         viewManager.ruleSelectViewObj.SetActive(true);
+        SoundManager.Instance.PlaySoundEffect(SoundManager.Instance.SE_RuleSelectViewOpening);
         if (hasWin == 0) {
             viewManager.ruleSelectView.GetComponent<RuleSelectView>().Set(true).Forget();
         } else if (hasWin == 1) {
