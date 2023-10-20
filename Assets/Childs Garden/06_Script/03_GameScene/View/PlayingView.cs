@@ -104,11 +104,12 @@ public class PlayingView : Photon.PunBehaviour {
     }
     public async UniTask OpenGateToZizou() {
         Debug.Log("OpenGate");
-        SoundManager.Instance.PlaySoundEffect(SoundManager.Instance.SE_OpenDoor);
-
         gateLabel.DOFade(0.0f, 0.25f);
         gateBack.DOFade(0.5f, 0.25f);
+
         await UniTask.Delay(250);
+
+        SoundManager.Instance.PlaySoundEffect(SoundManager.Instance.SE_OpenDoor);
         gateBack.DOFade(0.0f, 0.1f);
         gateR.DOAnchorPos(new Vector2(1500f, 0f), 0.25f);
         gateL.DOAnchorPos(new Vector2(-1500f, 0f), 0.25f);
@@ -117,7 +118,10 @@ public class PlayingView : Photon.PunBehaviour {
         Debug.Log("OpenGate");
         gateLabel.DOFade(0.0f, 0.25f);
         gateBack.DOFade(0.5f, 0.25f);
+
         await UniTask.Delay(250);
+
+        SoundManager.Instance.PlaySoundEffect(SoundManager.Instance.SE_OpenDoor);
         zizowMovie.gameObject.SetActive(false);
         gateBack.DOFade(0.0f, 0.1f);
         gateR.DOAnchorPos(new Vector2(1500f, 0f), 0.25f);
