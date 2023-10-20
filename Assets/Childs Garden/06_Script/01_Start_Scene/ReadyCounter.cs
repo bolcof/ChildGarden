@@ -3,6 +3,7 @@ using TMPro;
 using System.Collections;
 using UnityEngine.SceneManagement;
 using Photon;
+using System.Linq;
 
 public class ReadyCounter : PunBehaviour // PunBehaviourを継承
 {

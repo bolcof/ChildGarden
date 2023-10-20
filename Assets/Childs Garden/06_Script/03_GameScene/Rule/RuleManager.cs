@@ -165,7 +165,7 @@ public class RuleManager : Photon.PunBehaviour {
     }
 
     public bool WholeWinnerIsMe() {
-        if (RoundManager.Instance.isWin.Count(r => r == 1) >= 3) {
+        if (RoundManager.Instance.isWin.Count(r => r == 1) >= RoundManager.Instance.isWin.Count(r => r == 0)) {
             return true;
         } else {
             return false;

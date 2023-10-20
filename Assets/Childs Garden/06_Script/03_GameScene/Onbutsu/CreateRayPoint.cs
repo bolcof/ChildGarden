@@ -98,7 +98,10 @@ public class CreateRayPoint : Photon.PunBehaviour {
                 RaycastHit hit;
 
                 if (Physics.Raycast(ray, out hit, rayDistance)) {
-                    Vector3 spawnPosition = hit.point + Vector3.up * 0.5f;
+                    Vector3 spawnPosition = hit.point + Vector3.up * 0.25f;
+                    if(spawnPosition.y < 0.75f) {
+                        spawnPosition = new Vector3(spawnPosition.x, 0.75f, spawnPosition.z);
+                    }
                     switch (currentChargeLevel) {
                         case 0:
                             break;
