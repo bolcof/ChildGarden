@@ -58,7 +58,7 @@ public class CreateRayPoint : Photon.PunBehaviour {
                 //chargeSlider.gameObject.SetActive(true);
                 guageRoot.SetActive(true);
 
-                guageRoot.transform.position = Input.mousePosition + Vector3.up * 30f;
+                guageRoot.transform.position = Input.mousePosition + Vector3.up * 90f;
 
                 currentChargeLevel = FloatDivide(chargingTime, levelUpTime);
                 if (currentChargeLevel >= chargeLevelMax) { currentChargeLevel = chargeLevelMax; }

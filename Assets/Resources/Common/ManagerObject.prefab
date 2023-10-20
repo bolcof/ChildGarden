@@ -472,7 +472,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: d97b5437c7e884348a77414f3454dbd1, type: 3}
   - {fileID: 8300000, guid: 95fee01501ec15d4bbd43c91e516238e, type: 3}
   - {fileID: 8300000, guid: e43e6b5ef40b8174abb26e42c9dbe3b5, type: 3}
-  - {fileID: 8300000, guid: e85f8cd4f4ee1ee469f76fe716b84cba, type: 3}
+  - {fileID: 8300000, guid: 4e59f90345203b94bb40773497963fda, type: 3}
   BGM_RuleSelect: {fileID: 8300000, guid: 90c3575713edc57498fd0b07f79408e6, type: 3}
   BGM_Ending: {fileID: 0}
   BgmSource: {fileID: 2026546443131375385}

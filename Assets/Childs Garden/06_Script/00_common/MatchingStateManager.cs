@@ -15,6 +15,7 @@ public class MatchingStateManager : MonoBehaviour {
         } else {
             Destroy(gameObject);
         }
+        Cursor.visible = false;
     }
 
     private void Update() {
