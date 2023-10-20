@@ -9,21 +9,23 @@ public class ForceRestarter : Photon.PunBehaviour {
     private float timer = 0f;
 
     void Update() {
-        if (Input.anyKeyDown || Input.GetMouseButton(0) || Input.GetMouseButton(1) || Input.GetMouseButton(2) || Input.mouseScrollDelta.y != 0) {
-            timer = 0f;
-        } else {
-            timer += Time.deltaTime;
-            if (timer >= inactivityTime) {
-                Debug.Log("1分間の無操作を検知しました。");
+        if (SceneManager.GetActiveScene().name != "Launcher") {
+            if (Input.anyKeyDown || Input.GetMouseButton(0) || Input.GetMouseButton(1) || Input.GetMouseButton(2) || Input.mouseScrollDelta.y != 0) {
+                timer = 0f;
+            } else {
+                timer += Time.deltaTime;
+                if (timer >= inactivityTime) {
+                    Debug.Log("1分間の無操作を検知しました。");
+                    OnInactivityDetected();
+                    timer = 0f;
+                }
+            }
+
+            if (Input.GetKeyDown(KeyCode.R)) {
+                Debug.Log("Rでの再起動");
                 OnInactivityDetected();
                 timer = 0f;
             }
-        }
-
-        if(Input.GetKeyDown(KeyCode.R)) {
-            Debug.Log("Rでの再起動");
-            OnInactivityDetected();
-            timer = 0f;
         }
 
         if (Input.GetKey(KeyCode.Escape)) {
