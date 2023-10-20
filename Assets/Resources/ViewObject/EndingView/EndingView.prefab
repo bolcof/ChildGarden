@@ -503,7 +503,6 @@ MonoBehaviour:
   - {fileID: 32900000, guid: 3230652a083e2464b917b7842a63e1ab, type: 3}
   - {fileID: 32900000, guid: 20bebe62f44bb47b5a2d66f1d75c8e6e, type: 3}
   - {fileID: 32900000, guid: c8603d4a2e59b49bdb27b344c76901b6, type: 3}
-  - {fileID: 32900000, guid: 5e7a09c8f4ea743919cddb274e3f82a9, type: 3}
   - {fileID: 32900000, guid: 2b380dd5a169e4ed7bffb6419c83c565, type: 3}
   testTopButton: {fileID: 2174469758114534634}
 --- !u!1 &5212324284387980077
