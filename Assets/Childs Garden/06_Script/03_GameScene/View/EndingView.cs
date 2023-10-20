@@ -14,7 +14,7 @@ public class EndingView : Photon.PunBehaviour {
     private ViewManager viewManager;
 
     private void Awake() {
-        videoPlayer.loopPointReached += PushTopButton;
+        videoPlayer.loopPointReached += OnEndVideo;
     }
 
     public void Set() {
@@ -45,22 +45,10 @@ public class EndingView : Photon.PunBehaviour {
         }
     }
 
-    public void PushTopButton(VideoPlayer vp) {
-        Debug.Log("Push button...");
-        photonView.RPC(nameof(DestroyGameManager), PhotonTargets.All);
-        photonView.RPC(nameof(SendPushingTopButton), PhotonTargets.All);
-    }
-
-    [PunRPC]
-    public void DestroyGameManager() {
+    public void OnEndVideo(VideoPlayer vp) {
+        Debug.Log("EndVideo...");
         Destroy(GameManager.Instance.gameObject);
         Destroy(ViewManager.Instance.gameObject);
-    }
-
-    [PunRPC]
-    public void SendPushingTopButton() {
-        Debug.Log("Send pushing...");
-        PhotonNetwork.automaticallySyncScene = true;
         SoundManager.Instance.PlayBgm(SoundManager.Instance.BGM_Title);
         PhotonNetwork.LoadLevel("Launcher");
     }
