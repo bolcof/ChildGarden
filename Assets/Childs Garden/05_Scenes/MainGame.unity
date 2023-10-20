@@ -1300,7 +1300,7 @@ MonoBehaviour:
   canOperateUI: 0
   winnerIsMine: 0
   BeginningCountDownTime: 5
-  timeLimit: 90
+  timeLimit: 80
   remainingTimeLimit: 0
   backgroundObject:
   - {fileID: 861716398}
