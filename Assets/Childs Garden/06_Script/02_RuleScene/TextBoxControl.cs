@@ -20,6 +20,13 @@ public class TextBoxControl : MonoBehaviour {
         }
     }
 
+    private void Update() {
+        if (currentIndex != 6) {
+            fripObj.SetActive(true);
+            startObj.SetActive(false);
+        }
+    }
+
     // このメソッドを呼ぶと、次のオブジェクトがアクティブになり、現在のオブジェクトは非アクティブになります。
     public void SwitchToNextObject() {
         SoundManager.Instance.PlaySoundEffect(SoundManager.Instance.SE_RuleTextAppearing);

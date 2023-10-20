@@ -236,6 +236,10 @@ PrefabInstance:
       propertyPath: m_TargetAudioSources.Array.size
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4346963439436352941, guid: 79fdd92e612eeb34caa83225d037325d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5406303460524970824, guid: 79fdd92e612eeb34caa83225d037325d, type: 3}
       propertyPath: m_IsActive
       value: 1
