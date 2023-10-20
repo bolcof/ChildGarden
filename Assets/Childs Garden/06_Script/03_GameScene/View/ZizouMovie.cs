@@ -46,6 +46,7 @@ public class ZizouMovie : Photon.PunBehaviour {
     public void SetZizouMovieId(int id) {
         Debug.Log("ZizowMovie SetMovieId");
         myVideoPlayer.clip = zizouVideoList[id];
+        myVideoPlayer.time = 0;
         myVideoPlayer.Play();
     }
 }
