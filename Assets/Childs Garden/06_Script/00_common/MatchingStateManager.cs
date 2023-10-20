@@ -18,7 +18,7 @@ public class MatchingStateManager : MonoBehaviour {
     }
 
     private void Update() {
-        InfomationText.instance.ChangeText("MyPlayerId : " + MyPlayerId().ToString());
+        //InfomationText.instance.ChangeText("MyPlayerId : " + MyPlayerId().ToString());
     }
 
     //PlayerのRoom内ID
