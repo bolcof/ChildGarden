@@ -25,7 +25,6 @@ public class RuleSelectView : Photon.PunBehaviour {
 
     public async UniTask Set(bool isSelector) {
         //TODO: fuckin code
-        isSelector = !isSelector;
 
         //TODO:これ2回呼ばれちゃってんのよ
         Debug.Log("rule select view set");
@@ -68,6 +67,7 @@ public class RuleSelectView : Photon.PunBehaviour {
         SoundManager.Instance.PlaySoundEffect(SoundManager.Instance.SE_RuleSelectViewOpening);
 
         GameManager.Instance.canOperateUI = false;
+        _animator.SetBool("Close", false);
 
         await UniTask.Delay(3200);
 

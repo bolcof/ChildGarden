@@ -221,6 +221,7 @@ GameObject:
   - component: {fileID: 5395264754208012261}
   - component: {fileID: 2967318616112187561}
   - component: {fileID: 7208930912939342019}
+  - component: {fileID: 8632908461319765024}
   m_Layer: 5
   m_Name: RuleSelectBack_1
   m_TagString: Untagged
@@ -285,6 +286,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &8632908461319765024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1799992076430501700}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a5945065baeef945b13e4a44acbaaa4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotateSpeed: 12
 --- !u!1 &2154097766510567872
 GameObject:
   m_ObjectHideFlags: 0
@@ -1755,6 +1769,7 @@ GameObject:
   - component: {fileID: 1858809845369204910}
   - component: {fileID: 6371141383280278938}
   - component: {fileID: 6032299957181296001}
+  - component: {fileID: 6602456521283940851}
   m_Layer: 5
   m_Name: RuleSelectBack_2
   m_TagString: Untagged
@@ -1819,6 +1834,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &6602456521283940851
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6748629465156123043}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a5945065baeef945b13e4a44acbaaa4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotateSpeed: -12
 --- !u!1 &7326183175133259710
 GameObject:
   m_ObjectHideFlags: 0
