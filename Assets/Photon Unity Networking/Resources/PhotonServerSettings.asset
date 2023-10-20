@@ -92,4 +92,5 @@ MonoBehaviour:
   - PlayZizowMovie
   - OpenGate
   - CloseRuleSelectPanel
+  - OnInactivityDetected
   DisableAutoOpenWizard: 1
