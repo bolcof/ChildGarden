@@ -1302,6 +1302,11 @@ MonoBehaviour:
   BeginningCountDownTime: 5
   timeLimit: 90
   remainingTimeLimit: 0
+  backgroundObject:
+  - {fileID: 861716398}
+  - {fileID: 702426487}
+  - {fileID: 1546627380}
+  - {fileID: 1429242567}
 --- !u!4 &1293520240
 Transform:
   m_ObjectHideFlags: 0

@@ -26,6 +26,9 @@ public class GameManager : Photon.PunBehaviour {
     [SerializeField] float BeginningCountDownTime;
     public float timeLimit, remainingTimeLimit;
 
+    //TODO:ここじゃないんだよな～～～
+    [SerializeField] private List<GameObject> backgroundObject;
+
     private void Awake() {
         if (Instance == null) {
             Instance = this;
@@ -55,6 +58,11 @@ public class GameManager : Photon.PunBehaviour {
         winnerIsMine = -1;
 
         SoundManager.Instance.PlayBgm(SoundManager.Instance.BGM_GameScene[0]);
+
+        foreach(var bgo in backgroundObject) {
+            bgo.SetActive(false);
+        }
+        backgroundObject[0].SetActive(true);
     }
 
     public void NextRoundStart() {
@@ -76,6 +84,11 @@ public class GameManager : Photon.PunBehaviour {
         remainingTimeLimit = timeLimit;
 
         winnerIsMine = -1;
+
+        foreach (var bgo in backgroundObject) {
+            bgo.SetActive(false);
+        }
+        backgroundObject[roundManager.currentRound - 1].SetActive(true);
     }
 
     private async UniTask CountDownStart(float sec) {
