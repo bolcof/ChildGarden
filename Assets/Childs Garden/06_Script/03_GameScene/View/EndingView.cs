@@ -11,6 +11,8 @@ public class EndingView : Photon.PunBehaviour {
     [SerializeField] private List<VideoClip> endingVideos = new List<VideoClip>();
     [SerializeField] private GameObject testTopButton;
 
+    [SerializeField] private GameObject standaloneWhiteBack;
+
     private ViewManager viewManager;
 
     private void Awake() {
@@ -34,6 +36,8 @@ public class EndingView : Photon.PunBehaviour {
         if (viewManager == null) {
             viewManager = GameObject.Find("ViewManager").GetComponent<ViewManager>();
         }
+
+        standaloneWhiteBack.SetActive(true);
     }
 
     //これが無いと動くけどエラーが出る
