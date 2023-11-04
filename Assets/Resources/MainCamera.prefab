@@ -875,7 +875,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rayDistance: 20
-  onbutsuFolderName: OnbutsuObject/
+  onbutsuFolderName: OnbutsuObject/Prefabs/
   OnbutsuList_Level1:
   - {fileID: 6152419725730226328, guid: 00c6ba13179034941967b17f58a25f16, type: 3}
   - {fileID: 6152419725730226328, guid: 031ec6cb14721483797907f742424ec5, type: 3}
