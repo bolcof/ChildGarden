@@ -6,6 +6,7 @@ public class Onbutsu : MonoBehaviour {
     public int holderId, StagingId;
     [SerializeField] private int spawnedId;
 
+    public int onbutsuSize;
     public bool hasLand_Utsuwa;
     public bool landing_Utsuwa;
     public bool dropped;

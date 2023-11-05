@@ -221,6 +221,7 @@ MonoBehaviour:
   holderId: 0
   StagingId: 0
   spawnedId: 0
+  onbutsuSize: 1
   hasLand_Utsuwa: 0
   landing_Utsuwa: 0
   dropped: 0
