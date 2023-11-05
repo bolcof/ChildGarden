@@ -9,8 +9,6 @@ public class ReadyCounter : PunBehaviour // PunBehaviourを継承
 {
     private int count = 0;
 
-    public string nextSceneName = "YourNextSceneName";
-
     [SerializeField] private GameObject playButton;
     [SerializeField] private GameObject readyText;
     [SerializeField] private GameObject buttonShadow;
@@ -50,7 +48,7 @@ public class ReadyCounter : PunBehaviour // PunBehaviourを継承
     void HandleSceneChange() {
         string currentScene = SceneManager.GetActiveScene().name;
 
-        if (count >= 2) {
+        if (count >= MatchingStateManager.instance.PlayerNum) {
             if (currentScene == "Launcher") // "Launcher"からRuleSceneへ
             {
                 PhotonNetwork.LoadLevel("RuleScene");

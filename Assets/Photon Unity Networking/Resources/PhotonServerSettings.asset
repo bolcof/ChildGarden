@@ -95,4 +95,5 @@ MonoBehaviour:
   - OnInactivityDetected
   - GoToMainGame
   - FirstRoundStart
+  - SetSpawnId_3player
   DisableAutoOpenWizard: 1

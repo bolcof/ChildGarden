@@ -5,7 +5,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class StageManager : Photon.PunBehaviour {
+public class UtsuwaManager : Photon.PunBehaviour {
     [SerializeField] private List<GameObject> UtsuwaList = new List<GameObject>();
     [SerializeField] private GameObject myBoxCollision;
     [SerializeField] private List<Vector3> spawnPoints;
@@ -34,6 +34,10 @@ public class StageManager : Photon.PunBehaviour {
                     case 2:
                         Debug.Log("2player Play");
                         photonView.RPC(nameof(SetSpawnId_2player), PhotonTargets.All, positionIdList[0], positionIdList[1]);
+                        break;
+                    case 3:
+                        Debug.Log("3player Play");
+                        photonView.RPC(nameof(SetSpawnId_3player), PhotonTargets.All, positionIdList[0], positionIdList[1], positionIdList[2]);
                         break;
                     default:
                         Debug.LogAssertion("wrong playerNum!");
@@ -139,6 +143,28 @@ public class StageManager : Photon.PunBehaviour {
             case 2:
                 mySpawnPositionId = player2posId;
                 Debug.Log("Set Player" + MatchingStateManager.instance.MyPlayerId().ToString() + " -> PositionID:" + player2posId.ToString());
+                break;
+            default:
+                Debug.LogError("wrong Player Num int SetSpawnPlayerId");
+                break;
+        }
+    }
+
+    [PunRPC]
+    public void SetSpawnId_3player(int player1posId, int player2posId, int player3posId) {
+        //PlayerIDは1から始まる
+        switch (MatchingStateManager.instance.MyPlayerId()) {
+            case 1:
+                mySpawnPositionId = player1posId;
+                Debug.Log("Set Player" + MatchingStateManager.instance.MyPlayerId().ToString() + " -> PositionID:" + player1posId.ToString());
+                break;
+            case 2:
+                mySpawnPositionId = player2posId;
+                Debug.Log("Set Player" + MatchingStateManager.instance.MyPlayerId().ToString() + " -> PositionID:" + player2posId.ToString());
+                break;
+            case 3:
+                mySpawnPositionId = player3posId;
+                Debug.Log("Set Player" + MatchingStateManager.instance.MyPlayerId().ToString() + " -> PositionID:" + player3posId.ToString());
                 break;
             default:
                 Debug.LogError("wrong Player Num int SetSpawnPlayerId");
