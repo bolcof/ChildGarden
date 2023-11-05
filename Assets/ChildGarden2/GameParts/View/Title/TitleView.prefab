@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6500190865672412889}
   - component: {fileID: 448834050165224570}
   m_Layer: 5
-  m_Name: playerwaiting
+  m_Name: PlayerWaiting
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -444,7 +444,7 @@ GameObject:
   - component: {fileID: 7977315292698871019}
   - component: {fileID: 7311800783799712868}
   m_Layer: 5
-  m_Name: logo
+  m_Name: Logo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -517,9 +517,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1060751663850280567}
   - component: {fileID: 7869981662692934874}
-  - component: {fileID: 8739790246885017132}
   m_Layer: 5
-  m_Name: d11_Background01
+  m_Name: BackGroundRoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -596,7 +595,7 @@ GameObject:
   - component: {fileID: 2077122219787466633}
   - component: {fileID: 8751303637430169696}
   m_Layer: 5
-  m_Name: Image
+  m_Name: TapToPlayShadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
