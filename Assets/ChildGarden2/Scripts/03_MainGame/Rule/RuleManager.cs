@@ -69,6 +69,9 @@ public class RuleManager : Photon.PunBehaviour {
                 case 3:
                     CheckRule_3();
                     break;
+                case 4:
+                    CheckRule_4();
+                    break;
                 default:
                     Debug.LogError("RuleID is out of range!");
                     break;
