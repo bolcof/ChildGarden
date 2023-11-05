@@ -877,10 +877,10 @@ MonoBehaviour:
   rayDistance: 20
   onbutsuFolderName: OnbutsuObject/Prefabs/
   OnbutsuList_Level1:
-  - {fileID: 6152419725730226328, guid: 00c6ba13179034941967b17f58a25f16, type: 3}
-  - {fileID: 6152419725730226328, guid: 031ec6cb14721483797907f742424ec5, type: 3}
-  - {fileID: 6152419725730226328, guid: 129609e78c2d1411885bccf8e8deba16, type: 3}
-  - {fileID: 6152419725730226328, guid: 6fa663526afe3407098f2438fb849576, type: 3}
+  - {fileID: 8708310155239775520, guid: 0439bec74429bc94caa26b0f2c864d7b, type: 3}
+  - {fileID: 5745182740132359745, guid: d0de456f6e06bdd4cbf3832e9e50465f, type: 3}
+  - {fileID: 6030451083089180837, guid: 63a5dac44b6c66848a4d4a9dde6a34a4, type: 3}
+  - {fileID: 1937565694340415709, guid: 242414487d348ea459295e10086c3d23, type: 3}
   OnbutsuList_Level2:
   - {fileID: 5874587981177037943, guid: c454eab2652ea2d4caeed82a2f5f0a20, type: 3}
   - {fileID: 5874587981177037943, guid: f59edc0bf911d40d2b6ba9d4ee797f21, type: 3}
