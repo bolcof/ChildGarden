@@ -433,7 +433,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 837be64195bead54585243d53a2104a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerNum: 2
+  PlayerNum: 3
 --- !u!114 &4504217666832008846
 MonoBehaviour:
   m_ObjectHideFlags: 0

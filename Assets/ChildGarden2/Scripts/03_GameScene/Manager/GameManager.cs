@@ -11,7 +11,7 @@ public class GameManager : Photon.PunBehaviour {
 
     [SerializeField] RoundManager roundManager;
     [SerializeField] RuleManager ruleManager;
-    [SerializeField] StageManager stageManager;
+    [SerializeField] UtsuwaManager stageManager;
 
     [SerializeField] CreateRayPoint createRayPoint;
 
