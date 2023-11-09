@@ -338,8 +338,9 @@ GameObject:
   - component: {fileID: 7748054094040009930}
   - component: {fileID: 2173923653371765945}
   - component: {fileID: 2160686109992710277}
+  - component: {fileID: 1838614154841283672}
   m_Layer: 5
-  m_Name: TitleView
+  m_Name: LauncherView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -414,7 +415,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!114 &2160686109992710277
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -432,6 +433,21 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &1838614154841283672
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3223602604319531174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b46907457683cb45bd26237a7dce932, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playButton: {fileID: 3164137199546020550}
+  readyLabel: {fileID: 1075685798245275543}
+  buttonShadow: {fileID: 6564785778933946693}
 --- !u!1 &6258920357221253398
 GameObject:
   m_ObjectHideFlags: 0
@@ -517,6 +533,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1060751663850280567}
   - component: {fileID: 7869981662692934874}
+  - component: {fileID: 8739790246885017132}
   m_Layer: 5
   m_Name: BackGroundRoot
   m_TagString: Untagged

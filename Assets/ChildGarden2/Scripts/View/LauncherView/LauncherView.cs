@@ -18,9 +18,8 @@ public class LauncherView : Photon.PunBehaviour {
     }
 
     public void PushStart() {
-        string currentScene = SceneManager.GetActiveScene().name;
         SoundManager.Instance.PlaySoundEffect(SoundManager.Instance.SE_PushGamePlay);
-        photonView.RPC(nameof(IncreaseCount), PhotonTargets.AllBuffered); // PhotonTargets.AllBufferedを使用
+        photonView.RPC(nameof(IncreaseCount), PhotonTargets.AllBuffered); // PhotonTargets.AllBuffered???g?p
         playButton.SetActive(false);
         if (buttonShadow != null) {
             buttonShadow.SetActive(false);
@@ -38,29 +37,27 @@ public class LauncherView : Photon.PunBehaviour {
         string currentScene = SceneManager.GetActiveScene().name;
 
         if (count >= MatchingStateManager.instance.PlayerNum) {
-            if (currentScene == "Launcher") // "Launcher"からRuleSceneへ
+            if (currentScene == "Launcher") // "Launcher"????RuleScene??
             {
                 PhotonNetwork.LoadLevel("RuleScene");
-            } else if (currentScene == "RuleScene") // "RuleScene"からゲームシーンへ
+            } else if (currentScene == "RuleScene") // "RuleScene"?????Q?[???V?[????
               {
                 PhotonNetwork.LoadLevel("MainGame");
             }
-            // 必要に応じて他のシーンの条件も追加してください
         } else {
-            if (currentScene == "Launcher") // "Launcher"時に一人しか押していない
-            {
-                SceneManager.LoadScene(currentScene); // 現在のシーンをリロード
-            } else if (currentScene == "RuleScene") //"RuleScene"時にカウントダウンをリセット
+            if (currentScene == "Launcher") {
+                SceneManager.LoadScene(currentScene); // ???????V?[?????????[?h
+            } else if (currentScene == "RuleScene") //"RuleScene"?????J?E???g?_?E???????Z?b?g
               {
                 playButton.SetActive(true);
                 if (buttonShadow != null) {
                     buttonShadow.SetActive(true);
                 }
-                readyText.SetActive(false);
+                readyLabel.SetActive(false);
 
-                // カウントダウンの値とテキストをリセット
-                count = 0; // カウント値をリセット
-                StopAllCoroutines(); // 既に実行中のカウントダウンを停止
+                // ?J?E???g?_?E?????l???e?L?X?g?????Z?b?g
+                count = 0; // ?J?E???g?l?????Z?b?g
+                StopAllCoroutines(); // ???????s?????J?E???g?_?E???????~
             }
         }
     }

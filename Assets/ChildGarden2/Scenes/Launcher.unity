@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028353, g: 0.22571383, b: 0.30692253, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -860,25 +860,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1075685798245275543, guid: 7ed6150a5bdc248028ef139daa140493, type: 3}
-      propertyPath: m_IsActive
+    - target: {fileID: 2173923653371765945, guid: 7ed6150a5bdc248028ef139daa140493, type: 3}
+      propertyPath: m_PresetInfoIsWorld
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2753651909503131511, guid: 7ed6150a5bdc248028ef139daa140493, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1679567083}
-    - target: {fileID: 3164137199546020550, guid: 7ed6150a5bdc248028ef139daa140493, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3223602604319531174, guid: 7ed6150a5bdc248028ef139daa140493, type: 3}
       propertyPath: m_Name
       value: Launcher_Canvas
-      objectReference: {fileID: 0}
-    - target: {fileID: 6564785778933946693, guid: 7ed6150a5bdc248028ef139daa140493, type: 3}
-      propertyPath: m_Name
-      value: Tap2PlayShadow
       objectReference: {fileID: 0}
     - target: {fileID: 8543117323271345828, guid: 7ed6150a5bdc248028ef139daa140493, type: 3}
       propertyPath: m_Pivot.x

@@ -5,6 +5,9 @@ using UnityEngine;
 public class ViewManager : MonoBehaviour {
     public static ViewManager Instance;
 
+    public GameObject LauncheViewObj;
+    public LauncherView launcherView;
+
     public GameObject playingViewObj;
     public PlayingView playingView;
 
