@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class TextBoxControl : MonoBehaviour {
+public class RuleExplainView : MonoBehaviour {
     public GameObject[] objects; // インスペクターでオブジェクトの配列を指定します。
     private int currentIndex = 0; // 現在アクティブなオブジェクトのインデックス。
     public GameObject fripObj;

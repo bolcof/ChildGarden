@@ -1,3 +1,20 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:15d33fb746d3af87ab5055fc3277b7faac00a474804c67309f9935b4735df9fd
-size 480
+fileFormatVersion: 2
+guid: bcd546d7642dc40a5b193758a77e58b6
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames: []
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -96,4 +96,5 @@ MonoBehaviour:
   - GoToMainGame
   - FirstRoundStart
   - SetSpawnId_3player
+  - RuleViewAppear
   DisableAutoOpenWizard: 1

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6106721272633681904}
   - component: {fileID: 5012963847827289648}
   - component: {fileID: 8174219299436843194}
+  - component: {fileID: 1627956518923427929}
   m_Layer: 5
   m_Name: RuleView
   m_TagString: Untagged
@@ -43,7 +44,6 @@ RectTransform:
   - {fileID: 3698998562121939482}
   - {fileID: 4509900369729110856}
   - {fileID: 42106652518981428}
-  - {fileID: 3096206182000804739}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -114,6 +114,28 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &1627956518923427929
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 466900144250491666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 405543bb9857865489e0d2b916623662, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objects:
+  - {fileID: 8260888382697323631}
+  - {fileID: 2327792496758286084}
+  - {fileID: 7475963657534988579}
+  - {fileID: 7764962223833997351}
+  - {fileID: 7432858396013001400}
+  - {fileID: 823847945040308417}
+  - {fileID: 2131211061989068090}
+  fripObj: {fileID: 4984794770484520872}
+  startObj: {fileID: 7743574874382517392}
 --- !u!1 &718490245850368200
 GameObject:
   m_ObjectHideFlags: 0
@@ -1338,60 +1360,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!1 &3193573798213424167
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3096206182000804739}
-  - component: {fileID: 2280523504530264948}
-  m_Layer: 0
-  m_Name: TextBoxControl
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &3096206182000804739
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3193573798213424167}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -960.00006, y: -539.79803, z: 0}
-  m_LocalScale: {x: 1.6161617, y: 1.6161617, z: 1.6161617}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 4880253181110813071}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2280523504530264948
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3193573798213424167}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 405543bb9857865489e0d2b916623662, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  objects:
-  - {fileID: 8260888382697323631}
-  - {fileID: 2327792496758286084}
-  - {fileID: 7475963657534988579}
-  - {fileID: 7764962223833997351}
-  - {fileID: 7432858396013001400}
-  - {fileID: 823847945040308417}
-  - {fileID: 2131211061989068090}
-  fripObj: {fileID: 4984794770484520872}
-  startObj: {fileID: 7743574874382517392}
 --- !u!1 &4266176739511391225
 GameObject:
   m_ObjectHideFlags: 0
@@ -1405,7 +1373,7 @@ GameObject:
   - component: {fileID: 2730112255094839382}
   - component: {fileID: 3371043074681805278}
   m_Layer: 5
-  m_Name: c-3_waiting
+  m_Name: OtherWaiting
   m_TagString: playerCount
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1646,8 +1614,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2280523504530264948}
-        m_TargetAssemblyTypeName: TextBoxControl, Assembly-CSharp
+      - m_Target: {fileID: 1627956518923427929}
+        m_TargetAssemblyTypeName: RuleExplainView, Assembly-CSharp
         m_MethodName: SwitchToNextObject
         m_Mode: 1
         m_Arguments:

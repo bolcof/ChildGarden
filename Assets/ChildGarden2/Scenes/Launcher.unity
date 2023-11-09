@@ -261,6 +261,7 @@ GameObject:
   m_Component:
   - component: {fileID: 549837091}
   - component: {fileID: 549837090}
+  - component: {fileID: 549837092}
   m_Layer: 0
   m_Name: LauncherObject
   m_TagString: Untagged
@@ -280,7 +281,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f27e943e33a2f54e9452f76b0836898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _gameVersion: 1109
   roomId: kanai
+  computerName: 
 --- !u!4 &549837091
 Transform:
   m_ObjectHideFlags: 0
@@ -296,6 +299,33 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &549837092
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 549837089}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ownerId: 0
+  group: 0
+  OwnerShipWasTransfered: 0
+  prefixBackup: -1
+  synchronization: 3
+  onSerializeTransformOption: 3
+  onSerializeRigidBodyOption: 2
+  ownershipTransfer: 0
+  ObservedComponents:
+  - {fileID: 549837090}
+  ObservedComponentsFoldoutOpen: 1
+  viewIdField: 888
+  instantiationId: 888
+  currentMasterID: -1
+  isRuntimeInstantiated: 0
 --- !u!1 &698820414
 GameObject:
   m_ObjectHideFlags: 0
