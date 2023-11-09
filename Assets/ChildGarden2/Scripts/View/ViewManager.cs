@@ -5,8 +5,11 @@ using UnityEngine;
 public class ViewManager : MonoBehaviour {
     public static ViewManager Instance;
 
-    public GameObject LauncheViewObj;
+    public GameObject launcherViewObj;
     public LauncherView launcherView;
+
+    public GameObject ruleExplainViewObj;
+    public RuleExplainView ruleExplainView;
 
     public GameObject playingViewObj;
     public PlayingView playingView;
@@ -25,7 +28,9 @@ public class ViewManager : MonoBehaviour {
             Destroy(gameObject);
         }
 
-        playingViewObj.SetActive(true);
+        launcherViewObj.SetActive(true);
+        ruleExplainViewObj.SetActive(false);
+        playingViewObj.SetActive(false);
         ruleSelectViewObj.SetActive(false);
         endingViewObj.SetActive(false);
     }

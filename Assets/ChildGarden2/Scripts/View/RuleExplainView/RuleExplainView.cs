@@ -7,22 +7,9 @@ public class RuleExplainView : MonoBehaviour {
     [SerializeField] private GameObject startButton;
     [SerializeField] private GameObject readyLabel;
 
-    //TODO cant use Start
-    private void Start() {
+    public void ResetView() {
         SoundManager.Instance.PlayBgm(SoundManager.Instance.BGM_Introduction);
 
-        // スタート時に全てのオブジェクトを非アクティブにします
-        for (int i = 0; i < explainPages.Length; i++) {
-            explainPages[i].SetActive(false);
-        }
-
-        // 最初のオブジェクトをアクティブにします
-        if (explainPages.Length > 0) {
-            explainPages[0].SetActive(true);
-        }
-    }
-
-    private void ResetView() {
         fripButton.SetActive(true);
         startButton.SetActive(false);
         readyLabel.SetActive(false);

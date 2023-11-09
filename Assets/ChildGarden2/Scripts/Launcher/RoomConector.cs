@@ -33,6 +33,7 @@ public class RoomConector : Photon.PunBehaviour {
     }
 
     public void Connect() {
+        Debug.Log("try to connect");
         if (!PhotonNetwork.connected) {
             PhotonNetwork.ConnectUsingSettings(_gameVersion);
             Debug.Log("Photonに接続しました。");
@@ -55,7 +56,7 @@ public class RoomConector : Photon.PunBehaviour {
 
     public override void OnJoinedLobby() {
         Debug.Log("ロビーに入りました。");
-        GameObject.Find("Launcher_Canvas").GetComponent<LauncherView>().ActivateStartButton();
+        ViewManager.Instance.launcherView.ActivateStartButton();
     }
 
     public override void OnPhotonJoinRoomFailed(object[] codeAndMsg) {
@@ -89,17 +90,8 @@ public class RoomConector : Photon.PunBehaviour {
 
     [PunRPC]
     public void RuleViewAppear() {
-        //TODO:change to View
-        PhotonNetwork.LoadLevel("RuleScene");
+        ViewManager.Instance.ruleExplainViewObj.SetActive(true);
+        ViewManager.Instance.ruleExplainView.ResetView();
+        ViewManager.Instance.launcherViewObj.SetActive(false);
     }
-
-    /*[PunRPC]
-    void IncreaseMemberCount() {
-        count++;
-        Debug.Log("Ready is called. Count is now: " + count);
-        // カウントが1のときだけカウントダウンを開始
-        if (count == 1) {
-            StartCoroutine(StartCountdown());
-        }
-    }*/
 }
