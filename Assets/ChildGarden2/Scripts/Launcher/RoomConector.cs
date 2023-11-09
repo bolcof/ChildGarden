@@ -46,7 +46,7 @@ public class RoomConector : Photon.PunBehaviour {
     public void PushJoin() {
         Debug.Log("try to join random room");
         RoomOptions roomOptions = new RoomOptions();
-        roomOptions.MaxPlayers = (byte)RoomConector.Instance.PlayerNum;
+        roomOptions.MaxPlayers = (byte)PlayerNum;
         roomOptions.PublishUserId = true;
         PhotonNetwork.JoinOrCreateRoom(roomId, roomOptions, TypedLobby.Default);
     }
@@ -64,7 +64,7 @@ public class RoomConector : Photon.PunBehaviour {
         base.OnPhotonPlayerConnected(newPlayer);
         Debug.Log("player coming" + PhotonNetwork.playerList.Count().ToString());
         if (PhotonNetwork.isMasterClient) {
-            if (PhotonNetwork.playerList.Count() == RoomConector.Instance.PlayerNum) {
+            if (PhotonNetwork.playerList.Count() == PlayerNum) {
                 Debug.Log("go rule");
                 GoRuleDelayed(2000).Forget();
             }
