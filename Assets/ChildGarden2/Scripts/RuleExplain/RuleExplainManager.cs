@@ -49,8 +49,9 @@ public class RuleExplainManager : Photon.PunBehaviour {
 
     [PunRPC]
     public void GameViewAppear() {
-        //TODO:change to View
-        PhotonNetwork.LoadLevel("MainGame");
+        ViewManager.Instance.playingViewObj.SetActive(true);
+        GameManager.Instance.GameStart();
+        ViewManager.Instance.ruleExplainViewObj.SetActive(false);
     }
 
     [PunRPC]

@@ -1557,7 +1557,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 8787110491345731831}
         m_TargetAssemblyTypeName: RuleExplainView, Assembly-CSharp
         m_MethodName: SwitchToNextObject
         m_Mode: 1
@@ -2411,7 +2411,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 8787110491345731831}
         m_TargetAssemblyTypeName: RuleExplainView, Assembly-CSharp
         m_MethodName: PushHasRead
         m_Mode: 1

@@ -41,7 +41,7 @@ public class GameManager : Photon.PunBehaviour {
         isPlaying = false;
     }
 
-    private void Start() {
+    public void GameStart() {
         if (PhotonNetwork.isMasterClient) {
             photonView.RPC(nameof(FirstRoundStart), PhotonTargets.AllBuffered);
         }
@@ -62,7 +62,7 @@ public class GameManager : Photon.PunBehaviour {
 
         SoundManager.Instance.PlayBgm(SoundManager.Instance.BGM_GameScene[0]);
 
-        foreach(var bgo in backgroundObject) {
+        foreach (var bgo in backgroundObject) {
             bgo.SetActive(false);
         }
         backgroundObject[0].SetActive(true);
