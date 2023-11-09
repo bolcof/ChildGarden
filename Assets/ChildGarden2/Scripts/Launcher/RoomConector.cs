@@ -49,11 +49,6 @@ public class RoomConector : Photon.PunBehaviour {
         PhotonNetwork.JoinOrCreateRoom(roomId, roomOptions, TypedLobby.Default);
     }
 
-    public void AppearRule() {
-        //change to view manager task
-
-    }
-
     public override void OnJoinedLobby() {
         Debug.Log("ロビーに入りました。");
         ViewManager.Instance.launcherView.ActivateStartButton();
