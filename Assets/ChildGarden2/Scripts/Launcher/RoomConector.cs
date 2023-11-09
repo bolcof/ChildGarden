@@ -43,21 +43,29 @@ public class RoomConector : Photon.PunBehaviour {
         }
     }
 
-    public void PushJoin() {
-        Debug.Log("try to join random room");
-        RoomOptions roomOptions = new RoomOptions();
-        roomOptions.MaxPlayers = (byte)PlayerNum;
-        roomOptions.PublishUserId = true;
-        PhotonNetwork.JoinOrCreateRoom(roomId, roomOptions, TypedLobby.Default);
-    }
-
     public override void OnJoinedLobby() {
         Debug.Log("ロビーに入りました。");
         ViewManager.Instance.launcherView.ActivateStartButton();
     }
 
-    public override void OnPhotonJoinRoomFailed(object[] codeAndMsg) {
+    public void PushJoin() {
+        Debug.Log("try to join random room");
+        PhotonNetwork.JoinRandomRoom();
+        /*RoomOptions roomOptions = new RoomOptions();
+        roomOptions.MaxPlayers = (byte)PlayerNum;
+        roomOptions.PublishUserId = true;
+        PhotonNetwork.JoinOrCreateRoom(roomId, roomOptions, TypedLobby.Default);*/
+    }
+
+    /*public override void OnPhotonJoinRoomFailed(object[] codeAndMsg) {
         Debug.Log("ルームの入室に失敗しました。");
+    }*/
+
+    public override void OnPhotonRandomJoinFailed(object[] codeAndMsg) {
+        Debug.Log("ルームのrandom入室に失敗しました。");
+        RoomOptions roomOptions = new RoomOptions();
+        roomOptions.MaxPlayers = (byte)PlayerNum;
+        PhotonNetwork.CreateRoom("", roomOptions, TypedLobby.Default);
     }
 
     public override void OnPhotonPlayerConnected(PhotonPlayer newPlayer) {
