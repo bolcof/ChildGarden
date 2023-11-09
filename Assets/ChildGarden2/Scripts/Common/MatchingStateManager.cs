@@ -1,4 +1,4 @@
-﻿﻿using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -16,10 +16,6 @@ public class MatchingStateManager : MonoBehaviour {
             Destroy(gameObject);
         }
         Cursor.visible = false;
-    }
-
-    private void Update() {
-        //InfomationText.instance.ChangeText("MyPlayerId : " + MyPlayerId().ToString());
     }
 
     //PlayerのRoom内ID

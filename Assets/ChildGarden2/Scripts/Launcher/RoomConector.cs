@@ -55,6 +55,7 @@ public class RoomConector : Photon.PunBehaviour {
 
     public override void OnJoinedLobby() {
         Debug.Log("ロビーに入りました。");
+        GameObject.Find("Launcher_Canvas").GetComponent<LauncherView>().ActivateStartButton();
     }
 
     public override void OnPhotonJoinRoomFailed(object[] codeAndMsg) {

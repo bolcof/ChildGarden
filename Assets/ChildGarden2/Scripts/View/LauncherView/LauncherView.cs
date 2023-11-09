@@ -12,9 +12,15 @@ public class LauncherView : Photon.PunBehaviour {
     [SerializeField] private GameObject readyLabel;
     [SerializeField] private GameObject buttonShadow;
 
-    public void ResetView() {
+    public void ActivateStartButton() {
         playButton.SetActive(true);
         buttonShadow.SetActive(true);
+        readyLabel.SetActive(false);
+    }
+
+    public void ResetView() {
+        playButton.SetActive(false);
+        buttonShadow.SetActive(false);
         readyLabel.SetActive(false);
     }
 
