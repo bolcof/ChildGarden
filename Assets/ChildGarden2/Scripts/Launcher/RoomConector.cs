@@ -2,10 +2,9 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class RoomConector : Photon.PunBehaviour {
-    #region Private変数
-    string _gameVersion = "test";
-    #endregion
+    string _gameVersion = "1109";
     [SerializeField] private string roomId;
+    [SerializeField] 
 
     private void OnEnable() {
         SceneManager.sceneLoaded += OnSceneLoaded;
@@ -22,7 +21,6 @@ public class RoomConector : Photon.PunBehaviour {
         }
     }
 
-    #region Public Methods
     public void Connect() {
         if (!PhotonNetwork.connected) {
             PhotonNetwork.ConnectUsingSettings(_gameVersion);
@@ -30,13 +28,15 @@ public class RoomConector : Photon.PunBehaviour {
             SoundManager.Instance.PlayBgm(SoundManager.Instance.BGM_Title);
         }
     }
-    #endregion
 
-    #region Photonコールバック
+    public void PushJoin() {
+
+    }
 
     public override void OnJoinedLobby() {
         Debug.Log("ロビーに入りました。");
-        PhotonNetwork.JoinRoom(roomId);
+        //ViewManagerからアクセス
+
     }
 
     public override void OnPhotonJoinRoomFailed(object[] codeAndMsg) {
@@ -45,5 +45,4 @@ public class RoomConector : Photon.PunBehaviour {
         roomOptions.PublishUserId = true;
         PhotonNetwork.CreateRoom(roomId, roomOptions, TypedLobby.Default);
     }
-    #endregion
 }
