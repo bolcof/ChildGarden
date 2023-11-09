@@ -47,9 +47,9 @@ public class Onbutsu : MonoBehaviour {
                     float otherUtsuwaDistance = Vector2.Distance(RuleManager.instance.otherUtsuwa.transform.position, transform.position);
 
                     if (myUtsuwaDistance <= otherUtsuwaDistance) {
-                        StagingId = MatchingStateManager.instance.MyPlayerId();
+                        StagingId = RoomConector.Instance.MyPlayerId();
                     } else {
-                        if (MatchingStateManager.instance.MyPlayerId() == 1) {
+                        if (RoomConector.Instance.MyPlayerId() == 1) {
                             StagingId = 2;
                         } else {
                             StagingId = 1;
@@ -72,7 +72,7 @@ public class Onbutsu : MonoBehaviour {
     }
 
     private void OnCollisionEnter2D(Collision2D collision) {
-        switch(collision.gameObject.tag) {
+        switch (collision.gameObject.tag) {
             case "Utsuwa":
                 hasLand_Utsuwa = true;
                 break;
@@ -110,7 +110,7 @@ public class Onbutsu : MonoBehaviour {
         if (_polygonCollider != null) {
             _polygonCollider.enabled = false;
         }
-        if(_circleCollider != null) {
+        if (_circleCollider != null) {
             _circleCollider.enabled = false;
         }
         _spriteRenderer.enabled = false;

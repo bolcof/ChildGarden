@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 7399397119454308964}
   - component: {fileID: 2530666752715617214}
   - component: {fileID: 2610326606202948468}
-  - component: {fileID: 6530081881364923749}
   - component: {fileID: 4822463943568195514}
   m_Layer: 0
   m_Name: GameManager
@@ -147,19 +146,6 @@ MonoBehaviour:
   RoundNum: 4
   currentRound: 0
   isWin: 
---- !u!114 &6530081881364923749
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2849400873968398606}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 837be64195bead54585243d53a2104a9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayerNum: 2
 --- !u!114 &4822463943568195514
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -11,6 +11,8 @@ public class RoomConector : Photon.PunBehaviour {
     [SerializeField] private string roomId;
     public string computerName;
 
+    public int PlayerNum = 2;
+
     private void Awake() {
         if (Instance == null) {
             Instance = this;
@@ -44,7 +46,7 @@ public class RoomConector : Photon.PunBehaviour {
     public void PushJoin() {
         Debug.Log("try to join random room");
         RoomOptions roomOptions = new RoomOptions();
-        roomOptions.MaxPlayers = (byte)MatchingStateManager.instance.PlayerNum;
+        roomOptions.MaxPlayers = (byte)RoomConector.Instance.PlayerNum;
         roomOptions.PublishUserId = true;
         PhotonNetwork.JoinOrCreateRoom(roomId, roomOptions, TypedLobby.Default);
     }
@@ -62,7 +64,7 @@ public class RoomConector : Photon.PunBehaviour {
         base.OnPhotonPlayerConnected(newPlayer);
         Debug.Log("player coming" + PhotonNetwork.playerList.Count().ToString());
         if (PhotonNetwork.isMasterClient) {
-            if (PhotonNetwork.playerList.Count() == MatchingStateManager.instance.PlayerNum) {
+            if (PhotonNetwork.playerList.Count() == RoomConector.Instance.PlayerNum) {
                 Debug.Log("go rule");
                 GoRuleDelayed(2000).Forget();
             }
@@ -72,6 +74,16 @@ public class RoomConector : Photon.PunBehaviour {
     private async UniTask GoRuleDelayed(int delay) {
         await UniTask.Delay(delay);
         photonView.RPC(nameof(RuleViewAppear), PhotonTargets.AllBuffered);
+    }
+
+    //PlayerのRoom内ID
+    public int MyPlayerId() {
+        if (PhotonNetwork.connected && PhotonNetwork.inRoom) {
+            return PhotonNetwork.player.ID;
+        } else {
+            Debug.LogWarning("Out of Connect or Room!");
+            return -1;
+        }
     }
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {

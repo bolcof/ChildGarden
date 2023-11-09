@@ -128,7 +128,7 @@ public class GameManager : Photon.PunBehaviour {
     }
 
     public void MyPlayerWin() {
-        photonView.RPC(nameof(OtherPlayerWin), PhotonTargets.OthersBuffered, MatchingStateManager.instance.MyPlayerId());
+        photonView.RPC(nameof(OtherPlayerWin), PhotonTargets.OthersBuffered, RoomConector.Instance.MyPlayerId());
         winnerIsMine = 1;
         roundManager.FinishRound(1);
         DecideWinner();
