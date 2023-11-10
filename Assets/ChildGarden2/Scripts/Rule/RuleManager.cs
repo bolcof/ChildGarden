@@ -23,7 +23,7 @@ public class RuleManager : Photon.PunBehaviour {
     public bool isWinnerDecided;
 
     public Utsuwa myUtsuwa;
-    public Utsuwa otherUtsuwa;
+    public List<Utsuwa> otherUtsuwaList;
 
     public List<Onbutsu> OnbutsuList = new List<Onbutsu>();
 

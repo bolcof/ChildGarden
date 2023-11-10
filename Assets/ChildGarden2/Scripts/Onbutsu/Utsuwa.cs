@@ -16,7 +16,7 @@ public class Utsuwa : Photon.PunBehaviour {
             RuleManager.instance.myUtsuwa = this;
         } else {
             isMine = false;
-            RuleManager.instance.otherUtsuwa = this;
+            RuleManager.instance.otherUtsuwaList.Add(this);
         }
 
         if (!photonView.isMine) {
