@@ -315,7 +315,7 @@ GameObject:
   - component: {fileID: 416879810}
   - component: {fileID: 416879811}
   m_Layer: 0
-  m_Name: RayPointColisiton
+  m_Name: RayPointCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
