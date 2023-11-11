@@ -54,6 +54,6 @@ public class EndingView : Photon.PunBehaviour {
         Destroy(GameManager.Instance.gameObject);
         Destroy(ViewManager.Instance.gameObject);
         SoundManager.Instance.PlayBgm(SoundManager.Instance.BGM_Title);
-        PhotonNetwork.LoadLevel("Launcher");
+        PhotonNetwork.LoadLevel("Restarter");
     }
 }
