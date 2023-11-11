@@ -142,7 +142,7 @@ public class PlayingView : Photon.PunBehaviour {
 
         if (PhotonNetwork.isMasterClient) {
             if (RoundManager.Instance.currentRound != RoundManager.Instance.RoundNum) {
-                photonView.RPC(nameof(ToRuleSelect), PhotonTargets.AllBuffered);
+                photonView.RPC(nameof(ToRuleSelectFromPlayingView), PhotonTargets.AllBuffered);
             } else {
                 photonView.RPC(nameof(ToEndingView), PhotonTargets.AllBuffered);
             }
@@ -165,14 +165,14 @@ public class PlayingView : Photon.PunBehaviour {
     }
 
     [PunRPC]
-    public void ToRuleSelect() {
-        Debug.Log("To Rule Select");
+    public void ToRuleSelectFromPlayingView() {
+        Debug.Log("To Rule Select from PlayingView");
         viewManager.ruleSelectViewObj.SetActive(true);
         SoundManager.Instance.PlaySoundEffect(SoundManager.Instance.SE_RuleSelectViewOpening);
         if (hasWin == 0) {
-            viewManager.ruleSelectView.GetComponent<RuleSelectView>().Set(true).Forget();
-        } else if (hasWin == 1) {
             viewManager.ruleSelectView.GetComponent<RuleSelectView>().Set(false).Forget();
+        } else if (hasWin == 1) {
+            viewManager.ruleSelectView.GetComponent<RuleSelectView>().Set(true).Forget();
         } else {
             //TODO:selector
             viewManager.ruleSelectView.GetComponent<RuleSelectView>().Set(PhotonNetwork.isMasterClient).Forget();

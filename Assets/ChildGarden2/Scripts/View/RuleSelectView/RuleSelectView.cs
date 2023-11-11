@@ -41,8 +41,6 @@ public class RuleSelectView : Photon.PunBehaviour {
             Debug.Log("rule select view add");
             */
         }
-
-        //TODO:for 1007
         foreach (var subject in buttonsList) {
             subject.GetComponent<RuleSubjectButton>().SetInfomation(this);
             subject.GetComponent<Button>().enabled = isSelector;
