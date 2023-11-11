@@ -6,7 +6,8 @@ using UnityEngine.Video;
 
 public class ForceRestarter : Photon.PunBehaviour {
     [SerializeField] private float inactivityTime;
-    private float timer = 0f;
+    [SerializeField] private float timer = 0f;
+    [SerializeField] private List<GameObject> MustDestroyObject;
 
     void Update() {
         if (SceneManager.GetActiveScene().name != "Launcher") {
@@ -47,11 +48,19 @@ public class ForceRestarter : Photon.PunBehaviour {
         }
     }
     private void OnInactivityDetected() {
-        photonView.RPC(nameof(DestroyGameManager), PhotonTargets.All);
-        photonView.RPC(nameof(SendPushingTopButton), PhotonTargets.All);
+        Debug.Log("OnInactivityDetected");
+        photonView.RPC(nameof(RoomBreakAndRestart), PhotonTargets.AllBuffered);
+        //photonView.RPC(nameof(DestroyGameManager), PhotonTargets.All);
+        //photonView.RPC(nameof(SendPushingTopButton), PhotonTargets.All);
     }
 
-    [PunRPC]
+    public override void OnPhotonPlayerDisconnected(PhotonPlayer otherPlayer) {
+        Debug.Log("OnPhotonPlayerDisconnected");
+        base.OnPhotonPlayerDisconnected(otherPlayer);
+        photonView.RPC(nameof(RoomBreakAndRestart), PhotonTargets.AllBuffered);
+    }
+
+    /*[PunRPC]
     public void DestroyGameManager() {
         if (SceneManager.GetActiveScene().name == "MainGame") {
             Destroy(GameManager.Instance.gameObject);
@@ -65,5 +74,19 @@ public class ForceRestarter : Photon.PunBehaviour {
         PhotonNetwork.automaticallySyncScene = true;
         SoundManager.Instance.PlayBgm(SoundManager.Instance.BGM_Title);
         PhotonNetwork.LoadLevel("Launcher");
+    }*/
+
+    [PunRPC]
+    public void RoomBreakAndRestart() {
+        foreach (var obj in MustDestroyObject) {
+            Destroy(obj);
+        }
+
+        SoundManager.Instance.PlayBgm(SoundManager.Instance.BGM_Title);
+        PhotonNetwork.LoadLevel("Restarter");
+
+        if (PhotonNetwork.inRoom) {
+            PhotonNetwork.LeaveRoom();
+        }
     }
 }

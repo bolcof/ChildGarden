@@ -98,4 +98,7 @@ MonoBehaviour:
   - SetSpawnId_3player
   - RuleViewAppear
   - GameViewAppear
+  - ToRuleSelectFromPlayingView
+  - ToRuleSelectFromZizowView
+  - RoomBreakAndRestart
   DisableAutoOpenWizard: 1
