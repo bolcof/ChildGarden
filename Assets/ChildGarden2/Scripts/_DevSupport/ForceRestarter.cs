@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.Video;
 
 public class ForceRestarter : Photon.PunBehaviour {
-    [SerializeField] private float inactivityTime = 60f;
+    [SerializeField] private float inactivityTime;
     private float timer = 0f;
 
     void Update() {
@@ -15,7 +15,7 @@ public class ForceRestarter : Photon.PunBehaviour {
             } else {
                 timer += Time.deltaTime;
                 if (timer >= inactivityTime) {
-                    Debug.Log("1分間の無操作を検知しました。");
+                    Debug.Log(inactivityTime.ToString() + "秒間の無操作を検知しました。");
                     OnInactivityDetected();
                     timer = 0f;
                 }
