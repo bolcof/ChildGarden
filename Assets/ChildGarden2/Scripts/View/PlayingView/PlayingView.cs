@@ -18,8 +18,8 @@ public class PlayingView : Photon.PunBehaviour {
 
     [SerializeField] TMP_Text timerLabel;
 
-    [SerializeField] RectTransform progressBar;
-    private Vector2 progressBarDefaultSize;
+    [SerializeField] Image myProgressGuage;
+    [SerializeField] TextMeshProUGUI myProgressLabel;
 
     [SerializeField] private GameObject finishLabel;
     [SerializeField] private Image gateBack;
@@ -35,7 +35,6 @@ public class PlayingView : Photon.PunBehaviour {
     private ViewManager viewManager;
 
     private void Awake() {
-        progressBarDefaultSize = progressBar.sizeDelta;
         ApplyProgressBar(0.0f);
     }
 
@@ -53,7 +52,8 @@ public class PlayingView : Photon.PunBehaviour {
         if (viewManager == null) {
             viewManager = GameObject.Find("ViewManager").GetComponent<ViewManager>();
         }
-        progressBar.GetComponent<RectTransform>().sizeDelta = new Vector2(progressBarDefaultSize.x, 0.0f);
+        myProgressGuage.fillAmount = 0.0f;
+        myProgressLabel.text = "0";
     }
 
     public void BeginningCountDown(int sec) {
@@ -70,7 +70,8 @@ public class PlayingView : Photon.PunBehaviour {
     }
 
     public void ApplyProgressBar(float progress) {
-        progressBar.GetComponent<RectTransform>().sizeDelta = new Vector2(progressBarDefaultSize.x, progressBarDefaultSize.y * progress);
+        myProgressGuage.fillAmount = progress;
+        myProgressLabel.text = (progress * 100).ToString("F0");
     }
 
     public async UniTask RoundFinish(int result) {
