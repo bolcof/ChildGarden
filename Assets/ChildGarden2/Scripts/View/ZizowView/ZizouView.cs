@@ -53,7 +53,7 @@ public class ZizouView : Photon.PunBehaviour {
     public void PushToRuleSelect(VideoPlayer vp) {
         Debug.Log("Rule Select vp");
         if (RoundManager.Instance.currentRound != RoundManager.Instance.RoundNum) {
-            photonView.RPC(nameof(ToRuleSelect), PhotonTargets.AllBuffered);
+            photonView.RPC(nameof(ToRuleSelectFromZizowView), PhotonTargets.AllBuffered);
         } else {
             photonView.RPC(nameof(ToEndingView), PhotonTargets.AllBuffered);
         }
@@ -66,13 +66,14 @@ public class ZizouView : Photon.PunBehaviour {
     }
 
     [PunRPC]
-    public void ToRuleSelect() {
+    public void ToRuleSelectFromZizowView() {
+        Debug.Log("To Rule Select from ZizowView");
         gameObject.SetActive(false);
         viewManager.ruleSelectViewObj.SetActive(true);
         if (hasWin == 0) {
-            viewManager.ruleSelectView.GetComponent<RuleSelectView>().Set(true).Forget();
-        } else if (hasWin == 1) {
             viewManager.ruleSelectView.GetComponent<RuleSelectView>().Set(false).Forget();
+        } else if (hasWin == 1) {
+            viewManager.ruleSelectView.GetComponent<RuleSelectView>().Set(true).Forget();
         } else {
             //TODO:selector
             viewManager.ruleSelectView.GetComponent<RuleSelectView>().Set(PhotonNetwork.isMasterClient).Forget();

@@ -20,7 +20,9 @@ public class RoomConector : Photon.PunBehaviour {
         } else {
             Destroy(gameObject);
         }
-        Connect();
+        if (!PhotonNetwork.connected) {
+            Connect();
+        }
     }
 
     private void OnEnable() {

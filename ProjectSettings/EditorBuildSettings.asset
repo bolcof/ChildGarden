@@ -6,11 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/ChildGarden2/Scenes/Launcher.unity
-    guid: 161529873346e1241b4a13dc827a998e
-  - enabled: 1
-    path: Assets/ChildGarden2/Scenes/RuleScene.unity
-    guid: e6f9b3e9637a8a64788b772e42f0516c
+    path: Assets/ChildGarden2/Scenes/Restarter.unity
+    guid: a76717b6d8ec0442eb865a20ee5b6356
   - enabled: 1
     path: Assets/ChildGarden2/Scenes/MainGame.unity
     guid: 1e7184a22b7951045a01392bfcaffd53
