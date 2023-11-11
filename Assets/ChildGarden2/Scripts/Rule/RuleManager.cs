@@ -10,7 +10,7 @@ public class RuleManager : Photon.PunBehaviour {
     public struct Rule {
         public int id;
         public float missionNum;
-        [TextArea(1,3)] public string explainText;
+        [TextArea(1, 3)] public string explainText;
     }
 
     [SerializeField] public List<Rule> rules;
@@ -23,7 +23,7 @@ public class RuleManager : Photon.PunBehaviour {
     public bool isWinnerDecided;
 
     public Utsuwa myUtsuwa;
-    public Utsuwa otherUtsuwa;
+    public List<Utsuwa> otherUtsuwaList;
 
     public List<Onbutsu> OnbutsuList = new List<Onbutsu>();
 
@@ -91,7 +91,7 @@ public class RuleManager : Photon.PunBehaviour {
     //Ruleごとに作る
     public bool CheckRule_0() {
         float missionNum = rules[0].missionNum;
-        progressRatio = OnbutsuList.FindAll(on => on.dropped && on.holderId == MatchingStateManager.instance.MyPlayerId()).Count / missionNum;
+        progressRatio = OnbutsuList.FindAll(on => on.dropped && on.holderId == RoomConector.Instance.MyPlayerId()).Count / missionNum;
         if (pastProgressRatio != progressRatio) {
             if (pastProgressRatio < progressRatio) {
                 SoundManager.Instance.PlaySoundEffect(SoundManager.Instance.SE_Progress);
@@ -101,7 +101,7 @@ public class RuleManager : Photon.PunBehaviour {
             pastProgressRatio = progressRatio;
             ViewManager.Instance.playingView.ApplyProgressBar(progressRatio);
         }
-        if (OnbutsuList.FindAll(on => on.dropped && on.holderId == MatchingStateManager.instance.MyPlayerId()).Count >= missionNum) {
+        if (OnbutsuList.FindAll(on => on.dropped && on.holderId == RoomConector.Instance.MyPlayerId()).Count >= missionNum) {
             GameManager.Instance.MyPlayerWin();
             return true;
         } else {
@@ -111,7 +111,7 @@ public class RuleManager : Photon.PunBehaviour {
 
     public bool CheckRule_1() {
         float missionNum = rules[1].missionNum;
-        int targetCount = OnbutsuList.FindAll(on => on.landing_Utsuwa && on.StagingId == MatchingStateManager.instance.MyPlayerId()).Count;
+        int targetCount = OnbutsuList.FindAll(on => on.landing_Utsuwa && on.StagingId == RoomConector.Instance.MyPlayerId()).Count;
 
         progressRatio = targetCount / missionNum;
         if (pastProgressRatio != progressRatio) {
@@ -133,7 +133,7 @@ public class RuleManager : Photon.PunBehaviour {
 
     public bool CheckRule_2() {
         float missionNum = rules[2].missionNum;
-        int targetCount = OnbutsuList.FindAll(on => on.landing_Utsuwa && on.holderId == MatchingStateManager.instance.MyPlayerId()).Count;
+        int targetCount = OnbutsuList.FindAll(on => on.landing_Utsuwa && on.holderId == RoomConector.Instance.MyPlayerId()).Count;
 
         progressRatio = targetCount / missionNum;
         if (pastProgressRatio != progressRatio) {
@@ -154,7 +154,7 @@ public class RuleManager : Photon.PunBehaviour {
     }
     public bool CheckRule_3() {
         float missionNum = rules[3].missionNum;
-        int targetCount = OnbutsuList.FindAll(on => on.dropped && on.holderId == MatchingStateManager.instance.MyPlayerId() && on.hasLand_Utsuwa).Count;
+        int targetCount = OnbutsuList.FindAll(on => on.dropped && on.holderId == RoomConector.Instance.MyPlayerId() && on.hasLand_Utsuwa).Count;
 
         progressRatio = targetCount / missionNum;
         if (pastProgressRatio != progressRatio) {
@@ -177,10 +177,10 @@ public class RuleManager : Photon.PunBehaviour {
     public bool CheckRule_4() {
         float missionNum = rules[4].missionNum;
         int targetCount =
-            Mathf.Max(OnbutsuList.FindAll(on => on.holderId == MatchingStateManager.instance.MyPlayerId() && on.landing_Utsuwa && on.onbutsuSize == 1).Count, 2)
-            + Mathf.Max(OnbutsuList.FindAll(on => on.holderId == MatchingStateManager.instance.MyPlayerId() && on.landing_Utsuwa && on.onbutsuSize == 2).Count, 2)
-            + Mathf.Max(OnbutsuList.FindAll(on => on.holderId == MatchingStateManager.instance.MyPlayerId() && on.landing_Utsuwa && on.onbutsuSize == 3).Count, 2)
-            + Mathf.Max(OnbutsuList.FindAll(on => on.holderId == MatchingStateManager.instance.MyPlayerId() && on.landing_Utsuwa && on.onbutsuSize == 4).Count, 2);
+            Mathf.Min(OnbutsuList.FindAll(on => on.holderId == RoomConector.Instance.MyPlayerId() && on.landing_Utsuwa && on.onbutsuSize == 1).Count, 2)
+            + Mathf.Min(OnbutsuList.FindAll(on => on.holderId == RoomConector.Instance.MyPlayerId() && on.landing_Utsuwa && on.onbutsuSize == 2).Count, 2)
+            + Mathf.Min(OnbutsuList.FindAll(on => on.holderId == RoomConector.Instance.MyPlayerId() && on.landing_Utsuwa && on.onbutsuSize == 3).Count, 2)
+            + Mathf.Min(OnbutsuList.FindAll(on => on.holderId == RoomConector.Instance.MyPlayerId() && on.landing_Utsuwa && on.onbutsuSize == 4).Count, 2);
 
         progressRatio = targetCount / missionNum;
         if (pastProgressRatio != progressRatio) {

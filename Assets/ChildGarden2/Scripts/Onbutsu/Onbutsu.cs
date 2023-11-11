@@ -39,40 +39,38 @@ public class Onbutsu : MonoBehaviour {
     void Update() {
         if (!dropped) {
             if (rb.velocity.magnitude <= threshold) {
-                stoppingTime += Time.deltaTime;
-                if (stoppingTime >= 0.5f) {
-                    landing_Utsuwa = true;
+                if (!landing_Utsuwa) {
+                    stoppingTime += Time.deltaTime;
+                    if (stoppingTime >= 0.5f) {
+                        landing_Utsuwa = true;
 
-                    float myUtsuwaDistance = Vector2.Distance(RuleManager.instance.myUtsuwa.transform.position, transform.position);
-                    float otherUtsuwaDistance = Vector2.Distance(RuleManager.instance.otherUtsuwa.transform.position, transform.position);
-
-                    if (myUtsuwaDistance <= otherUtsuwaDistance) {
-                        StagingId = MatchingStateManager.instance.MyPlayerId();
-                    } else {
-                        if (MatchingStateManager.instance.MyPlayerId() == 1) {
-                            StagingId = 2;
-                        } else {
-                            StagingId = 1;
+                        List<Utsuwa> compareUtsuwaList = new List<Utsuwa>();
+                        compareUtsuwaList.Add(RuleManager.instance.myUtsuwa);
+                        for (int i = 0; i < RuleManager.instance.otherUtsuwaList.Count; i++) {
+                            compareUtsuwaList.Add(RuleManager.instance.otherUtsuwaList[i]);
                         }
+
+                        int tmpStagingId = RoomConector.Instance.MyPlayerId();
+                        float minDistance = Vector2.Distance(RuleManager.instance.myUtsuwa.transform.position, transform.position);
+
+                        for (int i = 1; i < compareUtsuwaList.Count; i++) {
+                            if (minDistance > Vector2.Distance(compareUtsuwaList[i].transform.position, transform.position)) {
+                                tmpStagingId = compareUtsuwaList[i].holderId;
+                            }
+                        }
+
+                        StagingId = tmpStagingId;
                     }
                 }
             } else {
                 stoppingTime = 0f; // 動いている場合、タイマーをリセット
-                //Debug.Log("move! " + spawnedId.ToString() + " " + rb.velocity.magnitude.ToString());
                 landing_Utsuwa = false;
             }
         }
-
-        /*if (hasLand_Utsuwa) {
-            touchingObjectsCount = CountTouchingObjects();
-            if(touchingObjectsCount == 0) {
-                Landing_Utsuwa = false;
-            }
-        }*/
     }
 
     private void OnCollisionEnter2D(Collision2D collision) {
-        switch(collision.gameObject.tag) {
+        switch (collision.gameObject.tag) {
             case "Utsuwa":
                 hasLand_Utsuwa = true;
                 break;
@@ -110,7 +108,7 @@ public class Onbutsu : MonoBehaviour {
         if (_polygonCollider != null) {
             _polygonCollider.enabled = false;
         }
-        if(_circleCollider != null) {
+        if (_circleCollider != null) {
             _circleCollider.enabled = false;
         }
         _spriteRenderer.enabled = false;

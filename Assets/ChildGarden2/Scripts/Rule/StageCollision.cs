@@ -19,7 +19,7 @@ public class StageCollision : Photon.PunBehaviour {
     private void Awake() {
         PhotonView photonView = GetComponent<PhotonView>();
         holderId = photonView.owner.ID;
-        if (holderId == MatchingStateManager.instance.MyPlayerId()) {
+        if (holderId == RoomConector.Instance.MyPlayerId()) {
             isMine = true;
             RuleManager.instance.myUtsuwa = null; //TODO delete
         } else {

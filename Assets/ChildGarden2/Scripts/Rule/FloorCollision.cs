@@ -24,7 +24,7 @@ public class FloorCollision : UnityEngine.MonoBehaviour {
 
                 if (currentOnbutsu.holderId == -1) {
                     Debug.LogError("Onbutsu ID is Wrong!");
-                } else if (currentOnbutsu.holderId == MatchingStateManager.instance.MyPlayerId()) {
+                } else if (currentOnbutsu.holderId == RoomConector.Instance.MyPlayerId()) {
                     Debug.Log("Land Floor My Onbutsu");
                     myOnbutsuCount++;
                     sumOnbutsuCount++;

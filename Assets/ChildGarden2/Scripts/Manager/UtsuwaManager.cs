@@ -30,7 +30,7 @@ public class UtsuwaManager : Photon.PunBehaviour {
                 // DONE ID全部ここから振り分けないと、クライアント側で処理が並行して被る
                 List<int> positionIdList = RandomizedPositionIdList();
                 Debug.Log("positionID list :  " + string.Join(",", positionIdList));
-                switch (MatchingStateManager.instance.PlayerNum) {
+                switch (RoomConector.Instance.PlayerNum) {
                     case 2:
                         Debug.Log("2player Play");
                         photonView.RPC(nameof(SetSpawnId_2player), PhotonTargets.All, positionIdList[0], positionIdList[1]);
@@ -62,7 +62,7 @@ public class UtsuwaManager : Photon.PunBehaviour {
     void SpawnPlayer() {
         // ランダムな座標を選択
         Vector3 spawnPoint = spawnPoints[mySpawnPositionId];
-        GameObject Player = PhotonNetwork.Instantiate("Box/" + this.UtsuwaList[MatchingStateManager.instance.MyPlayerId() - 1].name, new Vector3(spawnPoint.x, spawnPoint.y + 2, spawnPoint.z), Quaternion.identity, 0);
+        GameObject Player = PhotonNetwork.Instantiate("Box/" + this.UtsuwaList[RoomConector.Instance.MyPlayerId() - 1].name, new Vector3(spawnPoint.x, spawnPoint.y + 2, spawnPoint.z), Quaternion.identity, 0);
         myUtsuwa = Player.GetComponent<Utsuwa>();
         // 同じ座標のY軸+2にStageを生成 が不要
         //PhotonNetwork.Instantiate("StageObject/" + this.myBoxCollision.name, new Vector3(spawnPoint.x, spawnPoint.y + 2, spawnPoint.z), Quaternion.identity, 0);
@@ -77,7 +77,7 @@ public class UtsuwaManager : Photon.PunBehaviour {
 
     private List<int> RandomizedPositionIdList() {
 
-        if (MatchingStateManager.instance.PlayerNum > spawnPoints.Count) {
+        if (RoomConector.Instance.PlayerNum > spawnPoints.Count) {
             Debug.LogError("playerNum cannot be greater than spawnPositionIds");
             return new List<int>();
         }
@@ -89,7 +89,7 @@ public class UtsuwaManager : Photon.PunBehaviour {
             positionIdList.Add(i);
         }
 
-        for (int i = 0; i < MatchingStateManager.instance.PlayerNum; i++) {
+        for (int i = 0; i < RoomConector.Instance.PlayerNum; i++) {
             int index = Random.Range(0, positionIdList.Count);
             randomizeList.Add(positionIdList[index]);
             positionIdList.RemoveAt(index);
@@ -101,7 +101,7 @@ public class UtsuwaManager : Photon.PunBehaviour {
     //TODO:必要だったら使う
     private List<int> RandomizedUtsuwaIdList() {
 
-        if (MatchingStateManager.instance.PlayerNum > UtsuwaList.Count) {
+        if (RoomConector.Instance.PlayerNum > UtsuwaList.Count) {
             Debug.LogError("playerNum cannot be greater than utsuwaList");
             return new List<int>();
         }
@@ -113,7 +113,7 @@ public class UtsuwaManager : Photon.PunBehaviour {
             utsuwaIdList.Add(i);
         }
 
-        for (int i = 0; i < MatchingStateManager.instance.PlayerNum; i++) {
+        for (int i = 0; i < RoomConector.Instance.PlayerNum; i++) {
             int index = Random.Range(0, utsuwaIdList.Count);
             randomizeList.Add(utsuwaIdList[index]);
             utsuwaIdList.RemoveAt(index);
@@ -135,14 +135,14 @@ public class UtsuwaManager : Photon.PunBehaviour {
     [PunRPC]
     public void SetSpawnId_2player(int player1posId, int player2posId) {
         //PlayerIDは1から始まる
-        switch (MatchingStateManager.instance.MyPlayerId()) {
+        switch (RoomConector.Instance.MyPlayerId()) {
             case 1:
                 mySpawnPositionId = player1posId;
-                Debug.Log("Set Player" + MatchingStateManager.instance.MyPlayerId().ToString() + " -> PositionID:" + player1posId.ToString());
+                Debug.Log("Set Player" + RoomConector.Instance.MyPlayerId().ToString() + " -> PositionID:" + player1posId.ToString());
                 break;
             case 2:
                 mySpawnPositionId = player2posId;
-                Debug.Log("Set Player" + MatchingStateManager.instance.MyPlayerId().ToString() + " -> PositionID:" + player2posId.ToString());
+                Debug.Log("Set Player" + RoomConector.Instance.MyPlayerId().ToString() + " -> PositionID:" + player2posId.ToString());
                 break;
             default:
                 Debug.LogError("wrong Player Num int SetSpawnPlayerId");
@@ -153,18 +153,18 @@ public class UtsuwaManager : Photon.PunBehaviour {
     [PunRPC]
     public void SetSpawnId_3player(int player1posId, int player2posId, int player3posId) {
         //PlayerIDは1から始まる
-        switch (MatchingStateManager.instance.MyPlayerId()) {
+        switch (RoomConector.Instance.MyPlayerId()) {
             case 1:
                 mySpawnPositionId = player1posId;
-                Debug.Log("Set Player" + MatchingStateManager.instance.MyPlayerId().ToString() + " -> PositionID:" + player1posId.ToString());
+                Debug.Log("Set Player" + RoomConector.Instance.MyPlayerId().ToString() + " -> PositionID:" + player1posId.ToString());
                 break;
             case 2:
                 mySpawnPositionId = player2posId;
-                Debug.Log("Set Player" + MatchingStateManager.instance.MyPlayerId().ToString() + " -> PositionID:" + player2posId.ToString());
+                Debug.Log("Set Player" + RoomConector.Instance.MyPlayerId().ToString() + " -> PositionID:" + player2posId.ToString());
                 break;
             case 3:
                 mySpawnPositionId = player3posId;
-                Debug.Log("Set Player" + MatchingStateManager.instance.MyPlayerId().ToString() + " -> PositionID:" + player3posId.ToString());
+                Debug.Log("Set Player" + RoomConector.Instance.MyPlayerId().ToString() + " -> PositionID:" + player3posId.ToString());
                 break;
             default:
                 Debug.LogError("wrong Player Num int SetSpawnPlayerId");

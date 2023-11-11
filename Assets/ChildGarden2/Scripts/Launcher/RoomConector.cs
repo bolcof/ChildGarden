@@ -11,6 +11,8 @@ public class RoomConector : Photon.PunBehaviour {
     [SerializeField] private string roomId;
     public string computerName;
 
+    public int PlayerNum = 2;
+
     private void Awake() {
         if (Instance == null) {
             Instance = this;
@@ -33,6 +35,7 @@ public class RoomConector : Photon.PunBehaviour {
     }
 
     public void Connect() {
+        Debug.Log("try to connect");
         if (!PhotonNetwork.connected) {
             PhotonNetwork.ConnectUsingSettings(_gameVersion);
             Debug.Log("Photonに接続しました。");
@@ -40,33 +43,36 @@ public class RoomConector : Photon.PunBehaviour {
         }
     }
 
-    public void PushJoin() {
-        Debug.Log("try to join random room");
-        RoomOptions roomOptions = new RoomOptions();
-        roomOptions.MaxPlayers = (byte)MatchingStateManager.instance.PlayerNum;
-        roomOptions.PublishUserId = true;
-        PhotonNetwork.JoinOrCreateRoom(roomId, roomOptions, TypedLobby.Default);
-    }
-
-    public void AppearRule() {
-        //change to view manager task
-
-    }
-
     public override void OnJoinedLobby() {
         Debug.Log("ロビーに入りました。");
-        GameObject.Find("Launcher_Canvas").GetComponent<LauncherView>().ActivateStartButton();
+        ViewManager.Instance.launcherView.ActivateStartButton();
     }
 
-    public override void OnPhotonJoinRoomFailed(object[] codeAndMsg) {
+    public void PushJoin() {
+        Debug.Log("try to join random room");
+        PhotonNetwork.JoinRandomRoom();
+        /*RoomOptions roomOptions = new RoomOptions();
+        roomOptions.MaxPlayers = (byte)PlayerNum;
+        roomOptions.PublishUserId = true;
+        PhotonNetwork.JoinOrCreateRoom(roomId, roomOptions, TypedLobby.Default);*/
+    }
+
+    /*public override void OnPhotonJoinRoomFailed(object[] codeAndMsg) {
         Debug.Log("ルームの入室に失敗しました。");
+    }*/
+
+    public override void OnPhotonRandomJoinFailed(object[] codeAndMsg) {
+        Debug.Log("ルームのrandom入室に失敗しました。");
+        RoomOptions roomOptions = new RoomOptions();
+        roomOptions.MaxPlayers = (byte)PlayerNum;
+        PhotonNetwork.CreateRoom("", roomOptions, TypedLobby.Default);
     }
 
     public override void OnPhotonPlayerConnected(PhotonPlayer newPlayer) {
         base.OnPhotonPlayerConnected(newPlayer);
         Debug.Log("player coming" + PhotonNetwork.playerList.Count().ToString());
         if (PhotonNetwork.isMasterClient) {
-            if (PhotonNetwork.playerList.Count() == MatchingStateManager.instance.PlayerNum) {
+            if (PhotonNetwork.playerList.Count() == PlayerNum) {
                 Debug.Log("go rule");
                 GoRuleDelayed(2000).Forget();
             }
@@ -76,6 +82,16 @@ public class RoomConector : Photon.PunBehaviour {
     private async UniTask GoRuleDelayed(int delay) {
         await UniTask.Delay(delay);
         photonView.RPC(nameof(RuleViewAppear), PhotonTargets.AllBuffered);
+    }
+
+    //PlayerのRoom内ID
+    public int MyPlayerId() {
+        if (PhotonNetwork.connected && PhotonNetwork.inRoom) {
+            return PhotonNetwork.player.ID;
+        } else {
+            Debug.LogWarning("Out of Connect or Room!");
+            return -1;
+        }
     }
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
@@ -89,17 +105,8 @@ public class RoomConector : Photon.PunBehaviour {
 
     [PunRPC]
     public void RuleViewAppear() {
-        //TODO:change to View
-        PhotonNetwork.LoadLevel("RuleScene");
+        ViewManager.Instance.ruleExplainViewObj.SetActive(true);
+        ViewManager.Instance.ruleExplainView.ResetView();
+        ViewManager.Instance.launcherViewObj.SetActive(false);
     }
-
-    /*[PunRPC]
-    void IncreaseMemberCount() {
-        count++;
-        Debug.Log("Ready is called. Count is now: " + count);
-        // カウントが1のときだけカウントダウンを開始
-        if (count == 1) {
-            StartCoroutine(StartCountdown());
-        }
-    }*/
 }

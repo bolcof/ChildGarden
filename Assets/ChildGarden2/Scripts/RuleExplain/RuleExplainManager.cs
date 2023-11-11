@@ -21,7 +21,7 @@ public class RuleExplainManager : Photon.PunBehaviour {
 
     private void Update() {
         if (PhotonNetwork.isMasterClient) {
-            if (finishRuleReadCount == MatchingStateManager.instance.PlayerNum == !completed) {
+            if (finishRuleReadCount == RoomConector.Instance.PlayerNum && !completed) {
                 Debug.Log("go game");
                 completed = true;
                 GoGameDelayed(2000).Forget();
@@ -49,8 +49,9 @@ public class RuleExplainManager : Photon.PunBehaviour {
 
     [PunRPC]
     public void GameViewAppear() {
-        //TODO:change to View
-        PhotonNetwork.LoadLevel("MainGame");
+        ViewManager.Instance.playingViewObj.SetActive(true);
+        GameManager.Instance.GameStart();
+        ViewManager.Instance.ruleExplainViewObj.SetActive(false);
     }
 
     [PunRPC]
