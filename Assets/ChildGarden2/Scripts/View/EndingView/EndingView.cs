@@ -51,9 +51,6 @@ public class EndingView : Photon.PunBehaviour {
 
     public void OnEndVideo(VideoPlayer vp) {
         Debug.Log("EndVideo...");
-        Destroy(GameManager.Instance.gameObject);
-        Destroy(ViewManager.Instance.gameObject);
-        SoundManager.Instance.PlayBgm(SoundManager.Instance.BGM_Title);
-        PhotonNetwork.LoadLevel("Restarter");
+        GameObject.Find("ForceRestarter").GetComponent<ForceRestarter>().OnInactivityDetected();
     }
 }

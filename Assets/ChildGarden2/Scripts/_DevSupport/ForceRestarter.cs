@@ -47,7 +47,7 @@ public class ForceRestarter : Photon.PunBehaviour {
             // ここにオブジェクトの状態を受信して更新するコードを書きます
         }
     }
-    private void OnInactivityDetected() {
+    public void OnInactivityDetected() {
         Debug.Log("OnInactivityDetected");
         photonView.RPC(nameof(RoomBreakAndRestart), PhotonTargets.AllBuffered);
         //photonView.RPC(nameof(DestroyGameManager), PhotonTargets.All);
