@@ -35,6 +35,8 @@ public class Onbutsu : MonoBehaviour {
 
         RuleManager.instance.OnbutsuList.Add(this);
         spawnedId = RuleManager.instance.OnbutsuList.Count - 1;
+
+        this.gameObject.transform.parent = GameObject.Find("OnbutsuRoot").transform;
     }
     void Update() {
         if (!dropped) {
