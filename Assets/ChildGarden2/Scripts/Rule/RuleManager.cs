@@ -44,6 +44,12 @@ public class RuleManager : Photon.PunBehaviour {
 
         Rule05_GoalLine.SetActive(false);
         Rule06_BigUtsuwa.SetActive(false);
+
+        if (firstStageRuleId == 5) {
+            Rule05_GoalLine.SetActive(true);
+        } else if (firstStageRuleId == 6) {
+            Rule06_BigUtsuwa.SetActive(true);
+        }
     }
 
     public void SetRule(int _ruleId) {
@@ -85,6 +91,9 @@ public class RuleManager : Photon.PunBehaviour {
                     break;
                 case 4:
                     CheckRule_4();
+                    break;
+                case 5:
+                    CheckRule_5();
                     break;
                 default:
                     Debug.LogError("RuleID is out of range!");
@@ -167,6 +176,30 @@ public class RuleManager : Photon.PunBehaviour {
             + Mathf.Min(OnbutsuList.FindAll(on => on.holderId == RoomConector.Instance.MyPlayerId() && on.landing_Utsuwa && on.onbutsuSize == 4).Count, 2);
 
         ApplyProgressState(targetCount / missionNum);
+
+        if (targetCount >= missionNum) {
+            GameManager.Instance.MyPlayerWin();
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public bool CheckRule_5() {
+        float missionNum = Rule05_GoalLine.transform.position.y;
+        Debug.Log("mission:" + missionNum.ToString());
+
+        float highestOnbutsuHeight = myUtsuwa.transform.position.y;
+        foreach (var on in OnbutsuList.FindAll(onb => onb.landing_Utsuwa && onb.StagingId == RoomConector.Instance.MyPlayerId() && onb.hasLand_Utsuwa)) {
+            if (highestOnbutsuHeight < on.transform.position.y) {
+                highestOnbutsuHeight = on.transform.position.y;
+            }
+        }
+
+        Debug.Log("highest:" + highestOnbutsuHeight.ToString());
+        float targetCount = highestOnbutsuHeight;
+
+        ApplyProgressState((targetCount - myUtsuwa.transform.position.y) / (missionNum - myUtsuwa.transform.position.y));
 
         if (targetCount >= missionNum) {
             GameManager.Instance.MyPlayerWin();
