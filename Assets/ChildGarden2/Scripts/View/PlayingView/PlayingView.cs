@@ -21,6 +21,9 @@ public class PlayingView : Photon.PunBehaviour {
     [SerializeField] Image myProgressGuage;
     [SerializeField] TextMeshProUGUI myProgressLabel;
 
+    [SerializeField] List<Image> otherProgressGuages;
+    [SerializeField] List<TextMeshProUGUI> otherProgressLabels;
+
     [SerializeField] private GameObject finishLabel;
     [SerializeField] private Image gateBack;
     [SerializeField] private RectTransform gateR, gateL;
@@ -36,6 +39,11 @@ public class PlayingView : Photon.PunBehaviour {
 
     private void Awake() {
         ApplyProgressBar(0.0f);
+
+        for (int i = 0; i < otherProgressGuages.Count; i++) {
+            otherProgressGuages[i].fillAmount = 0.0f;
+            otherProgressLabels[i].text = "0";
+        }
     }
 
     public void RoundStart(int round, RuleManager.Rule currentRule) {
@@ -72,6 +80,7 @@ public class PlayingView : Photon.PunBehaviour {
     public void ApplyProgressBar(float progress) {
         myProgressGuage.fillAmount = progress;
         myProgressLabel.text = (progress * 100).ToString("F0");
+        photonView.RPC(nameof(ApplyOtherProgressGuages), PhotonTargets.Others, RoomConector.Instance.MyPlayerId(), progress);
     }
 
     public async UniTask RoundFinish(int result) {
@@ -186,5 +195,12 @@ public class PlayingView : Photon.PunBehaviour {
         gameObject.SetActive(false);
         viewManager.endingViewObj.SetActive(true);
         viewManager.endingView.GetComponent<EndingView>().Set();
+    }
+
+    [PunRPC]
+    public void ApplyOtherProgressGuages(int playerId, float progress) {
+        int cpuId = RuleManager.instance.otherUtsuwaList.Find(u => u.holderId == playerId).CpuId;
+        otherProgressGuages[cpuId].fillAmount = RuleManager.instance.otherUtsuwaList[cpuId].holdersProgress;
+        otherProgressLabels[cpuId].text = (RuleManager.instance.otherUtsuwaList[cpuId].holdersProgress * 100).ToString("F0");
     }
 }

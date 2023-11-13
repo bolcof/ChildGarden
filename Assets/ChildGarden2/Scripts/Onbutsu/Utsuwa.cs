@@ -7,6 +7,8 @@ public class Utsuwa : Photon.PunBehaviour {
     public GameObject myPlayerSign;
     public bool isMine;
     public int holderId;
+    public int CpuId;
+    public float holdersProgress;
 
     private void Awake() {
         PhotonView photonView = GetComponent<PhotonView>();
@@ -17,11 +19,14 @@ public class Utsuwa : Photon.PunBehaviour {
         } else {
             isMine = false;
             RuleManager.instance.otherUtsuwaList.Add(this);
+            CpuId = RuleManager.instance.otherUtsuwaList.Count;
         }
 
         if (!photonView.isMine) {
             myPlayerSign.SetActive(false);
         }
+
+        holdersProgress = 0.0f;
     }
 
     public void SignEnabled(bool enabled) {
