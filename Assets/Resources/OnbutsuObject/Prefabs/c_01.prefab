@@ -14,8 +14,8 @@ GameObject:
   - component: {fileID: 2080925911210939952}
   - component: {fileID: 8443942772406226349}
   - component: {fileID: 422185042886688660}
-  - component: {fileID: 88800198890600919}
   - component: {fileID: 4614005415604172388}
+  - component: {fileID: 8389544323413793012}
   m_Layer: 0
   m_Name: c_01
   m_TagString: Onbutu
@@ -230,27 +230,6 @@ MonoBehaviour:
   _spriteRenderer: {fileID: 4614005415604172388}
   _polygonCollider: {fileID: 0}
   _circleCollider: {fileID: 2080925911210939952}
---- !u!95 &88800198890600919
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6030451083089180837}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 6a4831d1abac94d168276a2af6b25e73, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!212 &4614005415604172388
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -303,3 +282,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &8389544323413793012
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6030451083089180837}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f89cc69f33e8af9408eebb2942d43142, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
