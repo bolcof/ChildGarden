@@ -15,8 +15,8 @@ GameObject:
   - component: {fileID: 5092366099567499783}
   - component: {fileID: 173813754427947773}
   - component: {fileID: 8593501753611200659}
-  - component: {fileID: 6936171605211382858}
-  - component: {fileID: 6965815689359471659}
+  - component: {fileID: -2475386607655179751}
+  - component: {fileID: -2153225197296963030}
   m_Layer: 0
   m_Name: c_02
   m_TagString: Onbutu
@@ -194,7 +194,7 @@ MonoBehaviour:
   checkRadius: 1
   touchingObjectsCount: 0
   _spriteRenderer: {fileID: 173813754427947773}
-  _polygonCollider: {fileID: 6936171605211382858}
+  _polygonCollider: {fileID: 0}
   _circleCollider: {fileID: 0}
 --- !u!212 &173813754427947773
 SpriteRenderer:
@@ -237,8 +237,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 5a596ce70662b4001bd7b145407c8372, type: 3}
-  m_Color: {r: 0.54509807, g: 1, b: 0.63529414, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 47c2e3d34db344c02812cede9440e678, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -269,7 +269,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!60 &6936171605211382858
+--- !u!60 &-2475386607655179751
 PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -313,27 +313,26 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.42, y: -4.12}
-      - {x: 1.9399999, y: -2.04}
-      - {x: 3, y: -0.17}
-      - {x: 5.38, y: 2.49}
-      - {x: 5.6099997, y: 2.95}
-      - {x: 5.52, y: 3.53}
-      - {x: 5.24, y: 3.77}
-      - {x: 4.56, y: 3.9499998}
-      - {x: 2.82, y: 3.75}
-      - {x: 0.78, y: 4.04}
-      - {x: -2.6499999, y: 3.98}
-      - {x: -5.1099997, y: 3.3799999}
-      - {x: -5.25, y: 3.1599998}
-      - {x: -5.18, y: 2.8999999}
-      - {x: -3.36, y: 0.64}
-      - {x: -2.49, y: -1.14}
-      - {x: -0.68, y: -3.9199998}
-      - {x: -0.26, y: -4.2599998}
-      - {x: 0.35, y: -4.17}
+    - - {x: 0.63, y: -2.97}
+      - {x: 1.25, y: -1.92}
+      - {x: 3.46, y: 0.01}
+      - {x: 4.65, y: 1.92}
+      - {x: 5.14, y: 3}
+      - {x: 5.0899997, y: 3.24}
+      - {x: 3.82, y: 3.8}
+      - {x: 2.37, y: 4.04}
+      - {x: -0.19999999, y: 3.85}
+      - {x: -2.77, y: 3.4199998}
+      - {x: -4.25, y: 3.53}
+      - {x: -5.19, y: 3.28}
+      - {x: -5.14, y: 2.9199998}
+      - {x: -4.12, y: 1.5799999}
+      - {x: -2.45, y: -1.14}
+      - {x: -0.12, y: -3.83}
+      - {x: 0.14999999, y: -3.73}
+      - {x: 0.42999998, y: -3.28}
   m_UseDelaunayMesh: 0
---- !u!114 &6965815689359471659
+--- !u!114 &-2153225197296963030
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
