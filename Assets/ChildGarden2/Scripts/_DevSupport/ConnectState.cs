@@ -23,7 +23,7 @@ public class ConnectState : Photon.PunBehaviour {
         if (label.enabled) {
             if (PhotonNetwork.connected) {
                 if (PhotonNetwork.inRoom) {
-                    label.text = "Lobby:" + PhotonNetwork.lobby.Type + " Room:" + PhotonNetwork.room.Name;
+                    label.text = "Lobby:" + PhotonNetwork.lobby.Type + " Room:" + PhotonNetwork.room.Name + " PlayerID:" + PhotonNetwork.player.ID;
                 } else {
                     label.text = "Lobby:" + PhotonNetwork.lobby.Type + " Room:None";
                 }
