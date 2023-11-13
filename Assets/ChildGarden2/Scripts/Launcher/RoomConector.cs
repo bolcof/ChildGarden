@@ -41,13 +41,13 @@ public class RoomConector : Photon.PunBehaviour {
         if (!PhotonNetwork.connected) {
             PhotonNetwork.ConnectUsingSettings(_gameVersion);
             Debug.Log("Photonに接続しました。");
-            SoundManager.Instance.PlayBgm(SoundManager.Instance.BGM_Title);
         }
     }
 
     public override void OnJoinedLobby() {
         Debug.Log("ロビーに入りました。");
         ViewManager.Instance.launcherView.ActivateStartButton();
+        SoundManager.Instance.PlayBgm(SoundManager.Instance.BGM_Title);
     }
 
     public void PushJoin() {
