@@ -27,6 +27,8 @@ public class RuleManager : Photon.PunBehaviour {
 
     public List<Onbutsu> OnbutsuList = new List<Onbutsu>();
 
+    [SerializeField] private GameObject Rule05_GoalLine, Rule06_BigUtsuwa;
+
     private void Awake() {
         if (instance == null) {
             instance = this;
@@ -39,10 +41,22 @@ public class RuleManager : Photon.PunBehaviour {
     public void SetFirstRound() {
         currentRule = rules.Find(r => r.id == firstStageRuleId);
         isWinnerDecided = false;
+
+        Rule05_GoalLine.SetActive(false);
+        Rule06_BigUtsuwa.SetActive(false);
     }
 
     public void SetRule(int _ruleId) {
         currentRule = rules.Find(r => r.id == _ruleId);
+
+        Rule05_GoalLine.SetActive(false);
+        Rule06_BigUtsuwa.SetActive(false);
+
+        if (_ruleId == 5) {
+            Rule05_GoalLine.SetActive(true);
+        } else if (_ruleId == 6) {
+            Rule06_BigUtsuwa.SetActive(true);
+        }
     }
 
     public void ResetCount() {
