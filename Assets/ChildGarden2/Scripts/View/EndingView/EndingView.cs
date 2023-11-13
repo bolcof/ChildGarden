@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Video;
 using TMPro;
 using System.Linq;
+using Cysharp.Threading.Tasks;
 
 public class EndingView : Photon.PunBehaviour {
     [SerializeField] private VideoPlayer videoPlayer;
@@ -51,6 +52,11 @@ public class EndingView : Photon.PunBehaviour {
 
     public void OnEndVideo(VideoPlayer vp) {
         Debug.Log("EndVideo...");
+        GameObject.Find("FaderCanvas").GetComponent<Fader>().WhiteOut();
+        Invoke(nameof(Restart), 2.0f);
+    }
+
+    private void Restart() {
         GameObject.Find("ForceRestarter").GetComponent<ForceRestarter>().OnInactivityDetected();
     }
 }
