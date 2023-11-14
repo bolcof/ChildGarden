@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class CursorBehaviour : MonoBehaviour {
-    [SerializeField] private Image pointer;
+    [SerializeField] private Image finger;
     [SerializeField] private Sprite idle, clicked;
 
     private void Awake() {
@@ -14,10 +14,15 @@ public class CursorBehaviour : MonoBehaviour {
     private void Update() {
         transform.position = Input.mousePosition;
 
-        if (Input.GetMouseButton(0)) {
-            pointer.sprite = clicked;
+        if (GameManager.Instance.canPutOnbutsu) {
+            finger.enabled = false;
         } else {
-            pointer.sprite = idle;
+            finger.enabled = true;
+            if (Input.GetMouseButton(0)) {
+                finger.sprite = clicked;
+            } else {
+                finger.sprite = idle;
+            }
         }
     }
 }

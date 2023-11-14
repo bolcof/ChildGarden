@@ -7,7 +7,6 @@ using Cysharp.Threading.Tasks;
 using DG.Tweening;
 
 public class PlayingView : Photon.PunBehaviour {
-    [SerializeField] Image background;
 
     public GameObject countDownObject;
 
@@ -71,6 +70,7 @@ public class PlayingView : Photon.PunBehaviour {
 
     public async UniTask RoundFinish(int result) {
         finishLabel.SetActive(true);
+        SoundManager.Instance.PlaySoundEffect(SoundManager.Instance.SE_RoundFinish);
         await UniTask.Delay(4000);
         finishLabel.SetActive(false);
 

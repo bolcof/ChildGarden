@@ -97,6 +97,7 @@ public class GameManager : Photon.PunBehaviour {
 
         await UniTask.Delay(2000);
         ViewManager.Instance.playingView.countDownObject.SetActive(true);
+        SoundManager.Instance.PlaySoundEffect(SoundManager.Instance.SE_CountDown);
         await UniTask.Delay(3600);
         ViewManager.Instance.playingView.countDownObject.SetActive(false);
 
