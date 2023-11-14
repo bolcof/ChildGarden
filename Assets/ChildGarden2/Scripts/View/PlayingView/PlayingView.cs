@@ -37,15 +37,6 @@ public class PlayingView : Photon.PunBehaviour {
 
     private ViewManager viewManager;
 
-    private void Awake() {
-        ApplyProgressBar(0.0f);
-
-        for (int i = 0; i < otherProgressGuages.Count; i++) {
-            otherProgressGuages[i].fillAmount = 0.0f;
-            otherProgressLabels[i].text = "0";
-        }
-    }
-
     public void RoundStart(int round, RuleManager.Rule currentRule) {
         purposeLabel.text = currentRule.explainText;
         for (int i = 0; i < 4; i++) {
@@ -62,6 +53,10 @@ public class PlayingView : Photon.PunBehaviour {
         }
         myProgressGuage.fillAmount = 0.0f;
         myProgressLabel.text = "0";
+        for (int i = 0; i < otherProgressGuages.Count; i++) {
+            otherProgressGuages[i].fillAmount = 0.0f;
+            otherProgressLabels[i].text = "0";
+        }
     }
 
     public void BeginningCountDown(int sec) {
