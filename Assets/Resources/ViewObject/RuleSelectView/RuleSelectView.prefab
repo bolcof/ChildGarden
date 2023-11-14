@@ -300,7 +300,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   label: {fileID: 0}
-  thisButtonsRuleId: 4
+  thisButtonsRuleId: 6
   selected: 0
   image: {fileID: 8518983521966204231}
   disSelectedImage: {fileID: 21300000, guid: 7c7863e90ffa5459fb0d27be7164a07e, type: 3}
