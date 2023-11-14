@@ -199,7 +199,7 @@ public class RuleManager : Photon.PunBehaviour {
         Debug.Log("highest:" + highestOnbutsuHeight.ToString());
         float targetCount = highestOnbutsuHeight;
 
-        ApplyProgressState((targetCount - myUtsuwa.transform.position.y) / (missionNum - myUtsuwa.transform.position.y));
+        ApplyProgressState(Devide5Per((targetCount - myUtsuwa.transform.position.y) * 100 / (missionNum - myUtsuwa.transform.position.y)));
 
         if (targetCount >= missionNum) {
             GameManager.Instance.MyPlayerWin();
@@ -221,6 +221,15 @@ public class RuleManager : Photon.PunBehaviour {
             myUtsuwa.holdersProgress = progressRatio;
             ViewManager.Instance.playingView.ApplyProgressBar(progressRatio);
         }
+    }
+
+    private float Devide5Per(float ratio) {
+        float i = 0;
+        while(ratio < 0.05f) {
+            ratio -= 0.05f;
+            i += 0.05f;
+        }
+        return i;
     }
 
     public bool WholeWinnerIsMe() {
