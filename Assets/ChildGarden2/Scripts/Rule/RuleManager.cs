@@ -41,20 +41,21 @@ public class RuleManager : Photon.PunBehaviour {
     public void SetFirstRound() {
         currentRule = rules.Find(r => r.id == firstStageRuleId);
         isWinnerDecided = false;
-
-        Rule05_GoalLine.SetActive(false);
-        Rule06_BigUtsuwa.SetActive(false);
+        SetSpecialObject(firstStageRuleId);
     }
 
     public void SetRule(int _ruleId) {
         currentRule = rules.Find(r => r.id == _ruleId);
+        SetSpecialObject(_ruleId);
+    }
 
+    private void SetSpecialObject(int id) {
         Rule05_GoalLine.SetActive(false);
         Rule06_BigUtsuwa.SetActive(false);
 
-        if (_ruleId == 5) {
+        if (id == 5) {
             Rule05_GoalLine.SetActive(true);
-        } else if (_ruleId == 6) {
+        } else if (id == 6) {
             Rule06_BigUtsuwa.SetActive(true);
         }
     }
@@ -85,6 +86,9 @@ public class RuleManager : Photon.PunBehaviour {
                     break;
                 case 4:
                     CheckRule_4();
+                    break;
+                case 5:
+                    CheckRule_5();
                     break;
                 default:
                     Debug.LogError("RuleID is out of range!");
@@ -175,6 +179,30 @@ public class RuleManager : Photon.PunBehaviour {
             return false;
         }
     }
+    public bool CheckRule_5() {
+        float missionNum = Rule05_GoalLine.transform.position.y;
+        Debug.Log("mission:" + missionNum.ToString());
+
+        float highestOnbutsuHeight = myUtsuwa.transform.position.y;
+        foreach (var on in OnbutsuList.FindAll(onb => onb.landing_Utsuwa && onb.StagingId == RoomConector.Instance.MyPlayerId() && onb.hasLand_Utsuwa)) {
+            if (highestOnbutsuHeight < on.transform.position.y) {
+                highestOnbutsuHeight = on.transform.position.y;
+            }
+        }
+
+        Debug.Log("highest:" + highestOnbutsuHeight.ToString());
+        float targetCount = highestOnbutsuHeight;
+
+        ApplyProgressState(Devide5Per((targetCount - myUtsuwa.transform.position.y) / (missionNum - myUtsuwa.transform.position.y)));
+
+        if (targetCount >= missionNum) {
+            GameManager.Instance.MyPlayerWin();
+            Rule05_GoalLine.SetActive(false);
+            return true;
+        } else {
+            return false;
+        }
+    }
 
     private void ApplyProgressState(float currentRatio) {
         progressRatio = currentRatio;
@@ -188,6 +216,15 @@ public class RuleManager : Photon.PunBehaviour {
             myUtsuwa.holdersProgress = progressRatio;
             ViewManager.Instance.playingView.ApplyProgressBar(progressRatio);
         }
+    }
+
+    private float Devide5Per(float ratio) {
+        float i = 0;
+        while (ratio > 0.05f) {
+            ratio -= 0.05f;
+            i += 0.05f;
+        }
+        return i;
     }
 
     public bool WholeWinnerIsMe() {
