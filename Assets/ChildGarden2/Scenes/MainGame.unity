@@ -2040,6 +2040,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 92722186782852032, guid: 73fec1ab5d0d341798c02780d8064799, type: 3}
+      propertyPath: viewIdField
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 92722186782852032, guid: 73fec1ab5d0d341798c02780d8064799, type: 3}
+      propertyPath: instantiationId
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 1679631251828215728, guid: 73fec1ab5d0d341798c02780d8064799, type: 3}
       propertyPath: viewIdField
       value: 1
