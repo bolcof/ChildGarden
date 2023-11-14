@@ -9,7 +9,7 @@ using DG.Tweening;
 public class PlayingView : Photon.PunBehaviour {
     [SerializeField] Image background;
 
-    [SerializeField] TextMeshProUGUI countDownLabel;
+    public GameObject countDownObject;
 
     [SerializeField] TMP_Text purposeLabel;
 
@@ -56,15 +56,6 @@ public class PlayingView : Photon.PunBehaviour {
         for (int i = 0; i < otherProgressGuages.Count; i++) {
             otherProgressGuages[i].fillAmount = 0.0f;
             otherProgressLabels[i].text = "0";
-        }
-    }
-
-    public void BeginningCountDown(int sec) {
-        if (sec != 0) {
-            countDownLabel.gameObject.SetActive(true);
-            countDownLabel.text = sec.ToString();
-        } else {
-            countDownLabel.gameObject.SetActive(false);
         }
     }
 
@@ -195,7 +186,7 @@ public class PlayingView : Photon.PunBehaviour {
     [PunRPC]
     public void ApplyOtherProgressGuages(int playerId, float progress) {
         int cpuId = RuleManager.instance.otherUtsuwaList.Find(u => u.holderId == playerId).CpuId;
-        Debug.Log("aaaa " + playerId.ToString() + ", " + cpuId.ToString() + ", " + progress.ToString());
+        //Debug.Log("aaaa " + playerId.ToString() + ", " + cpuId.ToString() + ", " + progress.ToString());
         otherProgressGuages[cpuId].fillAmount = progress;
         otherProgressLabels[cpuId].text = (progress * 100).ToString("F0");
     }

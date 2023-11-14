@@ -23,7 +23,6 @@ public class GameManager : Photon.PunBehaviour {
 
     public int winnerIsMine; /* -1:not yet 0:other 1:me 2:draw */
 
-    [SerializeField] float BeginningCountDownTime;
     public float timeLimit, remainingTimeLimit;
 
     //TODO:ここじゃないんだよな～～～
@@ -49,7 +48,7 @@ public class GameManager : Photon.PunBehaviour {
 
     [PunRPC]
     private void FirstRoundStart() {
-        CountDownStart(BeginningCountDownTime).Forget();
+        CountDownStart().Forget();
 
         stageManager.SetStage();
 
@@ -71,7 +70,7 @@ public class GameManager : Photon.PunBehaviour {
     public void NextRoundStart() {
         Debug.Log("NextRound!");
         ViewManager.Instance.playingView.ApplyTimeLimit((int)timeLimit);
-        CountDownStart(BeginningCountDownTime).Forget();
+        CountDownStart().Forget();
 
         stageManager.AppearMyPlayerPin().Forget();
 
@@ -94,16 +93,12 @@ public class GameManager : Photon.PunBehaviour {
         backgroundObject[roundManager.currentRound - 1].SetActive(true);
     }
 
-    private async UniTask CountDownStart(float sec) {
-        float remainingTime = sec;
+    private async UniTask CountDownStart() {
 
-        while (remainingTime > 0.0f) {
-            ViewManager.Instance.playingView.BeginningCountDown((int)remainingTime);
-            await UniTask.Delay(1000);
-            remainingTime -= 1.0f;
-        }
-
-        ViewManager.Instance.playingView.BeginningCountDown(0);
+        await UniTask.Delay(2000);
+        ViewManager.Instance.playingView.countDownObject.SetActive(true);
+        await UniTask.Delay(3600);
+        ViewManager.Instance.playingView.countDownObject.SetActive(false);
 
         canPutOnbutsu = true;
         isPlaying = true;
