@@ -12,8 +12,6 @@ public class EndingView : Photon.PunBehaviour {
     [SerializeField] private List<VideoClip> endingVideos = new List<VideoClip>();
     [SerializeField] private GameObject testTopButton;
 
-    [SerializeField] private GameObject standaloneWhiteBack;
-
     private ViewManager viewManager;
 
     private void Awake() {
@@ -26,19 +24,16 @@ public class EndingView : Photon.PunBehaviour {
         if (RuleManager.instance.WholeWinnerIsMe()) {
             videoPlayer.clip = endingVideos.Last();
             videoPlayer.Play();
-            testLabel.text = "Win End";
         } else {
             int id = Random.Range(0, endingVideos.Count - 1);
             videoPlayer.clip = endingVideos[id];
             videoPlayer.Play();
-            testLabel.text = "Lose End " + id.ToString();
         }
 
         if (viewManager == null) {
             viewManager = GameObject.Find("ViewManager").GetComponent<ViewManager>();
         }
-
-        standaloneWhiteBack.SetActive(true);
+        GameObject.Find("ForceRestarter").GetComponent<ForceRestarter>().ableForceRestart = false;
     }
 
     //これが無いと動くけどエラーが出る
@@ -57,6 +52,6 @@ public class EndingView : Photon.PunBehaviour {
     }
 
     private void Restart() {
-        GameObject.Find("ForceRestarter").GetComponent<ForceRestarter>().OnInactivityDetected();
+        GameObject.Find("ForceRestarter").GetComponent<ForceRestarter>().OnlyRestart();
     }
 }
