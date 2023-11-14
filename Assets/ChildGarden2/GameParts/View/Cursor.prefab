@@ -88,6 +88,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac4d77d794fc04cd39b065a758c0971e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointer: {fileID: 4280730878438559205}
+  finger: {fileID: 4280730878438559205}
   idle: {fileID: 21300000, guid: d1abd94e511894d32bdaca1a37f4fd44, type: 3}
   clicked: {fileID: 21300000, guid: a88ad04b93352437f80ab2dc77ea2973, type: 3}

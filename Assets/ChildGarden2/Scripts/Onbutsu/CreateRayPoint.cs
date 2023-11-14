@@ -45,6 +45,9 @@ public class CreateRayPoint : Photon.PunBehaviour {
     void Update() {
         if (GameManager.Instance.canPutOnbutsu) {
 
+            guageRoot.SetActive(true);
+            guageRoot.transform.position = Input.mousePosition + Vector3.up * 90f;
+
             if (Input.GetMouseButtonDown(0)) {
                 pastChargeLevel = 0;
                 currentChargeLevel = 0;
@@ -52,25 +55,17 @@ public class CreateRayPoint : Photon.PunBehaviour {
             }
 
             if (Input.GetMouseButton(0)) {
-                //TODO:????????
                 chargingTime += Time.deltaTime;
                 //chargeSlider.gameObject.SetActive(true);
-                guageRoot.SetActive(true);
-
-                guageRoot.transform.position = Input.mousePosition + Vector3.up * 90f;
 
                 currentChargeLevel = FloatDivide(chargingTime, levelUpTime);
                 if (currentChargeLevel >= chargeLevelMax) { currentChargeLevel = chargeLevelMax; }
 
                 chargeGuage.color = sliderColors[currentChargeLevel];
-                if (currentChargeLevel == 0) {
-                    foreach(var im in objectImages) {
-                        im.gameObject.SetActive(false);
-                    }
-                } else {
-                    foreach (var im in objectImages) {
-                        im.gameObject.SetActive(false);
-                    }
+                foreach (var im in objectImages) {
+                    im.gameObject.SetActive(false);
+                }
+                if (currentChargeLevel != 0) {
                     objectImages[currentChargeLevel - 1].gameObject.SetActive(true);
                 }
 
@@ -92,6 +87,11 @@ public class CreateRayPoint : Photon.PunBehaviour {
                 SoundManager.Instance.PlaySoundEffect(SoundManager.Instance.SE_PutOnbutsu);
                 chargingTime = 0.0f;
                 SoundManager.Instance.ChargeSource.Stop();
+
+                foreach (var im in objectImages) {
+                    im.gameObject.SetActive(false);
+                }
+                chargeGuage.fillAmount = 0.0f;
 
                 Ray ray = camera.ScreenPointToRay(Input.mousePosition);
                 RaycastHit hit;
