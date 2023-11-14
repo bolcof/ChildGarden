@@ -8,6 +8,7 @@ public class ForceRestarter : Photon.PunBehaviour {
     [SerializeField] private float inactivityTime;
     [SerializeField] private float timer = 0f;
     [SerializeField] private List<GameObject> MustDestroyObject;
+    public bool ableForceRestart;
 
     void Update() {
         if (SceneManager.GetActiveScene().name != "Launcher") {
@@ -49,32 +50,26 @@ public class ForceRestarter : Photon.PunBehaviour {
     }
     public void OnInactivityDetected() {
         Debug.Log("OnInactivityDetected");
-        photonView.RPC(nameof(RoomBreakAndRestart), PhotonTargets.AllBuffered);
-        //photonView.RPC(nameof(DestroyGameManager), PhotonTargets.All);
-        //photonView.RPC(nameof(SendPushingTopButton), PhotonTargets.All);
+        if (ableForceRestart) {
+            photonView.RPC(nameof(RoomBreakAndRestart), PhotonTargets.AllBuffered);
+        }
     }
 
     public override void OnPhotonPlayerDisconnected(PhotonPlayer otherPlayer) {
         Debug.Log("OnPhotonPlayerDisconnected");
         base.OnPhotonPlayerDisconnected(otherPlayer);
-        photonView.RPC(nameof(RoomBreakAndRestart), PhotonTargets.AllBuffered);
-    }
-
-    /*[PunRPC]
-    public void DestroyGameManager() {
-        if (SceneManager.GetActiveScene().name == "MainGame") {
-            Destroy(GameManager.Instance.gameObject);
-            Destroy(ViewManager.Instance.gameObject);
+        if (ableForceRestart) {
+            photonView.RPC(nameof(RoomBreakAndRestart), PhotonTargets.AllBuffered);
         }
     }
 
-    [PunRPC]
-    public void SendPushingTopButton() {
-        Debug.Log("Send pushing...");
-        PhotonNetwork.automaticallySyncScene = true;
+    public void OnlyRestart() {
+        foreach (var obj in MustDestroyObject) {
+            Destroy(obj);
+        }
         SoundManager.Instance.PlayBgm(SoundManager.Instance.BGM_Title);
-        PhotonNetwork.LoadLevel("Launcher");
-    }*/
+        PhotonNetwork.LoadLevel("Restarter");
+    }
 
     [PunRPC]
     public void RoomBreakAndRestart() {

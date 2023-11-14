@@ -16,6 +16,7 @@ public class LauncherView : Photon.PunBehaviour {
         playButton.SetActive(true);
         buttonShadow.SetActive(true);
         readyLabel.SetActive(false);
+        GameObject.Find("ForceRestarter").GetComponent<ForceRestarter>().ableForceRestart = true;
     }
 
     public void ResetView() {

@@ -5,6 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class Restarter : MonoBehaviour {
     void Start() {
+        if (PhotonNetwork.inRoom) {
+            PhotonNetwork.LeaveRoom();
+        }
         SceneManager.LoadScene("MainGame");
     }
 }
