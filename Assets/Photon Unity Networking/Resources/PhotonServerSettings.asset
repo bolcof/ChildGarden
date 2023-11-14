@@ -101,4 +101,6 @@ MonoBehaviour:
   - ToRuleSelectFromPlayingView
   - ToRuleSelectFromZizowView
   - RoomBreakAndRestart
+  - ApplyOtherProgressGuages
+  - WhiteOut
   DisableAutoOpenWizard: 1

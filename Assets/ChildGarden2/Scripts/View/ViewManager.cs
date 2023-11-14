@@ -8,6 +8,9 @@ public class ViewManager : MonoBehaviour {
     public GameObject launcherViewObj;
     public LauncherView launcherView;
 
+    public GameObject matchingViewObj;
+    public MatchingView matchingView;
+
     public GameObject ruleExplainViewObj;
     public RuleExplainView ruleExplainView;
 
@@ -29,6 +32,7 @@ public class ViewManager : MonoBehaviour {
         }
 
         launcherViewObj.SetActive(true);
+        matchingViewObj.SetActive(false);
         ruleExplainViewObj.SetActive(false);
         playingViewObj.SetActive(false);
         ruleSelectViewObj.SetActive(false);

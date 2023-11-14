@@ -11,7 +11,7 @@ public class RoomConector : Photon.PunBehaviour {
     [SerializeField] private string roomId;
     public string computerName;
 
-    public int PlayerNum = 2;
+    public int PlayerNum;
 
     private void Awake() {
         if (Instance == null) {
@@ -53,15 +53,10 @@ public class RoomConector : Photon.PunBehaviour {
     public void PushJoin() {
         Debug.Log("try to join random room");
         PhotonNetwork.JoinRandomRoom();
-        /*RoomOptions roomOptions = new RoomOptions();
-        roomOptions.MaxPlayers = (byte)PlayerNum;
-        roomOptions.PublishUserId = true;
-        PhotonNetwork.JoinOrCreateRoom(roomId, roomOptions, TypedLobby.Default);*/
-    }
 
-    /*public override void OnPhotonJoinRoomFailed(object[] codeAndMsg) {
-        Debug.Log("ルームの入室に失敗しました。");
-    }*/
+        ViewManager.Instance.matchingViewObj.SetActive(true);
+        ViewManager.Instance.matchingView.Set().Forget();
+    }
 
     public override void OnPhotonRandomJoinFailed(object[] codeAndMsg) {
         Debug.Log("ルームのrandom入室に失敗しました。");
@@ -110,5 +105,6 @@ public class RoomConector : Photon.PunBehaviour {
         ViewManager.Instance.ruleExplainViewObj.SetActive(true);
         ViewManager.Instance.ruleExplainView.ResetView();
         ViewManager.Instance.launcherViewObj.SetActive(false);
+        ViewManager.Instance.matchingView.Disappear().Forget();
     }
 }

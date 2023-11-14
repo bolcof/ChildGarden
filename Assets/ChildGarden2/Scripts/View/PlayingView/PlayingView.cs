@@ -186,7 +186,7 @@ public class PlayingView : Photon.PunBehaviour {
     [PunRPC]
     public void ApplyOtherProgressGuages(int playerId, float progress) {
         int cpuId = RuleManager.instance.otherUtsuwaList.Find(u => u.holderId == playerId).CpuId;
-        Debug.Log("aaaa " + playerId.ToString() + ", " + cpuId.ToString() + ", " + progress.ToString());
+        //Debug.Log("aaaa " + playerId.ToString() + ", " + cpuId.ToString() + ", " + progress.ToString());
         otherProgressGuages[cpuId].fillAmount = progress;
         otherProgressLabels[cpuId].text = (progress * 100).ToString("F0");
     }
