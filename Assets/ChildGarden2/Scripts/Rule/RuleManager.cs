@@ -165,10 +165,10 @@ public class RuleManager : Photon.PunBehaviour {
     public bool CheckRule_4() {
         float missionNum = rules[4].missionNum;
         int targetCount =
-            Mathf.Min(OnbutsuList.FindAll(on => on.holderId == RoomConector.Instance.MyPlayerId() && on.landing_Utsuwa && on.onbutsuSize == 1).Count, 2)
-            + Mathf.Min(OnbutsuList.FindAll(on => on.holderId == RoomConector.Instance.MyPlayerId() && on.landing_Utsuwa && on.onbutsuSize == 2).Count, 2)
-            + Mathf.Min(OnbutsuList.FindAll(on => on.holderId == RoomConector.Instance.MyPlayerId() && on.landing_Utsuwa && on.onbutsuSize == 3).Count, 2)
-            + Mathf.Min(OnbutsuList.FindAll(on => on.holderId == RoomConector.Instance.MyPlayerId() && on.landing_Utsuwa && on.onbutsuSize == 4).Count, 2);
+            Mathf.Min(OnbutsuList.FindAll(on => on.holderId == RoomConector.Instance.MyPlayerId() && on.landing_Utsuwa && on.onbutsuSize == 1).Count, 1)
+            + Mathf.Min(OnbutsuList.FindAll(on => on.holderId == RoomConector.Instance.MyPlayerId() && on.landing_Utsuwa && on.onbutsuSize == 2).Count, 1)
+            + Mathf.Min(OnbutsuList.FindAll(on => on.holderId == RoomConector.Instance.MyPlayerId() && on.landing_Utsuwa && on.onbutsuSize == 3).Count, 1)
+            + Mathf.Min(OnbutsuList.FindAll(on => on.holderId == RoomConector.Instance.MyPlayerId() && on.landing_Utsuwa && on.onbutsuSize == 4).Count, 1);
 
         ApplyProgressState(targetCount / missionNum);
 
@@ -181,18 +181,15 @@ public class RuleManager : Photon.PunBehaviour {
     }
     public bool CheckRule_5() {
         float missionNum = Rule05_GoalLine.transform.position.y;
-        Debug.Log("mission:" + missionNum.ToString());
-
         float highestOnbutsuHeight = myUtsuwa.transform.position.y;
+
         foreach (var on in OnbutsuList.FindAll(onb => onb.landing_Utsuwa && onb.StagingId == RoomConector.Instance.MyPlayerId() && onb.hasLand_Utsuwa)) {
             if (highestOnbutsuHeight < on.transform.position.y) {
                 highestOnbutsuHeight = on.transform.position.y;
             }
         }
 
-        Debug.Log("highest:" + highestOnbutsuHeight.ToString());
         float targetCount = highestOnbutsuHeight;
-
         ApplyProgressState(Devide5Per((targetCount - myUtsuwa.transform.position.y) / (missionNum - myUtsuwa.transform.position.y)));
 
         if (targetCount >= missionNum) {
