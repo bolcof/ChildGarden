@@ -76,6 +76,7 @@ public class RuleSelectView : Photon.PunBehaviour {
             rsb.SetHighlight(false);
         }
         buttonsList.Find(r => r.thisButtonsRuleId == ruleId).SetHighlight(true);
+        Debug.Log("aaaa PushRule " + buttonsList.Find(r => r.thisButtonsRuleId == ruleId).name);
         ruleIndex = ruleId;
         photonView.RPC(nameof(ChangeOthersHighlight), PhotonTargets.OthersBuffered, ruleIndex);
 
@@ -118,6 +119,7 @@ public class RuleSelectView : Photon.PunBehaviour {
 
     [PunRPC]
     public void ChangeOthersHighlight(int ruleId) {
+        Debug.Log("aaaa ChangeOthersHighlight " + ruleId.ToString());
         foreach (var rsb in buttonsList) {
             rsb.SetHighlight(false);
         }

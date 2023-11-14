@@ -82,11 +82,11 @@ public class Onbutsu : MonoBehaviour {
                 }
                 break;
             case "Floor":
-                Debug.Log("Touch Floor int switch");
+                Debug.Log("Touch Floor");
                 Dropped();
                 break;
             default:
-                Debug.Log("Touch " + collision.gameObject.tag);
+                Debug.Log("Touch " + collision.gameObject.name);
                 break;
         }
     }

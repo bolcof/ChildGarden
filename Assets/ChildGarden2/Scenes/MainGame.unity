@@ -2491,7 +2491,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2130080355401173401, guid: 3275ccc9d3c1b4bd5bc16be2dcb3cc03, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8874508272541624975, guid: 3275ccc9d3c1b4bd5bc16be2dcb3cc03, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2536,7 +2536,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4495545411411341241, guid: 3275ccc9d3c1b4bd5bc16be2dcb3cc03, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 3275ccc9d3c1b4bd5bc16be2dcb3cc03, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
