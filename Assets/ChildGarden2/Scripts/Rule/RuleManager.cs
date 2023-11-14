@@ -106,7 +106,6 @@ public class RuleManager : Photon.PunBehaviour {
         }
     }
 
-    //Ruleごとに作る
     public bool CheckRule_0() {
         float missionNum = rules[0].missionNum;
         int targetCount = OnbutsuList.FindAll(on => on.dropped && on.holderId == RoomConector.Instance.MyPlayerId()).Count;
@@ -120,7 +119,6 @@ public class RuleManager : Photon.PunBehaviour {
             return false;
         }
     }
-
     public bool CheckRule_1() {
         float missionNum = rules[1].missionNum;
         int targetCount = OnbutsuList.FindAll(on => on.landing_Utsuwa && on.StagingId == RoomConector.Instance.MyPlayerId()).Count;
@@ -134,7 +132,6 @@ public class RuleManager : Photon.PunBehaviour {
             return false;
         }
     }
-
     public bool CheckRule_2() {
         float missionNum = rules[2].missionNum;
         int targetCount = OnbutsuList.FindAll(on => on.landing_Utsuwa && on.holderId == RoomConector.Instance.MyPlayerId()).Count;
@@ -161,7 +158,6 @@ public class RuleManager : Photon.PunBehaviour {
             return false;
         }
     }
-
     public bool CheckRule_4() {
         float missionNum = rules[4].missionNum;
         int targetCount =
@@ -210,7 +206,6 @@ public class RuleManager : Photon.PunBehaviour {
                 SoundManager.Instance.PlaySoundEffect(SoundManager.Instance.SE_Progress_minus);
             }
             pastProgressRatio = progressRatio;
-            myUtsuwa.holdersProgress = progressRatio;
             ViewManager.Instance.playingView.ApplyProgressBar(progressRatio);
         }
     }
