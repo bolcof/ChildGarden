@@ -436,7 +436,7 @@ MonoBehaviour:
   SE_Talking: {fileID: 8300000, guid: 082176c63b1acd2418e4354a008b3cd0, type: 3}
   SE_PushGamePlay: {fileID: 8300000, guid: 3dec87bdce08e324d8bebdb177d60783, type: 3}
   SE_RuleTextAppearing: {fileID: 8300000, guid: 082176c63b1acd2418e4354a008b3cd0, type: 3}
-  SE_CountDown: {fileID: 0}
+  SE_CountDown: {fileID: 8300000, guid: ccb1a63b9b64f0748bd83027d258f4f7, type: 3}
   SE_Progress: {fileID: 8300000, guid: cd09e894639fe814f833f53b63d6a84a, type: 3}
   SE_Progress_minus: {fileID: 8300000, guid: d9f67165d8aa2f440945c6aa5747fd68, type: 3}
   SE_PutOnbutsu: {fileID: 8300000, guid: 3dec87bdce08e324d8bebdb177d60783, type: 3}
@@ -447,7 +447,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 483e2fac634d8e54cae75e3244413ad7, type: 3}
   - {fileID: 8300000, guid: 268ec925eb1cbbc47a66b06045b7e2ad, type: 3}
   SE_ChargeLevelUp: {fileID: 8300000, guid: 21968d4e87ea74c47b528fb97d15695e, type: 3}
-  SE_RoundFinish: {fileID: 8300000, guid: 3dec87bdce08e324d8bebdb177d60783, type: 3}
+  SE_RoundFinish: {fileID: 8300000, guid: 7a6a456c22b73df4db67a5165cbcd05e, type: 3}
   SE_SpawnZizou: {fileID: 8300000, guid: 3dec87bdce08e324d8bebdb177d60783, type: 3}
   SE_CloseDoor: {fileID: 8300000, guid: bf5cd0d1dfaacb64bb1c8a57acece92d, type: 3}
   SE_OpenDoor: {fileID: 8300000, guid: 5407efafbe2ff0243a7523d2f9de6b86, type: 3}

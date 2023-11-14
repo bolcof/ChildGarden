@@ -33,7 +33,6 @@ public class CreateRayPoint : Photon.PunBehaviour {
         camera = GetComponent<Camera>();
         chargingTime = 0.0f;
         guageRoot.SetActive(false);
-        //chargeSlider.gameObject.SetActive(false);
         chargeGuage.fillAmount = 0.0f;
         currentChargeLevel = -1;
         pastChargeLevel = -1;
