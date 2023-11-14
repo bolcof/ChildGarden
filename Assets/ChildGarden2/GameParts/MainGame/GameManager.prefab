@@ -56,7 +56,6 @@ MonoBehaviour:
   canPutOnbutsu: 0
   canOperateUI: 0
   winnerIsMine: 0
-  BeginningCountDownTime: 5
   timeLimit: 80
   remainingTimeLimit: 80
   backgroundObject:
@@ -90,8 +89,6 @@ MonoBehaviour:
   mySpawnPositionId: -1
   myUtsuwaId: -1
   myUtsuwa: {fileID: 0}
-  otherFloors: []
-  otherStages: []
 --- !u!114 &2530666752715617214
 MonoBehaviour:
   m_ObjectHideFlags: 0
