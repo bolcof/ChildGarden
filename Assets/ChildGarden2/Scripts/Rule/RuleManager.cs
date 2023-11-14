@@ -181,7 +181,6 @@ public class RuleManager : Photon.PunBehaviour {
     }
     public bool CheckRule_5() {
         float missionNum = Rule05_GoalLine.transform.position.y;
-        Debug.Log("mission:" + missionNum.ToString());
 
         float highestOnbutsuHeight = myUtsuwa.transform.position.y;
         foreach (var on in OnbutsuList.FindAll(onb => onb.landing_Utsuwa && onb.StagingId == RoomConector.Instance.MyPlayerId() && onb.hasLand_Utsuwa)) {
@@ -190,9 +189,7 @@ public class RuleManager : Photon.PunBehaviour {
             }
         }
 
-        Debug.Log("highest:" + highestOnbutsuHeight.ToString());
         float targetCount = highestOnbutsuHeight;
-
         ApplyProgressState(Devide5Per((targetCount - myUtsuwa.transform.position.y) / (missionNum - myUtsuwa.transform.position.y)));
 
         if (targetCount >= missionNum) {
