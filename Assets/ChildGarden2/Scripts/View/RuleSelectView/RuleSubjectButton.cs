@@ -19,7 +19,6 @@ public class RuleSubjectButton : MonoBehaviour {
         if (GameManager.Instance.canOperateUI) {
             if (!selected) {
                 ruleSelectView.PushRule(thisButtonsRuleId);
-                Debug.Log("aaaa Push" + thisButtonsRuleId.ToString());
             } else {
                 ruleSelectView.RepushRule();
             }
@@ -27,7 +26,6 @@ public class RuleSubjectButton : MonoBehaviour {
     }
 
     public void SetHighlight(bool on) {
-        Debug.Log("aaaa SetHighlight " + thisButtonsRuleId.ToString()); ;
         if(on) {
             GetComponent<Image>().color = new Color(0.5f, 1.0f, 0.5f, 1.0f);
             image.sprite = selcetedImage;

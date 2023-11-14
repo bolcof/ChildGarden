@@ -16,9 +16,6 @@ public class UtsuwaManager : Photon.PunBehaviour {
 
     public Utsuwa myUtsuwa;
 
-    public List<FloorCollision> otherFloors;
-    public List<StageCollision> otherStages;
-
     public void SetStage() {
 
         Debug.Log("Game Start");
