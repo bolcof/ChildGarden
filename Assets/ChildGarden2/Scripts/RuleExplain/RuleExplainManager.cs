@@ -24,7 +24,8 @@ public class RuleExplainManager : Photon.PunBehaviour {
             if (finishRuleReadCount == RoomConector.Instance.PlayerNum && !completed) {
                 Debug.Log("go game");
                 completed = true;
-                GoGameDelayed(2000).Forget();
+                GoGameDelayed(900).Forget();
+                photonView.RPC(nameof(WhiteOut), PhotonTargets.AllBuffered);
             }
         }
     }
@@ -45,6 +46,12 @@ public class RuleExplainManager : Photon.PunBehaviour {
         } else {
             // ここにオブジェクトの状態を受信して更新するコードを書きます
         }
+    }
+
+    [PunRPC]
+    public void WhiteOut() {
+        Debug.Log("white");
+        GameObject.Find("FaderCanvas").GetComponent<Fader>().Transit(2.7f);
     }
 
     [PunRPC]
