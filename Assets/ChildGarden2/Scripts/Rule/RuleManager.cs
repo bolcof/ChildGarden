@@ -41,6 +41,7 @@ public class RuleManager : Photon.PunBehaviour {
     public void SetFirstRound() {
         currentRule = rules.Find(r => r.id == firstStageRuleId);
         isWinnerDecided = false;
+        Debug.Log("SetFirstRound");
         SetSpecialObject(firstStageRuleId);
     }
 
@@ -50,13 +51,22 @@ public class RuleManager : Photon.PunBehaviour {
     }
 
     private void SetSpecialObject(int id) {
+        Debug.Log("SetSpecialObject");
         Rule05_GoalLine.SetActive(false);
         Rule06_BigUtsuwa.SetActive(false);
+        myUtsuwa.gameObject.SetActive(true);
+        foreach (var u in otherUtsuwaList) {
+            u.gameObject.SetActive(true);
+        }
 
         if (id == 5) {
             Rule05_GoalLine.SetActive(true);
         } else if (id == 6) {
             Rule06_BigUtsuwa.SetActive(true);
+            myUtsuwa.gameObject.SetActive(false);
+            foreach(var u in otherUtsuwaList) {
+                u.gameObject.SetActive(false);
+            }
         }
     }
 
@@ -89,6 +99,9 @@ public class RuleManager : Photon.PunBehaviour {
                     break;
                 case 5:
                     CheckRule_5();
+                    break;
+                case 6:
+                    CheckRule_6();
                     break;
                 default:
                     Debug.LogError("RuleID is out of range!");
@@ -165,10 +178,10 @@ public class RuleManager : Photon.PunBehaviour {
     public bool CheckRule_4() {
         float missionNum = rules[4].missionNum;
         int targetCount =
-            Mathf.Min(OnbutsuList.FindAll(on => on.holderId == RoomConector.Instance.MyPlayerId() && on.landing_Utsuwa && on.onbutsuSize == 1).Count, 2)
-            + Mathf.Min(OnbutsuList.FindAll(on => on.holderId == RoomConector.Instance.MyPlayerId() && on.landing_Utsuwa && on.onbutsuSize == 2).Count, 2)
-            + Mathf.Min(OnbutsuList.FindAll(on => on.holderId == RoomConector.Instance.MyPlayerId() && on.landing_Utsuwa && on.onbutsuSize == 3).Count, 2)
-            + Mathf.Min(OnbutsuList.FindAll(on => on.holderId == RoomConector.Instance.MyPlayerId() && on.landing_Utsuwa && on.onbutsuSize == 4).Count, 2);
+            Mathf.Min(OnbutsuList.FindAll(on => on.holderId == RoomConector.Instance.MyPlayerId() && on.landing_Utsuwa && on.onbutsuSize == 1).Count, 1)
+            + Mathf.Min(OnbutsuList.FindAll(on => on.holderId == RoomConector.Instance.MyPlayerId() && on.landing_Utsuwa && on.onbutsuSize == 2).Count, 1)
+            + Mathf.Min(OnbutsuList.FindAll(on => on.holderId == RoomConector.Instance.MyPlayerId() && on.landing_Utsuwa && on.onbutsuSize == 3).Count, 1)
+            + Mathf.Min(OnbutsuList.FindAll(on => on.holderId == RoomConector.Instance.MyPlayerId() && on.landing_Utsuwa && on.onbutsuSize == 4).Count, 1);
 
         ApplyProgressState(targetCount / missionNum);
 
@@ -195,6 +208,19 @@ public class RuleManager : Photon.PunBehaviour {
         if (targetCount >= missionNum) {
             GameManager.Instance.MyPlayerWin();
             Rule05_GoalLine.SetActive(false);
+            return true;
+        } else {
+            return false;
+        }
+    }
+    public bool CheckRule_6() {
+        float missionNum = rules[6].missionNum;
+        int targetCount = OnbutsuList.FindAll(on => on.landing_Utsuwa && on.hasLand_Utsuwa).Count;
+
+        ApplyProgressState(targetCount / missionNum);
+
+        if (targetCount >= missionNum) {
+            GameManager.Instance.MyPlayerWin();
             return true;
         } else {
             return false;
