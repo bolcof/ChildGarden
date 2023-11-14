@@ -124,7 +124,7 @@ MonoBehaviour:
     id: 0
     missionNum: 0
     explainText: aaa
-  firstStageRuleId: 5
+  firstStageRuleId: 1
   progressRatio: 0
   pastProgressRatio: 0
   isWinnerDecided: 0
