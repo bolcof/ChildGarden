@@ -10,7 +10,6 @@ public class EndingView : Photon.PunBehaviour {
     [SerializeField] private VideoPlayer videoPlayer;
     [SerializeField] private TextMeshProUGUI testLabel;
     [SerializeField] private List<VideoClip> endingVideos = new List<VideoClip>();
-    [SerializeField] private GameObject testTopButton;
 
     private ViewManager viewManager;
 
@@ -19,16 +18,15 @@ public class EndingView : Photon.PunBehaviour {
     }
 
     public void Set() {
-        testTopButton.SetActive(false);
+        GameObject.Find("Cursor").GetComponent<CursorBehaviour>().displayed = false;
 
         if (RuleManager.instance.WholeWinnerIsMe()) {
             videoPlayer.clip = endingVideos.Last();
-            videoPlayer.Play();
         } else {
             int id = Random.Range(0, endingVideos.Count - 1);
             videoPlayer.clip = endingVideos[id];
-            videoPlayer.Play();
         }
+        videoPlayer.Play();
 
         if (viewManager == null) {
             viewManager = GameObject.Find("ViewManager").GetComponent<ViewManager>();
