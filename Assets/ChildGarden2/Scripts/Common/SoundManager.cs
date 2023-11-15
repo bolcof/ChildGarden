@@ -58,4 +58,10 @@ public class SoundManager : MonoBehaviour {
         SeSource.loop = false;
         SeSource.Stop();
     }
+
+    public void AllSoundStop() {
+        ChargeSource.Stop();
+        SeSource.Stop();
+        BgmSource.Stop();
+    }
 }

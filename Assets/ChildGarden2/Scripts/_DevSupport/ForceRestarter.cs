@@ -64,6 +64,7 @@ public class ForceRestarter : Photon.PunBehaviour {
     }
 
     public void OnlyRestart() {
+        SoundManager.Instance.AllSoundStop();
         foreach (var obj in MustDestroyObject) {
             Destroy(obj);
         }
@@ -73,6 +74,7 @@ public class ForceRestarter : Photon.PunBehaviour {
 
     [PunRPC]
     public void RoomBreakAndRestart() {
+        SoundManager.Instance.AllSoundStop();
         foreach (var obj in MustDestroyObject) {
             Destroy(obj);
         }
