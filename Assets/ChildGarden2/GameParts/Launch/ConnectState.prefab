@@ -92,7 +92,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   panel: {fileID: 6416403647603001113}
   label: {fileID: 2872941864819531468}
-  defaultAppear: 1
+  defaultAppear: 0
 --- !u!114 &7001311431516604592
 MonoBehaviour:
   m_ObjectHideFlags: 0
