@@ -38,6 +38,7 @@ public class ZizouView : Photon.PunBehaviour {
 
         //TODO:Unitask timing
         toRuleSelectButton.SetActive(false);
+        GameManager.Instance.ResetWorld();
         zizouVideoPlayer.Play();
     }
 
