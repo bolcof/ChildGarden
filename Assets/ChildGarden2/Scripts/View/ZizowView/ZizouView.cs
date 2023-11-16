@@ -10,7 +10,6 @@ public class ZizouView : Photon.PunBehaviour {
     [SerializeField] VideoPlayer zizouVideoPlayer;
     [SerializeField] GameObject zizouRoot;
     [SerializeField] TextMeshProUGUI zizouInfoLabel;
-    [SerializeField] GameObject toRuleSelectButton;
 
     private int hasWin;
 
@@ -36,9 +35,7 @@ public class ZizouView : Photon.PunBehaviour {
         }
         hasWin = isWinner;
 
-        //TODO:Unitask timing
-        toRuleSelectButton.SetActive(false);
-        GameManager.Instance.ResetWorld();
+        //TODO:Unitask timing 
         zizouVideoPlayer.Play();
     }
 

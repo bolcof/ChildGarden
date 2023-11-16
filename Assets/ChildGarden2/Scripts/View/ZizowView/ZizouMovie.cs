@@ -15,6 +15,7 @@ public class ZizouMovie : Photon.PunBehaviour {
     }
 
     public void Set(int isWinner) {
+        GameManager.Instance.ResetWorld();
         Debug.Log("ZizowMovie Set");
         if (PhotonNetwork.isMasterClient) {
             Debug.Log("ZizowMovie Master");
