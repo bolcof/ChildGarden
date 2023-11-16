@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Video;
 
 public class RuleExplainView : MonoBehaviour {
     public GameObject[] explainPages;
@@ -6,6 +7,7 @@ public class RuleExplainView : MonoBehaviour {
     [SerializeField] private GameObject fripButton;
     [SerializeField] private GameObject startButton;
     [SerializeField] private GameObject readyLabel;
+    [SerializeField] private VideoPlayer vp;
 
     public void ResetView() {
         SoundManager.Instance.PlayBgm(SoundManager.Instance.BGM_Introduction);
@@ -32,6 +34,9 @@ public class RuleExplainView : MonoBehaviour {
             fripButton.SetActive(false);
             startButton.SetActive(true);
         }
+
+        vp.time = 0.0f;
+        vp.Play();
     }
 
     public void PushHasRead() {

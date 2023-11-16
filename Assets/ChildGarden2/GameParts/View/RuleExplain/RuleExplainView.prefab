@@ -1091,6 +1091,7 @@ MonoBehaviour:
   fripButton: {fileID: 6711088862514298941}
   startButton: {fileID: 8320870901235016453}
   readyLabel: {fileID: 2538797129109271660}
+  vp: {fileID: 1881491115998618740}
 --- !u!1 &4054054801356505233
 GameObject:
   m_ObjectHideFlags: 0
