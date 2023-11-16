@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using Cysharp.Threading.Tasks;
 
 public class RuleManager : Photon.PunBehaviour {
     public static RuleManager instance;
@@ -29,6 +30,9 @@ public class RuleManager : Photon.PunBehaviour {
 
     [SerializeField] private GameObject Rule05_GoalLine, Rule06_BigUtsuwa;
 
+    private bool firstCommitAppeared, nearToWinAppeared;
+    public bool nearToLoseAppeared;
+
     private void Awake() {
         if (instance == null) {
             instance = this;
@@ -42,6 +46,9 @@ public class RuleManager : Photon.PunBehaviour {
         currentRule = rules.Find(r => r.id == firstStageRuleId);
         isWinnerDecided = false;
         SetSpecialObject(firstStageRuleId);
+        firstCommitAppeared = false;
+        nearToWinAppeared = false;
+        nearToLoseAppeared = false;
     }
 
     public void SetRule(int _ruleId) {
@@ -64,6 +71,9 @@ public class RuleManager : Photon.PunBehaviour {
         OnbutsuList.Clear();
         isWinnerDecided = false;
         progressRatio = pastProgressRatio = 0.0f;
+        firstCommitAppeared = false;
+        nearToWinAppeared = false;
+        nearToLoseAppeared = false;
     }
 
     private void Update() {
@@ -202,6 +212,13 @@ public class RuleManager : Photon.PunBehaviour {
         if (pastProgressRatio != progressRatio) {
             if (pastProgressRatio < progressRatio) {
                 SoundManager.Instance.PlaySoundEffect(SoundManager.Instance.SE_Progress);
+                if (!firstCommitAppeared) {
+                    ViewManager.Instance.playingView.angelSpeaking.FirstCommit().Forget();
+                    firstCommitAppeared = true;
+                } else if (progressRatio >= 0.8f && !nearToWinAppeared) {
+                    ViewManager.Instance.playingView.angelSpeaking.NearToWin().Forget();
+                    nearToWinAppeared = true;
+                }
             } else {
                 SoundManager.Instance.PlaySoundEffect(SoundManager.Instance.SE_Progress_minus);
             }

@@ -23,6 +23,8 @@ public class PlayingView : Photon.PunBehaviour {
     [SerializeField] List<Image> otherProgressGuages;
     [SerializeField] List<TextMeshProUGUI> otherProgressLabels;
 
+    public AngelSpeaking angelSpeaking;
+
     [SerializeField] private GameObject finishLabel;
     [SerializeField] private Image gateBack;
     [SerializeField] private RectTransform gateR, gateL;
@@ -187,6 +189,10 @@ public class PlayingView : Photon.PunBehaviour {
     public void ApplyOtherProgressGuages(int playerId, float progress) {
         int cpuId = RuleManager.instance.otherUtsuwaList.Find(u => u.holderId == playerId).CpuId;
         //Debug.Log("aaaa " + playerId.ToString() + ", " + cpuId.ToString() + ", " + progress.ToString());
+        if (!RuleManager.instance.nearToLoseAppeared && progress >= 0.8f) {
+            angelSpeaking.NearToLose().Forget();
+            RuleManager.instance.nearToLoseAppeared = true;
+        }
         otherProgressGuages[cpuId].fillAmount = progress;
         otherProgressLabels[cpuId].text = (progress * 100).ToString("F0");
     }
