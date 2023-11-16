@@ -73,8 +73,6 @@ public class GameManager : Photon.PunBehaviour {
         CountDownStart().Forget();
 
         stageManager.AppearMyPlayerPin().Forget();
-
-        ResetWorld();
         ruleManager.ResetCount();
 
         roundManager.currentRound++;
@@ -119,7 +117,7 @@ public class GameManager : Photon.PunBehaviour {
         }
     }
 
-    private void ResetWorld() {
+    public void ResetWorld() {
         foreach (var obj in GameObject.FindGameObjectsWithTag("Onbutu")) {
             Destroy(obj);
         }
