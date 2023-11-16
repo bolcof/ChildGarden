@@ -2060,18 +2060,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 2698542911221315491, guid: 73fec1ab5d0d341798c02780d8064799, type: 3}
-      propertyPath: m_fontAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: 4a5b7b5ac02394c5a8c271f97ab17725, type: 2}
-    - target: {fileID: 2698542911221315491, guid: 73fec1ab5d0d341798c02780d8064799, type: 3}
-      propertyPath: m_sharedMaterial
-      value: 
-      objectReference: {fileID: 8656363300295478683, guid: 4a5b7b5ac02394c5a8c271f97ab17725, type: 2}
-    - target: {fileID: 2698542911221315491, guid: 73fec1ab5d0d341798c02780d8064799, type: 3}
-      propertyPath: m_hasFontAssetChanged
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3072746111910759177, guid: 73fec1ab5d0d341798c02780d8064799, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -2195,22 +2183,6 @@ PrefabInstance:
     - target: {fileID: 6296577792446821356, guid: 73fec1ab5d0d341798c02780d8064799, type: 3}
       propertyPath: instantiationId
       value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6511799604080227909, guid: 73fec1ab5d0d341798c02780d8064799, type: 3}
-      propertyPath: m_fontSize
-      value: 32.95
-      objectReference: {fileID: 0}
-    - target: {fileID: 6511799604080227909, guid: 73fec1ab5d0d341798c02780d8064799, type: 3}
-      propertyPath: m_fontAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: 0b953409493fb4b5ba5e3f03368464ef, type: 2}
-    - target: {fileID: 6511799604080227909, guid: 73fec1ab5d0d341798c02780d8064799, type: 3}
-      propertyPath: m_sharedMaterial
-      value: 
-      objectReference: {fileID: 6657059325338634274, guid: 0b953409493fb4b5ba5e3f03368464ef, type: 2}
-    - target: {fileID: 6511799604080227909, guid: 73fec1ab5d0d341798c02780d8064799, type: 3}
-      propertyPath: m_hasFontAssetChanged
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6668235249083816637, guid: 73fec1ab5d0d341798c02780d8064799, type: 3}
       propertyPath: viewIdField
