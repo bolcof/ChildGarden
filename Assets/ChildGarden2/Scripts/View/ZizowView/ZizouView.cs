@@ -9,7 +9,6 @@ public class ZizouView : Photon.PunBehaviour {
     [SerializeField] List<VideoClip> zizouVideoList = new List<VideoClip>();
     [SerializeField] VideoPlayer zizouVideoPlayer;
     [SerializeField] GameObject zizouRoot;
-    [SerializeField] TextMeshProUGUI zizouInfoLabel;
 
     private int hasWin;
 
@@ -60,7 +59,6 @@ public class ZizouView : Photon.PunBehaviour {
     [PunRPC]
     public void SetZizouMovieId(int id) {
         zizouVideoPlayer.clip = zizouVideoList[id];
-        zizouInfoLabel.text = "Zizou " + id.ToString();
     }
 
     [PunRPC]
