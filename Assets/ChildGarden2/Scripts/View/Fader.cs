@@ -6,6 +6,8 @@ using DG.Tweening;
 
 public class Fader : MonoBehaviour {
     [SerializeField] private Image white;
+    [SerializeField] private Image black;
+
     private void Start() {
         white.enabled = true;
         white.color = Color.white;
