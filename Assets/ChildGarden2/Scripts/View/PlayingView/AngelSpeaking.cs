@@ -8,8 +8,10 @@ using System.Threading.Tasks;
 
 public class AngelSpeaking : MonoBehaviour {
     [SerializeField] VideoPlayer player_nutral, player_sad, player_happy;
-    [SerializeField] Image firstCommit, nearToWin, nearToLose;
+    [SerializeField] Image firstCommit, nearToWin, nearToLose, advance, other;
     private bool ableToSpeak;
+
+    private bool advanceAppeared, otherAppeared;
 
     private void Awake() {
         player_sad.loopPointReached += OnEndVideo_Sad;
@@ -21,6 +23,11 @@ public class AngelSpeaking : MonoBehaviour {
         firstCommit.gameObject.SetActive(false);
         nearToWin.gameObject.SetActive(false);
         nearToLose.gameObject.SetActive(false);
+        advance.gameObject.SetActive(false);
+        other.gameObject.SetActive(false);
+
+        advanceAppeared = false;
+        otherAppeared = false;
     }
 
     public void OnEndVideo_Sad(VideoPlayer vp) {
@@ -39,7 +46,6 @@ public class AngelSpeaking : MonoBehaviour {
 
     public async UniTask FirstCommit() {
         if (ableToSpeak) {
-            Debug.Log("speak 0");
             player_nutral.gameObject.SetActive(false);
             player_happy.gameObject.SetActive(true);
             player_happy.Play();
@@ -53,7 +59,6 @@ public class AngelSpeaking : MonoBehaviour {
 
     public async UniTask NearToWin() {
         if (ableToSpeak) {
-            Debug.Log("speak 1");
             player_nutral.gameObject.SetActive(false);
             player_happy.gameObject.SetActive(true);
             player_happy.Play();
@@ -63,12 +68,10 @@ public class AngelSpeaking : MonoBehaviour {
             nearToWin.gameObject.SetActive(false);
             ableToSpeak = true;
         }
-        Debug.Log("speak -1");
     }
 
     public async UniTask NearToLose() {
         if (ableToSpeak) {
-            Debug.Log("speak 2");
             player_nutral.gameObject.SetActive(false);
             player_sad.gameObject.SetActive(true);
             player_sad.Play();
@@ -77,6 +80,28 @@ public class AngelSpeaking : MonoBehaviour {
             await UniTask.Delay(3500);
             nearToLose.gameObject.SetActive(false);
             ableToSpeak = true;
+        }
+    }
+
+    public async UniTask Advance() {
+        if (ableToSpeak && !advanceAppeared) {
+            advance.gameObject.SetActive(true);
+            ableToSpeak = false;
+            await UniTask.Delay(3500);
+            advance.gameObject.SetActive(false);
+            ableToSpeak = true;
+            advanceAppeared = true;
+        }
+    }
+
+    public async UniTask OtherOnbutsu() {
+        if (ableToSpeak && !otherAppeared) {
+            other.gameObject.SetActive(true);
+            ableToSpeak = false;
+            await UniTask.Delay(3500);
+            other.gameObject.SetActive(false);
+            ableToSpeak = true;
+            otherAppeared = true;
         }
     }
 }

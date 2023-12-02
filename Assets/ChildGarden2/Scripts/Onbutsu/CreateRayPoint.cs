@@ -4,6 +4,7 @@ using UnityEngine;
 using Photon;
 using UnityEngine.UI;
 using Unity.Burst.CompilerServices;
+using Cysharp.Threading.Tasks;
 
 public class CreateRayPoint : Photon.PunBehaviour {
     [SerializeField]
@@ -29,6 +30,15 @@ public class CreateRayPoint : Photon.PunBehaviour {
 
     [SerializeField] private List<Color> sliderColors = new List<Color>();
 
+    //Nagaoshi ga wakaranai
+    private int angelTalk_noOnbutsuCount;
+    private bool angelTalk_OnbutsuGenerated;
+
+    //maru shika dasenai
+    private int angelTalk_maruCount;
+    private bool angelTalk_sankakuGenerated;
+
+
     private void Start() {
         camera = GetComponent<Camera>();
         chargingTime = 0.0f;
@@ -40,6 +50,11 @@ public class CreateRayPoint : Photon.PunBehaviour {
         /*foreach (var ef in chargeEffectObject) {
             ef.SetActive(false);
         }*/
+
+        angelTalk_noOnbutsuCount = 0;
+        angelTalk_OnbutsuGenerated = false;
+        angelTalk_maruCount = 0;
+        angelTalk_sankakuGenerated = false;
     }
 
     void Update() {
@@ -103,18 +118,37 @@ public class CreateRayPoint : Photon.PunBehaviour {
                     }
                     switch (currentChargeLevel) {
                         case 0:
+                            if (!angelTalk_OnbutsuGenerated) {
+                                angelTalk_noOnbutsuCount++;
+                                if (angelTalk_noOnbutsuCount >= 5) {
+                                    ViewManager.Instance.playingView.angelSpeaking.Advance().Forget();
+                                }
+                            }
                             break;
                         case 1:
                             PhotonNetwork.Instantiate(onbutsuFolderName + OnbutsuList_Level1[PhotonNetwork.player.ID - 1].name, spawnPosition, Quaternion.identity, 0);
+                            angelTalk_OnbutsuGenerated = false;
+                            if (!angelTalk_sankakuGenerated) {
+                                angelTalk_maruCount++;
+                                if (angelTalk_maruCount >= 5) {
+                                    ViewManager.Instance.playingView.angelSpeaking.OtherOnbutsu().Forget();
+                                }
+                            }
                             break;
                         case 2:
                             PhotonNetwork.Instantiate(onbutsuFolderName + OnbutsuList_Level2[PhotonNetwork.player.ID - 1].name, spawnPosition, Quaternion.identity, 0);
+                            angelTalk_OnbutsuGenerated = false;
+                            angelTalk_sankakuGenerated = false;
                             break;
                         case 3:
                             PhotonNetwork.Instantiate(onbutsuFolderName + OnbutsuList_Level3[PhotonNetwork.player.ID - 1].name, spawnPosition, Quaternion.identity, 0);
+                            angelTalk_OnbutsuGenerated = false;
+                            angelTalk_sankakuGenerated = false;
                             break;
                         default:
                             PhotonNetwork.Instantiate(onbutsuFolderName + OnbutsuList_Level4[PhotonNetwork.player.ID - 1].name, spawnPosition, Quaternion.identity, 0);
+                            angelTalk_OnbutsuGenerated = false;
+                            angelTalk_sankakuGenerated = false;
                             break;
                     }
                     DisappearGauge();
