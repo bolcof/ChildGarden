@@ -15,6 +15,7 @@ TagManager:
   - UI_Rule_02
   - playerCount
   - Utsuwa
+  - RedLine
   layers:
   - Default
   - TransparentFX

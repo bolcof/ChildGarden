@@ -9,6 +9,7 @@ public class Onbutsu : MonoBehaviour {
     public int onbutsuSize;
     public bool hasLand_Utsuwa;
     public bool landing_Utsuwa;
+    public bool onLine;
     public bool dropped;
 
     private float stoppingTime = 0f;
@@ -27,6 +28,7 @@ public class Onbutsu : MonoBehaviour {
     private void Awake() {
         hasLand_Utsuwa = false;
         landing_Utsuwa = false;
+        onLine = false;
         dropped = false;
 
         PhotonView photonView = GetComponent<PhotonView>();
@@ -92,6 +94,19 @@ public class Onbutsu : MonoBehaviour {
                 break;
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D collision) {
+        if (collision.gameObject.tag == "RedLine") {
+            onLine = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision) {
+        if (collision.gameObject.tag == "RedLine") {
+            onLine = false;
+        }
+    }
+
     private int CountTouchingObjects() {
         // 現在のGameObjectの位置を中心にした球形領域内の全てのColliderを取得
         Collider[] colliders = Physics.OverlapSphere(transform.position, checkRadius);

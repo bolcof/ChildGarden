@@ -198,7 +198,7 @@ public class RuleManager : Photon.PunBehaviour {
         float targetCount = highestOnbutsuHeight;
         ApplyProgressState(Devide5Per((targetCount - myUtsuwa.transform.position.y) / (missionNum - myUtsuwa.transform.position.y)));
 
-        if (targetCount >= missionNum) {
+        if (OnbutsuList.FindAll(OnbutsuOnLine => OnbutsuOnLine.onLine && OnbutsuOnLine.landing_Utsuwa && OnbutsuOnLine.StagingId == RoomConector.Instance.MyPlayerId()).Count >= 1 ) {
             GameManager.Instance.MyPlayerWin();
             Rule05_GoalLine.SetActive(false);
             return true;
