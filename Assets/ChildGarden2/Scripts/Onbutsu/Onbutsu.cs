@@ -22,6 +22,8 @@ public class Onbutsu : MonoBehaviour {
     [SerializeField] private PolygonCollider2D _polygonCollider;
     [SerializeField] private CircleCollider2D _circleCollider;
 
+    [SerializeField] private GameObject dissappearEffect;
+
     private void Awake() {
         hasLand_Utsuwa = false;
         landing_Utsuwa = false;
@@ -114,5 +116,7 @@ public class Onbutsu : MonoBehaviour {
             _circleCollider.enabled = false;
         }
         _spriteRenderer.enabled = false;
+
+        Instantiate(dissappearEffect, transform.position, Quaternion.identity);
     }
 }

@@ -196,6 +196,7 @@ MonoBehaviour:
   _spriteRenderer: {fileID: 173813754427947773}
   _polygonCollider: {fileID: -3326533274789528082}
   _circleCollider: {fileID: 0}
+  dissappearEffect: {fileID: 100004, guid: fb7b0526ade434043b350a180d741cf3, type: 3}
 --- !u!212 &173813754427947773
 SpriteRenderer:
   m_ObjectHideFlags: 0
