@@ -16,6 +16,8 @@ GameObject:
   - component: {fileID: 1166634299184180371}
   - component: {fileID: 4091169066542195343}
   - component: {fileID: 6569510345204470555}
+  - component: {fileID: 3189917824973047157}
+  - component: {fileID: 1072686268254415541}
   m_Layer: 0
   m_Name: Utuwa_C
   m_TagString: Utsuwa
@@ -192,6 +194,7 @@ MonoBehaviour:
   myPlayerSign: {fileID: 4576383964907326611}
   isMine: 0
   holderId: 0
+  CpuId: 0
 --- !u!222 &1166634299184180371
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -261,7 +264,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 1008348657628407914}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: bf9e23e0bdbb5ca4d907dc38d02d91b8, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -284,7 +287,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.22837162}
+  m_Offset: {x: 0.07385254, y: 0.22837162}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -295,8 +298,78 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 8.54, y: 2.2298145}
+  m_Size: {x: 7.925415, y: 2.2298145}
   m_EdgeRadius: 0
+--- !u!58 &3189917824973047157
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1008348657628407914}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 6200000, guid: bf9e23e0bdbb5ca4d907dc38d02d91b8, type: 2}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 3.84, y: 1.31}
+  serializedVersion: 2
+  m_Radius: 0.2
+--- !u!58 &1072686268254415541
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1008348657628407914}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 6200000, guid: bf9e23e0bdbb5ca4d907dc38d02d91b8, type: 2}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -3.66, y: 1.33}
+  serializedVersion: 2
+  m_Radius: 0.2
 --- !u!1 &1750641038573352077
 GameObject:
   m_ObjectHideFlags: 0
@@ -454,7 +527,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 31e9733ec02334826b89a14ff6167a81, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
