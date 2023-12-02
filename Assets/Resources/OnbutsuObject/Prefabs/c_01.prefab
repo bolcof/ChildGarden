@@ -224,13 +224,14 @@ MonoBehaviour:
   onbutsuSize: 1
   hasLand_Utsuwa: 0
   landing_Utsuwa: 0
+  onLine: 0
   dropped: 0
   checkRadius: 1
   touchingObjectsCount: 0
   _spriteRenderer: {fileID: 4614005415604172388}
   _polygonCollider: {fileID: 0}
   _circleCollider: {fileID: 2080925911210939952}
-  dissappearEffect: {fileID: 100004, guid: fb7b0526ade434043b350a180d741cf3, type: 3}
+  dissappearEffect: {fileID: 1429954232896169633, guid: 83036083a4ebcd34f98131bd3cf6f4d2, type: 3}
 --- !u!212 &4614005415604172388
 SpriteRenderer:
   m_ObjectHideFlags: 0
