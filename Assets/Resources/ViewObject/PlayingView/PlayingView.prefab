@@ -3317,6 +3317,14 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3335285348687563352, guid: 0838cf481913842b59bfd031f51c73b3, type: 3}
+      propertyPath: other
+      value: 
+      objectReference: {fileID: 7964377954000807496}
+    - target: {fileID: 3335285348687563352, guid: 0838cf481913842b59bfd031f51c73b3, type: 3}
+      propertyPath: advance
+      value: 
+      objectReference: {fileID: 3441161002657707687}
+    - target: {fileID: 3335285348687563352, guid: 0838cf481913842b59bfd031f51c73b3, type: 3}
       propertyPath: nearToWin
       value: 
       objectReference: {fileID: 9022836280938023082}
