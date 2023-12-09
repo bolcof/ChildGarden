@@ -2439,6 +2439,22 @@ PrefabInstance:
       propertyPath: instantiationId
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 7399397119454308964, guid: b0edca4cc6e3f46639280936b97b88e6, type: 3}
+      propertyPath: spawnPoints.Array.data[0].y
+      value: -3.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 7399397119454308964, guid: b0edca4cc6e3f46639280936b97b88e6, type: 3}
+      propertyPath: spawnPoints.Array.data[1].y
+      value: -3.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 7399397119454308964, guid: b0edca4cc6e3f46639280936b97b88e6, type: 3}
+      propertyPath: spawnPoints.Array.data[2].y
+      value: -3.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 7399397119454308964, guid: b0edca4cc6e3f46639280936b97b88e6, type: 3}
+      propertyPath: spawnPoints.Array.data[3].y
+      value: -3.35
+      objectReference: {fileID: 0}
     - target: {fileID: 7715357594289120395, guid: b0edca4cc6e3f46639280936b97b88e6, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
