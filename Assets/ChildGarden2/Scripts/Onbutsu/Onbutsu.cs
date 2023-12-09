@@ -85,10 +85,6 @@ public class Onbutsu : MonoBehaviour {
                     hasLand_Utsuwa = true;
                 }
                 break;
-            case "Floor":
-                Debug.Log("Touch Floor");
-                Dropped();
-                break;
             default:
                 Debug.Log("Touch " + collision.gameObject.name);
                 break;
@@ -96,8 +92,16 @@ public class Onbutsu : MonoBehaviour {
     }
 
     private void OnTriggerEnter2D(Collider2D collision) {
-        if (collision.gameObject.tag == "RedLine") {
-            onLine = true;
+        switch (collision.gameObject.tag) {
+            case "Floor":
+                Dropped();
+                break;
+            case "RedLine":
+                onLine = true;
+                break;
+            default:
+                Debug.Log("Trigger " + collision.gameObject.name);
+                break;
         }
     }
 
@@ -131,6 +135,7 @@ public class Onbutsu : MonoBehaviour {
             _circleCollider.enabled = false;
         }
         _spriteRenderer.enabled = false;
+        gameObject.GetComponent<Rigidbody2D>().simulated = false;
 
         Instantiate(dissappearEffect, transform.position, Quaternion.identity);
     }
