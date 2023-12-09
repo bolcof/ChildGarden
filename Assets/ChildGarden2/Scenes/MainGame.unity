@@ -2055,6 +2055,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4504217666832008846, guid: c5b5f7247cf3ba640825f5489fa77117, type: 3}
+      propertyPath: BGM_GameScene.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: d97b5437c7e884348a77414f3454dbd1, type: 3}
     - target: {fileID: 5825129477344833470, guid: c5b5f7247cf3ba640825f5489fa77117, type: 3}
       propertyPath: m_Name
       value: SoundManager
@@ -2435,6 +2439,22 @@ PrefabInstance:
       propertyPath: instantiationId
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 7399397119454308964, guid: b0edca4cc6e3f46639280936b97b88e6, type: 3}
+      propertyPath: spawnPoints.Array.data[0].y
+      value: -3.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 7399397119454308964, guid: b0edca4cc6e3f46639280936b97b88e6, type: 3}
+      propertyPath: spawnPoints.Array.data[1].y
+      value: -3.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 7399397119454308964, guid: b0edca4cc6e3f46639280936b97b88e6, type: 3}
+      propertyPath: spawnPoints.Array.data[2].y
+      value: -3.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 7399397119454308964, guid: b0edca4cc6e3f46639280936b97b88e6, type: 3}
+      propertyPath: spawnPoints.Array.data[3].y
+      value: -3.35
+      objectReference: {fileID: 0}
     - target: {fileID: 7715357594289120395, guid: b0edca4cc6e3f46639280936b97b88e6, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2563,7 +2583,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8874508272541624975, guid: 3275ccc9d3c1b4bd5bc16be2dcb3cc03, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.25
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 8874508272541624975, guid: 3275ccc9d3c1b4bd5bc16be2dcb3cc03, type: 3}
       propertyPath: m_LocalPosition.z
