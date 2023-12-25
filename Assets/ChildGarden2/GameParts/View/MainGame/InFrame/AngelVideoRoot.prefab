@@ -280,6 +280,9 @@ MonoBehaviour:
   firstCommit: {fileID: 0}
   nearToWin: {fileID: 0}
   nearToLose: {fileID: 0}
+  advance: {fileID: 0}
+  other: {fileID: 0}
+  speakingTime: 7000
 --- !u!1 &5949618916527006792
 GameObject:
   m_ObjectHideFlags: 0

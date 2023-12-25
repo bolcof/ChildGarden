@@ -10,6 +10,7 @@ public class AngelSpeaking : MonoBehaviour {
     [SerializeField] VideoPlayer player_nutral, player_sad, player_happy;
     [SerializeField] Image firstCommit, nearToWin, nearToLose, advance, other;
     private bool ableToSpeak;
+    [SerializeField] private int speakingTime;
 
     private bool advanceAppeared, otherAppeared;
 
@@ -51,7 +52,7 @@ public class AngelSpeaking : MonoBehaviour {
             player_happy.Play();
             firstCommit.gameObject.SetActive(true);
             ableToSpeak = false;
-            await UniTask.Delay(3500);
+            await UniTask.Delay(speakingTime);
             firstCommit.gameObject.SetActive(false);
             ableToSpeak = true;
         }
@@ -64,7 +65,7 @@ public class AngelSpeaking : MonoBehaviour {
             player_happy.Play();
             nearToWin.gameObject.SetActive(true);
             ableToSpeak = false;
-            await UniTask.Delay(3500);
+            await UniTask.Delay(speakingTime);
             nearToWin.gameObject.SetActive(false);
             ableToSpeak = true;
         }
@@ -77,7 +78,7 @@ public class AngelSpeaking : MonoBehaviour {
             player_sad.Play();
             nearToLose.gameObject.SetActive(true);
             ableToSpeak = false;
-            await UniTask.Delay(3500);
+            await UniTask.Delay(speakingTime);
             nearToLose.gameObject.SetActive(false);
             ableToSpeak = true;
         }
@@ -87,7 +88,7 @@ public class AngelSpeaking : MonoBehaviour {
         if (ableToSpeak && !advanceAppeared) {
             advance.gameObject.SetActive(true);
             ableToSpeak = false;
-            await UniTask.Delay(3500);
+            await UniTask.Delay(speakingTime);
             advance.gameObject.SetActive(false);
             ableToSpeak = true;
             advanceAppeared = true;
@@ -98,7 +99,7 @@ public class AngelSpeaking : MonoBehaviour {
         if (ableToSpeak && !otherAppeared) {
             other.gameObject.SetActive(true);
             ableToSpeak = false;
-            await UniTask.Delay(3500);
+            await UniTask.Delay(speakingTime);
             other.gameObject.SetActive(false);
             ableToSpeak = true;
             otherAppeared = true;
