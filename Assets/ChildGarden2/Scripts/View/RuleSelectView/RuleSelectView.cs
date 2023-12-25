@@ -54,6 +54,7 @@ public class RuleSelectView : Photon.PunBehaviour {
         } else {
             waiterLabel.gameObject.SetActive(true);
             selectorLabel.gameObject.SetActive(false);
+            GameObject.Find("Cursor").GetComponent<CursorBehaviour>().displayed = false;
         }
         DecideButton.GetComponent<Button>().enabled = false;
 
