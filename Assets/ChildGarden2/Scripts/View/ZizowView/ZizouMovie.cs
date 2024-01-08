@@ -9,21 +9,28 @@ public class ZizouMovie : Photon.PunBehaviour {
 
     [SerializeField] VideoPlayer myVideoPlayer;
     [SerializeField] List<VideoClip> zizouVideoList = new List<VideoClip>();
+    [SerializeField] private List<int> canUseMovieIds = new List<int>();
 
     private void Awake() {
         myVideoPlayer.loopPointReached += ZizouMovieEnd;
+        canUseMovieIds.Clear();
+        for(int i = 0; i < zizouVideoList.Count - 1; i++) {
+            canUseMovieIds.Add(i);
+        }
     }
 
     public void Set(int isWinner) {
         GameManager.Instance.ResetWorld();
-        Debug.Log("ZizowMovie Set");
+        Debug.Log("ZizouMovie Set");
         if (PhotonNetwork.isMasterClient) {
-            Debug.Log("ZizowMovie Master");
+            Debug.Log("ZizouMovie Master");
             int id = -1;
             if (RoundManager.Instance.currentRound == RoundManager.Instance.RoundNum) {
                 id = zizouVideoList.Count - 1;
             } else {
-                id = Random.Range(0, zizouVideoList.Count - 1);
+                id = canUseMovieIds[Random.Range(0, canUseMovieIds.Count)];
+                Debug.Log("ZizouMovie ID:" + id.ToString());
+                canUseMovieIds.Remove(id);
             }
             photonView.RPC(nameof(SetZizouMovieId), PhotonTargets.All, id);
         }
