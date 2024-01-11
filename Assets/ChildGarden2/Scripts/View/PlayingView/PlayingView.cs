@@ -101,7 +101,7 @@ public class PlayingView : Photon.PunBehaviour {
         OpenGateToZizou().Forget();
     }
     public async UniTask OpenGateToZizou() {
-        Debug.Log("OpenGate to zizou");
+        Debug.Log("OpenGate");
         gateLabel.DOFade(0.0f, 0.25f);
         gateBack.DOFade(0.5f, 0.25f);
 
@@ -113,7 +113,7 @@ public class PlayingView : Photon.PunBehaviour {
         gateL.DOAnchorPos(new Vector2(-1500f, 0f), 0.25f);
     }
     public async UniTask OpenGateToNext() {
-        Debug.Log("OpenGate to next");
+        Debug.Log("OpenGate");
         gateLabel.DOFade(0.0f, 0.25f);
         gateBack.DOFade(0.5f, 0.25f);
 
@@ -126,7 +126,6 @@ public class PlayingView : Photon.PunBehaviour {
         gateL.DOAnchorPos(new Vector2(-1500f, 0f), 0.25f);
     }
 
-    //Not Used
     public async UniTask CloseGateAndGoNext() {
         Debug.Log("CloseGateAndGoNext");
         SoundManager.Instance.PlaySoundEffect(SoundManager.Instance.SE_CloseDoor);
@@ -139,16 +138,6 @@ public class PlayingView : Photon.PunBehaviour {
 
         await UniTask.Delay(500);
 
-        if (PhotonNetwork.isMasterClient) {
-            if (RoundManager.Instance.currentRound != RoundManager.Instance.RoundNum) {
-                photonView.RPC(nameof(ToRuleSelectFromPlayingView), PhotonTargets.AllBuffered);
-            } else {
-                photonView.RPC(nameof(ToEndingView), PhotonTargets.AllBuffered);
-            }
-        }
-    }
-
-    public void GoRuleSelectOrEnding() {
         if (PhotonNetwork.isMasterClient) {
             if (RoundManager.Instance.currentRound != RoundManager.Instance.RoundNum) {
                 photonView.RPC(nameof(ToRuleSelectFromPlayingView), PhotonTargets.AllBuffered);
