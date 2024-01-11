@@ -354,9 +354,8 @@ MonoBehaviour:
   playerCount: {fileID: 8634598422293550087}
   countSprites:
   - {fileID: 21300000, guid: 3756fa48a12710f4e94b83bb51b9d013, type: 3}
-  - {fileID: 21300000, guid: 56858a5eee7ef2b4795a6caf391f6c85, type: 3}
-  - {fileID: 21300000, guid: 6d644974e5443554cb5b796d8bb7f0fd, type: 3}
-  - {fileID: 21300000, guid: a77c7624e193bca4ab9d18c5267d79ab, type: 3}
+  - {fileID: 21300000, guid: ac6b3ab7c17858a49b16794bb5071eed, type: 3}
+  - {fileID: 21300000, guid: b269aafad5473044da13e48c7250dc0a, type: 3}
   contents:
   - {fileID: 5503607633191389273}
   - {fileID: 8634598422293550087}
