@@ -31,6 +31,7 @@ public class Utsuwa : Photon.PunBehaviour {
             myPlayerSign.SetActive(false);
         } else {
             myPlayerSign.SetActive(enabled);
+            myPlayerSign.GetComponent<UtsuwaPinIcon>().StartAnimation();
         }
     }
 

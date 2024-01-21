@@ -57,19 +57,14 @@ public class UtsuwaManager : Photon.PunBehaviour {
     }
 
     void SpawnPlayer() {
-        // ランダムな座標を選択
         Vector3 spawnPoint = spawnPoints[mySpawnPositionId];
         GameObject Player = PhotonNetwork.Instantiate("Box/" + this.UtsuwaList[RoomConector.Instance.MyPlayerId() - 1].name, new Vector3(spawnPoint.x, spawnPoint.y + 2, spawnPoint.z), Quaternion.identity, 0);
         myUtsuwa = Player.GetComponent<Utsuwa>();
-        // 同じ座標のY軸+2にStageを生成 が不要
-        //PhotonNetwork.Instantiate("StageObject/" + this.myBoxCollision.name, new Vector3(spawnPoint.x, spawnPoint.y + 2, spawnPoint.z), Quaternion.identity, 0);
-        AppearMyPlayerPin().Forget();
+        AppearMyPlayerPin();
     }
 
-    public async UniTask AppearMyPlayerPin() {
+    public void AppearMyPlayerPin() {
         myUtsuwa.SignEnabled(true);
-        //await UniTask.Delay(4000);
-        //myUtsuwa.SignEnabled(false);
     }
 
     private List<int> RandomizedPositionIdList() {
