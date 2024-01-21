@@ -13,6 +13,7 @@ public class UtsuwaManager : Photon.PunBehaviour {
 
     public int mySpawnPositionId = -1;
     public int myUtsuwaId = -1;
+    public int myOnbutsuColorId = -1;
 
     public Utsuwa myUtsuwa;
 
@@ -26,7 +27,11 @@ public class UtsuwaManager : Photon.PunBehaviour {
                 Debug.Log("I'm masterClient");
                 // DONE ID全部ここから振り分けないと、クライアント側で処理が並行して被る
                 List<int> positionIdList = RandomizedPositionIdList();
+                RandomizedColorIds();
+
                 Debug.Log("positionID list :  " + string.Join(",", positionIdList));
+                Debug.Log("colorId list : " + string.Join(",", GameObject.Find("MainCamera").GetComponent<CreateRayPoint>().usingOnbutsuColor));
+
                 switch (RoomConector.Instance.PlayerNum) {
                     case 2:
                         Debug.Log("2player Play");
@@ -44,6 +49,7 @@ public class UtsuwaManager : Photon.PunBehaviour {
                 Debug.Log("I'm not masterClient");
                 // マスタークライアント以外のプレイヤーは、スポーンポイントの初期化情報を待つ
                 StartCoroutine(WaitForSpawnPointsInitialization());
+                StartCoroutine(WaitForOnbutsuColorInitialization());
                 return;
             }
         }
@@ -55,21 +61,19 @@ public class UtsuwaManager : Photon.PunBehaviour {
         yield return new WaitUntil(() => mySpawnPositionId != -1);
         SpawnPlayer();
     }
+    IEnumerator WaitForOnbutsuColorInitialization() {
+        yield return new WaitUntil(() => myOnbutsuColorId != -1);
+    }
 
     void SpawnPlayer() {
-        // ランダムな座標を選択
         Vector3 spawnPoint = spawnPoints[mySpawnPositionId];
         GameObject Player = PhotonNetwork.Instantiate("Box/" + this.UtsuwaList[RoomConector.Instance.MyPlayerId() - 1].name, new Vector3(spawnPoint.x, spawnPoint.y + 2, spawnPoint.z), Quaternion.identity, 0);
         myUtsuwa = Player.GetComponent<Utsuwa>();
-        // 同じ座標のY軸+2にStageを生成 が不要
-        //PhotonNetwork.Instantiate("StageObject/" + this.myBoxCollision.name, new Vector3(spawnPoint.x, spawnPoint.y + 2, spawnPoint.z), Quaternion.identity, 0);
-        AppearMyPlayerPin().Forget();
+        AppearMyPlayerPin();
     }
 
-    public async UniTask AppearMyPlayerPin() {
+    public void AppearMyPlayerPin() {
         myUtsuwa.SignEnabled(true);
-        //await UniTask.Delay(4000);
-        //myUtsuwa.SignEnabled(false);
     }
 
     private List<int> RandomizedPositionIdList() {
@@ -95,6 +99,24 @@ public class UtsuwaManager : Photon.PunBehaviour {
         return randomizeList;
     }
 
+    private List<int> RandomizedColorIds() {
+        List<int> colorIdList = new List<int>();
+        List<int> randomizeList = new List<int>();
+
+        for (int i = 0; i < 4; i++) {
+            colorIdList.Add(i);
+        }
+
+        for (int i = 0; i < 4; i++) {
+            int index = Random.Range(0, colorIdList.Count);
+            randomizeList.Add(colorIdList[index]);
+            colorIdList.RemoveAt(index);
+        }
+
+        photonView.RPC(nameof(SetOnbutsuColor), PhotonTargets.All, randomizeList[0], randomizeList[1], randomizeList[2], randomizeList[3]);
+        return randomizeList;
+    }
+
     //TODO:必要だったら使う
     private List<int> RandomizedUtsuwaIdList() {
 
@@ -115,7 +137,6 @@ public class UtsuwaManager : Photon.PunBehaviour {
             randomizeList.Add(utsuwaIdList[index]);
             utsuwaIdList.RemoveAt(index);
         }
-
         return randomizeList;
     }
 
@@ -167,5 +188,16 @@ public class UtsuwaManager : Photon.PunBehaviour {
                 Debug.LogError("wrong Player Num int SetSpawnPlayerId");
                 break;
         }
+    }
+
+
+    [PunRPC]
+    public void SetOnbutsuColor(int color1, int color2, int color3, int color4) {
+        GameObject.Find("MainCamera").GetComponent<CreateRayPoint>().usingOnbutsuColor.Clear();
+        GameObject.Find("MainCamera").GetComponent<CreateRayPoint>().usingOnbutsuColor.Add(color1);
+        GameObject.Find("MainCamera").GetComponent<CreateRayPoint>().usingOnbutsuColor.Add(color2);
+        GameObject.Find("MainCamera").GetComponent<CreateRayPoint>().usingOnbutsuColor.Add(color3);
+        GameObject.Find("MainCamera").GetComponent<CreateRayPoint>().usingOnbutsuColor.Add(color4);
+        myOnbutsuColorId = GameObject.Find("MainCamera").GetComponent<CreateRayPoint>().usingOnbutsuColor[PhotonNetwork.player.ID - 1];
     }
 }

@@ -103,4 +103,5 @@ MonoBehaviour:
   - RoomBreakAndRestart
   - ApplyOtherProgressGuages
   - WhiteOut
+  - SetOnbutsuColor
   DisableAutoOpenWizard: 1

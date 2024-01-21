@@ -72,7 +72,7 @@ public class GameManager : Photon.PunBehaviour {
         ViewManager.Instance.playingView.ApplyTimeLimit((int)timeLimit);
         CountDownStart().Forget();
 
-        stageManager.AppearMyPlayerPin().Forget();
+        stageManager.AppearMyPlayerPin();
         ruleManager.ResetCount();
 
         roundManager.currentRound++;

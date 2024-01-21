@@ -182,3 +182,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f8c7c1e2be802c4faefda6b49ce0e5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  duration: 0.75
+  pin: {fileID: 549985413820850359}
+  anata: {fileID: 4726465552771730654}

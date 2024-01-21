@@ -17,6 +17,9 @@ public class CreateRayPoint : Photon.PunBehaviour {
     public List<GameObject> OnbutsuList_Level3 = new List<GameObject>();
     public List<GameObject> OnbutsuList_Level4 = new List<GameObject>();
 
+    //MAX 4 Players
+    public List<int> usingOnbutsuColor = new List<int>();
+
     [SerializeField] List<GameObject> ChargingEffects = new List<GameObject>();
 
     [SerializeField] private float chargingTime;
@@ -126,7 +129,7 @@ public class CreateRayPoint : Photon.PunBehaviour {
                             }
                             break;
                         case 1:
-                            PhotonNetwork.Instantiate(onbutsuFolderName + OnbutsuList_Level1[PhotonNetwork.player.ID - 1].name, spawnPosition, Quaternion.identity, 0);
+                            PhotonNetwork.Instantiate(onbutsuFolderName + OnbutsuList_Level1[usingOnbutsuColor[PhotonNetwork.player.ID - 1]].name, spawnPosition, Quaternion.identity, 0);
                             angelTalk_OnbutsuGenerated = false;
                             if (!angelTalk_sankakuGenerated) {
                                 angelTalk_maruCount++;
@@ -136,17 +139,17 @@ public class CreateRayPoint : Photon.PunBehaviour {
                             }
                             break;
                         case 2:
-                            PhotonNetwork.Instantiate(onbutsuFolderName + OnbutsuList_Level2[PhotonNetwork.player.ID - 1].name, spawnPosition, Quaternion.identity, 0);
+                            PhotonNetwork.Instantiate(onbutsuFolderName + OnbutsuList_Level2[usingOnbutsuColor[PhotonNetwork.player.ID - 1]].name, spawnPosition, Quaternion.identity, 0);
                             angelTalk_OnbutsuGenerated = false;
                             angelTalk_sankakuGenerated = false;
                             break;
                         case 3:
-                            PhotonNetwork.Instantiate(onbutsuFolderName + OnbutsuList_Level3[PhotonNetwork.player.ID - 1].name, spawnPosition, Quaternion.identity, 0);
+                            PhotonNetwork.Instantiate(onbutsuFolderName + OnbutsuList_Level3[usingOnbutsuColor[PhotonNetwork.player.ID - 1]].name, spawnPosition, Quaternion.identity, 0);
                             angelTalk_OnbutsuGenerated = false;
                             angelTalk_sankakuGenerated = false;
                             break;
                         default:
-                            PhotonNetwork.Instantiate(onbutsuFolderName + OnbutsuList_Level4[PhotonNetwork.player.ID - 1].name, spawnPosition, Quaternion.identity, 0);
+                            PhotonNetwork.Instantiate(onbutsuFolderName + OnbutsuList_Level4[usingOnbutsuColor[PhotonNetwork.player.ID - 1]].name, spawnPosition, Quaternion.identity, 0);
                             angelTalk_OnbutsuGenerated = false;
                             angelTalk_sankakuGenerated = false;
                             break;
