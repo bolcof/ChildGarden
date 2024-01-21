@@ -880,22 +880,23 @@ MonoBehaviour:
   - {fileID: 8708310155239775520, guid: 0439bec74429bc94caa26b0f2c864d7b, type: 3}
   - {fileID: 5745182740132359745, guid: d0de456f6e06bdd4cbf3832e9e50465f, type: 3}
   - {fileID: 6030451083089180837, guid: 63a5dac44b6c66848a4d4a9dde6a34a4, type: 3}
-  - {fileID: 1937565694340415709, guid: 242414487d348ea459295e10086c3d23, type: 3}
+  - {fileID: 8708310155239775520, guid: 0439bec74429bc94caa26b0f2c864d7b, type: 3}
   OnbutsuList_Level2:
   - {fileID: 5874587981177037943, guid: c454eab2652ea2d4caeed82a2f5f0a20, type: 3}
   - {fileID: 5874587981177037943, guid: f59edc0bf911d40d2b6ba9d4ee797f21, type: 3}
   - {fileID: 5874587981177037943, guid: 2dbb5d6795cd94aaa92b7e39bd6b67e9, type: 3}
-  - {fileID: 5874587981177037943, guid: bea412f08a0f6431c81e256c26de6e7e, type: 3}
+  - {fileID: 5874587981177037943, guid: c454eab2652ea2d4caeed82a2f5f0a20, type: 3}
   OnbutsuList_Level3:
   - {fileID: 3857633914681591013, guid: 7c159306121ec474093dbf67d2a39048, type: 3}
   - {fileID: 3857633914681591013, guid: 86b50afc726eb4669b6337724f6965a1, type: 3}
   - {fileID: 3857633914681591013, guid: 096afeb5e875c4dae9a5a8a9ce2a9f46, type: 3}
-  - {fileID: 3857633914681591013, guid: 27d1776b5307b4cfab0ec4147ed791bd, type: 3}
+  - {fileID: 3857633914681591013, guid: 7c159306121ec474093dbf67d2a39048, type: 3}
   OnbutsuList_Level4:
   - {fileID: 3857633914681591013, guid: 9ffa7e1b5341d427abd0f9e2f3cb80d1, type: 3}
   - {fileID: 3857633914681591013, guid: 81b5bfbd108214f3195a7498a50bf309, type: 3}
   - {fileID: 3857633914681591013, guid: 6a34410bf99f44cedbfbc563d9eba413, type: 3}
-  - {fileID: 3857633914681591013, guid: 377b30ec21e1a43e4b462012895e9d32, type: 3}
+  - {fileID: 3857633914681591013, guid: 9ffa7e1b5341d427abd0f9e2f3cb80d1, type: 3}
+  usingOnbutsuColor: 
   ChargingEffects:
   - {fileID: 657061409458454279}
   - {fileID: 3569120049296768935}
