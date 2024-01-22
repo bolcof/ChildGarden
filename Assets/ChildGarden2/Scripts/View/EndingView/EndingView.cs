@@ -19,6 +19,7 @@ public class EndingView : Photon.PunBehaviour {
 
     public void Set() {
         GameObject.Find("Cursor").GetComponent<CursorBehaviour>().displayed = false;
+        GameObject.Find("Cursor").GetComponent<CursorBehaviour>().wholeClickView = false;
 
         if (RuleManager.instance.WholeWinnerIsMe()) {
             videoPlayer.clip = endingVideos.Last();

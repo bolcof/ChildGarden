@@ -56,7 +56,7 @@ public class RuleSelectView : Photon.PunBehaviour {
             waiterLabel.gameObject.SetActive(true);
             selectorLabel.gameObject.SetActive(false);
             DecideButton.SetActive(false);
-            GameObject.Find("Cursor").GetComponent<CursorBehaviour>().displayed = false;
+            GameObject.Find("Cursor").GetComponent<CursorBehaviour>().wholeClickView = false;
         }
         DecideButton.GetComponent<Button>().enabled = false;
 
@@ -75,6 +75,7 @@ public class RuleSelectView : Photon.PunBehaviour {
     }
 
     public void PushRule(int ruleId) {
+        SoundManager.Instance.PlaySoundEffect(SoundManager.Instance.SE_SelectRule);
         foreach (var rsb in buttonsList) {
             rsb.SetHighlight(false);
         }
@@ -86,6 +87,7 @@ public class RuleSelectView : Photon.PunBehaviour {
     }
 
     public void RepushRule() {
+        SoundManager.Instance.PlaySoundEffect(SoundManager.Instance.SE_SelectRule);
         foreach (var rsb in buttonsList) {
             rsb.SetHighlight(false);
         }
@@ -98,6 +100,7 @@ public class RuleSelectView : Photon.PunBehaviour {
     public void PushDecide() {
         if (GameManager.Instance.canOperateUI) {
             Decide().Forget();
+            SoundManager.Instance.PlaySoundEffect(SoundManager.Instance.SE_ClickGo);
             GameManager.Instance.canOperateUI = false;
         }
     }
@@ -108,6 +111,7 @@ public class RuleSelectView : Photon.PunBehaviour {
         photonView.RPC(nameof(OpenGate), PhotonTargets.AllBuffered);
         await UniTask.Delay(500);
         photonView.RPC(nameof(ToNextRound), PhotonTargets.AllBuffered);
+        GameObject.Find("Cursor").GetComponent<CursorBehaviour>().wholeClickView = false;
     }
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
