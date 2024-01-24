@@ -8,6 +8,5 @@ public class UtsuwaPinIcon : MonoBehaviour {
     [SerializeField] private SpriteRenderer pin, anata;
     public void StartAnimation() {
         pin.DOFade(endValue: 0f, duration: duration).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.InOutQuint);
-        anata.DOFade(endValue: 0f, duration: duration).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.InOutQuint);
     }
 }
