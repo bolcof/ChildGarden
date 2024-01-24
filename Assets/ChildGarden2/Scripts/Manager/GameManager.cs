@@ -66,6 +66,7 @@ public class GameManager : Photon.PunBehaviour {
             bgo.SetActive(false);
         }
         backgroundObject[0].SetActive(true);
+        backgroundObject[0].GetComponent<BackgroundSlider>().StartSlider();
     }
 
     public void NextRoundStart() {
@@ -89,6 +90,7 @@ public class GameManager : Photon.PunBehaviour {
 
     public void BackGroundVideoStart() {
         backgroundObject[roundManager.currentRound].GetComponent<VideoPlayer>().Play();
+        backgroundObject[roundManager.currentRound].GetComponent<BackgroundSlider>().StartSlider();
     }
 
     private async UniTask CountDownStart() {
