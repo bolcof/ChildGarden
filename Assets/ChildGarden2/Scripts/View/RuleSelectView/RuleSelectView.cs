@@ -52,11 +52,14 @@ public class RuleSelectView : Photon.PunBehaviour {
             waiterLabel.gameObject.SetActive(false);
             selectorLabel.gameObject.SetActive(true);
             DecideButton.SetActive(true);
+            GameObject.Find("Cursor").GetComponent<CursorBehaviour>().isRuleSelectView = true;
+            GameObject.Find("Cursor").GetComponent<CursorBehaviour>().isSelector = true;
         } else {
             waiterLabel.gameObject.SetActive(true);
             selectorLabel.gameObject.SetActive(false);
             DecideButton.SetActive(false);
-            GameObject.Find("Cursor").GetComponent<CursorBehaviour>().wholeClickView = false;
+            GameObject.Find("Cursor").GetComponent<CursorBehaviour>().isRuleSelectView = true;
+            GameObject.Find("Cursor").GetComponent<CursorBehaviour>().isSelector = false;
         }
         DecideButton.GetComponent<Button>().enabled = false;
 
@@ -111,7 +114,7 @@ public class RuleSelectView : Photon.PunBehaviour {
         photonView.RPC(nameof(OpenGate), PhotonTargets.AllBuffered);
         await UniTask.Delay(500);
         photonView.RPC(nameof(ToNextRound), PhotonTargets.AllBuffered);
-        GameObject.Find("Cursor").GetComponent<CursorBehaviour>().wholeClickView = false;
+        GameObject.Find("Cursor").GetComponent<CursorBehaviour>().isRuleSelectView = false;
     }
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {

@@ -7,11 +7,15 @@ public class CursorBehaviour : MonoBehaviour {
     [SerializeField] private Image finger;
     [SerializeField] private Sprite idle, clicked;
     public bool displayed;
-    public bool wholeClickView;
+    public bool isRuleSelectView;
+    public bool isSelector;
+
+    [SerializeField] List<GameObject> SpecificSoundButtons = new List<GameObject>();
 
     private void Awake() {
         displayed = true;
-        wholeClickView = true;
+        isRuleSelectView = false;
+        isSelector = false;
         Cursor.visible = false;
     }
 
@@ -31,12 +35,34 @@ public class CursorBehaviour : MonoBehaviour {
 
         if (Input.GetMouseButtonDown(0)) {
             if (finger.enabled) {
-                if (wholeClickView) {
+                if (!isRuleSelectView) {
                     SoundManager.Instance.PlaySoundEffect(SoundManager.Instance.SE_WholeClick);
                 } else {
-                    SoundManager.Instance.PlaySoundEffect(SoundManager.Instance.SE_NotSelectableClick);
+                    if (isSelector) {
+                        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                        RaycastHit hit = new RaycastHit();
+                        GameObject clickedGameObject;
+                        if (Physics.Raycast(ray, out hit)) {
+                            clickedGameObject = hit.collider.gameObject;
+                            if (!SpecificSoundButtons.Contains(clickedGameObject)) {
+                                SoundManager.Instance.PlaySoundEffect(SoundManager.Instance.SE_WholeClick);
+                            }
+                        }
+                    } else {
+                        SoundManager.Instance.PlaySoundEffect(SoundManager.Instance.SE_NotSelectableClick);
+                    }
                 }
             }
         }
+    }
+
+    public void ClickInRuleView(bool isRuleButton, bool isGoButton) {
+        if (isRuleButton) {
+        
+        }else if (isGoButton) {
+            SoundManager.Instance.PlaySoundEffect(SoundManager.Instance.SE_WholeClick);
+        }
+
+
     }
 }
