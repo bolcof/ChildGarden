@@ -67,9 +67,9 @@ public class ZizouView : Photon.PunBehaviour {
         gameObject.SetActive(false);
         viewManager.ruleSelectViewObj.SetActive(true);
         if (hasWin == 0) {
-            viewManager.ruleSelectView.GetComponent<RuleSelectView>().Set(false).Forget();
-        } else if (hasWin == 1) {
             viewManager.ruleSelectView.GetComponent<RuleSelectView>().Set(true).Forget();
+        } else if (hasWin == 1) {
+            viewManager.ruleSelectView.GetComponent<RuleSelectView>().Set(false).Forget();
         } else {
             //TODO:selector
             viewManager.ruleSelectView.GetComponent<RuleSelectView>().Set(PhotonNetwork.isMasterClient).Forget();
