@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Video;
 
 public class GameManager : Photon.PunBehaviour {
 
@@ -84,6 +85,10 @@ public class GameManager : Photon.PunBehaviour {
         remainingTimeLimit = timeLimit;
 
         winnerIsMine = -1;
+    }
+
+    public void BackGroundVideoStart() {
+        backgroundObject[roundManager.currentRound].GetComponent<VideoPlayer>().Play();
     }
 
     private async UniTask CountDownStart() {
