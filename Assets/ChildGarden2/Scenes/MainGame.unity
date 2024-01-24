@@ -761,7 +761,6 @@ GameObject:
   - component: {fileID: 702426491}
   - component: {fileID: 702426490}
   - component: {fileID: 702426489}
-  - component: {fileID: 702426488}
   m_Layer: 0
   m_Name: Background_02
   m_TagString: Untagged
@@ -769,27 +768,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
---- !u!95 &702426488
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 702426487}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 501e2430d85c84c038663e1aa75297f5, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!328 &702426489
 VideoPlayer:
   m_ObjectHideFlags: 0
@@ -1017,7 +995,6 @@ GameObject:
   - component: {fileID: 861716401}
   - component: {fileID: 861716400}
   - component: {fileID: 861716399}
-  - component: {fileID: 861716406}
   m_Layer: 0
   m_Name: Background_01
   m_TagString: Untagged
@@ -1163,27 +1140,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -0.3}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!95 &861716406
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 861716398}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 501e2430d85c84c038663e1aa75297f5, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1153162099 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6242445447040555488, guid: c404e2a7d69964171a3f910fad2fbaed, type: 3}
@@ -1541,7 +1497,6 @@ GameObject:
   - component: {fileID: 1429242571}
   - component: {fileID: 1429242570}
   - component: {fileID: 1429242569}
-  - component: {fileID: 1429242568}
   m_Layer: 0
   m_Name: Background_04
   m_TagString: Untagged
@@ -1549,27 +1504,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
---- !u!95 &1429242568
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1429242567}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 501e2430d85c84c038663e1aa75297f5, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!328 &1429242569
 VideoPlayer:
   m_ObjectHideFlags: 0
@@ -1840,7 +1774,6 @@ GameObject:
   - component: {fileID: 1546627384}
   - component: {fileID: 1546627383}
   - component: {fileID: 1546627382}
-  - component: {fileID: 1546627381}
   m_Layer: 0
   m_Name: Background_03
   m_TagString: Untagged
@@ -1848,27 +1781,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
---- !u!95 &1546627381
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1546627380}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 501e2430d85c84c038663e1aa75297f5, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!328 &1546627382
 VideoPlayer:
   m_ObjectHideFlags: 0
