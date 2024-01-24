@@ -52,11 +52,14 @@ public class RuleSelectView : Photon.PunBehaviour {
             waiterLabel.gameObject.SetActive(false);
             selectorLabel.gameObject.SetActive(true);
             DecideButton.SetActive(true);
+            GameObject.Find("Cursor").GetComponent<CursorBehaviour>().isRuleSelectView = true;
+            GameObject.Find("Cursor").GetComponent<CursorBehaviour>().isSelector = true;
         } else {
             waiterLabel.gameObject.SetActive(true);
             selectorLabel.gameObject.SetActive(false);
             DecideButton.SetActive(false);
-            GameObject.Find("Cursor").GetComponent<CursorBehaviour>().displayed = false;
+            GameObject.Find("Cursor").GetComponent<CursorBehaviour>().isRuleSelectView = true;
+            GameObject.Find("Cursor").GetComponent<CursorBehaviour>().isSelector = false;
         }
         DecideButton.GetComponent<Button>().enabled = false;
 
@@ -75,6 +78,7 @@ public class RuleSelectView : Photon.PunBehaviour {
     }
 
     public void PushRule(int ruleId) {
+        SoundManager.Instance.PlaySoundEffect(SoundManager.Instance.SE_SelectRule);
         foreach (var rsb in buttonsList) {
             rsb.SetHighlight(false);
         }
@@ -86,6 +90,7 @@ public class RuleSelectView : Photon.PunBehaviour {
     }
 
     public void RepushRule() {
+        SoundManager.Instance.PlaySoundEffect(SoundManager.Instance.SE_SelectRule);
         foreach (var rsb in buttonsList) {
             rsb.SetHighlight(false);
         }
@@ -98,7 +103,14 @@ public class RuleSelectView : Photon.PunBehaviour {
     public void PushDecide() {
         if (GameManager.Instance.canOperateUI) {
             Decide().Forget();
+            SoundManager.Instance.PlaySoundEffect(SoundManager.Instance.SE_ClickGo);
             GameManager.Instance.canOperateUI = false;
+        }
+    }
+
+    public void PushBack() {
+        if (GameObject.Find("Cursor").GetComponent<CursorBehaviour>().isSelector) {
+            SoundManager.Instance.PlaySoundEffect(SoundManager.Instance.SE_WholeClick);
         }
     }
 
@@ -149,6 +161,7 @@ public class RuleSelectView : Photon.PunBehaviour {
     public void ToNextRound() {
         gameObject.SetActive(false);
         RuleManager.instance.SetRule(ruleIndex);
+        GameObject.Find("Cursor").GetComponent<CursorBehaviour>().isRuleSelectView = false;
         GameManager.Instance.NextRoundStart();
     }
 }

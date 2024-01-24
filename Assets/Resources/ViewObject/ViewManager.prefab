@@ -281,6 +281,16 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1607448083978504774}
   m_SourcePrefab: {fileID: 100100000, guid: 79fdd92e612eeb34caa83225d037325d, type: 3}
+--- !u!1 &362821474238778608 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 425483170010343606, guid: 79fdd92e612eeb34caa83225d037325d, type: 3}
+  m_PrefabInstance: {fileID: 67165339443356742}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1238288994389131467 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1279541000081663117, guid: 79fdd92e612eeb34caa83225d037325d, type: 3}
+  m_PrefabInstance: {fileID: 67165339443356742}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2092619135789712774 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2154097766510567872, guid: 79fdd92e612eeb34caa83225d037325d, type: 3}
@@ -382,6 +392,11 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &2271222616972413151 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2264077420028243097, guid: 79fdd92e612eeb34caa83225d037325d, type: 3}
+  m_PrefabInstance: {fileID: 67165339443356742}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &3286718403949219282 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3274779370737936788, guid: 79fdd92e612eeb34caa83225d037325d, type: 3}
@@ -398,6 +413,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a15654ccf0d674880b14bfec1f284094, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &3627189897587779707 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3654886033682041917, guid: 79fdd92e612eeb34caa83225d037325d, type: 3}
+  m_PrefabInstance: {fileID: 67165339443356742}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &3904039167199715795 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3946121346598815125, guid: 79fdd92e612eeb34caa83225d037325d, type: 3}
+  m_PrefabInstance: {fileID: 67165339443356742}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5681232966514961631 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5636630749229713561, guid: 79fdd92e612eeb34caa83225d037325d, type: 3}
+  m_PrefabInstance: {fileID: 67165339443356742}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &8583391790372957398 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8642631841407453328, guid: 79fdd92e612eeb34caa83225d037325d, type: 3}
@@ -1496,6 +1526,34 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7394828651388949720, guid: 2810b598248164111bb07651aa408e63, type: 3}
+      propertyPath: SpecificSoundButtons.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7394828651388949720, guid: 2810b598248164111bb07651aa408e63, type: 3}
+      propertyPath: SpecificSoundButtons.Array.data[0]
+      value: 
+      objectReference: {fileID: 3627189897587779707}
+    - target: {fileID: 7394828651388949720, guid: 2810b598248164111bb07651aa408e63, type: 3}
+      propertyPath: SpecificSoundButtons.Array.data[1]
+      value: 
+      objectReference: {fileID: 2271222616972413151}
+    - target: {fileID: 7394828651388949720, guid: 2810b598248164111bb07651aa408e63, type: 3}
+      propertyPath: SpecificSoundButtons.Array.data[2]
+      value: 
+      objectReference: {fileID: 3904039167199715795}
+    - target: {fileID: 7394828651388949720, guid: 2810b598248164111bb07651aa408e63, type: 3}
+      propertyPath: SpecificSoundButtons.Array.data[3]
+      value: 
+      objectReference: {fileID: 1238288994389131467}
+    - target: {fileID: 7394828651388949720, guid: 2810b598248164111bb07651aa408e63, type: 3}
+      propertyPath: SpecificSoundButtons.Array.data[4]
+      value: 
+      objectReference: {fileID: 5681232966514961631}
+    - target: {fileID: 7394828651388949720, guid: 2810b598248164111bb07651aa408e63, type: 3}
+      propertyPath: SpecificSoundButtons.Array.data[5]
+      value: 
+      objectReference: {fileID: 362821474238778608}
     - target: {fileID: 7721263451902871425, guid: 2810b598248164111bb07651aa408e63, type: 3}
       propertyPath: m_Name
       value: Cursor

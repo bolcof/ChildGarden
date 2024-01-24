@@ -7,9 +7,13 @@ public class CursorBehaviour : MonoBehaviour {
     [SerializeField] private Image finger;
     [SerializeField] private Sprite idle, clicked;
     public bool displayed;
+    public bool isRuleSelectView;
+    public bool isSelector;
 
     private void Awake() {
         displayed = true;
+        isRuleSelectView = false;
+        isSelector = false;
         Cursor.visible = false;
     }
 
@@ -24,6 +28,18 @@ public class CursorBehaviour : MonoBehaviour {
                 finger.sprite = clicked;
             } else {
                 finger.sprite = idle;
+            }
+        }
+
+        if (Input.GetMouseButtonDown(0)) {
+            if (finger.enabled) {
+                if (!isRuleSelectView) {
+                    SoundManager.Instance.PlaySoundEffect(SoundManager.Instance.SE_WholeClick);
+                } else {
+                    if (!isSelector) {
+                        SoundManager.Instance.PlaySoundEffect(SoundManager.Instance.SE_NotSelectableClick);
+                    }
+                }
             }
         }
     }
