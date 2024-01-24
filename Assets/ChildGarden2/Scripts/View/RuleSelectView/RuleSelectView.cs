@@ -114,7 +114,6 @@ public class RuleSelectView : Photon.PunBehaviour {
         photonView.RPC(nameof(OpenGate), PhotonTargets.AllBuffered);
         await UniTask.Delay(500);
         photonView.RPC(nameof(ToNextRound), PhotonTargets.AllBuffered);
-        GameObject.Find("Cursor").GetComponent<CursorBehaviour>().isRuleSelectView = false;
     }
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
@@ -156,6 +155,7 @@ public class RuleSelectView : Photon.PunBehaviour {
     public void ToNextRound() {
         gameObject.SetActive(false);
         RuleManager.instance.SetRule(ruleIndex);
+        GameObject.Find("Cursor").GetComponent<CursorBehaviour>().isRuleSelectView = false;
         GameManager.Instance.NextRoundStart();
     }
 }
