@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Video;
 
 public class GameManager : Photon.PunBehaviour {
 
@@ -84,11 +85,10 @@ public class GameManager : Photon.PunBehaviour {
         remainingTimeLimit = timeLimit;
 
         winnerIsMine = -1;
+    }
 
-        foreach (var bgo in backgroundObject) {
-            bgo.SetActive(false);
-        }
-        backgroundObject[roundManager.currentRound - 1].SetActive(true);
+    public void BackGroundVideoStart() {
+        backgroundObject[roundManager.currentRound].GetComponent<VideoPlayer>().Play();
     }
 
     private async UniTask CountDownStart() {
@@ -121,6 +121,11 @@ public class GameManager : Photon.PunBehaviour {
         foreach (var obj in GameObject.FindGameObjectsWithTag("Onbutu")) {
             Destroy(obj);
         }
+
+        foreach (var bgo in backgroundObject) {
+            bgo.SetActive(false);
+        }
+        backgroundObject[roundManager.currentRound].SetActive(true);
     }
 
     public void MyPlayerWin() {
