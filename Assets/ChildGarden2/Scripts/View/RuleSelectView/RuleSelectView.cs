@@ -108,6 +108,12 @@ public class RuleSelectView : Photon.PunBehaviour {
         }
     }
 
+    public void PushBack() {
+        if (GameObject.Find("Cursor").GetComponent<CursorBehaviour>().isSelector) {
+            SoundManager.Instance.PlaySoundEffect(SoundManager.Instance.SE_WholeClick);
+        }
+    }
+
     public async UniTask Decide() { //TODO Archive
         photonView.RPC(nameof(CloseRuleSelectPanel), PhotonTargets.AllBuffered);
         await UniTask.Delay(3200);
