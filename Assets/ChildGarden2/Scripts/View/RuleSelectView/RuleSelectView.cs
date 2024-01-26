@@ -156,7 +156,7 @@ public class RuleSelectView : Photon.PunBehaviour {
     public void OpenGate() {
         //TODO bad position
         GameManager.Instance.BackGroundVideoStart();
-        ViewManager.Instance.playingView.OpenGateToNext().Forget();
+        ViewManager.Instance.playingView.OpenNewGate(true).Forget();
     }
 
     [PunRPC]

@@ -47,7 +47,7 @@ public class ZizouMovie : Photon.PunBehaviour {
 
     public void ZizouMovieEnd(VideoPlayer vp) {
         Debug.Log("ZizowMovie End");
-        ViewManager.Instance.playingView.CloseGateAndGoNext().Forget();
+        ViewManager.Instance.playingView.CloseNewGateAndGoNext().Forget();
     }
 
     [PunRPC]
