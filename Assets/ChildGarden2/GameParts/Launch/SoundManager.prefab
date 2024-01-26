@@ -455,7 +455,7 @@ MonoBehaviour:
   SE_RuleSelectViewClosing: {fileID: 8300000, guid: 74564c6436c3e1248986028e86ed09df, type: 3}
   SE_WholeClick: {fileID: 8300000, guid: d3ed540f64aa8cd45967e1dcefe8cbb8, type: 3}
   SE_SelectRule: {fileID: 8300000, guid: 9d43002a9cb8bc24aa51a01e26da9b32, type: 3}
-  SE_ClickGo: {fileID: 8300000, guid: 42e8bd9c1a1ba1c4d98f9c2cdafb050a, type: 3}
+  SE_ClickGo: {fileID: 8300000, guid: db71b7748849be54ca1a8982da45b4f3, type: 3}
   SE_NotSelectableClick: {fileID: 8300000, guid: 2aede7f135a12f94887abb6300a9bd14, type: 3}
   BGM_Title: {fileID: 8300000, guid: 9615a34b6e75f4f4496cd57007c1043f, type: 3}
   BGM_Introduction: {fileID: 8300000, guid: 68a566d1224214e09905534b80e769e7, type: 3}
