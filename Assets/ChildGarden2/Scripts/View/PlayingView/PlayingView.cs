@@ -115,17 +115,17 @@ public class PlayingView : Photon.PunBehaviour {
         Debug.Log("Close New Gate");
         SoundManager.Instance.PlaySoundEffect(SoundManager.Instance.SE_OpenDoor);
 
-        newGateLB.DOAnchorPos(new Vector2(0f, 0f), 0.25f);
-        newGateRB.DOAnchorPos(new Vector2(0f, 0f), 0.25f);
-        newGateLF.DOAnchorPos(new Vector2(0f, 0f), 0.25f);
-        newGateRF.DOAnchorPos(new Vector2(0f, 0f), 0.25f);
+        newGateLB.DOAnchorPos(new Vector2(0f, 0f), 0.28f);
+        newGateRB.DOAnchorPos(new Vector2(0f, 0f), 0.28f);
+        newGateLF.DOAnchorPos(new Vector2(0f, 0f), 0.28f);
+        newGateRF.DOAnchorPos(new Vector2(0f, 0f), 0.28f);
 
-        await UniTask.Delay(400);
+        await UniTask.Delay(450);
 
         topBarRoot.SetActive(true);
 
         var topSequence = DOTween.Sequence();
-        var topBarSpeed = 0.095f;
+        var topBarSpeed = 0.065f;
         topSequence
             .Append(topBars[0].DOAnchorPos(new Vector2(0f, 0f), topBarSpeed))
             .Append(topBars[1].DOAnchorPos(new Vector2(topBarXPosDiff, 0f), topBarSpeed))
@@ -142,26 +142,41 @@ public class PlayingView : Photon.PunBehaviour {
             .Append(topBars[12].DOAnchorPos(new Vector2(topBarXPosDiff * 12, 0f), topBarSpeed));
 
         var underSequence = DOTween.Sequence();
-        var underBarSpeed = 0.27f;
+        var underBarSpeed = 0.18f;
         underSequence
             .Append(underBars[0].DOAnchorPos(new Vector2(0f, 0f), underBarSpeed))
             .Append(underBars[1].DOAnchorPos(new Vector2(0f, 0f), underBarSpeed))
             .Append(underBars[2].DOAnchorPos(new Vector2(0f, 0f), underBarSpeed))
             .Append(underBars[3].DOAnchorPos(new Vector2(0f, 0f), underBarSpeed));
 
-        await UniTask.Delay(1250);
+        await UniTask.Delay(800);
 
         offedScreen.enabled = false;
 
-        await UniTask.Delay(3000);
+        await UniTask.Delay(540);
+        resultLabels[winner].enabled = true;
+
+        await UniTask.Delay(225);
+        resultLabels[winner].enabled = false;
+
+        await UniTask.Delay(225);
+        resultLabels[winner].enabled = true;
+
+        await UniTask.Delay(225);
+        resultLabels[winner].enabled = false;
+
+        await UniTask.Delay(225);
+        resultLabels[winner].enabled = true;
+
+        await UniTask.Delay(2400);
 
         PlayZizowMovie();
 
         await UniTask.Delay(250);
-        OpenGateToZizou().Forget();
+        OpenNewGate(false).Forget();
     }
 
-    public async UniTask OpenNewGate(bool isZizowMovieFalsed) {
+    public async UniTask OpenNewGate(bool isZizowMovieClose) {
         Debug.Log("Close New Gate");
     }
 
