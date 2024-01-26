@@ -26,12 +26,20 @@ public class PlayingView : Photon.PunBehaviour {
     public AngelSpeaking angelSpeaking;
 
     [SerializeField] private GameObject finishLabel;
+
     [SerializeField] private Image gateBack;
     [SerializeField] private RectTransform gateR, gateL;
     [SerializeField] private Image gateLabel;
     [SerializeField] private List<Sprite> gateR_Images = new List<Sprite>();
     [SerializeField] private List<Sprite> gateL_Images = new List<Sprite>();
     [SerializeField] private List<Sprite> gateC_Images = new List<Sprite>();
+
+    [SerializeField] private RectTransform newGateRF, newGateLF, newGateRB, newGateLB;
+    [SerializeField] private Image offedScreen;
+    [SerializeField] private List<Image> resultLabels = new List<Image>();
+    [SerializeField] private List<RectTransform> underBars = new List<RectTransform>();
+    [SerializeField] private List<RectTransform> topBars = new List<RectTransform>();
+    [SerializeField] private float topBarXPosDiff;
 
     private int hasWin;
     [SerializeField] private ZizouMovie zizowMovie;
@@ -77,7 +85,8 @@ public class PlayingView : Photon.PunBehaviour {
         finishLabel.SetActive(false);
 
         hasWin = result;
-        AppearGate(result).Forget();
+        //AppearGate(result).Forget();
+        CloseNewGate(result).Forget();
     }
 
     public async UniTask AppearGate(int winner /* -1:not yet 0:other 1:me 2:draw */) {
@@ -100,6 +109,26 @@ public class PlayingView : Photon.PunBehaviour {
         await UniTask.Delay(250);
         OpenGateToZizou().Forget();
     }
+
+    public async UniTask CloseNewGate(int winner /* -1:not yet 0:other 1:me 2:draw */) {
+        Debug.Log("Close New Gate");
+        SoundManager.Instance.PlaySoundEffect(SoundManager.Instance.SE_OpenDoor);
+
+        newGateLB.DOAnchorPos(new Vector2(0f, 0f), 0.25f);
+        newGateRB.DOAnchorPos(new Vector2(0f, 0f), 0.25f);
+        newGateLF.DOAnchorPos(new Vector2(0f, 0f), 0.25f);
+        newGateRF.DOAnchorPos(new Vector2(0f, 0f), 0.25f);
+
+        await UniTask.Delay(250);
+
+        await UniTask.Delay(3000);
+
+        PlayZizowMovie();
+
+        await UniTask.Delay(250);
+        OpenGateToZizou().Forget();
+    }
+
     public async UniTask OpenGateToZizou() {
         Debug.Log("OpenGate");
         gateLabel.DOFade(0.0f, 0.25f);
