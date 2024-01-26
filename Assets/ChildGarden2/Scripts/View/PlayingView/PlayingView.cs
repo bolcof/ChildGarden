@@ -38,6 +38,7 @@ public class PlayingView : Photon.PunBehaviour {
     [SerializeField] private Image offedScreen;
     [SerializeField] private List<Image> resultLabels = new List<Image>();
     [SerializeField] private List<RectTransform> underBars = new List<RectTransform>();
+    [SerializeField] private GameObject topBarRoot;
     [SerializeField] private List<RectTransform> topBars = new List<RectTransform>();
     [SerializeField] private float topBarXPosDiff;
 
@@ -119,7 +120,38 @@ public class PlayingView : Photon.PunBehaviour {
         newGateLF.DOAnchorPos(new Vector2(0f, 0f), 0.25f);
         newGateRF.DOAnchorPos(new Vector2(0f, 0f), 0.25f);
 
-        await UniTask.Delay(250);
+        await UniTask.Delay(400);
+
+        topBarRoot.SetActive(true);
+
+        var topSequence = DOTween.Sequence();
+        var topBarSpeed = 0.095f;
+        topSequence
+            .Append(topBars[0].DOAnchorPos(new Vector2(0f, 0f), topBarSpeed))
+            .Append(topBars[1].DOAnchorPos(new Vector2(topBarXPosDiff, 0f), topBarSpeed))
+            .Append(topBars[2].DOAnchorPos(new Vector2(topBarXPosDiff * 2, 0f), topBarSpeed))
+            .Append(topBars[3].DOAnchorPos(new Vector2(topBarXPosDiff * 3, 0f), topBarSpeed))
+            .Append(topBars[4].DOAnchorPos(new Vector2(topBarXPosDiff * 4, 0f), topBarSpeed))
+            .Append(topBars[5].DOAnchorPos(new Vector2(topBarXPosDiff * 5, 0f), topBarSpeed))
+            .Append(topBars[6].DOAnchorPos(new Vector2(topBarXPosDiff * 6, 0f), topBarSpeed))
+            .Append(topBars[7].DOAnchorPos(new Vector2(topBarXPosDiff * 7, 0f), topBarSpeed))
+            .Append(topBars[8].DOAnchorPos(new Vector2(topBarXPosDiff * 8, 0f), topBarSpeed))
+            .Append(topBars[9].DOAnchorPos(new Vector2(topBarXPosDiff * 9, 0f), topBarSpeed))
+            .Append(topBars[10].DOAnchorPos(new Vector2(topBarXPosDiff * 10, 0f), topBarSpeed))
+            .Append(topBars[11].DOAnchorPos(new Vector2(topBarXPosDiff * 11, 0f), topBarSpeed))
+            .Append(topBars[12].DOAnchorPos(new Vector2(topBarXPosDiff * 12, 0f), topBarSpeed));
+
+        var underSequence = DOTween.Sequence();
+        var underBarSpeed = 0.27f;
+        underSequence
+            .Append(underBars[0].DOAnchorPos(new Vector2(0f, 0f), underBarSpeed))
+            .Append(underBars[1].DOAnchorPos(new Vector2(0f, 0f), underBarSpeed))
+            .Append(underBars[2].DOAnchorPos(new Vector2(0f, 0f), underBarSpeed))
+            .Append(underBars[3].DOAnchorPos(new Vector2(0f, 0f), underBarSpeed));
+
+        await UniTask.Delay(1250);
+
+        offedScreen.enabled = false;
 
         await UniTask.Delay(3000);
 
@@ -127,6 +159,10 @@ public class PlayingView : Photon.PunBehaviour {
 
         await UniTask.Delay(250);
         OpenGateToZizou().Forget();
+    }
+
+    public async UniTask OpenNewGate(bool isZizowMovieFalsed) {
+        Debug.Log("Close New Gate");
     }
 
     public async UniTask OpenGateToZizou() {
