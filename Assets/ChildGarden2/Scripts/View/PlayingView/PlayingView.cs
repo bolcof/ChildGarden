@@ -175,18 +175,16 @@ public class PlayingView : Photon.PunBehaviour {
         PlayZizowMovie();
 
         await UniTask.Delay(250);
-        OpenNewGate(false, winner).Forget();
+        OpenNewGate(false).Forget();
     }
 
-    public async UniTask OpenNewGate(bool isZizowMovieClose, int winner) {
-        Debug.Log("Close New Gate");
+    public async UniTask OpenNewGate(bool isZizowMovieClose) {
+        Debug.Log("Open New Gate");
         foreach(var l in resultLabels) {
             l.enabled = false;
         }
         offedScreen.enabled = false;
-        resultLabels[winner].enabled = true;
-
-        await UniTask.Delay(250);
+        resultLabels[hasWin].enabled = true;
 
         var underSequence = DOTween.Sequence();
         var underBarSpeed = 0.1f;
