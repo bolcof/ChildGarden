@@ -113,21 +113,22 @@ public class PlayingView : Photon.PunBehaviour {
 
     public async UniTask CloseNewGate(int winner /* -1:not yet 0:other 1:me 2:draw */) {
         Debug.Log("Close New Gate");
-        SoundManager.Instance.PlaySoundEffect(SoundManager.Instance.SE_OpenDoor);
+        SoundManager.Instance.PlaySoundEffect(SoundManager.Instance.SE_CloseNewDoor);
         offedScreen.enabled = true;
         foreach (var l in resultLabels) {
             l.enabled = false;
         }
 
-        newGateLB.DOAnchorPos(new Vector2(0f, 0f), 0.28f);
-        newGateRB.DOAnchorPos(new Vector2(0f, 0f), 0.28f);
-        newGateLF.DOAnchorPos(new Vector2(0f, 0f), 0.28f);
-        newGateRF.DOAnchorPos(new Vector2(0f, 0f), 0.28f);
+        var doorBaseSpeed = 0.36f;
+        newGateLB.DOAnchorPos(new Vector2(0f, 0f), doorBaseSpeed);
+        newGateRB.DOAnchorPos(new Vector2(0f, 0f), doorBaseSpeed);
+        newGateLF.DOAnchorPos(new Vector2(0f, 0f), doorBaseSpeed);
+        newGateRF.DOAnchorPos(new Vector2(0f, 0f), doorBaseSpeed);
 
-        await UniTask.Delay(450);
+        await UniTask.Delay(600);
 
         var topSequence = DOTween.Sequence();
-        var topBarSpeed = 0.065f;
+        var topBarSpeed = 0.051f;
         topSequence
             .Append(topBars[0].DOAnchorPos(new Vector2(0f, 0f), topBarSpeed))
             .Append(topBars[1].DOAnchorPos(new Vector2(topBarXPosDiff, 0f), topBarSpeed))
@@ -144,37 +145,37 @@ public class PlayingView : Photon.PunBehaviour {
             .Append(topBars[12].DOAnchorPos(new Vector2(topBarXPosDiff * 12, 0f), topBarSpeed));
 
         var underSequence = DOTween.Sequence();
-        var underBarSpeed = 0.18f;
+        var underBarSpeed = 0.153f;
         underSequence
             .Append(underBars[0].DOAnchorPos(new Vector2(0f, 0f), underBarSpeed))
             .Append(underBars[1].DOAnchorPos(new Vector2(0f, 0f), underBarSpeed))
             .Append(underBars[2].DOAnchorPos(new Vector2(0f, 0f), underBarSpeed))
             .Append(underBars[3].DOAnchorPos(new Vector2(0f, 0f), underBarSpeed));
 
-        await UniTask.Delay(800);
+        await UniTask.Delay(1120);
 
         offedScreen.enabled = false;
 
-        await UniTask.Delay(540);
+        await UniTask.Delay(1000);
         resultLabels[winner].enabled = true;
 
-        await UniTask.Delay(225);
+        await UniTask.Delay(500);
         resultLabels[winner].enabled = false;
 
-        await UniTask.Delay(225);
+        await UniTask.Delay(500);
         resultLabels[winner].enabled = true;
 
-        await UniTask.Delay(225);
+        await UniTask.Delay(500);
         resultLabels[winner].enabled = false;
 
-        await UniTask.Delay(225);
+        await UniTask.Delay(500);
         resultLabels[winner].enabled = true;
 
-        await UniTask.Delay(2400);
+        await UniTask.Delay(1800);
 
         PlayZizowMovie();
 
-        await UniTask.Delay(250);
+        await UniTask.Delay(200);
         OpenNewGate(false).Forget();
     }
 

@@ -451,6 +451,8 @@ MonoBehaviour:
   SE_SpawnZizou: {fileID: 8300000, guid: 3dec87bdce08e324d8bebdb177d60783, type: 3}
   SE_CloseDoor: {fileID: 8300000, guid: bf5cd0d1dfaacb64bb1c8a57acece92d, type: 3}
   SE_OpenDoor: {fileID: 8300000, guid: 5407efafbe2ff0243a7523d2f9de6b86, type: 3}
+  SE_CloseNewDoor: {fileID: 8300000, guid: adcc5a3fa2502514b8f956053471eabd, type: 3}
+  SE_OpenNewDoor: {fileID: 8300000, guid: c46c81f9a4a78764f824c8360bbb150b, type: 3}
   SE_RuleSelectViewOpening: {fileID: 8300000, guid: b6b2bfc714aac214ba38a852ec0cb3bb, type: 3}
   SE_RuleSelectViewClosing: {fileID: 8300000, guid: 74564c6436c3e1248986028e86ed09df, type: 3}
   SE_WholeClick: {fileID: 8300000, guid: e4b791d2025637942b8dd1617202f578, type: 3}
