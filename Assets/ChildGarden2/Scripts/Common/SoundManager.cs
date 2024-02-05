@@ -19,6 +19,9 @@ public class SoundManager : MonoBehaviour {
     [SerializeField] public AudioClip SE_SpawnZizou;
     [SerializeField] public AudioClip SE_CloseDoor;
     [SerializeField] public AudioClip SE_OpenDoor;
+    [SerializeField] public AudioClip SE_CloseNewDoor;
+    [SerializeField] public AudioClip SE_NewDoorBlink;
+    [SerializeField] public AudioClip SE_OpenNewDoor;
     [SerializeField] public AudioClip SE_RuleSelectViewOpening;
     [SerializeField] public AudioClip SE_RuleSelectViewClosing;
     [SerializeField] public AudioClip SE_WholeClick;
