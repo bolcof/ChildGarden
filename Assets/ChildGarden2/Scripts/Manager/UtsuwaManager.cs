@@ -103,17 +103,19 @@ public class UtsuwaManager : Photon.PunBehaviour {
         List<int> colorIdList = new List<int>();
         List<int> randomizeList = new List<int>();
 
-        for (int i = 0; i < 4; i++) {
+        int onbutsuColorVariation = 3;
+
+        for (int i = 0; i < onbutsuColorVariation; i++) {
             colorIdList.Add(i);
         }
 
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < onbutsuColorVariation; i++) {
             int index = Random.Range(0, colorIdList.Count);
             randomizeList.Add(colorIdList[index]);
             colorIdList.RemoveAt(index);
         }
 
-        photonView.RPC(nameof(SetOnbutsuColor), PhotonTargets.All, randomizeList[0], randomizeList[1], randomizeList[2], randomizeList[3]);
+        photonView.RPC(nameof(SetOnbutsuColor), PhotonTargets.All, randomizeList[0], randomizeList[1], randomizeList[2]/*, randomizeList[3]*/);
         return randomizeList;
     }
 
@@ -192,12 +194,12 @@ public class UtsuwaManager : Photon.PunBehaviour {
 
 
     [PunRPC]
-    public void SetOnbutsuColor(int color1, int color2, int color3, int color4) {
+    public void SetOnbutsuColor(int color1, int color2, int color3/*, int color4*/) {
         GameObject.Find("MainCamera").GetComponent<CreateRayPoint>().usingOnbutsuColor.Clear();
         GameObject.Find("MainCamera").GetComponent<CreateRayPoint>().usingOnbutsuColor.Add(color1);
         GameObject.Find("MainCamera").GetComponent<CreateRayPoint>().usingOnbutsuColor.Add(color2);
         GameObject.Find("MainCamera").GetComponent<CreateRayPoint>().usingOnbutsuColor.Add(color3);
-        GameObject.Find("MainCamera").GetComponent<CreateRayPoint>().usingOnbutsuColor.Add(color4);
+        //GameObject.Find("MainCamera").GetComponent<CreateRayPoint>().usingOnbutsuColor.Add(color4);
         myOnbutsuColorId = GameObject.Find("MainCamera").GetComponent<CreateRayPoint>().usingOnbutsuColor[PhotonNetwork.player.ID - 1];
     }
 }
