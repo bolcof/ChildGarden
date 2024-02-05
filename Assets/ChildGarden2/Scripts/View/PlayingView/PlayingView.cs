@@ -36,7 +36,7 @@ public class PlayingView : Photon.PunBehaviour {
 
     [SerializeField] private RectTransform newGateRF, newGateLF, newGateRB, newGateLB;
     [SerializeField] private Image offedScreen;
-    [SerializeField] private List<Image> resultLabels = new List<Image>();
+    [SerializeField] private List<GameObject> resultLabels = new List<GameObject>();
     [SerializeField] private List<RectTransform> underBars = new List<RectTransform>();
     [SerializeField] private GameObject topBarRoot;
     [SerializeField] private List<RectTransform> topBars = new List<RectTransform>();
@@ -116,7 +116,7 @@ public class PlayingView : Photon.PunBehaviour {
         SoundManager.Instance.PlaySoundEffect(SoundManager.Instance.SE_CloseNewDoor);
         offedScreen.enabled = true;
         foreach (var l in resultLabels) {
-            l.enabled = false;
+            l.SetActive(false);
         }
 
         var doorBaseSpeed = 0.36f;
@@ -158,19 +158,19 @@ public class PlayingView : Photon.PunBehaviour {
         offedScreen.enabled = false;
 
         await UniTask.Delay(1000);
-        resultLabels[winner].enabled = true;
+        resultLabels[winner].SetActive(true);
 
         await UniTask.Delay(500);
-        resultLabels[winner].enabled = false;
+        resultLabels[winner].SetActive(false);
 
         await UniTask.Delay(500);
-        resultLabels[winner].enabled = true;
+        resultLabels[winner].SetActive(true);
 
         await UniTask.Delay(500);
-        resultLabels[winner].enabled = false;
+        resultLabels[winner].SetActive(false);
 
         await UniTask.Delay(500);
-        resultLabels[winner].enabled = true;
+        resultLabels[winner].SetActive(true);
 
         await UniTask.Delay(1800);
 
@@ -185,10 +185,10 @@ public class PlayingView : Photon.PunBehaviour {
         SoundManager.Instance.PlaySoundEffect(SoundManager.Instance.SE_OpenNewDoor);
 
         foreach (var l in resultLabels) {
-            l.enabled = false;
+            l.SetActive(false);
         }
         offedScreen.enabled = false;
-        resultLabels[hasWin].enabled = true;
+        resultLabels[hasWin].SetActive(true);
 
         var underSequence = DOTween.Sequence();
         var underBarSpeed = 0.075f;
