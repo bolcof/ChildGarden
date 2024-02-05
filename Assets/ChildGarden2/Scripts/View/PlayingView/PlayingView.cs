@@ -299,7 +299,7 @@ public class PlayingView : Photon.PunBehaviour {
             .Append(underBars[2].DOAnchorPos(new Vector2(0f, 0f), underBarSpeed))
             .Append(underBars[3].DOAnchorPos(new Vector2(0f, 0f), underBarSpeed));
 
-        await UniTask.Delay(500);
+        await UniTask.Delay(800);
 
         if (PhotonNetwork.isMasterClient) {
             if (RoundManager.Instance.currentRound != RoundManager.Instance.RoundNum) {
