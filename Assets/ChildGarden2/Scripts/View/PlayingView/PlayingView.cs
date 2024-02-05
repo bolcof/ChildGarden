@@ -152,7 +152,8 @@ public class PlayingView : Photon.PunBehaviour {
             .Append(underBars[2].DOAnchorPos(new Vector2(0f, 0f), underBarSpeed))
             .Append(underBars[3].DOAnchorPos(new Vector2(0f, 0f), underBarSpeed));
 
-        await UniTask.Delay(1120);
+        await UniTask.Delay(1100);
+        SoundManager.Instance.PlaySoundEffect(SoundManager.Instance.SE_NewDoorBlink);
 
         offedScreen.enabled = false;
 
@@ -181,38 +182,40 @@ public class PlayingView : Photon.PunBehaviour {
 
     public async UniTask OpenNewGate(bool isZizowMovieClose) {
         Debug.Log("Open New Gate");
-        foreach(var l in resultLabels) {
+        SoundManager.Instance.PlaySoundEffect(SoundManager.Instance.SE_OpenNewDoor);
+
+        foreach (var l in resultLabels) {
             l.enabled = false;
         }
         offedScreen.enabled = false;
         resultLabels[hasWin].enabled = true;
 
         var underSequence = DOTween.Sequence();
-        var underBarSpeed = 0.1f;
+        var underBarSpeed = 0.075f;
         underSequence
             .Append(underBars[0].DOAnchorPos(new Vector2(0f, -300f), underBarSpeed))
             .Append(underBars[1].DOAnchorPos(new Vector2(0f, -300f), underBarSpeed))
             .Append(underBars[2].DOAnchorPos(new Vector2(0f, -300f), underBarSpeed))
             .Append(underBars[3].DOAnchorPos(new Vector2(0f, -300f), underBarSpeed));
 
-        var topBarSpeed = 0.036f;
+        var topBarSpeed = 0.033f;
 
         for (int i = 12; i >= 0; i--) {
             topBars[i].DOAnchorPos(new Vector2(0, topBarSpeed * (i+1)), topBarSpeed);
-            await UniTask.Delay(36);
+            await UniTask.Delay(33);
         }
 
-        await UniTask.Delay(150);
+        await UniTask.Delay(400);
 
-        SoundManager.Instance.PlaySoundEffect(SoundManager.Instance.SE_OpenDoor);
         if (isZizowMovieClose) {
             zizowMovie.gameObject.SetActive(false);
         }
 
-        newGateLB.DOAnchorPos(new Vector2(-1300f, 0f), 0.28f);
-        newGateRB.DOAnchorPos(new Vector2(1620f, 0f), 0.28f);
-        newGateLF.DOAnchorPos(new Vector2(-1300f, 0f), 0.28f);
-        newGateRF.DOAnchorPos(new Vector2(1620f, 0f), 0.28f);
+        var doorBaseSpeed = 0.36f;
+        newGateLB.DOAnchorPos(new Vector2(-1300f, 0f), doorBaseSpeed);
+        newGateRB.DOAnchorPos(new Vector2(1620f, 0f), doorBaseSpeed);
+        newGateLF.DOAnchorPos(new Vector2(-1300f, 0f), doorBaseSpeed);
+        newGateRF.DOAnchorPos(new Vector2(1620f, 0f), doorBaseSpeed);
     }
 
     public async UniTask OpenGateToZizou() {
@@ -263,44 +266,47 @@ public class PlayingView : Photon.PunBehaviour {
     }
 
     public async UniTask CloseNewGateAndGoNext() {
-        Debug.Log("Close New Gate And Go Next");
-        SoundManager.Instance.PlaySoundEffect(SoundManager.Instance.SE_CloseDoor);
+        if (RoundManager.Instance.currentRound != RoundManager.Instance.RoundNum) {
+            Debug.Log("Close New Gate And Go Next");
+            SoundManager.Instance.PlaySoundEffect(SoundManager.Instance.SE_CloseNewDoor);
 
-        newGateLB.DOAnchorPos(new Vector2(0f, 0f), 0.28f);
-        newGateRB.DOAnchorPos(new Vector2(0f, 0f), 0.28f);
-        newGateLF.DOAnchorPos(new Vector2(0f, 0f), 0.28f);
-        newGateRF.DOAnchorPos(new Vector2(0f, 0f), 0.28f);
+            var doorBaseSpeed = 0.36f;
+            newGateLB.DOAnchorPos(new Vector2(0f, 0f), doorBaseSpeed);
+            newGateRB.DOAnchorPos(new Vector2(0f, 0f), doorBaseSpeed);
+            newGateLF.DOAnchorPos(new Vector2(0f, 0f), doorBaseSpeed);
+            newGateRF.DOAnchorPos(new Vector2(0f, 0f), doorBaseSpeed);
 
-        await UniTask.Delay(450);
+            await UniTask.Delay(600);
 
-        topBarRoot.SetActive(true);
+            topBarRoot.SetActive(true);
 
-        var topSequence = DOTween.Sequence();
-        var topBarSpeed = 0.065f;
-        topSequence
-            .Append(topBars[0].DOAnchorPos(new Vector2(0f, 0f), topBarSpeed))
-            .Append(topBars[1].DOAnchorPos(new Vector2(topBarXPosDiff, 0f), topBarSpeed))
-            .Append(topBars[2].DOAnchorPos(new Vector2(topBarXPosDiff * 2, 0f), topBarSpeed))
-            .Append(topBars[3].DOAnchorPos(new Vector2(topBarXPosDiff * 3, 0f), topBarSpeed))
-            .Append(topBars[4].DOAnchorPos(new Vector2(topBarXPosDiff * 4, 0f), topBarSpeed))
-            .Append(topBars[5].DOAnchorPos(new Vector2(topBarXPosDiff * 5, 0f), topBarSpeed))
-            .Append(topBars[6].DOAnchorPos(new Vector2(topBarXPosDiff * 6, 0f), topBarSpeed))
-            .Append(topBars[7].DOAnchorPos(new Vector2(topBarXPosDiff * 7, 0f), topBarSpeed))
-            .Append(topBars[8].DOAnchorPos(new Vector2(topBarXPosDiff * 8, 0f), topBarSpeed))
-            .Append(topBars[9].DOAnchorPos(new Vector2(topBarXPosDiff * 9, 0f), topBarSpeed))
-            .Append(topBars[10].DOAnchorPos(new Vector2(topBarXPosDiff * 10, 0f), topBarSpeed))
-            .Append(topBars[11].DOAnchorPos(new Vector2(topBarXPosDiff * 11, 0f), topBarSpeed))
-            .Append(topBars[12].DOAnchorPos(new Vector2(topBarXPosDiff * 12, 0f), topBarSpeed));
+            var topSequence = DOTween.Sequence();
+            var topBarSpeed = 0.051f;
+            topSequence
+                .Append(topBars[0].DOAnchorPos(new Vector2(0f, 0f), topBarSpeed))
+                .Append(topBars[1].DOAnchorPos(new Vector2(topBarXPosDiff, 0f), topBarSpeed))
+                .Append(topBars[2].DOAnchorPos(new Vector2(topBarXPosDiff * 2, 0f), topBarSpeed))
+                .Append(topBars[3].DOAnchorPos(new Vector2(topBarXPosDiff * 3, 0f), topBarSpeed))
+                .Append(topBars[4].DOAnchorPos(new Vector2(topBarXPosDiff * 4, 0f), topBarSpeed))
+                .Append(topBars[5].DOAnchorPos(new Vector2(topBarXPosDiff * 5, 0f), topBarSpeed))
+                .Append(topBars[6].DOAnchorPos(new Vector2(topBarXPosDiff * 6, 0f), topBarSpeed))
+                .Append(topBars[7].DOAnchorPos(new Vector2(topBarXPosDiff * 7, 0f), topBarSpeed))
+                .Append(topBars[8].DOAnchorPos(new Vector2(topBarXPosDiff * 8, 0f), topBarSpeed))
+                .Append(topBars[9].DOAnchorPos(new Vector2(topBarXPosDiff * 9, 0f), topBarSpeed))
+                .Append(topBars[10].DOAnchorPos(new Vector2(topBarXPosDiff * 10, 0f), topBarSpeed))
+                .Append(topBars[11].DOAnchorPos(new Vector2(topBarXPosDiff * 11, 0f), topBarSpeed))
+                .Append(topBars[12].DOAnchorPos(new Vector2(topBarXPosDiff * 12, 0f), topBarSpeed));
 
-        var underSequence = DOTween.Sequence();
-        var underBarSpeed = 0.18f;
-        underSequence
-            .Append(underBars[0].DOAnchorPos(new Vector2(0f, 0f), underBarSpeed))
-            .Append(underBars[1].DOAnchorPos(new Vector2(0f, 0f), underBarSpeed))
-            .Append(underBars[2].DOAnchorPos(new Vector2(0f, 0f), underBarSpeed))
-            .Append(underBars[3].DOAnchorPos(new Vector2(0f, 0f), underBarSpeed));
+            var underSequence = DOTween.Sequence();
+            var underBarSpeed = 0.153f;
+            underSequence
+                .Append(underBars[0].DOAnchorPos(new Vector2(0f, 0f), underBarSpeed))
+                .Append(underBars[1].DOAnchorPos(new Vector2(0f, 0f), underBarSpeed))
+                .Append(underBars[2].DOAnchorPos(new Vector2(0f, 0f), underBarSpeed))
+                .Append(underBars[3].DOAnchorPos(new Vector2(0f, 0f), underBarSpeed));
 
-        await UniTask.Delay(800);
+            await UniTask.Delay(1100);
+        }
 
         if (PhotonNetwork.isMasterClient) {
             if (RoundManager.Instance.currentRound != RoundManager.Instance.RoundNum) {
