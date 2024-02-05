@@ -127,7 +127,9 @@ public class GameManager : Photon.PunBehaviour {
         foreach (var bgo in backgroundObject) {
             bgo.SetActive(false);
         }
-        backgroundObject[roundManager.currentRound].SetActive(true);
+        if (roundManager.currentRound <= 3) {
+            backgroundObject[roundManager.currentRound].SetActive(true);
+        }
     }
 
     public void MyPlayerWin() {
