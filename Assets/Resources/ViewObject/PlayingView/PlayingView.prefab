@@ -3624,8 +3624,8 @@ MonoBehaviour:
   newGateLB: {fileID: 7159524537031117514}
   offedScreen: {fileID: 6114308678297688405}
   resultLabels:
-  - {fileID: 8724049213099036558}
   - {fileID: 7457302816514883490}
+  - {fileID: 8724049213099036558}
   - {fileID: 7398542576166516357}
   underBars:
   - {fileID: 8610435744681506764}
