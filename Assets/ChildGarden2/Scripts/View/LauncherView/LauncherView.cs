@@ -26,7 +26,7 @@ public class LauncherView : Photon.PunBehaviour {
     }
 
     public void PushStart() {
-        RoomConector.Instance.PushJoin();
+        RoomConector.Instance.PushJoinAsync();
 
         SoundManager.Instance.PlaySoundEffect(SoundManager.Instance.SE_PushGamePlay);
         playButton.SetActive(false);

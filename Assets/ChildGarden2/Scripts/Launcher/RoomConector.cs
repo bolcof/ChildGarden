@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using Fusion;
+using System.Threading.Tasks;
 
 public class RoomConector : Photon.PunBehaviour {
     public static RoomConector Instance;
@@ -24,54 +25,60 @@ public class RoomConector : Photon.PunBehaviour {
         } else {
             Destroy(gameObject);
         }
-        if (!PhotonNetwork.connected) {
+        /*if (!PhotonNetwork.connected) {
             Connect();
-        }
+        }*/
+        Debug.Log("Fusion connect");
 
         networkRunner = Instantiate(networkRunnerPrefab);
-        await StartOrJoinGame();
+
+        NetworkEvents networkEvents = networkRunner.GetComponent<NetworkEvents>();
+        networkEvents.OnConnectedToServer.AddListener(OnConnectedToServer);
+
+        await JoinEmptyLobby();
+    }
+    private void OnConnectedToServer(NetworkRunner runner) {
+        Debug.Log("Fusion connected");
+        ViewManager.Instance.launcherView.ActivateStartButton();
+        SoundManager.Instance.PlayBgm(SoundManager.Instance.BGM_Title);
     }
 
-    private async UniTask StartOrJoinGame() {
+    private async UniTask JoinEmptyLobby() {
         var joinResult = await networkRunner.StartGame(new StartGameArgs {
             GameMode = GameMode.Shared,
+            SessionName = "", // セッション名を空にする
             SceneManager = networkRunner.GetComponent<NetworkSceneManagerDefault>(),
             CustomLobbyName = _gameVersion
         });
 
         if (joinResult.Ok) {
-            Debug.Log("ルームに入室成功！ Fusion");
+            Debug.Log("Success to connect empty room! Fusion");
         }
     }
 
-    private void OnEnable() {
-        SceneManager.sceneLoaded += OnSceneLoaded;
-    }
+    public async Task PushJoinAsync() {
+        Debug.Log("try to join random room Fusion");
 
-    private void OnDisable() {
-        SceneManager.sceneLoaded -= OnSceneLoaded;
-    }
+        // 既存のセッションをシャットダウン
+        await networkRunner.Shutdown();
+        Destroy(networkRunner);
+        networkRunner = Instantiate(networkRunnerPrefab);
 
-    private void OnSceneLoaded(Scene scene, LoadSceneMode mode) {
-    }
+        // 新しいセッションを開始して特定のルームに参加
+        var startGameArgs = new StartGameArgs {
+            GameMode = GameMode.Shared,
+            SessionName = roomId, // 特定のルーム名を設定
+            CustomLobbyName = _gameVersion,
+            SceneManager = networkRunner.GetComponent<NetworkSceneManagerDefault>()
+        };
 
-    public void Connect() {
-        Debug.Log("try to connect");
-        if (!PhotonNetwork.connected) {
-            PhotonNetwork.ConnectUsingSettings(_gameVersion);
-            Debug.Log("Photonに接続しました。 PUN");
+        var result = await networkRunner.StartGame(startGameArgs);
+
+        if (result.Ok) {
+            Debug.Log($"ルーム '{roomId}' に参加しました。");
+        } else {
+            Debug.LogError($"ルーム '{roomId}' への参加に失敗しました: {result.ShutdownReason}");
         }
-    }
-
-    public override void OnJoinedLobby() {
-        Debug.Log("ロビーに入りました。 PUN");
-        ViewManager.Instance.launcherView.ActivateStartButton();
-        SoundManager.Instance.PlayBgm(SoundManager.Instance.BGM_Title);
-    }
-
-    public void PushJoin() {
-        Debug.Log("try to join random room PUN");
-        PhotonNetwork.JoinRandomRoom();
 
         ViewManager.Instance.matchingViewObj.SetActive(true);
         ViewManager.Instance.matchingView.Set().Forget();
