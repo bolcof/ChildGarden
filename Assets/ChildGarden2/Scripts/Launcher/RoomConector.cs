@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
+using Fusion;
 
 public class RoomConector : Photon.PunBehaviour {
     public static RoomConector Instance;
@@ -11,9 +12,12 @@ public class RoomConector : Photon.PunBehaviour {
     [SerializeField] private string roomId;
     public string computerName;
 
+    [SerializeField] private NetworkRunner networkRunnerPrefab;
+    private NetworkRunner networkRunner;
+
     public int PlayerNum;
 
-    private void Awake() {
+    private async void Awake() {
         if (Instance == null) {
             Instance = this;
             DontDestroyOnLoad(gameObject);
@@ -22,6 +26,18 @@ public class RoomConector : Photon.PunBehaviour {
         }
         if (!PhotonNetwork.connected) {
             Connect();
+        }
+
+        networkRunner = Instantiate(networkRunnerPrefab);
+        var result = await networkRunner.StartGame(new StartGameArgs {
+            GameMode = GameMode.Shared,
+            SceneManager = networkRunner.GetComponent<NetworkSceneManagerDefault>()
+        });
+
+        if (result.Ok) {
+            Debug.Log("成功！");
+        } else {
+            Debug.Log("失敗！");
         }
     }
 

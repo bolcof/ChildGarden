@@ -48,6 +48,8 @@ MonoBehaviour:
   _gameVersion: 1109
   roomId: kanai
   computerName: 
+  networkRunnerPrefab: {fileID: 7484573548249633538, guid: 6007243e50c10804e9effd6bfde7598c, type: 3}
+  PlayerNum: 0
 --- !u!114 &8120481864440114763
 MonoBehaviour:
   m_ObjectHideFlags: 0
