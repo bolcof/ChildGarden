@@ -29,15 +29,18 @@ public class RoomConector : Photon.PunBehaviour {
         }
 
         networkRunner = Instantiate(networkRunnerPrefab);
-        var result = await networkRunner.StartGame(new StartGameArgs {
+        await StartOrJoinGame();
+    }
+
+    private async UniTask StartOrJoinGame() {
+        var joinResult = await networkRunner.StartGame(new StartGameArgs {
             GameMode = GameMode.Shared,
-            SceneManager = networkRunner.GetComponent<NetworkSceneManagerDefault>()
+            SceneManager = networkRunner.GetComponent<NetworkSceneManagerDefault>(),
+            CustomLobbyName = _gameVersion
         });
 
-        if (result.Ok) {
-            Debug.Log("成功！");
-        } else {
-            Debug.Log("失敗！");
+        if (joinResult.Ok) {
+            Debug.Log("ルームに入室成功！ Fusion");
         }
     }
 
@@ -56,18 +59,18 @@ public class RoomConector : Photon.PunBehaviour {
         Debug.Log("try to connect");
         if (!PhotonNetwork.connected) {
             PhotonNetwork.ConnectUsingSettings(_gameVersion);
-            Debug.Log("Photonに接続しました。");
+            Debug.Log("Photonに接続しました。 PUN");
         }
     }
 
     public override void OnJoinedLobby() {
-        Debug.Log("ロビーに入りました。");
+        Debug.Log("ロビーに入りました。 PUN");
         ViewManager.Instance.launcherView.ActivateStartButton();
         SoundManager.Instance.PlayBgm(SoundManager.Instance.BGM_Title);
     }
 
     public void PushJoin() {
-        Debug.Log("try to join random room");
+        Debug.Log("try to join random room PUN");
         PhotonNetwork.JoinRandomRoom();
 
         ViewManager.Instance.matchingViewObj.SetActive(true);
@@ -75,7 +78,7 @@ public class RoomConector : Photon.PunBehaviour {
     }
 
     public override void OnPhotonRandomJoinFailed(object[] codeAndMsg) {
-        Debug.Log("ルームのrandom入室に失敗しました。");
+        Debug.Log("ルームのrandom入室に失敗しました。 PUN");
         RoomOptions roomOptions = new RoomOptions();
         roomOptions.MaxPlayers = (byte)PlayerNum;
         PhotonNetwork.CreateRoom("", roomOptions, TypedLobby.Default);
@@ -102,7 +105,7 @@ public class RoomConector : Photon.PunBehaviour {
         if (PhotonNetwork.connected && PhotonNetwork.inRoom) {
             return PhotonNetwork.player.ID;
         } else {
-            Debug.LogWarning("Out of Connect or Room!");
+            Debug.LogWarning("Out of Connect or Room! PUN");
             return -1;
         }
     }
