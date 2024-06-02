@@ -14,7 +14,7 @@ public class RoomConector : Photon.PunBehaviour {
     public string computerName;
 
     [SerializeField] private NetworkRunner networkRunnerPrefab;
-    private NetworkRunner networkRunner;
+    public NetworkRunner networkRunner;
 
     public int PlayerNum;
 

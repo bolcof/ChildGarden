@@ -20,30 +20,33 @@ public class MatchingView : Photon.PunBehaviour {
             c.color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
         }
         await UniTask.Delay(1500);
-        foreach(var c in contents) {
+        foreach (var c in contents) {
             c.DOFade(1.0f, 1.5f);
         }
     }
 
     private void Update() {
-        if (PhotonNetwork.inRoom) {
-            switch (PhotonNetwork.room.PlayerCount) {
-                case 1:
-                    playerCount.sprite = countSprites[1];
-                    break;
-                case 2:
-                    playerCount.sprite = countSprites[2];
-                    break;
-                case 3:
-                    playerCount.sprite = countSprites[3];
-                    break;
-                default:
-                    playerCount.sprite = countSprites[0];
-                    break;
-            }
-        } else {
-            playerCount.sprite = countSprites[0];
+        switch (GetCurrentRoomPlayerCount()) {
+            case 1:
+                playerCount.sprite = countSprites[1];
+                break;
+            case 2:
+                playerCount.sprite = countSprites[2];
+                break;
+            case 3:
+                playerCount.sprite = countSprites[3];
+                break;
+            default:
+                playerCount.sprite = countSprites[0];
+                break;
         }
+    }
+
+    private int GetCurrentRoomPlayerCount() {
+        if (RoomConector.Instance.networkRunner != null && RoomConector.Instance.networkRunner.SessionInfo.IsValid) {
+            return RoomConector.Instance.networkRunner.SessionInfo.PlayerCount;
+        }
+        return 0;
     }
 
     public async UniTask Disappear() {
@@ -53,11 +56,11 @@ public class MatchingView : Photon.PunBehaviour {
     }
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
-        //これが無いと動くけどエラーが出る
+        //?????????????????????G???[???o??
         if (stream.isWriting) {
-            // ここにオブジェクトの状態を送信するコードを書きます
+            // ???????I?u?W?F?N?g???????????M?????R?[?h??????????
         } else {
-            // ここにオブジェクトの状態を受信して更新するコードを書きます
+            // ???????I?u?W?F?N?g???????????M?????X?V?????R?[?h??????????
         }
     }
 }
