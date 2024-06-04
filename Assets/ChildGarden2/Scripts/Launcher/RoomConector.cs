@@ -6,7 +6,7 @@ using DG.Tweening;
 using Fusion;
 using System.Threading.Tasks;
 
-public class RoomConector : Photon.PunBehaviour {
+public class RoomConector : NetworkBehaviour {
     public static RoomConector Instance;
 
     [SerializeField] private string _gameVersion;
@@ -15,6 +15,7 @@ public class RoomConector : Photon.PunBehaviour {
 
     [SerializeField] private NetworkRunner networkRunnerPrefab;
     public NetworkRunner networkRunner;
+    private NetworkObject networkObject;
 
     public int PlayerNum;
 
@@ -25,9 +26,6 @@ public class RoomConector : Photon.PunBehaviour {
         } else {
             Destroy(gameObject);
         }
-        /*if (!PhotonNetwork.connected) {
-            Connect();
-        }*/
         Debug.Log("Fusion connect");
 
         networkRunner = Instantiate(networkRunnerPrefab);
@@ -84,18 +82,12 @@ public class RoomConector : Photon.PunBehaviour {
         ViewManager.Instance.matchingView.Set().Forget();
     }
 
-    public override void OnPhotonRandomJoinFailed(object[] codeAndMsg) {
-        Debug.Log("ルームのrandom入室に失敗しました。 PUN");
-        RoomOptions roomOptions = new RoomOptions();
-        roomOptions.MaxPlayers = (byte)PlayerNum;
-        PhotonNetwork.CreateRoom("", roomOptions, TypedLobby.Default);
-    }
-
-    public override void OnPhotonPlayerConnected(PhotonPlayer newPlayer) {
-        base.OnPhotonPlayerConnected(newPlayer);
-        Debug.Log("player coming" + PhotonNetwork.playerList.Count().ToString());
-        if (PhotonNetwork.isMasterClient) {
-            if (PhotonNetwork.playerList.Count() == PlayerNum) {
+    public void OnFusionPlayerConnected(NetworkRunner runner, PlayerRef player) {
+        Debug.Log($"MyDebug Fusion Player Joined: {player}");
+        Debug.Log("MyDebug Player Count " + networkRunner.SessionInfo.PlayerCount.ToString());
+        if (networkRunner.IsSharedModeMasterClient) {
+            Debug.Log("MyDebug Fusion Master" + networkRunner.SessionInfo.PlayerCount.ToString());
+            if (networkRunner.SessionInfo.PlayerCount == PlayerNum) {
                 Debug.Log("go rule");
                 GoRuleDelayed(2000).Forget();
             }
@@ -104,10 +96,19 @@ public class RoomConector : Photon.PunBehaviour {
 
     private async UniTask GoRuleDelayed(int delay) {
         await UniTask.Delay(delay);
-        photonView.RPC(nameof(RuleViewAppear), PhotonTargets.AllBuffered);
+        RuleViewAppear();
     }
 
-    //PlayerのRoom内ID
+    //[Rpc(RpcSources.All, RpcTargets.All)]
+    public void RuleViewAppear() {
+        Debug.Log("fusion appear");
+        ViewManager.Instance.ruleExplainViewObj.SetActive(true);
+        ViewManager.Instance.ruleExplainView.ResetView();
+        ViewManager.Instance.launcherViewObj.SetActive(false);
+        ViewManager.Instance.matchingView.Disappear().Forget();
+    }
+
+    //PlayerのRoom内ID PUN
     public int MyPlayerId() {
         if (PhotonNetwork.connected && PhotonNetwork.inRoom) {
             return PhotonNetwork.player.ID;
@@ -115,22 +116,5 @@ public class RoomConector : Photon.PunBehaviour {
             Debug.LogWarning("Out of Connect or Room! PUN");
             return -1;
         }
-    }
-
-    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
-        //これが無いと動くけどエラーが出る
-        if (stream.isWriting) {
-            // ここにオブジェクトの状態を送信するコードを書きます
-        } else {
-            // ここにオブジェクトの状態を受信して更新するコードを書きます
-        }
-    }
-
-    [PunRPC]
-    public void RuleViewAppear() {
-        ViewManager.Instance.ruleExplainViewObj.SetActive(true);
-        ViewManager.Instance.ruleExplainView.ResetView();
-        ViewManager.Instance.launcherViewObj.SetActive(false);
-        ViewManager.Instance.matchingView.Disappear().Forget();
     }
 }

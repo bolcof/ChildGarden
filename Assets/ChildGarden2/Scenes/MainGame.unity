@@ -1218,6 +1218,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3450415654481632888, guid: c404e2a7d69964171a3f910fad2fbaed, type: 3}
+      propertyPath: Flags
+      value: 131073
+      objectReference: {fileID: 0}
+    - target: {fileID: 3450415654481632888, guid: c404e2a7d69964171a3f910fad2fbaed, type: 3}
+      propertyPath: SortKey
+      value: 1159871105
+      objectReference: {fileID: 0}
     - target: {fileID: 5306085744495720761, guid: c404e2a7d69964171a3f910fad2fbaed, type: 3}
       propertyPath: PlayerNum
       value: 2
