@@ -26,7 +26,7 @@ public class RoomConector : NetworkBehaviour {
         } else {
             Destroy(gameObject);
         }
-        Debug.Log("Fusion connect");
+        Debug.Log("MyDebug Fusion connect");
 
         networkRunner = Instantiate(networkRunnerPrefab);
 
@@ -50,7 +50,7 @@ public class RoomConector : NetworkBehaviour {
         });
 
         if (joinResult.Ok) {
-            Debug.Log("Success to connect empty room! Fusion");
+            Debug.Log("MyDebug Success to connect empty room! Fusion");
         }
     }
 
@@ -82,19 +82,7 @@ public class RoomConector : NetworkBehaviour {
         ViewManager.Instance.matchingView.Set().Forget();
     }
 
-    public void OnFusionPlayerConnected(NetworkRunner runner, PlayerRef player) {
-        Debug.Log($"MyDebug Fusion Player Joined: {player}");
-        Debug.Log("MyDebug Player Count " + networkRunner.SessionInfo.PlayerCount.ToString());
-        if (networkRunner.IsSharedModeMasterClient) {
-            Debug.Log("MyDebug Fusion Master" + networkRunner.SessionInfo.PlayerCount.ToString());
-            if (networkRunner.SessionInfo.PlayerCount == PlayerNum) {
-                Debug.Log("go rule");
-                GoRuleDelayed(2000).Forget();
-            }
-        }
-    }
-
-    private async UniTask GoRuleDelayed(int delay) {
+    public async UniTask GoRuleDelayed(int delay) {
         await UniTask.Delay(delay);
         RuleViewAppear();
     }
