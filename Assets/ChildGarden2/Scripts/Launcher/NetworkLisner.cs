@@ -12,9 +12,11 @@ public class NetworkLisner : SimulationBehaviour, IPlayerJoined {
         Debug.Log("MyDebug Player Count " + networkRunner.SessionInfo.PlayerCount.ToString());
         if (networkRunner.IsSharedModeMasterClient) {
             Debug.Log("MyDebug Fusion Master" + networkRunner.SessionInfo.PlayerCount.ToString());
-            if (networkRunner.SessionInfo.PlayerCount == RoomConector.Instance.PlayerNum) {
-                Debug.Log("MyDebug go rule");
-                RoomConector.Instance.GoRuleDelayed(2000).Forget();
+            if (networkRunner.SessionInfo.IsValid && networkRunner.SessionInfo.Name != "Lobby") {
+                if (networkRunner.SessionInfo.PlayerCount == RoomConector.Instance.PlayerNum) {
+                    Debug.Log("MyDebug go rule");
+                    RoomConector.Instance.GoRuleDelayed(2000).Forget();
+                }
             }
         }
     }

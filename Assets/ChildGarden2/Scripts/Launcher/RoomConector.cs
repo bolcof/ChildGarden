@@ -36,7 +36,7 @@ public class RoomConector : NetworkBehaviour {
         await JoinEmptyLobby();
     }
     private void OnConnectedToServer(NetworkRunner runner) {
-        Debug.Log("Fusion connected");
+        Debug.Log("MyDebug Fusion connected");
         ViewManager.Instance.launcherView.ActivateStartButton();
         SoundManager.Instance.PlayBgm(SoundManager.Instance.BGM_Title);
     }
@@ -44,7 +44,7 @@ public class RoomConector : NetworkBehaviour {
     private async UniTask JoinEmptyLobby() {
         var joinResult = await networkRunner.StartGame(new StartGameArgs {
             GameMode = GameMode.Shared,
-            SessionName = "", // セッション名を空にする
+            SessionName = "Lobby",
             SceneManager = networkRunner.GetComponent<NetworkSceneManagerDefault>(),
             CustomLobbyName = _gameVersion
         });
