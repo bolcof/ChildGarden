@@ -112,8 +112,6 @@ public class RoomConector : NetworkBehaviour {
 
     // PlayerのRoom内ID PUN
     public int MyPlayerId() {
-        return 1;
-        /*
         // NetworkRunnerとセッション情報が有効かどうかを確認
         if (networkRunner != null && networkRunner.SessionInfo.IsValid) {
             // ローカルプレイヤーのIDを返す
@@ -122,6 +120,6 @@ public class RoomConector : NetworkBehaviour {
         } else {
             Debug.LogWarning("Disconnected or NotInRoom");
             return -1;
-        }*/
+        }
     }
 }
