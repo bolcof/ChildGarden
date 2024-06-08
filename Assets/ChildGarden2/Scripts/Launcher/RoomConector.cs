@@ -5,6 +5,7 @@ using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using Fusion;
 using System.Threading.Tasks;
+using UnityEditor;
 
 public class RoomConector : NetworkBehaviour {
     public static RoomConector Instance;
@@ -83,11 +84,20 @@ public class RoomConector : NetworkBehaviour {
     }
 
     public async UniTask GoRuleDelayed(int delay) {
+        var networkObjects = FindObjectsOfType<NetworkObject>();
+
+        foreach (var networkObject in networkObjects) {
+            if (networkObject.name == "LauncherObject") {
+                // InvokeRpcを使用してリモートメソッドを呼び出す
+                //networkObject
+                return;
+            }
+        }
         await UniTask.Delay(delay);
         RuleViewAppear();
     }
 
-    //[Rpc(RpcSources.All, RpcTargets.All)]
+    [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
     public void RuleViewAppear() {
         Debug.Log("fusion appear");
         ViewManager.Instance.ruleExplainViewObj.SetActive(true);
@@ -98,11 +108,16 @@ public class RoomConector : NetworkBehaviour {
 
     //PlayerのRoom内ID PUN
     public int MyPlayerId() {
-        if (PhotonNetwork.connected && PhotonNetwork.inRoom) {
-            return PhotonNetwork.player.ID;
+        return 1;
+        /*
+        // NetworkRunnerとセッション情報が有効かどうかを確認
+        if (networkRunner != null && networkRunner.SessionInfo.IsValid) {
+            // ローカルプレイヤーのIDを返す
+            PlayerRef localPlayer = networkRunner.LocalPlayer;
+            return localPlayer.PlayerId;
         } else {
-            Debug.LogWarning("Out of Connect or Room! PUN");
+            Debug.LogWarning("Disconnected or NotInRoom");
             return -1;
-        }
+        }*/
     }
 }
