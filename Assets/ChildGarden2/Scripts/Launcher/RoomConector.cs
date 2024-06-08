@@ -5,7 +5,6 @@ using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using Fusion;
 using System.Threading.Tasks;
-using UnityEditor;
 
 public class RoomConector : NetworkBehaviour {
     public static RoomConector Instance;
@@ -36,6 +35,7 @@ public class RoomConector : NetworkBehaviour {
 
         await JoinEmptyLobby();
     }
+
     private void OnConnectedToServer(NetworkRunner runner) {
         Debug.Log("MyDebug Fusion connected");
         ViewManager.Instance.launcherView.ActivateStartButton();
@@ -88,25 +88,29 @@ public class RoomConector : NetworkBehaviour {
 
         foreach (var networkObject in networkObjects) {
             if (networkObject.name == "LauncherObject") {
-                // InvokeRpcを使用してリモートメソッドを呼び出す
-                //networkObject
+                // NetworkBehaviourのインスタンスを取得
+                var roomConnector = networkObject.GetComponent<RoomConector>();
+                if (roomConnector != null) {
+                    // 正しい方法でRPCを呼び出す
+                    roomConnector.RPC_RuleViewAppear();
+                }
                 return;
             }
         }
         await UniTask.Delay(delay);
-        RuleViewAppear();
+        RPC_RuleViewAppear();
     }
 
     [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
-    public void RuleViewAppear() {
-        Debug.Log("fusion appear");
+    public void RPC_RuleViewAppear() {
+        Debug.Log("MyDebug fusion appear");
         ViewManager.Instance.ruleExplainViewObj.SetActive(true);
         ViewManager.Instance.ruleExplainView.ResetView();
         ViewManager.Instance.launcherViewObj.SetActive(false);
         ViewManager.Instance.matchingView.Disappear().Forget();
     }
 
-    //PlayerのRoom内ID PUN
+    // PlayerのRoom内ID PUN
     public int MyPlayerId() {
         return 1;
         /*
