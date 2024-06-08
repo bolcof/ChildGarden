@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &6242445447040555488
+--- !u!1 &5082566945875563336
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,66 +8,58 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 447321933032062578}
-  - component: {fileID: 5306085744495720761}
-  - component: {fileID: 3450415654481632888}
+  - component: {fileID: 8726779763340453097}
+  - component: {fileID: -2359818548927697350}
+  - component: {fileID: 5119797654719129027}
   m_Layer: 0
-  m_Name: LauncherObject
+  m_Name: RpcListner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &447321933032062578
+--- !u!4 &8726779763340453097
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6242445447040555488}
+  m_GameObject: {fileID: 5082566945875563336}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.009664217, y: 0.20110488, z: -0.58885264}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5306085744495720761
+--- !u!114 &-2359818548927697350
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6242445447040555488}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f27e943e33a2f54e9452f76b0836898, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _gameVersion: 1109
-  roomId: kanai
-  computerName: 
-  networkRunnerPrefab: {fileID: 7484573548249633538, guid: 6007243e50c10804e9effd6bfde7598c, type: 3}
-  networkRunner: {fileID: 0}
-  rpcListnerObject: {fileID: 5119797654719129027, guid: 792aa512d01884c4ab3d44dfbeeedc1c, type: 3}
-  rpcListner: {fileID: 0}
-  PlayerNum: 0
---- !u!114 &3450415654481632888
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6242445447040555488}
+  m_GameObject: {fileID: 5082566945875563336}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SortKey: 2728491314
+  SortKey: 1008074568
   ObjectInterest: 1
   Flags: 262145
   NestedObjects: []
   NetworkedBehaviours:
-  - {fileID: 5306085744495720761}
+  - {fileID: 5119797654719129027}
+--- !u!114 &5119797654719129027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5082566945875563336}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b91b7983af8427a42a99019b030fb64f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

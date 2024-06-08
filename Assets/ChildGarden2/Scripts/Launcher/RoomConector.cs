@@ -17,6 +17,9 @@ public class RoomConector : NetworkBehaviour {
     public NetworkRunner networkRunner;
     private NetworkObject networkObject;
 
+    [SerializeField] private RpcListner rpcListnerObject;
+    public RpcListner rpcListner;
+
     public int PlayerNum;
 
     private async void Awake() {
@@ -78,36 +81,18 @@ public class RoomConector : NetworkBehaviour {
         } else {
             Debug.LogError($"ルーム '{roomId}' への参加に失敗しました: {result.ShutdownReason}");
         }
+        
+        if (networkRunner.IsSharedModeMasterClient) {
+            rpcListner = networkRunner.Spawn(rpcListnerObject);
+        }
 
-        ViewManager.Instance.matchingViewObj.SetActive(true);
+            ViewManager.Instance.matchingViewObj.SetActive(true);
         ViewManager.Instance.matchingView.Set().Forget();
     }
 
     public async UniTask GoRuleDelayed(int delay) {
-        var networkObjects = FindObjectsOfType<NetworkObject>();
-
-        foreach (var networkObject in networkObjects) {
-            if (networkObject.name == "LauncherObject") {
-                // NetworkBehaviourのインスタンスを取得
-                var roomConnector = networkObject.GetComponent<RoomConector>();
-                if (roomConnector != null) {
-                    // 正しい方法でRPCを呼び出す
-                    roomConnector.RPC_RuleViewAppear();
-                }
-                return;
-            }
-        }
         await UniTask.Delay(delay);
-        RPC_RuleViewAppear();
-    }
-
-    [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
-    public void RPC_RuleViewAppear() {
-        Debug.Log("MyDebug fusion appear");
-        ViewManager.Instance.ruleExplainViewObj.SetActive(true);
-        ViewManager.Instance.ruleExplainView.ResetView();
-        ViewManager.Instance.launcherViewObj.SetActive(false);
-        ViewManager.Instance.matchingView.Disappear().Forget();
+        rpcListner.RuleViewAppear();
     }
 
     // PlayerのRoom内ID PUN
