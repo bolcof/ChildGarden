@@ -1,15 +1,15 @@
 ﻿using Cysharp.Threading.Tasks;
+using Fusion;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class UtsuwaManager : Photon.PunBehaviour {
-    [SerializeField] private List<GameObject> UtsuwaList = new List<GameObject>();
+public class UtsuwaManager : NetworkBehaviour {
+    [SerializeField] private List<Utsuwa> UtsuwaList = new List<Utsuwa>();
     [SerializeField] private GameObject myBoxCollision;
     [SerializeField] private List<Vector3> spawnPoints;
-    [SerializeField] private PhotonView photonView;
 
     public int mySpawnPositionId = -1;
     public int myUtsuwaId = -1;
@@ -35,11 +35,11 @@ public class UtsuwaManager : Photon.PunBehaviour {
                 switch (RoomConector.Instance.PlayerNum) {
                     case 2:
                         Debug.Log("2player Play");
-                        photonView.RPC(nameof(SetSpawnId_2player), PhotonTargets.All, positionIdList[0], positionIdList[1]);
+                        RPC_SetSpawnId_2player(positionIdList[0], positionIdList[1]);
                         break;
                     case 3:
                         Debug.Log("3player Play");
-                        photonView.RPC(nameof(SetSpawnId_3player), PhotonTargets.All, positionIdList[0], positionIdList[1], positionIdList[2]);
+                        RPC_SetSpawnId_3player(positionIdList[0], positionIdList[1], positionIdList[2]);
                         break;
                     default:
                         Debug.LogAssertion("wrong playerNum!");
@@ -67,7 +67,7 @@ public class UtsuwaManager : Photon.PunBehaviour {
 
     void SpawnPlayer() {
         Vector3 spawnPoint = spawnPoints[mySpawnPositionId];
-        GameObject Player = PhotonNetwork.Instantiate("Box/" + this.UtsuwaList[RoomConector.Instance.MyPlayerId() - 1].name, new Vector3(spawnPoint.x, spawnPoint.y + 2, spawnPoint.z), Quaternion.identity, 0);
+        var Player = RoomConector.Instance.networkRunner.Spawn(UtsuwaList[RoomConector.Instance.MyPlayerId() - 1], new Vector3(spawnPoint.x, spawnPoint.y + 2, spawnPoint.z), Quaternion.identity);
         myUtsuwa = Player.GetComponent<Utsuwa>();
         AppearMyPlayerPin();
     }
@@ -115,7 +115,7 @@ public class UtsuwaManager : Photon.PunBehaviour {
             colorIdList.RemoveAt(index);
         }
 
-        photonView.RPC(nameof(SetOnbutsuColor), PhotonTargets.All, randomizeList[0], randomizeList[1], randomizeList[2]/*, randomizeList[3]*/);
+        RPC_SetOnbutsuColor(randomizeList[0], randomizeList[1], randomizeList[2] /*, randomizeList[3]*/);
         return randomizeList;
     }
 
@@ -142,18 +142,8 @@ public class UtsuwaManager : Photon.PunBehaviour {
         return randomizeList;
     }
 
-
-    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
-        //これが無いと動くけどエラーが出る
-        if (stream.isWriting) {
-            // ここにオブジェクトの状態を送信するコードを書きます
-        } else {
-            // ここにオブジェクトの状態を受信して更新するコードを書きます
-        }
-    }
-
-    [PunRPC]
-    public void SetSpawnId_2player(int player1posId, int player2posId) {
+    [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
+    public void RPC_SetSpawnId_2player(int player1posId, int player2posId) {
         //PlayerIDは1から始まる
         switch (RoomConector.Instance.MyPlayerId()) {
             case 1:
@@ -170,8 +160,8 @@ public class UtsuwaManager : Photon.PunBehaviour {
         }
     }
 
-    [PunRPC]
-    public void SetSpawnId_3player(int player1posId, int player2posId, int player3posId) {
+    [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
+    public void RPC_SetSpawnId_3player(int player1posId, int player2posId, int player3posId) {
         //PlayerIDは1から始まる
         switch (RoomConector.Instance.MyPlayerId()) {
             case 1:
@@ -193,8 +183,8 @@ public class UtsuwaManager : Photon.PunBehaviour {
     }
 
 
-    [PunRPC]
-    public void SetOnbutsuColor(int color1, int color2, int color3/*, int color4*/) {
+    [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
+    public void RPC_SetOnbutsuColor(int color1, int color2, int color3/*, int color4*/) {
         GameObject.Find("MainCamera").GetComponent<CreateRayPoint>().usingOnbutsuColor.Clear();
         GameObject.Find("MainCamera").GetComponent<CreateRayPoint>().usingOnbutsuColor.Add(color1);
         GameObject.Find("MainCamera").GetComponent<CreateRayPoint>().usingOnbutsuColor.Add(color2);

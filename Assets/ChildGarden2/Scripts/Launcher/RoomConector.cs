@@ -85,8 +85,8 @@ public class RoomConector : NetworkBehaviour {
         if (networkRunner.IsSharedModeMasterClient) {
             networkRunner.Spawn(rpcListnerObject);
         }
-
-            ViewManager.Instance.matchingViewObj.SetActive(true);
+        
+        ViewManager.Instance.matchingViewObj.SetActive(true);
         ViewManager.Instance.matchingView.Set().Forget();
     }
 

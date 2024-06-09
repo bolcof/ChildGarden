@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 6569510345204470555}
   - component: {fileID: 3234667180781912057}
   - component: {fileID: 7149603905289832327}
+  - component: {fileID: 7836462101967730342}
   m_Layer: 0
   m_Name: Utuwa_B
   m_TagString: Utsuwa
@@ -369,6 +370,24 @@ CircleCollider2D:
   m_Offset: {x: 4.02, y: 1.3548279}
   serializedVersion: 2
   m_Radius: 0.2
+--- !u!114 &7836462101967730342
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1008348657628407914}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SortKey: 1218650206
+  ObjectInterest: 1
+  Flags: 262145
+  NestedObjects: []
+  NetworkedBehaviours:
+  - {fileID: 1211487857972061069}
 --- !u!1001 &3869919918492834760
 PrefabInstance:
   m_ObjectHideFlags: 0

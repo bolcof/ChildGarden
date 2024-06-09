@@ -45,7 +45,7 @@ public class GameManager : NetworkBehaviour {
         }
     }
 
-    [Rpc(RpcSources.InputAuthority, RpcTargets.All)]
+    [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
     private void RPC_FirstRoundStart() {
         CountDownStart().Forget();
 

@@ -13,5 +13,4 @@ public class LocalStateManager : MonoBehaviour {
             Destroy(gameObject);
         }
     }
-
 }
