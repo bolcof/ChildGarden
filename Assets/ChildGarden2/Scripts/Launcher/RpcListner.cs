@@ -5,11 +5,12 @@ using Fusion;
 using Cysharp.Threading.Tasks;
 
 public class RpcListner : NetworkBehaviour {
-    [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
-
-    /*public override void Spawned() {
+    public override void Spawned() {
         RoomConector.Instance.rpcListner = this;
-    }*/
+    }
+
+    [Rpc(RpcSources.All, RpcTargets.All)]
+
     public void RPC_RuleViewAppear() {
         Debug.Log("MyDebug fusion appear");
         ViewManager.Instance.ruleExplainViewObj.SetActive(true);

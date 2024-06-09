@@ -90,6 +90,7 @@ public class RoomConector : NetworkBehaviour {
 
     public async UniTask GoRuleDelayed(int delay) {
         await UniTask.Delay(delay);
+        Debug.Log("MyDebug GoRuleDelayed");
         rpcListner.RPC_RuleViewAppear();
     }
 
