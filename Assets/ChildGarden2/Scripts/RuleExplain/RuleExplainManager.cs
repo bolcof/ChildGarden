@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
+using Fusion;
 
-public class RuleExplainManager : Photon.PunBehaviour {
+public class RuleExplainManager : NetworkBehaviour {
     public static RuleExplainManager Instance;
     [SerializeField] private int finishRuleReadCount;
     private bool completed;
 
-    private void Awake() {
+    public override void Spawned() {
         if (Instance == null) {
             Instance = this;
             DontDestroyOnLoad(gameObject);
@@ -17,52 +18,44 @@ public class RuleExplainManager : Photon.PunBehaviour {
             Destroy(gameObject);
         }
         completed = false;
+        Debug.Log("MyDebug RuleExplainManager Spawned");
     }
 
-    private void Update() {
-        if (PhotonNetwork.isMasterClient) {
+    public override void FixedUpdateNetwork() {
+        if (RoomConector.Instance.networkRunner.IsSharedModeMasterClient) {
             if (finishRuleReadCount == RoomConector.Instance.PlayerNum && !completed) {
                 Debug.Log("go game");
                 completed = true;
                 GoGameDelayed(900).Forget();
-                photonView.RPC(nameof(WhiteOut), PhotonTargets.AllBuffered);
+                RPC_WhiteOut();
             }
         }
     }
 
     public void PushHasRead() {
-        photonView.RPC(nameof(IncreaseCount), PhotonTargets.AllBuffered);
+        RPC_IncreaseCount();
     }
 
     private async UniTask GoGameDelayed(int delay) {
         await UniTask.Delay(delay);
-        photonView.RPC(nameof(GameViewAppear), PhotonTargets.AllBuffered);
+        RPC_GameViewAppear();
     }
 
-    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
-        //これが無いと動くけどエラーが出る
-        if (stream.isWriting) {
-            // ここにオブジェクトの状態を送信するコードを書きます
-        } else {
-            // ここにオブジェクトの状態を受信して更新するコードを書きます
-        }
-    }
-
-    [PunRPC]
-    public void WhiteOut() {
+    [Rpc(RpcSources.All, RpcTargets.All)]
+    public void RPC_WhiteOut() {
         Debug.Log("white");
         GameObject.Find("FaderCanvas").GetComponent<Fader>().Transit(2.7f);
     }
 
-    [PunRPC]
-    public void GameViewAppear() {
+    [Rpc(RpcSources.All, RpcTargets.All)]
+    public void RPC_GameViewAppear() {
         ViewManager.Instance.playingViewObj.SetActive(true);
         GameManager.Instance.GameStart();
         ViewManager.Instance.ruleExplainViewObj.SetActive(false);
     }
 
-    [PunRPC]
-    public void IncreaseCount() {
+    [Rpc(RpcSources.All, RpcTargets.All)]
+    public void RPC_IncreaseCount() {
         Debug.Log("Increase");
         finishRuleReadCount++;
     }

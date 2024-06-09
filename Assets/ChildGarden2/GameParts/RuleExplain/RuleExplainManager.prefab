@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1144830663894298825}
   - component: {fileID: 7489421098288484400}
-  - component: {fileID: 6516828528181348317}
+  - component: {fileID: -3788530293163923116}
   m_Layer: 0
   m_Name: RuleExplainManager
   m_TagString: Untagged
@@ -45,7 +45,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c1688b02d1934b40bed2a4e2957e407, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &6516828528181348317
+  finishRuleReadCount: 0
+--- !u!114 &-3788530293163923116
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -54,21 +55,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 254165071202988726}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ownerId: 0
-  group: 0
-  OwnerShipWasTransfered: 0
-  prefixBackup: -1
-  synchronization: 3
-  onSerializeTransformOption: 3
-  onSerializeRigidBodyOption: 2
-  ownershipTransfer: 0
-  ObservedComponents:
+  SortKey: 2762057376
+  ObjectInterest: 1
+  Flags: 262145
+  NestedObjects: []
+  NetworkedBehaviours:
   - {fileID: 7489421098288484400}
-  ObservedComponentsFoldoutOpen: 1
-  viewIdField: 0
-  instantiationId: -1
-  currentMasterID: -1
-  isRuntimeInstantiated: 0

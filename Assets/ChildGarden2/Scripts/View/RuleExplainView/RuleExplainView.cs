@@ -1,13 +1,16 @@
+using Fusion;
 using UnityEngine;
 using UnityEngine.Video;
 
-public class RuleExplainView : MonoBehaviour {
+public class RuleExplainView : NetworkBehaviour {
     public GameObject[] explainPages;
     private int currentIndex = 0; // 現在アクティブなオブジェクトのインデックス。
     [SerializeField] private GameObject fripButton;
     [SerializeField] private GameObject startButton;
     [SerializeField] private GameObject readyLabel;
     [SerializeField] private VideoPlayer vp;
+
+    [SerializeField] private RuleExplainManager ruleExplainManager;
 
     public void ResetView() {
         SoundManager.Instance.PlayBgm(SoundManager.Instance.BGM_Introduction);
@@ -20,6 +23,9 @@ public class RuleExplainView : MonoBehaviour {
         for (int i = 1; i < explainPages.Length; i++) {
             explainPages[i].SetActive(false);
         }
+
+        Debug.Log("MyDebug Reset View");
+        RoomConector.Instance.networkRunner.Spawn(ruleExplainManager);
     }
 
     public void SwitchToNextObject() {

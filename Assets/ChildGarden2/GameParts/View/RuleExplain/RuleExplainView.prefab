@@ -1023,6 +1023,7 @@ GameObject:
   - component: {fileID: 7238916898574095885}
   - component: {fileID: 442851169539290736}
   - component: {fileID: 8787110491345731831}
+  - component: {fileID: 4217918693009000913}
   m_Layer: 5
   m_Name: RuleExplainView
   m_TagString: Untagged
@@ -1092,6 +1093,25 @@ MonoBehaviour:
   startButton: {fileID: 8320870901235016453}
   readyLabel: {fileID: 2538797129109271660}
   vp: {fileID: 1881491115998618740}
+  ruleExplainManager: {fileID: 7489421098288484400, guid: 49fa6234e54704b42bff242f509832e7, type: 3}
+--- !u!114 &4217918693009000913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3274950165668190628}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SortKey: 881853099
+  ObjectInterest: 1
+  Flags: 262145
+  NestedObjects: []
+  NetworkedBehaviours:
+  - {fileID: 8787110491345731831}
 --- !u!1 &4054054801356505233
 GameObject:
   m_ObjectHideFlags: 0
