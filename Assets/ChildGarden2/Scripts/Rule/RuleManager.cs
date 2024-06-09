@@ -77,7 +77,7 @@ public class RuleManager : Photon.PunBehaviour {
     }
 
     private void Update() {
-        if (GameManager.Instance.canPutOnbutsu) {
+        if (LocalStateManager.Instance.canPutOnbutsu) {
             switch (currentRule.id) {
                 case -1:
                     Debug.LogError("Rule is not set yet!");

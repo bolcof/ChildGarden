@@ -16,6 +16,7 @@ public class RoomConector : NetworkBehaviour {
     public NetworkRunner networkRunner;
 
     [SerializeField] private RpcListner rpcListnerObject;
+    [SerializeField] private GameObject gameManagerObject;
     public RpcListner rpcListner;
 
     public int PlayerNum;
@@ -41,6 +42,7 @@ public class RoomConector : NetworkBehaviour {
         Debug.Log("MyDebug Fusion connected");
         ViewManager.Instance.launcherView.ActivateStartButton();
         SoundManager.Instance.PlayBgm(SoundManager.Instance.BGM_Title);
+        networkRunner.Spawn(gameManagerObject);
     }
 
     private async UniTask JoinEmptyLobby() {
@@ -90,7 +92,6 @@ public class RoomConector : NetworkBehaviour {
 
     public async UniTask GoRuleDelayed(int delay) {
         await UniTask.Delay(delay);
-        Debug.Log("MyDebug GoRuleDelayed");
         rpcListner.RPC_RuleViewAppear();
     }
 

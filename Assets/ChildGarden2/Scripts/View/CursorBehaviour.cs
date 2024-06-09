@@ -20,7 +20,7 @@ public class CursorBehaviour : MonoBehaviour {
     private void Update() {
         transform.position = Input.mousePosition;
 
-        if (GameManager.Instance.canPutOnbutsu || !displayed) {
+        if (LocalStateManager.Instance.canPutOnbutsu || !displayed) {
             finger.enabled = false;
         } else {
             finger.enabled = true;

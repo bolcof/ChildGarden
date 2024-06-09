@@ -1,4 +1,5 @@
 using Cysharp.Threading.Tasks;
+using Fusion;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +7,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Video;
 
-public class GameManager : Photon.PunBehaviour {
+public class GameManager : NetworkBehaviour {
 
     public static GameManager Instance;
 
@@ -18,7 +19,6 @@ public class GameManager : Photon.PunBehaviour {
 
     [SerializeField] PlayingView playingVew;
 
-    public bool canPutOnbutsu;
     public bool canOperateUI;
     private bool isPlaying;
 
@@ -28,27 +28,25 @@ public class GameManager : Photon.PunBehaviour {
 
     //TODO:ここじゃないんだよな～～～
     [SerializeField] private List<GameObject> backgroundObject;
-
-    private void Awake() {
+    public override void Spawned() {
         if (Instance == null) {
             Instance = this;
             DontDestroyOnLoad(gameObject);
         } else {
             Destroy(gameObject);
         }
-        canPutOnbutsu = false;
         canOperateUI = false;
         isPlaying = false;
     }
 
     public void GameStart() {
         if (PhotonNetwork.isMasterClient) {
-            photonView.RPC(nameof(FirstRoundStart), PhotonTargets.AllBuffered);
+            RPC_FirstRoundStart();
         }
     }
 
-    [PunRPC]
-    private void FirstRoundStart() {
+    [Rpc(RpcSources.InputAuthority, RpcTargets.All)]
+    private void RPC_FirstRoundStart() {
         CountDownStart().Forget();
 
         stageManager.SetStage();
@@ -103,7 +101,7 @@ public class GameManager : Photon.PunBehaviour {
         ViewManager.Instance.playingView.countDownObject.SetActive(false);
         GameObject.Find("Cursor").GetComponent<CursorBehaviour>().displayed = true;
 
-        canPutOnbutsu = true;
+        LocalStateManager.Instance.canPutOnbutsu = true;
         isPlaying = true;
     }
 
@@ -133,43 +131,34 @@ public class GameManager : Photon.PunBehaviour {
     }
 
     public void MyPlayerWin() {
-        photonView.RPC(nameof(OtherPlayerWin), PhotonTargets.OthersBuffered, RoomConector.Instance.MyPlayerId());
+        RPC_OtherPlayerWin(RoomConector.Instance.MyPlayerId());
         winnerIsMine = 1;
         roundManager.FinishRound(1);
         DecideWinner();
     }
 
     public void TimeOver() {
-        canPutOnbutsu = false;
-        photonView.RPC(nameof(Draw), PhotonTargets.All);
+        LocalStateManager.Instance.canPutOnbutsu = false;
+        RPC_Draw();
     }
 
     public void DecideWinner() {
-        canPutOnbutsu = false;
+        LocalStateManager.Instance.canPutOnbutsu = false;
         isPlaying = false;
         ViewManager.Instance.playingView.RoundFinish(winnerIsMine).Forget();
         SoundManager.Instance.BgmSource.Stop();
         createRayPoint.DisappearGauge();
     }
 
-    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
-        //これが無いと動くけどエラーが出る
-        if (stream.isWriting) {
-            // ここにオブジェクトの状態を送信するコードを書きます
-        } else {
-            // ここにオブジェクトの状態を受信して更新するコードを書きます
-        }
-    }
-
-    [PunRPC]
-    public void OtherPlayerWin(int winnerID) {
+    [Rpc(RpcSources.All, RpcTargets.All)]
+    public void RPC_OtherPlayerWin(int winnerID) {
         winnerIsMine = 0;
         roundManager.FinishRound(0);
         DecideWinner();
     }
 
-    [PunRPC]
-    public void Draw() {
+    [Rpc(RpcSources.All, RpcTargets.All)]
+    public void RPC_Draw() {
         winnerIsMine = 2;
         roundManager.FinishRound(2);
         DecideWinner();

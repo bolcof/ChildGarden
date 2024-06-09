@@ -50,6 +50,7 @@ MonoBehaviour:
   networkRunnerPrefab: {fileID: 7484573548249633538, guid: 6007243e50c10804e9effd6bfde7598c, type: 3}
   networkRunner: {fileID: 0}
   rpcListnerObject: {fileID: 5119797654719129027, guid: 792aa512d01884c4ab3d44dfbeeedc1c, type: 3}
+  gameManagerObject: {fileID: 2849400873968398606, guid: b0edca4cc6e3f46639280936b97b88e6, type: 3}
   rpcListner: {fileID: 0}
   PlayerNum: 2
 --- !u!114 &3450415654481632888

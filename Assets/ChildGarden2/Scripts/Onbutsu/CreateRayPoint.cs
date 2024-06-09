@@ -61,7 +61,7 @@ public class CreateRayPoint : Photon.PunBehaviour {
     }
 
     void Update() {
-        if (GameManager.Instance.canPutOnbutsu) {
+        if (LocalStateManager.Instance.canPutOnbutsu) {
 
             guageRoot.SetActive(true);
             guageRoot.transform.position = Input.mousePosition + Vector3.up * 90f;
@@ -116,7 +116,7 @@ public class CreateRayPoint : Photon.PunBehaviour {
 
                 if (Physics.Raycast(ray, out hit, rayDistance)) {
                     Vector3 spawnPosition = hit.point + Vector3.up * 0.25f;
-                    if(spawnPosition.y < 0.75f) {
+                    if (spawnPosition.y < 0.75f) {
                         spawnPosition = new Vector3(spawnPosition.x, 0.75f, spawnPosition.z);
                     }
                     switch (currentChargeLevel) {
