@@ -20,7 +20,6 @@ public class RuleExplainManager : NetworkBehaviour {
             Destroy(gameObject);
         }
         completed = false;
-        Debug.Log("MyDebug RuleExplainManager Spawned");
     }
 
     public override void FixedUpdateNetwork() {
@@ -45,7 +44,6 @@ public class RuleExplainManager : NetworkBehaviour {
 
     [Rpc(RpcSources.All, RpcTargets.All)]
     public void RPC_WhiteOut() {
-        Debug.Log("white");
         GameObject.Find("FaderCanvas").GetComponent<Fader>().Transit(2.7f);
     }
 

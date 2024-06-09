@@ -8,7 +8,7 @@ using UnityEngine;
 public class NetworkLisner : SimulationBehaviour, IPlayerJoined {
     [SerializeField] private NetworkRunner networkRunner;
     public void PlayerJoined(PlayerRef player) {
-        Debug.Log("MyDebug Fusion Player Joined to" + networkRunner.SessionInfo.Name + ": "+ player.ToString());
+        Debug.Log("MyDebug Fusion Player Joined to " + networkRunner.SessionInfo.Name + ": "+ player.ToString());
         Debug.Log("MyDebug "+ networkRunner.SessionInfo.Name + " Player Count " + networkRunner.SessionInfo.PlayerCount.ToString());
         if (networkRunner.IsSharedModeMasterClient) {
             Debug.Log("MyDebug Fusion Master");
