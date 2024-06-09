@@ -24,8 +24,9 @@ public class RuleExplainView : NetworkBehaviour {
             explainPages[i].SetActive(false);
         }
 
-        Debug.Log("MyDebug Reset View");
-        RoomConector.Instance.networkRunner.Spawn(ruleExplainManager);
+        if (RoomConector.Instance.networkRunner.IsSharedModeMasterClient) {
+            RoomConector.Instance.networkRunner.Spawn(ruleExplainManager);
+        }
     }
 
     public void SwitchToNextObject() {
