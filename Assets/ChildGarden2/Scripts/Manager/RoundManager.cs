@@ -1,8 +1,9 @@
-﻿using System.Collections;
+﻿using Fusion;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RoundManager : Photon.PunBehaviour {
+public class RoundManager : NetworkBehaviour {
 
     public static RoundManager Instance;
 
@@ -11,7 +12,7 @@ public class RoundManager : Photon.PunBehaviour {
     public int currentRound;
     public List<int> isWin; /* 0:lose 1:win 2:draw */
 
-    private void Awake() {
+    public override void Spawned() {
         for (int i = 0; i < RoundNum; i++) {
             isWin.Add(-1);
         }
@@ -21,18 +22,10 @@ public class RoundManager : Photon.PunBehaviour {
         } else {
             Destroy(gameObject);
         }
+        Debug.Log("MyDebug RoundManager Spawned");
     }
 
     public void FinishRound(int _isWin) {
         isWin[currentRound - 1] = _isWin;
-    }
-
-    //これが無いと動くけどエラーが出る
-    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
-        if (stream.isWriting) {
-            // ここにオブジェクトの状態を送信するコードを書きます
-        } else {
-            // ここにオブジェクトの状態を受信して更新するコードを書きます
-        }
     }
 }

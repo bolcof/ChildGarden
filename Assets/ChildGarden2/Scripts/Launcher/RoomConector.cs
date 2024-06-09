@@ -42,7 +42,6 @@ public class RoomConector : NetworkBehaviour {
         Debug.Log("MyDebug Fusion connected");
         ViewManager.Instance.launcherView.ActivateStartButton();
         SoundManager.Instance.PlayBgm(SoundManager.Instance.BGM_Title);
-        networkRunner.Spawn(gameManagerObject);
     }
 
     private async UniTask JoinEmptyLobby() {
@@ -84,6 +83,7 @@ public class RoomConector : NetworkBehaviour {
         
         if (networkRunner.IsSharedModeMasterClient) {
             networkRunner.Spawn(rpcListnerObject);
+            networkRunner.Spawn(gameManagerObject);
         }
         
         ViewManager.Instance.matchingViewObj.SetActive(true);

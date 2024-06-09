@@ -17,8 +17,6 @@ public class GameManager : NetworkBehaviour {
 
     [SerializeField] CreateRayPoint createRayPoint;
 
-    [SerializeField] PlayingView playingVew;
-
     public bool canOperateUI;
     private bool isPlaying;
 
@@ -26,8 +24,7 @@ public class GameManager : NetworkBehaviour {
 
     public float timeLimit, remainingTimeLimit;
 
-    //TODO:ここじゃないんだよな～～～
-    [SerializeField] private List<GameObject> backgroundObject;
+    [SerializeField] private BackgroundRoot backgroundRoot;
     public override void Spawned() {
         if (Instance == null) {
             Instance = this;
@@ -37,10 +34,16 @@ public class GameManager : NetworkBehaviour {
         }
         canOperateUI = false;
         isPlaying = false;
+
+        createRayPoint = GameObject.Find("MainCamera").GetComponent<CreateRayPoint>();
+        backgroundRoot = GameObject.Find("BackgroundRoot").GetComponent<BackgroundRoot>();
+
+        Debug.Log("MyDebug GameManager Spawned");
     }
 
     public void GameStart() {
-        if (PhotonNetwork.isMasterClient) {
+        Debug.Log("MyDebug GameManager GameStart");
+        if (RoomConector.Instance.networkRunner.IsSharedModeMasterClient) {
             RPC_FirstRoundStart();
         }
     }
@@ -54,17 +57,17 @@ public class GameManager : NetworkBehaviour {
         roundManager.currentRound = 1;
         ruleManager.SetFirstRound();
 
-        playingVew.RoundStart(1, ruleManager.currentRule);
+        ViewManager.Instance.playingView.RoundStart(1, ruleManager.currentRule);
         remainingTimeLimit = timeLimit;
         winnerIsMine = -1;
 
         SoundManager.Instance.PlayBgm(SoundManager.Instance.BGM_GameScene[0]);
 
-        foreach (var bgo in backgroundObject) {
+        foreach (var bgo in backgroundRoot.backgrounds) {
             bgo.SetActive(false);
         }
-        backgroundObject[0].SetActive(true);
-        backgroundObject[0].GetComponent<BackgroundSlider>().StartSlider();
+        backgroundRoot.backgrounds[0].SetActive(true);
+        backgroundRoot.backgrounds[0].GetComponent<BackgroundSlider>().StartSlider();
     }
 
     public void NextRoundStart() {
@@ -78,8 +81,8 @@ public class GameManager : NetworkBehaviour {
         roundManager.currentRound++;
         SoundManager.Instance.PlayBgm(SoundManager.Instance.BGM_GameScene[roundManager.currentRound - 1]);
 
-        playingVew.gameObject.SetActive(true);
-        playingVew.RoundStart(roundManager.currentRound, ruleManager.currentRule);
+        ViewManager.Instance.playingView.gameObject.SetActive(true);
+        ViewManager.Instance.playingView.RoundStart(roundManager.currentRound, ruleManager.currentRule);
 
         remainingTimeLimit = timeLimit;
 
@@ -87,8 +90,8 @@ public class GameManager : NetworkBehaviour {
     }
 
     public void BackGroundVideoStart() {
-        backgroundObject[roundManager.currentRound].GetComponent<VideoPlayer>().Play();
-        backgroundObject[roundManager.currentRound].GetComponent<BackgroundSlider>().StartSlider();
+        backgroundRoot.backgrounds[roundManager.currentRound].GetComponent<VideoPlayer>().Play();
+        backgroundRoot.backgrounds[roundManager.currentRound].GetComponent<BackgroundSlider>().StartSlider();
     }
 
     private async UniTask CountDownStart() {
@@ -122,11 +125,11 @@ public class GameManager : NetworkBehaviour {
             Destroy(obj);
         }
 
-        foreach (var bgo in backgroundObject) {
+        foreach (var bgo in backgroundRoot.backgrounds) {
             bgo.SetActive(false);
         }
         if (roundManager.currentRound <= 3) {
-            backgroundObject[roundManager.currentRound].SetActive(true);
+            backgroundRoot.backgrounds[roundManager.currentRound].SetActive(true);
         }
     }
 

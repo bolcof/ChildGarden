@@ -52,7 +52,6 @@ MonoBehaviour:
   ruleManager: {fileID: 2530666752715617214}
   stageManager: {fileID: 7399397119454308964}
   createRayPoint: {fileID: 0}
-  playingVew: {fileID: 0}
   canOperateUI: 0
   winnerIsMine: 0
   timeLimit: 80
@@ -130,8 +129,8 @@ MonoBehaviour:
   myUtsuwa: {fileID: 0}
   otherUtsuwaList: []
   OnbutsuList: []
-  Rule05_GoalLine: {fileID: 0}
-  Rule06_BigUtsuwa: {fileID: 0}
+  Rule05Obj: {fileID: 2077931016347738816, guid: 3275ccc9d3c1b4bd5bc16be2dcb3cc03, type: 3}
+  Rule06Obj: {fileID: 4513531154935297391, guid: 5e892d528d3a84ebab8a97c079ad36a7, type: 3}
   nearToLoseAppeared: 0
 --- !u!114 &2610326606202948468
 MonoBehaviour:
@@ -167,3 +166,5 @@ MonoBehaviour:
   NetworkedBehaviours:
   - {fileID: 1461753146373015404}
   - {fileID: 7399397119454308964}
+  - {fileID: 2530666752715617214}
+  - {fileID: 2610326606202948468}

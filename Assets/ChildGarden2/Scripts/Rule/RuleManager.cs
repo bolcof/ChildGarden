@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using Cysharp.Threading.Tasks;
+using Fusion;
 
-public class RuleManager : Photon.PunBehaviour {
+public class RuleManager : NetworkBehaviour {
     public static RuleManager instance;
 
     [System.Serializable]
@@ -28,18 +29,20 @@ public class RuleManager : Photon.PunBehaviour {
 
     public List<Onbutsu> OnbutsuList = new List<Onbutsu>();
 
-    [SerializeField] private GameObject Rule05_GoalLine, Rule06_BigUtsuwa;
+    [SerializeField] private NetworkObject Rule05Obj, Rule06Obj;
+    private GameObject Rule05_GoalLine, Rule06_BigUtsuwa;
 
     private bool firstCommitAppeared, nearToWinAppeared;
     public bool nearToLoseAppeared;
 
-    private void Awake() {
+    public override void Spawned() {
         if (instance == null) {
             instance = this;
             DontDestroyOnLoad(gameObject);
         } else {
             Destroy(gameObject);
         }
+        Debug.Log("MyDebug RuleManager Spawned");
     }
 
     public void SetFirstRound() {
@@ -57,12 +60,18 @@ public class RuleManager : Photon.PunBehaviour {
     }
 
     private void SetSpecialObject(int id) {
-        Rule05_GoalLine.SetActive(false);
-        Rule06_BigUtsuwa.SetActive(false);
+        if (Rule05_GoalLine != null) {
+            Rule05_GoalLine.SetActive(false);
+        }
+        if (Rule06_BigUtsuwa != null) {
+            Rule06_BigUtsuwa.SetActive(false);
+        }
 
         if (id == 5) {
+            Rule05_GoalLine = RoomConector.Instance.networkRunner.Spawn(Rule05Obj).gameObject;
             Rule05_GoalLine.SetActive(true);
         } else if (id == 6) {
+            Rule05_GoalLine = RoomConector.Instance.networkRunner.Spawn(Rule06Obj).gameObject;
             Rule06_BigUtsuwa.SetActive(true);
         }
     }
@@ -104,15 +113,6 @@ public class RuleManager : Photon.PunBehaviour {
                     Debug.LogError("RuleID is out of range!");
                     break;
             }
-        }
-    }
-
-    //これが無いと動くけどエラーが出る
-    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
-        if (stream.isWriting) {
-            // ここにオブジェクトの状態を送信するコードを書きます
-        } else {
-            // ここにオブジェクトの状態を受信して更新するコードを書きます
         }
     }
 
