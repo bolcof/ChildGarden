@@ -11,11 +11,9 @@ public class RoomConector : NetworkBehaviour {
 
     [SerializeField] private string _gameVersion;
     [SerializeField] private string roomId;
-    public string computerName;
 
     [SerializeField] private NetworkRunner networkRunnerPrefab;
     public NetworkRunner networkRunner;
-    private NetworkObject networkObject;
 
     [SerializeField] private RpcListner rpcListnerObject;
     public RpcListner rpcListner;
