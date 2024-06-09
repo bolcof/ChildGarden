@@ -6,7 +6,8 @@ using Cysharp.Threading.Tasks;
 
 public class RpcListner : NetworkBehaviour {
     [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
-    public void RuleViewAppear() {
+
+    public void RPC_RuleViewAppear() {
         Debug.Log("MyDebug fusion appear");
         ViewManager.Instance.ruleExplainViewObj.SetActive(true);
         ViewManager.Instance.ruleExplainView.ResetView();

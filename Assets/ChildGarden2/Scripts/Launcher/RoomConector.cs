@@ -90,7 +90,7 @@ public class RoomConector : NetworkBehaviour {
 
     public async UniTask GoRuleDelayed(int delay) {
         await UniTask.Delay(delay);
-        rpcListner.RuleViewAppear();
+        rpcListner.RPC_RuleViewAppear();
     }
 
     // PlayerのRoom内ID PUN

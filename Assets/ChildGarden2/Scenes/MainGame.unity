@@ -1226,25 +1226,9 @@ PrefabInstance:
       propertyPath: SortKey
       value: 1159871105
       objectReference: {fileID: 0}
-    - target: {fileID: 5306085744495720761, guid: c404e2a7d69964171a3f910fad2fbaed, type: 3}
-      propertyPath: PlayerNum
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5306085744495720761, guid: c404e2a7d69964171a3f910fad2fbaed, type: 3}
-      propertyPath: computerName
-      value: 001
-      objectReference: {fileID: 0}
     - target: {fileID: 6242445447040555488, guid: c404e2a7d69964171a3f910fad2fbaed, type: 3}
       propertyPath: m_Name
       value: LauncherObject
-      objectReference: {fileID: 0}
-    - target: {fileID: 8120481864440114763, guid: c404e2a7d69964171a3f910fad2fbaed, type: 3}
-      propertyPath: viewIdField
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 8120481864440114763, guid: c404e2a7d69964171a3f910fad2fbaed, type: 3}
-      propertyPath: instantiationId
-      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3450415654481632888, guid: c404e2a7d69964171a3f910fad2fbaed, type: 3}
