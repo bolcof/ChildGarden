@@ -7,7 +7,9 @@ using Fusion;
 
 public class RuleExplainManager : NetworkBehaviour {
     public static RuleExplainManager Instance;
-    [SerializeField] private int finishRuleReadCount;
+    [Networked]
+    public int finishRuleReadCount { get; set; } = 0;
+
     private bool completed;
 
     public override void Spawned() {
@@ -22,9 +24,9 @@ public class RuleExplainManager : NetworkBehaviour {
     }
 
     public override void FixedUpdateNetwork() {
-        if (RoomConector.Instance.networkRunner.IsSharedModeMasterClient) {
-            if (finishRuleReadCount == RoomConector.Instance.PlayerNum && !completed) {
-                Debug.Log("go game");
+        if (finishRuleReadCount == RoomConector.Instance.PlayerNum && !completed) {
+            if (RoomConector.Instance.networkRunner.IsSharedModeMasterClient) {
+                Debug.Log("MyDebug go game");
                 completed = true;
                 GoGameDelayed(900).Forget();
                 RPC_WhiteOut();
