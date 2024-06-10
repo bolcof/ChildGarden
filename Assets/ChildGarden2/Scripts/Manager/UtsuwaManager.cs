@@ -19,11 +19,11 @@ public class UtsuwaManager : NetworkBehaviour {
 
     public void SetStage() {
 
-        Debug.Log("Game Start");
+        Debug.Log("MyDebug Set Stage");
 
         //TODO ポジションが未設定だったらとしたいけど、本当は状態がそろっているかを確認した方が良い
         if (mySpawnPositionId == -1) {
-            if (PhotonNetwork.isMasterClient) {
+            if (RoomConector.Instance.networkRunner.IsSharedModeMasterClient) {
                 Debug.Log("I'm masterClient");
                 // DONE ID全部ここから振り分けないと、クライアント側で処理が並行して被る
                 List<int> positionIdList = RandomizedPositionIdList();
@@ -190,6 +190,6 @@ public class UtsuwaManager : NetworkBehaviour {
         GameObject.Find("MainCamera").GetComponent<CreateRayPoint>().usingOnbutsuColor.Add(color2);
         GameObject.Find("MainCamera").GetComponent<CreateRayPoint>().usingOnbutsuColor.Add(color3);
         //GameObject.Find("MainCamera").GetComponent<CreateRayPoint>().usingOnbutsuColor.Add(color4);
-        myOnbutsuColorId = GameObject.Find("MainCamera").GetComponent<CreateRayPoint>().usingOnbutsuColor[PhotonNetwork.player.ID - 1];
+        myOnbutsuColorId = GameObject.Find("MainCamera").GetComponent<CreateRayPoint>().usingOnbutsuColor[RoomConector.Instance.networkRunner.LocalPlayer.PlayerId - 1];
     }
 }
