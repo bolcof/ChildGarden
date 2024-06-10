@@ -56,7 +56,7 @@ public class RuleExplainManager : NetworkBehaviour {
 
     [Rpc(RpcSources.All, RpcTargets.All)]
     public void RPC_IncreaseCount() {
-        Debug.Log("Increase");
+        Debug.Log("MyDebug Increase");
         finishRuleReadCount++;
     }
 }
