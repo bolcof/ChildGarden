@@ -6,22 +6,23 @@ using UnityEngine;
 
 public class Utsuwa : NetworkBehaviour {
     public GameObject myPlayerSign;
-    public bool isMine;
-    public int holderId;
-    public int CpuId;
+    public bool isMine; // TODO:tukattenai?
+    public int holderId; //TODO:nanikore
+    public int CpuId; // TODO:nanikore
 
     public override void Spawned() {
-        if (HasStateAuthority) {
+        if (!HasStateAuthority) {
             myPlayerSign.SetActive(false);
             RuleManager.instance.myUtsuwa = this;
         } else {
+            isMine = false;
             RuleManager.instance.otherUtsuwaList.Add(this);
             CpuId = RuleManager.instance.otherUtsuwaList.Count - 1;
         }
     }
 
     public void SignEnabled(bool enabled) {
-        if (HasStateAuthority) {
+        if (!HasStateAuthority) {
             myPlayerSign.SetActive(false);
         } else {
             myPlayerSign.SetActive(enabled);
