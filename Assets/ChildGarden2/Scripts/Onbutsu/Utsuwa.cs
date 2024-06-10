@@ -11,11 +11,13 @@ public class Utsuwa : NetworkBehaviour {
     public int CpuId; // TODO:nanikore
 
     public override void Spawned() {
-        if (!HasStateAuthority) {
-            myPlayerSign.SetActive(false);
+        holderId = Object.StateAuthority.PlayerId;
+        if (HasStateAuthority) {
+            isMine = true;
             RuleManager.instance.myUtsuwa = this;
         } else {
             isMine = false;
+            myPlayerSign.SetActive(false);
             RuleManager.instance.otherUtsuwaList.Add(this);
             CpuId = RuleManager.instance.otherUtsuwaList.Count - 1;
         }
