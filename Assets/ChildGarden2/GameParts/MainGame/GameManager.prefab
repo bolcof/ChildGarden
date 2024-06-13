@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7399397119454308964}
   - component: {fileID: 2530666752715617214}
   - component: {fileID: 2610326606202948468}
-  - component: {fileID: 4822463943568195514}
+  - component: {fileID: 7063702711417555976}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -52,8 +52,6 @@ MonoBehaviour:
   ruleManager: {fileID: 2530666752715617214}
   stageManager: {fileID: 7399397119454308964}
   createRayPoint: {fileID: 0}
-  playingVew: {fileID: 0}
-  canPutOnbutsu: 0
   canOperateUI: 0
   winnerIsMine: 0
   timeLimit: 80
@@ -76,18 +74,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UtsuwaList:
-  - {fileID: 1008348657628407914, guid: 927b10ad5486da74291bc531566b1040, type: 3}
-  - {fileID: 1008348657628407914, guid: cd520b46f189d47d78fca0159a5d095d, type: 3}
-  - {fileID: 1008348657628407914, guid: 53a1042a414cc464ba5458767804b350, type: 3}
+  - {fileID: 1211487857972061069, guid: 927b10ad5486da74291bc531566b1040, type: 3}
+  - {fileID: 1211487857972061069, guid: cd520b46f189d47d78fca0159a5d095d, type: 3}
+  - {fileID: 1211487857972061069, guid: 53a1042a414cc464ba5458767804b350, type: 3}
   myBoxCollision: {fileID: 7810039791910776433, guid: 6434851dc3934574e85aa49164bf8c52, type: 3}
   spawnPoints:
   - {x: -5.3, y: -3.35, z: 0}
   - {x: -2.3, y: -3.35, z: 0}
   - {x: 1.3, y: -3.35, z: 0}
   - {x: 4.3, y: -3.35, z: 0}
-  photonView: {fileID: 4822463943568195514}
   mySpawnPositionId: -1
   myUtsuwaId: -1
+  myOnbutsuColorId: -1
   myUtsuwa: {fileID: 0}
 --- !u!114 &2530666752715617214
 MonoBehaviour:
@@ -131,8 +129,8 @@ MonoBehaviour:
   myUtsuwa: {fileID: 0}
   otherUtsuwaList: []
   OnbutsuList: []
-  Rule05_GoalLine: {fileID: 0}
-  Rule06_BigUtsuwa: {fileID: 0}
+  Rule05Obj: {fileID: 2077931016347738816, guid: 3275ccc9d3c1b4bd5bc16be2dcb3cc03, type: 3}
+  Rule06Obj: {fileID: 4513531154935297391, guid: 5e892d528d3a84ebab8a97c079ad36a7, type: 3}
   nearToLoseAppeared: 0
 --- !u!114 &2610326606202948468
 MonoBehaviour:
@@ -149,7 +147,7 @@ MonoBehaviour:
   RoundNum: 4
   currentRound: 0
   isWin: 
---- !u!114 &4822463943568195514
+--- !u!114 &7063702711417555976
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -158,23 +156,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 2849400873968398606}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ownerId: 0
-  group: 0
-  OwnerShipWasTransfered: 0
-  prefixBackup: -1
-  synchronization: 3
-  onSerializeTransformOption: 3
-  onSerializeRigidBodyOption: 2
-  ownershipTransfer: 0
-  ObservedComponents:
-  - {fileID: 7715357594289120395}
+  SortKey: 2330075637
+  ObjectInterest: 1
+  Flags: 262145
+  NestedObjects: []
+  NetworkedBehaviours:
   - {fileID: 1461753146373015404}
   - {fileID: 7399397119454308964}
-  ObservedComponentsFoldoutOpen: 1
-  viewIdField: 0
-  instantiationId: -1
-  currentMasterID: -1
-  isRuntimeInstantiated: 0
+  - {fileID: 2530666752715617214}
+  - {fileID: 2610326606202948468}

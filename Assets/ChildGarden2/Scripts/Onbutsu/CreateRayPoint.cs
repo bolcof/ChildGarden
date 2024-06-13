@@ -1,12 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Photon;
+using Fusion;
 using UnityEngine.UI;
 using Unity.Burst.CompilerServices;
 using Cysharp.Threading.Tasks;
 
-public class CreateRayPoint : Photon.PunBehaviour {
+public class CreateRayPoint : SimulationBehaviour {
     [SerializeField]
     private float rayDistance = 20.0f;
     private Camera camera;
@@ -61,7 +61,7 @@ public class CreateRayPoint : Photon.PunBehaviour {
     }
 
     void Update() {
-        if (GameManager.Instance.canPutOnbutsu) {
+        if (LocalStateManager.Instance.canPutOnbutsu) {
 
             guageRoot.SetActive(true);
             guageRoot.transform.position = Input.mousePosition + Vector3.up * 90f;
@@ -116,7 +116,7 @@ public class CreateRayPoint : Photon.PunBehaviour {
 
                 if (Physics.Raycast(ray, out hit, rayDistance)) {
                     Vector3 spawnPosition = hit.point + Vector3.up * 0.25f;
-                    if(spawnPosition.y < 0.75f) {
+                    if (spawnPosition.y < 0.75f) {
                         spawnPosition = new Vector3(spawnPosition.x, 0.75f, spawnPosition.z);
                     }
                     switch (currentChargeLevel) {
@@ -129,7 +129,7 @@ public class CreateRayPoint : Photon.PunBehaviour {
                             }
                             break;
                         case 1:
-                            PhotonNetwork.Instantiate(onbutsuFolderName + OnbutsuList_Level1[usingOnbutsuColor[PhotonNetwork.player.ID - 1]].name, spawnPosition, Quaternion.identity, 0);
+                            RoomConector.Instance.networkRunner.Spawn(OnbutsuList_Level1[usingOnbutsuColor[RoomConector.Instance.MyPlayerId() - 1]], spawnPosition, Quaternion.identity);
                             angelTalk_OnbutsuGenerated = false;
                             if (!angelTalk_sankakuGenerated) {
                                 angelTalk_maruCount++;
@@ -139,17 +139,17 @@ public class CreateRayPoint : Photon.PunBehaviour {
                             }
                             break;
                         case 2:
-                            PhotonNetwork.Instantiate(onbutsuFolderName + OnbutsuList_Level2[usingOnbutsuColor[PhotonNetwork.player.ID - 1]].name, spawnPosition, Quaternion.identity, 0);
+                            RoomConector.Instance.networkRunner.Spawn(OnbutsuList_Level2[usingOnbutsuColor[RoomConector.Instance.MyPlayerId() - 1]], spawnPosition, Quaternion.identity);
                             angelTalk_OnbutsuGenerated = false;
                             angelTalk_sankakuGenerated = false;
                             break;
                         case 3:
-                            PhotonNetwork.Instantiate(onbutsuFolderName + OnbutsuList_Level3[usingOnbutsuColor[PhotonNetwork.player.ID - 1]].name, spawnPosition, Quaternion.identity, 0);
+                            RoomConector.Instance.networkRunner.Spawn(OnbutsuList_Level3[usingOnbutsuColor[RoomConector.Instance.MyPlayerId() - 1]], spawnPosition, Quaternion.identity);
                             angelTalk_OnbutsuGenerated = false;
                             angelTalk_sankakuGenerated = false;
                             break;
                         default:
-                            PhotonNetwork.Instantiate(onbutsuFolderName + OnbutsuList_Level4[usingOnbutsuColor[PhotonNetwork.player.ID - 1]].name, spawnPosition, Quaternion.identity, 0);
+                            RoomConector.Instance.networkRunner.Spawn(OnbutsuList_Level4[usingOnbutsuColor[RoomConector.Instance.MyPlayerId() - 1]], spawnPosition, Quaternion.identity);
                             angelTalk_OnbutsuGenerated = false;
                             angelTalk_sankakuGenerated = false;
                             break;

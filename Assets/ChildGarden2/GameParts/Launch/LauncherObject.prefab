@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 447321933032062578}
   - component: {fileID: 5306085744495720761}
-  - component: {fileID: 8120481864440114763}
+  - component: {fileID: 3450415654481632888}
   m_Layer: 0
   m_Name: LauncherObject
   m_TagString: Untagged
@@ -45,12 +45,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f27e943e33a2f54e9452f76b0836898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gameVersion: 1109
+  _gameVersion: tamabi
   roomId: kanai
-  computerName: 
   networkRunnerPrefab: {fileID: 7484573548249633538, guid: 6007243e50c10804e9effd6bfde7598c, type: 3}
-  PlayerNum: 0
---- !u!114 &8120481864440114763
+  networkRunner: {fileID: 0}
+  rpcListnerObject: {fileID: 5119797654719129027, guid: 792aa512d01884c4ab3d44dfbeeedc1c, type: 3}
+  gameManagerObject: {fileID: 2849400873968398606, guid: b0edca4cc6e3f46639280936b97b88e6, type: 3}
+  rpcListner: {fileID: 0}
+  PlayerNum: 2
+--- !u!114 &3450415654481632888
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -59,21 +62,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 6242445447040555488}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ownerId: 0
-  group: 0
-  OwnerShipWasTransfered: 0
-  prefixBackup: -1
-  synchronization: 3
-  onSerializeTransformOption: 3
-  onSerializeRigidBodyOption: 2
-  ownershipTransfer: 0
-  ObservedComponents:
+  SortKey: 2728491314
+  ObjectInterest: 1
+  Flags: 327681
+  NestedObjects: []
+  NetworkedBehaviours:
   - {fileID: 5306085744495720761}
-  ObservedComponentsFoldoutOpen: 1
-  viewIdField: 0
-  instantiationId: -1
-  currentMasterID: -1
-  isRuntimeInstantiated: 0
