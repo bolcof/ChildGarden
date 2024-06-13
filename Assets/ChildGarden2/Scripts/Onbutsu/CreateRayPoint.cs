@@ -139,17 +139,17 @@ public class CreateRayPoint : SimulationBehaviour {
                             }
                             break;
                         case 2:
-                            Runner.Spawn(OnbutsuList_Level2[usingOnbutsuColor[RoomConector.Instance.MyPlayerId() - 1]], spawnPosition, Quaternion.identity);
+                            RoomConector.Instance.networkRunner.Spawn(OnbutsuList_Level2[usingOnbutsuColor[RoomConector.Instance.MyPlayerId() - 1]], spawnPosition, Quaternion.identity);
                             angelTalk_OnbutsuGenerated = false;
                             angelTalk_sankakuGenerated = false;
                             break;
                         case 3:
-                            Runner.Spawn(OnbutsuList_Level3[usingOnbutsuColor[RoomConector.Instance.MyPlayerId() - 1]], spawnPosition, Quaternion.identity);
+                            RoomConector.Instance.networkRunner.Spawn(OnbutsuList_Level3[usingOnbutsuColor[RoomConector.Instance.MyPlayerId() - 1]], spawnPosition, Quaternion.identity);
                             angelTalk_OnbutsuGenerated = false;
                             angelTalk_sankakuGenerated = false;
                             break;
                         default:
-                            Runner.Spawn(OnbutsuList_Level4[usingOnbutsuColor[RoomConector.Instance.MyPlayerId() - 1]], spawnPosition, Quaternion.identity);
+                            RoomConector.Instance.networkRunner.Spawn(OnbutsuList_Level4[usingOnbutsuColor[RoomConector.Instance.MyPlayerId() - 1]], spawnPosition, Quaternion.identity);
                             angelTalk_OnbutsuGenerated = false;
                             angelTalk_sankakuGenerated = false;
                             break;
