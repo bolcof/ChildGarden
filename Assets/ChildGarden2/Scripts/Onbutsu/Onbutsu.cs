@@ -1,9 +1,8 @@
-﻿using Fusion;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Onbutsu : NetworkBehaviour {
+public class Onbutsu : MonoBehaviour {
     public int holderId, StagingId;
     [SerializeField] private int spawnedId;
 
@@ -26,13 +25,14 @@ public class Onbutsu : NetworkBehaviour {
 
     [SerializeField] private GameObject dissappearEffect;
 
-    public override void Spawned() {
+    private void Awake() {
         hasLand_Utsuwa = false;
         landing_Utsuwa = false;
         onLine = false;
         dropped = false;
 
-        holderId = Object.StateAuthority.PlayerId;
+        PhotonView photonView = GetComponent<PhotonView>();
+        holderId = photonView.owner.ID;
         StagingId = -1;
 
         rb = GetComponent<Rigidbody2D>();
@@ -42,7 +42,7 @@ public class Onbutsu : NetworkBehaviour {
 
         this.gameObject.transform.parent = GameObject.Find("OnbutsuRoot").transform;
     }
-    public override void FixedUpdateNetwork() {
+    void Update() {
         if (!dropped) {
             if (rb.velocity.magnitude <= threshold) {
                 if (!landing_Utsuwa) {
