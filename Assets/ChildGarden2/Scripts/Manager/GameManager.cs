@@ -134,11 +134,7 @@ public class GameManager : NetworkBehaviour {
     }
 
     public void MyPlayerWin() {
-        foreach (var player in Runner.ActivePlayers) {
-            if (player != Object.InputAuthority) {
-                RPC_OtherPlayerWin(RoomConector.Instance.MyPlayerId());
-            }
-        }
+        RPC_OtherPlayerWin(RoomConector.Instance.MyPlayerId());
         winnerIsMine = 1;
         roundManager.FinishRound(1);
         DecideWinner();

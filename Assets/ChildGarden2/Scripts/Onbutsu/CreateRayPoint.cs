@@ -130,6 +130,7 @@ public class CreateRayPoint : SimulationBehaviour {
                             break;
                         case 1:
                             RoomConector.Instance.networkRunner.Spawn(OnbutsuList_Level1[usingOnbutsuColor[RoomConector.Instance.MyPlayerId() - 1]], spawnPosition, Quaternion.identity);
+                            RoomConector.Instance.rpcListner.RPC_OnbutsuSpawned_test();
                             angelTalk_OnbutsuGenerated = false;
                             if (!angelTalk_sankakuGenerated) {
                                 angelTalk_maruCount++;
