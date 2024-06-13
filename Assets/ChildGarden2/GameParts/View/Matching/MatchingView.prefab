@@ -268,6 +268,7 @@ GameObject:
   - component: {fileID: 4756191711461027105}
   - component: {fileID: 6594407940176241744}
   - component: {fileID: 8316266240785701116}
+  - component: {fileID: 5253836404625680239}
   m_Layer: 5
   m_Name: MatchingView
   m_TagString: Untagged
@@ -336,6 +337,28 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &5253836404625680239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8171217179372800284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5639ea9221e23d04bbeaff630f0fd9a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  background: {fileID: 8316266240785701116}
+  playerCount: {fileID: 8634598422293550087}
+  countSprites:
+  - {fileID: 21300000, guid: 3756fa48a12710f4e94b83bb51b9d013, type: 3}
+  - {fileID: 21300000, guid: ac6b3ab7c17858a49b16794bb5071eed, type: 3}
+  - {fileID: 21300000, guid: b269aafad5473044da13e48c7250dc0a, type: 3}
+  contents:
+  - {fileID: 5503607633191389273}
+  - {fileID: 8634598422293550087}
+  - {fileID: 7095551164875500213}
 --- !u!1 &8308057003622946336
 GameObject:
   m_ObjectHideFlags: 0

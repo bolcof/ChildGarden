@@ -19,7 +19,7 @@ public class RpcListner : NetworkBehaviour {
     }
 
     [Rpc(RpcSources.All, RpcTargets.All)]
-    public void RPC_OnbutsuSpawned_test() {
-        ViewManager.Instance.playingView.MyDebug_Test();
+    public void RPC_OnbutsuSpawned_test(RpcInfo info = default) {
+        ViewManager.Instance.playingView.MyDebug_Test(info);
     }
 }
