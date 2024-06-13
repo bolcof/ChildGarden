@@ -257,7 +257,7 @@ public class PlayingView : NetworkBehaviour {
 
         await UniTask.Delay(500);
 
-        if (PhotonNetwork.isMasterClient) {
+        if (PhotonNetwork.isMasterClient) { //TODO: Fusion
             if (RoundManager.Instance.currentRound != RoundManager.Instance.RoundNum) {
                 //photonView.RPC(nameof(ToRuleSelectFromPlayingView), PhotonTargets.AllBuffered); //TODO:PUN
             } else {
@@ -309,7 +309,7 @@ public class PlayingView : NetworkBehaviour {
             await UniTask.Delay(1100);
         }
 
-        if (PhotonNetwork.isMasterClient) {
+        if (PhotonNetwork.isMasterClient) { //TODO: Fusion
             if (RoundManager.Instance.currentRound != RoundManager.Instance.RoundNum) {
                 //photonView.RPC(nameof(ToRuleSelectFromPlayingView), PhotonTargets.AllBuffered); //TODO:PUN
             } else {

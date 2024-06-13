@@ -134,7 +134,11 @@ public class GameManager : NetworkBehaviour {
     }
 
     public void MyPlayerWin() {
-        RPC_OtherPlayerWin(RoomConector.Instance.MyPlayerId());
+        foreach (var player in Runner.ActivePlayers) {
+            if (player != Object.InputAuthority) {
+                RPC_OtherPlayerWin(RoomConector.Instance.MyPlayerId());
+            }
+        }
         winnerIsMine = 1;
         roundManager.FinishRound(1);
         DecideWinner();
@@ -154,10 +158,12 @@ public class GameManager : NetworkBehaviour {
     }
 
     [Rpc(RpcSources.All, RpcTargets.All)]
-    public void RPC_OtherPlayerWin(int winnerID) {
-        winnerIsMine = 0;
-        roundManager.FinishRound(0);
-        DecideWinner();
+    public void RPC_OtherPlayerWin(int winnerID, RpcInfo info = default) {
+        if (info.Source != Runner.LocalPlayer) {
+            winnerIsMine = 0;
+            roundManager.FinishRound(0);
+            DecideWinner();
+        }
     }
 
     [Rpc(RpcSources.All, RpcTargets.All)]
