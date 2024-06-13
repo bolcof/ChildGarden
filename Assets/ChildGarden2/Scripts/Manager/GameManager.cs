@@ -110,7 +110,7 @@ public class GameManager : NetworkBehaviour {
 
     public override void FixedUpdateNetwork() {
         if (isPlaying) {
-            remainingTimeLimit -= RoomConector.Instance.Runner.DeltaTime;
+            remainingTimeLimit -= Runner.DeltaTime;
             ViewManager.Instance.playingView.ApplyTimeLimit((int)remainingTimeLimit);
             if (remainingTimeLimit < 0.0f) {
                 isPlaying = false;

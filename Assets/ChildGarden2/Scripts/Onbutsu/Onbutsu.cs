@@ -46,7 +46,7 @@ public class Onbutsu : NetworkBehaviour {
         if (!dropped) {
             if (rb.velocity.magnitude <= threshold) {
                 if (!landing_Utsuwa) {
-                    stoppingTime += RoomConector.Instance.Runner.DeltaTime;
+                    stoppingTime += Runner.DeltaTime;
                     if (stoppingTime >= 0.5f) {
                         landing_Utsuwa = true;
 
