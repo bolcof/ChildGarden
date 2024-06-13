@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 6526390144261345435}
   - component: {fileID: 6416403647603001113}
   - component: {fileID: 2281631577359308813}
-  - component: {fileID: 7001311431516604592}
   m_Layer: 5
   m_Name: ConnectState
   m_TagString: Untagged
@@ -93,33 +92,6 @@ MonoBehaviour:
   panel: {fileID: 6416403647603001113}
   label: {fileID: 2872941864819531468}
   defaultAppear: 0
---- !u!114 &7001311431516604592
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1443804290810836912}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ownerId: 0
-  group: 0
-  OwnerShipWasTransfered: 0
-  prefixBackup: -1
-  synchronization: 3
-  onSerializeTransformOption: 3
-  onSerializeRigidBodyOption: 2
-  ownershipTransfer: 0
-  ObservedComponents:
-  - {fileID: 2281631577359308813}
-  ObservedComponentsFoldoutOpen: 1
-  viewIdField: 0
-  instantiationId: -1
-  currentMasterID: -1
-  isRuntimeInstantiated: 0
 --- !u!1 &3963169532242496179
 GameObject:
   m_ObjectHideFlags: 0

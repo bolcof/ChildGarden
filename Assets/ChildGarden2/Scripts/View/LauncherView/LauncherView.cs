@@ -7,7 +7,7 @@ using DG.Tweening;
 using UnityEngine.UIElements;
 using UnityEngine.SceneManagement;
 
-public class LauncherView : Photon.PunBehaviour {
+public class LauncherView : MonoBehaviour {
     [SerializeField] private GameObject playButton;
     [SerializeField] private GameObject readyLabel;
     [SerializeField] private GameObject buttonShadow;
@@ -26,7 +26,7 @@ public class LauncherView : Photon.PunBehaviour {
     }
 
     public void PushStart() {
-        RoomConector.Instance.PushJoinAsync();
+        _ = RoomConector.Instance.PushJoinAsync();
 
         SoundManager.Instance.PlaySoundEffect(SoundManager.Instance.SE_PushGamePlay);
         playButton.SetActive(false);

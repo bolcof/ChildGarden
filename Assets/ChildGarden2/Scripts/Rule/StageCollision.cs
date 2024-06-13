@@ -1,8 +1,7 @@
 using UnityEngine;
-using Photon;
 using System.Collections.Generic;
 
-public class StageCollision : Photon.PunBehaviour {
+public class StageCollision : MonoBehaviour {
     public bool isMine;
     public int holderId;
 
@@ -58,15 +57,6 @@ public class StageCollision : Photon.PunBehaviour {
             var currentOnbutsu = collider.gameObject.GetComponent<Onbutsu>();
 
             currentOnbutsu.landing_Utsuwa = false;
-        }
-    }
-
-    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
-        //これが無いと動くけどエラーが出る
-        if (stream.isWriting) {
-            // ここにオブジェクトの状態を送信するコードを書きます
-        } else {
-            // ここにオブジェクトの状態を受信して更新するコードを書きます
         }
     }
 }
