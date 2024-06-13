@@ -5,8 +5,9 @@ using UnityEngine.UI;
 using TMPro;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
+using Fusion;
 
-public class PlayingView : Photon.PunBehaviour {
+public class PlayingView : NetworkBehaviour {
 
     public GameObject countDownObject;
 
@@ -76,7 +77,7 @@ public class PlayingView : Photon.PunBehaviour {
     public void ApplyProgressBar(float progress) {
         myProgressGuage.fillAmount = progress;
         myProgressLabel.text = (progress * 100).ToString("F0");
-        photonView.RPC(nameof(ApplyOtherProgressGuages), PhotonTargets.Others, RoomConector.Instance.MyPlayerId(), progress);
+        //photonView.RPC(nameof(ApplyOtherProgressGuages), PhotonTargets.Others, RoomConector.Instance.MyPlayerId(), progress);  //TODO:PUN
     }
 
     public async UniTask RoundFinish(int result) {
@@ -258,9 +259,9 @@ public class PlayingView : Photon.PunBehaviour {
 
         if (PhotonNetwork.isMasterClient) {
             if (RoundManager.Instance.currentRound != RoundManager.Instance.RoundNum) {
-                photonView.RPC(nameof(ToRuleSelectFromPlayingView), PhotonTargets.AllBuffered);
+                //photonView.RPC(nameof(ToRuleSelectFromPlayingView), PhotonTargets.AllBuffered); //TODO:PUN
             } else {
-                photonView.RPC(nameof(ToEndingView), PhotonTargets.AllBuffered);
+                //photonView.RPC(nameof(ToEndingView), PhotonTargets.AllBuffered); //TODO:PUN
             }
         }
     }
@@ -310,9 +311,9 @@ public class PlayingView : Photon.PunBehaviour {
 
         if (PhotonNetwork.isMasterClient) {
             if (RoundManager.Instance.currentRound != RoundManager.Instance.RoundNum) {
-                photonView.RPC(nameof(ToRuleSelectFromPlayingView), PhotonTargets.AllBuffered);
+                //photonView.RPC(nameof(ToRuleSelectFromPlayingView), PhotonTargets.AllBuffered); //TODO:PUN
             } else {
-                photonView.RPC(nameof(ToEndingView), PhotonTargets.AllBuffered);
+                //photonView.RPC(nameof(ToEndingView), PhotonTargets.AllBuffered); //TODO:PUN
             }
         }
     }
@@ -332,7 +333,7 @@ public class PlayingView : Photon.PunBehaviour {
         zizowMovie.Set(hasWin);
     }
 
-    [PunRPC]
+    [PunRPC] //TODO:PUN
     public void ToRuleSelectFromPlayingView() {
         Debug.Log("To Rule Select from PlayingView");
         viewManager.ruleSelectViewObj.SetActive(true);
@@ -347,7 +348,7 @@ public class PlayingView : Photon.PunBehaviour {
         }
     }
 
-    [PunRPC]
+    [PunRPC] //TODO:PUN
     public void ToEndingView() {
         Debug.Log("To Ending View");
         gameObject.SetActive(false);
@@ -355,7 +356,7 @@ public class PlayingView : Photon.PunBehaviour {
         viewManager.endingView.GetComponent<EndingView>().Set();
     }
 
-    [PunRPC]
+    [PunRPC] //TODO:PUN
     public void ApplyOtherProgressGuages(int playerId, float progress) {
         int cpuId = RuleManager.instance.otherUtsuwaList.Find(u => u.holderId == playerId).CpuId;
         //Debug.Log("aaaa " + playerId.ToString() + ", " + cpuId.ToString() + ", " + progress.ToString());
