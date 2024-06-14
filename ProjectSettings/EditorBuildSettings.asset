@@ -11,4 +11,5 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/ChildGarden2/Scenes/MainGame.unity
     guid: 1e7184a22b7951045a01392bfcaffd53
-  m_configObjects: {}
+  m_configObjects:
+    com.unity.addressableassets: {fileID: 11400000, guid: 1b5d4ad91ed998544afcd6796e85ac6d, type: 2}
