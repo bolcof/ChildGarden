@@ -367,10 +367,4 @@ public class PlayingView : NetworkBehaviour {
         otherProgressGuages[cpuId].fillAmount = progress;
         otherProgressLabels[cpuId].text = (progress * 100).ToString("F0");
     }
-
-    public void MyDebug_Test(RpcInfo info) {
-        if (info.Source != RoomConector.Instance.networkRunner.LocalPlayer) {
-            Debug.Log(info.Source.PlayerId.ToString() + " がOnbutsuを作りました");
-        }
-    }
 }

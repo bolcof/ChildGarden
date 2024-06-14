@@ -17,9 +17,4 @@ public class RpcListner : NetworkBehaviour {
         ViewManager.Instance.launcherViewObj.SetActive(false);
         ViewManager.Instance.matchingView.Disappear().Forget();
     }
-
-    [Rpc(RpcSources.All, RpcTargets.All)]
-    public void RPC_OnbutsuSpawned_test(RpcInfo info = default) {
-        ViewManager.Instance.playingView.MyDebug_Test(info);
-    }
 }
