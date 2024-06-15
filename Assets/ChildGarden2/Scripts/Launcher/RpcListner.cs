@@ -32,4 +32,9 @@ public class RpcListner : NetworkBehaviour {
     public void RPC_PlayingView_ToEndingView() {
         ViewManager.Instance.playingView.ToEndingView();
     }
+
+    [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
+    public void RPC_PlayingView_ApplyTimeLimit(int sec) {
+        ViewManager.Instance.playingView.ApplyTimeLimit(sec);
+    }
 }
