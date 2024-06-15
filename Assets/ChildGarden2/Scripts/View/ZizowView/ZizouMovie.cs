@@ -4,9 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Video;
 
-public class ZizouMovie : Photon.PunBehaviour {
-    private ViewManager viewManager;
-
+public class ZizouMovie : MonoBehaviour {
     [SerializeField] VideoPlayer myVideoPlayer;
     [SerializeField] List<VideoClip> zizouVideoList = new List<VideoClip>();
     [SerializeField] private List<int> canUseMovieIds = new List<int>();
@@ -20,27 +18,16 @@ public class ZizouMovie : Photon.PunBehaviour {
     }
 
     public void Set(int isWinner) {
-        Debug.Log("ZizouMovie Set");
-        if (PhotonNetwork.isMasterClient) {
-            Debug.Log("ZizouMovie Master");
-            int id = -1;
+        int id = -1;
+        if (RoomConector.Instance.rpcListner.HasStateAuthority) {
             if (RoundManager.Instance.currentRound == RoundManager.Instance.RoundNum) {
-                id = zizouVideoList.Count - 1;
+                id = zizouVideoList.Count - 1; //最終ラウンド用の映像
             } else {
                 id = canUseMovieIds[Random.Range(0, canUseMovieIds.Count)];
-                Debug.Log("ZizouMovie ID:" + id.ToString());
+                Debug.Log("Set ZizouMovie ID:" + id.ToString());
                 canUseMovieIds.Remove(id);
             }
-            photonView.RPC(nameof(SetZizouMovieId), PhotonTargets.All, id);
-        }
-    }
-
-    //?????????????????????G???[???o??
-    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
-        if (stream.isWriting) {
-            // ???????I?u?W?F?N?g???????????M?????R?[?h??????????
-        } else {
-            // ???????I?u?W?F?N?g???????????M?????X?V?????R?[?h??????????
+            RoomConector.Instance.rpcListner.RPC_ZizouMovie_SetZizouMovieId(id);
         }
     }
 
@@ -49,9 +36,7 @@ public class ZizouMovie : Photon.PunBehaviour {
         ViewManager.Instance.playingView.CloseNewGateAndGoNext().Forget();
     }
 
-    [PunRPC]
     public void SetZizouMovieId(int id) {
-        Debug.Log("ZizowMovie SetMovieId");
         myVideoPlayer.clip = zizouVideoList[id];
         myVideoPlayer.Prepare();
         myVideoPlayer.time = 0;

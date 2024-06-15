@@ -37,4 +37,9 @@ public class RpcListner : NetworkBehaviour {
     public void RPC_PlayingView_ApplyTimeLimit(int sec) {
         ViewManager.Instance.playingView.ApplyTimeLimit(sec);
     }
+
+    [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
+    public void RPC_ZizouMovie_SetZizouMovieId(int id) {
+        ViewManager.Instance.playingView.zizowMovie.SetZizouMovieId(id);
+    }
 }

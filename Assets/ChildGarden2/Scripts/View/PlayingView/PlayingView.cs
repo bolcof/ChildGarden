@@ -44,7 +44,7 @@ public class PlayingView : MonoBehaviour {
     [SerializeField] private float topBarXPosDiff;
 
     private int hasWin;
-    [SerializeField] private ZizouMovie zizowMovie;
+    public ZizouMovie zizowMovie;
 
     private ViewManager viewManager;
 

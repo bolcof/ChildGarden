@@ -8,8 +8,8 @@ public class RoundManager : NetworkBehaviour {
     public static RoundManager Instance;
 
     //static
-    public int RoundNum;
-    public int currentRound;
+    [Networked] public int RoundNum { get; set; }
+    [Networked] public int currentRound { get; set; }
     public List<int> isWin; /* 0:lose 1:win 2:draw */
 
     public override void Spawned() {
