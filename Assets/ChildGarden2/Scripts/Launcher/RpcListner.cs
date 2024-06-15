@@ -42,4 +42,26 @@ public class RpcListner : NetworkBehaviour {
     public void RPC_ZizouMovie_SetZizouMovieId(int id) {
         ViewManager.Instance.playingView.zizowMovie.SetZizouMovieId(id);
     }
+
+    [Rpc(RpcSources.All, RpcTargets.All)]
+    public void RPC_RuleSelectView_ChangeOthersHighlight(int ruleIndex, RpcInfo info = default) {
+        if (info.Source != RoomConector.Instance.networkRunner.LocalPlayer) {
+            ViewManager.Instance.ruleSelectView.ChangeOthersHighlight(ruleIndex);
+        }
+    }
+
+    [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
+    public void RPC_RuleSelectView_CloseRuleSelectPanel() {
+        ViewManager.Instance.ruleSelectView.CloseRuleSelectPanel();
+    }
+
+    [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
+    public void RPC_RuleSelectView_OpenGate() {
+        ViewManager.Instance.ruleSelectView.CloseRuleSelectPanel();
+    }
+
+    [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
+    public void RPC_RuleSelectView_ToNextRound() {
+        ViewManager.Instance.ruleSelectView.ToNextRound();
+    }
 }
