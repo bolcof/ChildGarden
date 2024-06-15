@@ -77,6 +77,7 @@ public class PlayingView : MonoBehaviour {
     public void ApplyProgressBar(float progress) {
         myProgressGuage.fillAmount = progress;
         myProgressLabel.text = (progress * 100).ToString("F0");
+        //photonView.RPC(nameof(ApplyOtherProgressGuages), PhotonTargets.Others, RoomConector.Instance.MyPlayerId(), progress);  //TODO:Fusion
     }
 
     public async UniTask RoundFinish(int result) {
@@ -87,6 +88,14 @@ public class PlayingView : MonoBehaviour {
 
         hasWin = result;
         CloseNewGate(result).Forget();
+
+        if (PhotonNetwork.isMasterClient) {//TODO:Fusion
+            if (RoundManager.Instance.currentRound != RoundManager.Instance.RoundNum) {
+                //photonView.RPC(nameof(ToRuleSelectFromPlayingView), PhotonTargets.AllBuffered); //TODO:Fusion
+            } else {
+                //photonView.RPC(nameof(ToEndingView), PhotonTargets.AllBuffered); //TODO:Fusion
+            }
+        }
     }
 
     public async UniTask CloseNewGate(int winner /* -1:not yet 0:other 1:me 2:draw */) {
@@ -251,6 +260,14 @@ public class PlayingView : MonoBehaviour {
                 .Append(underBars[3].DOAnchorPos(new Vector2(0f, 0f), underBarSpeed));
 
             await UniTask.Delay(1100);
+
+            if (PhotonNetwork.isMasterClient) { //TODO: Fusion
+                if (RoundManager.Instance.currentRound != RoundManager.Instance.RoundNum) {
+                    //photonView.RPC(nameof(ToRuleSelectFromPlayingView), PhotonTargets.AllBuffered); //TODO:Fusion
+                } else {
+                    //photonView.RPC(nameof(ToEndingView), PhotonTargets.AllBuffered); //TODO:Fusion
+                }
+            }
         }
     }
 
@@ -260,7 +277,7 @@ public class PlayingView : MonoBehaviour {
         zizowMovie.Set(hasWin);
     }
 
-    public void ToRuleSelectFromPlayingView() {
+    public void ToRuleSelectFromPlayingView() {//TODO:Fusion
         Debug.Log("To Rule Select from PlayingView");
         viewManager.ruleSelectViewObj.SetActive(true);
         SoundManager.Instance.PlaySoundEffect(SoundManager.Instance.SE_RuleSelectViewOpening);
@@ -274,16 +291,15 @@ public class PlayingView : MonoBehaviour {
         }
     }
 
-    public void ToEndingView() {
+    public void ToEndingView() {//TODO:Fusion
         Debug.Log("To Ending View");
         gameObject.SetActive(false);
         viewManager.endingViewObj.SetActive(true);
         viewManager.endingView.GetComponent<EndingView>().Set();
     }
 
-    public void ApplyOtherProgressGuages(int playerId, float progress) {
+    public void ApplyOtherProgressGuages(int playerId, float progress) {//TODO:Fusion
         int cpuId = RuleManager.instance.otherUtsuwaList.Find(u => u.holderId == playerId).CpuId;
-        //Debug.Log("aaaa " + playerId.ToString() + ", " + cpuId.ToString() + ", " + progress.ToString());
         if (!RuleManager.instance.nearToLoseAppeared && progress >= 0.8f) {
             angelSpeaking.NearToLose().Forget();
             RuleManager.instance.nearToLoseAppeared = true;
