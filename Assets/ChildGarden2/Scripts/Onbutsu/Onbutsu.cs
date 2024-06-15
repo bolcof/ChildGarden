@@ -5,12 +5,12 @@ using UnityEngine;
 
 public class Onbutsu : NetworkBehaviour {
     public int holderId;//誰が生み出したか FusionならStateAuthority.PlayerIdでいい気がする
-    public int StagingId;
+    [Networked] public int StagingId { get; set; }
     [SerializeField] private int spawnedId;//何番目に生み出されたやつか Debug確認用
 
     public int onbutsuSize;
     public bool hasLand_Utsuwa;
-    public bool landing_Utsuwa;
+    [Networked] public bool landing_Utsuwa { get; set; }
     public bool onLine;
     public bool dropped;
 
