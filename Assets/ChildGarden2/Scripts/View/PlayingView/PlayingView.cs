@@ -101,12 +101,10 @@ public class PlayingView : MonoBehaviour {
         hasWin = result;
         CloseNewGate(result).Forget();
 
-        if (PhotonNetwork.isMasterClient) {//TODO:Fusion
-            if (RoundManager.Instance.currentRound != RoundManager.Instance.RoundNum) {
-                //photonView.RPC(nameof(ToRuleSelectFromPlayingView), PhotonTargets.AllBuffered); //TODO:Fusion
-            } else {
-                //photonView.RPC(nameof(ToEndingView), PhotonTargets.AllBuffered); //TODO:Fusion
-            }
+        if (RoundManager.Instance.currentRound != RoundManager.Instance.RoundNum) {
+            RoomConector.Instance.rpcListner.RPC_PlayingView_ToRuleSelectFromPlayingView();
+        } else {
+            RoomConector.Instance.rpcListner.RPC_PlayingView_ToEndingView();
         }
     }
 
@@ -273,12 +271,10 @@ public class PlayingView : MonoBehaviour {
 
             await UniTask.Delay(1100);
 
-            if (PhotonNetwork.isMasterClient) { //TODO: Fusion
-                if (RoundManager.Instance.currentRound != RoundManager.Instance.RoundNum) {
-                    //photonView.RPC(nameof(ToRuleSelectFromPlayingView), PhotonTargets.AllBuffered); //TODO:Fusion
-                } else {
-                    //photonView.RPC(nameof(ToEndingView), PhotonTargets.AllBuffered); //TODO:Fusion
-                }
+            if (RoundManager.Instance.currentRound != RoundManager.Instance.RoundNum) {
+                RoomConector.Instance.rpcListner.RPC_PlayingView_ToRuleSelectFromPlayingView();
+            } else {
+                RoomConector.Instance.rpcListner.RPC_PlayingView_ToEndingView();
             }
         }
     }
@@ -289,7 +285,7 @@ public class PlayingView : MonoBehaviour {
         zizowMovie.Set(hasWin);
     }
 
-    public void ToRuleSelectFromPlayingView() {//TODO:Fusion
+    public void ToRuleSelectFromPlayingView() {
         Debug.Log("To Rule Select from PlayingView");
         viewManager.ruleSelectViewObj.SetActive(true);
         SoundManager.Instance.PlaySoundEffect(SoundManager.Instance.SE_RuleSelectViewOpening);
@@ -303,7 +299,7 @@ public class PlayingView : MonoBehaviour {
         }
     }
 
-    public void ToEndingView() {//TODO:Fusion
+    public void ToEndingView() {
         Debug.Log("To Ending View");
         gameObject.SetActive(false);
         viewManager.endingViewObj.SetActive(true);
