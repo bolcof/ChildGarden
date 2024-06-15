@@ -165,6 +165,7 @@ public class PlayingView : MonoBehaviour {
 
         await UniTask.Delay(1800);
 
+        GameManager.Instance.ResetWorld();
         PlayZizowMovie();
 
         await UniTask.Delay(200);
