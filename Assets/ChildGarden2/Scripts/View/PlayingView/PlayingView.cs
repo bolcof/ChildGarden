@@ -77,7 +77,19 @@ public class PlayingView : MonoBehaviour {
     public void ApplyProgressBar(float progress) {
         myProgressGuage.fillAmount = progress;
         myProgressLabel.text = (progress * 100).ToString("F0");
-        //photonView.RPC(nameof(ApplyOtherProgressGuages), PhotonTargets.Others, RoomConector.Instance.MyPlayerId(), progress);  //TODO:Fusion
+        RoomConector.Instance.rpcListner.RPC_PlayingView_ApplyOtherProgressGuages(RoomConector.Instance.MyPlayerId(), progress);
+    }
+
+    public void ApplyOtherProgressGuages(int playerId, float progress, RpcInfo info) {
+        if (info.Source != RoomConector.Instance.networkRunner.LocalPlayer) {
+            int cpuId = RuleManager.instance.otherUtsuwaList.Find(u => u.holderId == playerId).CpuId;
+            if (!RuleManager.instance.nearToLoseAppeared && progress >= 0.8f) {
+                angelSpeaking.NearToLose().Forget();
+                RuleManager.instance.nearToLoseAppeared = true;
+            }
+            otherProgressGuages[cpuId].fillAmount = progress;
+            otherProgressLabels[cpuId].text = (progress * 100).ToString("F0");
+        }
     }
 
     public async UniTask RoundFinish(int result) {
@@ -296,15 +308,5 @@ public class PlayingView : MonoBehaviour {
         gameObject.SetActive(false);
         viewManager.endingViewObj.SetActive(true);
         viewManager.endingView.GetComponent<EndingView>().Set();
-    }
-
-    public void ApplyOtherProgressGuages(int playerId, float progress) {//TODO:Fusion
-        int cpuId = RuleManager.instance.otherUtsuwaList.Find(u => u.holderId == playerId).CpuId;
-        if (!RuleManager.instance.nearToLoseAppeared && progress >= 0.8f) {
-            angelSpeaking.NearToLose().Forget();
-            RuleManager.instance.nearToLoseAppeared = true;
-        }
-        otherProgressGuages[cpuId].fillAmount = progress;
-        otherProgressLabels[cpuId].text = (progress * 100).ToString("F0");
     }
 }

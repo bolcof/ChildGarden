@@ -17,4 +17,9 @@ public class RpcListner : NetworkBehaviour {
         ViewManager.Instance.launcherViewObj.SetActive(false);
         ViewManager.Instance.matchingView.Disappear().Forget();
     }
+
+    [Rpc(RpcSources.All, RpcTargets.All)]
+    public void RPC_PlayingView_ApplyOtherProgressGuages(int playerId, float progress, RpcInfo info = default) {
+        ViewManager.Instance.playingView.ApplyOtherProgressGuages(playerId, progress, info);
+    }
 }
