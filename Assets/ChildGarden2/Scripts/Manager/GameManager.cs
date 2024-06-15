@@ -116,7 +116,7 @@ public class GameManager : NetworkBehaviour {
             if (remainingTimeLimit < 0.0f) {
                 isPlaying = false;
                 RoomConector.Instance.rpcListner.RPC_PlayingView_ApplyTimeLimit(0);
-                TimeOver();
+                RPC_TimeOverAndDraw();
             }
         }
     }
@@ -141,19 +141,6 @@ public class GameManager : NetworkBehaviour {
         DecideWinner();
     }
 
-    public void TimeOver() {
-        LocalStateManager.Instance.canPutOnbutsu = false;
-        RPC_Draw();
-    }
-
-    public void DecideWinner() {
-        LocalStateManager.Instance.canPutOnbutsu = false;
-        isPlaying = false;
-        ViewManager.Instance.playingView.RoundFinish(winnerIsMine).Forget();
-        SoundManager.Instance.BgmSource.Stop();
-        createRayPoint.DisappearGauge();
-    }
-
     [Rpc(RpcSources.All, RpcTargets.All)]
     public void RPC_OtherPlayerWin(int winnerID, RpcInfo info = default) {
         if (info.Source != Runner.LocalPlayer) {
@@ -164,9 +151,17 @@ public class GameManager : NetworkBehaviour {
     }
 
     [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
-    public void RPC_Draw() {
+    public void RPC_TimeOverAndDraw() {
         winnerIsMine = 2;
         roundManager.FinishRound(2);
         DecideWinner();
+    }
+
+    public void DecideWinner() {
+        LocalStateManager.Instance.canPutOnbutsu = false;
+        isPlaying = false;
+        SoundManager.Instance.BgmSource.Stop();
+        createRayPoint.DisappearGauge();
+        ViewManager.Instance.playingView.RoundFinish(winnerIsMine).Forget();
     }
 }
