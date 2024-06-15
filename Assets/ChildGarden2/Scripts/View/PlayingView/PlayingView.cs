@@ -100,12 +100,6 @@ public class PlayingView : MonoBehaviour {
 
         hasWin = result;
         CloseNewGate(result).Forget();
-
-        if (RoundManager.Instance.currentRound != RoundManager.Instance.RoundNum) {
-            RoomConector.Instance.rpcListner.RPC_PlayingView_ToRuleSelectFromPlayingView();
-        } else {
-            RoomConector.Instance.rpcListner.RPC_PlayingView_ToEndingView();
-        }
     }
 
     public async UniTask CloseNewGate(int winner /* -1:not yet 0:other 1:me 2:draw */) {
