@@ -55,12 +55,8 @@ MonoBehaviour:
   canOperateUI: 0
   winnerIsMine: 0
   timeLimit: 80
-  remainingTimeLimit: 80
-  backgroundObject:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  _remainingTimeLimit: 0
+  backgroundRoot: {fileID: 0}
 --- !u!114 &7399397119454308964
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -144,8 +140,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf5d906d47ec5604a8a0941e0a104df0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RoundNum: 4
-  currentRound: 0
+  _RoundNum: 4
+  _currentRound: 0
   isWin: 
 --- !u!114 &7063702711417555976
 MonoBehaviour:

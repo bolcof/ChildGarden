@@ -4,12 +4,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Onbutsu : NetworkBehaviour {
-    public int holderId, StagingId;
-    [SerializeField] private int spawnedId;
+    public int holderId;//誰が生み出したか FusionならStateAuthority.PlayerIdでいい気がする
+    [Networked] public int StagingId { get; set; }
+    [SerializeField] private int spawnedId;//何番目に生み出されたやつか Debug確認用
 
     public int onbutsuSize;
     public bool hasLand_Utsuwa;
-    public bool landing_Utsuwa;
+    [Networked] public bool landing_Utsuwa { get; set; }
     public bool onLine;
     public bool dropped;
 
@@ -17,6 +18,7 @@ public class Onbutsu : NetworkBehaviour {
     private float threshold = 1.0f;
     private Rigidbody2D rb;
 
+    //今作ってないルール用
     public float checkRadius = 1.0f;
     public int touchingObjectsCount = 0;
 

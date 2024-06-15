@@ -1,8 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
-using Photon;
 
-public class ConsoleDisplay : Photon.MonoBehaviour {
+public class ConsoleDisplay : MonoBehaviour {
     // ログの最大数
     public int maxLogs = 100;
 

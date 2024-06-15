@@ -22,7 +22,8 @@ public class GameManager : NetworkBehaviour {
 
     public int winnerIsMine; /* -1:not yet 0:other 1:me 2:draw */
 
-    public float timeLimit, remainingTimeLimit;
+    public float timeLimit;
+    [Networked] public float remainingTimeLimit { get; set; }
 
     [SerializeField] private BackgroundRoot backgroundRoot;
     public override void Spawned() {
@@ -72,7 +73,7 @@ public class GameManager : NetworkBehaviour {
 
     public void NextRoundStart() {
         Debug.Log("NextRound!");
-        ViewManager.Instance.playingView.ApplyTimeLimit((int)timeLimit);
+        RoomConector.Instance.rpcListner.RPC_PlayingView_ApplyTimeLimit((int)timeLimit);
         CountDownStart().Forget();
 
         stageManager.AppearMyPlayerPin();
@@ -111,11 +112,11 @@ public class GameManager : NetworkBehaviour {
     public override void FixedUpdateNetwork() {
         if (isPlaying) {
             remainingTimeLimit -= Runner.DeltaTime;
-            ViewManager.Instance.playingView.ApplyTimeLimit((int)remainingTimeLimit);
+            RoomConector.Instance.rpcListner.RPC_PlayingView_ApplyTimeLimit((int)remainingTimeLimit);
             if (remainingTimeLimit < 0.0f) {
                 isPlaying = false;
-                ViewManager.Instance.playingView.ApplyTimeLimit(0);
-                TimeOver();
+                RoomConector.Instance.rpcListner.RPC_PlayingView_ApplyTimeLimit(0);
+                RPC_TimeOverAndDraw();
             }
         }
     }
@@ -140,30 +141,27 @@ public class GameManager : NetworkBehaviour {
         DecideWinner();
     }
 
-    public void TimeOver() {
-        LocalStateManager.Instance.canPutOnbutsu = false;
-        RPC_Draw();
+    [Rpc(RpcSources.All, RpcTargets.All)]
+    public void RPC_OtherPlayerWin(int winnerID, RpcInfo info = default) {
+        if (info.Source != Runner.LocalPlayer) {
+            winnerIsMine = 0;
+            roundManager.FinishRound(0);
+            DecideWinner();
+        }
+    }
+
+    [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
+    public void RPC_TimeOverAndDraw() {
+        winnerIsMine = 2;
+        roundManager.FinishRound(2);
+        DecideWinner();
     }
 
     public void DecideWinner() {
         LocalStateManager.Instance.canPutOnbutsu = false;
         isPlaying = false;
-        ViewManager.Instance.playingView.RoundFinish(winnerIsMine).Forget();
         SoundManager.Instance.BgmSource.Stop();
         createRayPoint.DisappearGauge();
-    }
-
-    [Rpc(RpcSources.All, RpcTargets.All)]
-    public void RPC_OtherPlayerWin(int winnerID) {
-        winnerIsMine = 0;
-        roundManager.FinishRound(0);
-        DecideWinner();
-    }
-
-    [Rpc(RpcSources.All, RpcTargets.All)]
-    public void RPC_Draw() {
-        winnerIsMine = 2;
-        roundManager.FinishRound(2);
-        DecideWinner();
+        ViewManager.Instance.playingView.RoundFinish(winnerIsMine).Forget();
     }
 }

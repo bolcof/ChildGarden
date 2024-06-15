@@ -7,7 +7,7 @@ using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using Fusion;
 
-public class PlayingView : NetworkBehaviour {
+public class PlayingView : MonoBehaviour {
 
     public GameObject countDownObject;
 
@@ -44,7 +44,7 @@ public class PlayingView : NetworkBehaviour {
     [SerializeField] private float topBarXPosDiff;
 
     private int hasWin;
-    [SerializeField] private ZizouMovie zizowMovie;
+    public ZizouMovie zizowMovie;
 
     private ViewManager viewManager;
 
@@ -77,7 +77,19 @@ public class PlayingView : NetworkBehaviour {
     public void ApplyProgressBar(float progress) {
         myProgressGuage.fillAmount = progress;
         myProgressLabel.text = (progress * 100).ToString("F0");
-        //photonView.RPC(nameof(ApplyOtherProgressGuages), PhotonTargets.Others, RoomConector.Instance.MyPlayerId(), progress);  //TODO:PUN
+        RoomConector.Instance.rpcListner.RPC_PlayingView_ApplyOtherProgressGuages(RoomConector.Instance.MyPlayerId(), progress);
+    }
+
+    public void ApplyOtherProgressGuages(int playerId, float progress, RpcInfo info) {
+        if (info.Source != RoomConector.Instance.networkRunner.LocalPlayer) {
+            int cpuId = RuleManager.instance.otherUtsuwaList.Find(u => u.holderId == playerId).CpuId;
+            if (!RuleManager.instance.nearToLoseAppeared && progress >= 0.8f) {
+                angelSpeaking.NearToLose().Forget();
+                RuleManager.instance.nearToLoseAppeared = true;
+            }
+            otherProgressGuages[cpuId].fillAmount = progress;
+            otherProgressLabels[cpuId].text = (progress * 100).ToString("F0");
+        }
     }
 
     public async UniTask RoundFinish(int result) {
@@ -87,29 +99,7 @@ public class PlayingView : NetworkBehaviour {
         finishLabel.SetActive(false);
 
         hasWin = result;
-        //AppearGate(result).Forget();
         CloseNewGate(result).Forget();
-    }
-
-    public async UniTask AppearGate(int winner /* -1:not yet 0:other 1:me 2:draw */) {
-        Debug.Log("AppearGate old");
-        SoundManager.Instance.PlaySoundEffect(SoundManager.Instance.SE_OpenDoor);
-
-        gateR.gameObject.GetComponent<Image>().sprite = gateR_Images[winner];
-        gateL.gameObject.GetComponent<Image>().sprite = gateL_Images[winner];
-        gateLabel.sprite = gateC_Images[winner];
-
-        gateR.DOAnchorPos(new Vector2(480f, 0f), 0.25f);
-        gateL.DOAnchorPos(new Vector2(-480f, 0f), 0.25f);
-        await UniTask.Delay(250);
-        gateBack.DOFade(0.75f, 0.25f);
-        gateLabel.DOFade(1.0f, 0.25f);
-
-        await UniTask.Delay(3000);
-        PlayZizowMovie();
-
-        await UniTask.Delay(250);
-        OpenGateToZizou().Forget();
     }
 
     public async UniTask CloseNewGate(int winner /* -1:not yet 0:other 1:me 2:draw */) {
@@ -175,6 +165,7 @@ public class PlayingView : NetworkBehaviour {
 
         await UniTask.Delay(1800);
 
+        GameManager.Instance.ResetWorld();
         PlayZizowMovie();
 
         await UniTask.Delay(200);
@@ -219,18 +210,6 @@ public class PlayingView : NetworkBehaviour {
         newGateRF.DOAnchorPos(new Vector2(1620f, 0f), doorBaseSpeed);
     }
 
-    public async UniTask OpenGateToZizou() {
-        Debug.Log("OpenGate old");
-        gateLabel.DOFade(0.0f, 0.25f);
-        gateBack.DOFade(0.5f, 0.25f);
-
-        await UniTask.Delay(250);
-
-        SoundManager.Instance.PlaySoundEffect(SoundManager.Instance.SE_OpenDoor);
-        gateBack.DOFade(0.0f, 0.1f);
-        gateR.DOAnchorPos(new Vector2(1500f, 0f), 0.25f);
-        gateL.DOAnchorPos(new Vector2(-1500f, 0f), 0.25f);
-    }
     public async UniTask OpenGateToNext() {
         Debug.Log("OpenGate old");
         gateLabel.DOFade(0.0f, 0.25f);
@@ -243,27 +222,6 @@ public class PlayingView : NetworkBehaviour {
         gateBack.DOFade(0.0f, 0.1f);
         gateR.DOAnchorPos(new Vector2(1500f, 0f), 0.25f);
         gateL.DOAnchorPos(new Vector2(-1500f, 0f), 0.25f);
-    }
-
-    public async UniTask CloseGateAndGoNext() {
-        Debug.Log("CloseGateAndGoNext old");
-        SoundManager.Instance.PlaySoundEffect(SoundManager.Instance.SE_CloseDoor);
-
-        gateR.DOAnchorPos(new Vector2(480f, 0f), 0.25f);
-        gateL.DOAnchorPos(new Vector2(-480f, 0f), 0.25f);
-        await UniTask.Delay(250);
-        gateBack.DOFade(0.75f, 0.25f);
-        gateLabel.DOFade(1.0f, 0.25f);
-
-        await UniTask.Delay(500);
-
-        if (PhotonNetwork.isMasterClient) {
-            if (RoundManager.Instance.currentRound != RoundManager.Instance.RoundNum) {
-                //photonView.RPC(nameof(ToRuleSelectFromPlayingView), PhotonTargets.AllBuffered); //TODO:PUN
-            } else {
-                //photonView.RPC(nameof(ToEndingView), PhotonTargets.AllBuffered); //TODO:PUN
-            }
-        }
     }
 
     public async UniTask CloseNewGateAndGoNext() {
@@ -307,23 +265,12 @@ public class PlayingView : NetworkBehaviour {
                 .Append(underBars[3].DOAnchorPos(new Vector2(0f, 0f), underBarSpeed));
 
             await UniTask.Delay(1100);
-        }
 
-        if (PhotonNetwork.isMasterClient) {
             if (RoundManager.Instance.currentRound != RoundManager.Instance.RoundNum) {
-                //photonView.RPC(nameof(ToRuleSelectFromPlayingView), PhotonTargets.AllBuffered); //TODO:PUN
+                RoomConector.Instance.rpcListner.RPC_PlayingView_ToRuleSelectFromPlayingView();
             } else {
-                //photonView.RPC(nameof(ToEndingView), PhotonTargets.AllBuffered); //TODO:PUN
+                RoomConector.Instance.rpcListner.RPC_PlayingView_ToEndingView();
             }
-        }
-    }
-
-    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
-        //これが無いと動くけどエラーが出る
-        if (stream.isWriting) {
-            // ここにオブジェクトの状態を送信するコードを書きます
-        } else {
-            // ここにオブジェクトの状態を受信して更新するコードを書きます
         }
     }
 
@@ -333,7 +280,6 @@ public class PlayingView : NetworkBehaviour {
         zizowMovie.Set(hasWin);
     }
 
-    [PunRPC] //TODO:PUN
     public void ToRuleSelectFromPlayingView() {
         Debug.Log("To Rule Select from PlayingView");
         viewManager.ruleSelectViewObj.SetActive(true);
@@ -348,23 +294,10 @@ public class PlayingView : NetworkBehaviour {
         }
     }
 
-    [PunRPC] //TODO:PUN
     public void ToEndingView() {
         Debug.Log("To Ending View");
         gameObject.SetActive(false);
         viewManager.endingViewObj.SetActive(true);
         viewManager.endingView.GetComponent<EndingView>().Set();
-    }
-
-    [PunRPC] //TODO:PUN
-    public void ApplyOtherProgressGuages(int playerId, float progress) {
-        int cpuId = RuleManager.instance.otherUtsuwaList.Find(u => u.holderId == playerId).CpuId;
-        //Debug.Log("aaaa " + playerId.ToString() + ", " + cpuId.ToString() + ", " + progress.ToString());
-        if (!RuleManager.instance.nearToLoseAppeared && progress >= 0.8f) {
-            angelSpeaking.NearToLose().Forget();
-            RuleManager.instance.nearToLoseAppeared = true;
-        }
-        otherProgressGuages[cpuId].fillAmount = progress;
-        otherProgressLabels[cpuId].text = (progress * 100).ToString("F0");
     }
 }
