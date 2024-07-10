@@ -57,7 +57,7 @@ public class RpcListner : NetworkBehaviour {
 
     [Rpc(RpcSources.All, RpcTargets.All)]
     public void RPC_RuleSelectView_OpenGate() {
-        ViewManager.Instance.ruleSelectView.CloseRuleSelectPanel();
+        ViewManager.Instance.ruleSelectView.OpenGate();
     }
 
     [Rpc(RpcSources.All, RpcTargets.All)]
