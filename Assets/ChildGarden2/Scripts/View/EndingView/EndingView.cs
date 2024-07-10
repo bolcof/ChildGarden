@@ -46,6 +46,7 @@ public class EndingView : Photon.PunBehaviour {
     public void OnEndVideo(VideoPlayer vp) {
         Debug.Log("EndVideo...");
         GameObject.Find("FaderCanvas").GetComponent<Fader>().WhiteOut();
+        RoomConector.Instance.networkRunner.Shutdown();
         Invoke(nameof(Restart), 2.0f);
     }
 
