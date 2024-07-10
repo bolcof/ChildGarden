@@ -26,6 +26,7 @@ public class GameManager : NetworkBehaviour {
     [Networked] public float remainingTimeLimit { get; set; }
 
     [SerializeField] private BackgroundRoot backgroundRoot;
+
     public override void Spawned() {
         if (Instance == null) {
             Instance = this;

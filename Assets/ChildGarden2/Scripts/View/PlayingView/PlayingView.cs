@@ -193,7 +193,7 @@ public class PlayingView : MonoBehaviour {
         var topBarSpeed = 0.033f;
 
         for (int i = 12; i >= 0; i--) {
-            topBars[i].DOAnchorPos(new Vector2(0, topBarSpeed * (i+1)), topBarSpeed);
+            topBars[i].DOAnchorPos(new Vector2(0, topBarSpeed * (i + 1)), topBarSpeed);
             await UniTask.Delay(33);
         }
 
@@ -265,12 +265,12 @@ public class PlayingView : MonoBehaviour {
                 .Append(underBars[3].DOAnchorPos(new Vector2(0f, 0f), underBarSpeed));
 
             await UniTask.Delay(1100);
+        }
 
-            if (RoundManager.Instance.currentRound != RoundManager.Instance.RoundNum) {
-                RoomConector.Instance.rpcListner.RPC_PlayingView_ToRuleSelectFromPlayingView();
-            } else {
-                RoomConector.Instance.rpcListner.RPC_PlayingView_ToEndingView();
-            }
+        if (RoundManager.Instance.currentRound != RoundManager.Instance.RoundNum) {
+            RoomConector.Instance.rpcListner.RPC_PlayingView_ToRuleSelectFromPlayingView();
+        } else {
+            RoomConector.Instance.rpcListner.RPC_PlayingView_ToEndingView();
         }
     }
 
