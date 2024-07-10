@@ -101,13 +101,11 @@ public class RuleSelectView : MonoBehaviour {
     }
 
     public async UniTask Decide() { //TODO Archive -> naze?
-        if (RoomConector.Instance.rpcListner.HasStateAuthority) {
-            RoomConector.Instance.rpcListner.RPC_RuleSelectView_CloseRuleSelectPanel();
-            await UniTask.Delay(3200);
-            RoomConector.Instance.rpcListner.RPC_RuleSelectView_OpenGate();
-            await UniTask.Delay(500);
-            RoomConector.Instance.rpcListner.RPC_RuleSelectView_ToNextRound();
-        }
+        RoomConector.Instance.rpcListner.RPC_RuleSelectView_CloseRuleSelectPanel();
+        await UniTask.Delay(3200);
+        RoomConector.Instance.rpcListner.RPC_RuleSelectView_OpenGate();
+        await UniTask.Delay(500);
+        RoomConector.Instance.rpcListner.RPC_RuleSelectView_ToNextRound();
     }
 
     public void ChangeOthersHighlight(int ruleId) {

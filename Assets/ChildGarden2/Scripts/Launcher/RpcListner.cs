@@ -23,7 +23,7 @@ public class RpcListner : NetworkBehaviour {
         ViewManager.Instance.playingView.ApplyOtherProgressGuages(playerId, progress, info);
     }
 
-    [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
+    [Rpc(RpcSources.All, RpcTargets.All)]
     public void RPC_PlayingView_ToRuleSelectFromPlayingView() {
         ViewManager.Instance.playingView.ToRuleSelectFromPlayingView();
     }
@@ -50,17 +50,17 @@ public class RpcListner : NetworkBehaviour {
         }
     }
 
-    [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
+    [Rpc(RpcSources.All, RpcTargets.All)]
     public void RPC_RuleSelectView_CloseRuleSelectPanel() {
         ViewManager.Instance.ruleSelectView.CloseRuleSelectPanel();
     }
 
-    [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
+    [Rpc(RpcSources.All, RpcTargets.All)]
     public void RPC_RuleSelectView_OpenGate() {
         ViewManager.Instance.ruleSelectView.CloseRuleSelectPanel();
     }
 
-    [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
+    [Rpc(RpcSources.All, RpcTargets.All)]
     public void RPC_RuleSelectView_ToNextRound() {
         ViewManager.Instance.ruleSelectView.ToNextRound();
     }
