@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Fusion;
 
 public class ConnectState : MonoBehaviour {
     [SerializeField] private Image panel;
@@ -21,11 +22,15 @@ public class ConnectState : MonoBehaviour {
         }
 
         if (label.enabled) {
-            if (PhotonNetwork.connected) {
-                if (PhotonNetwork.inRoom) {
-                    label.text = "Lobby:" + PhotonNetwork.lobby.Type + " Room:" + PhotonNetwork.room.Name + " PlayerID:" + PhotonNetwork.player.ID;
+            NetworkRunner networkRunner = RoomConector.Instance.networkRunner;
+            if (networkRunner != null && networkRunner.IsRunning) {
+                var lobbyType = networkRunner.GameMode.ToString();
+                var roomName = networkRunner.SessionInfo.Name;
+                var playerId = networkRunner.LocalPlayer.PlayerId;
+                if (networkRunner.SessionInfo.IsValid) {
+                    label.text = "Lobby:" + lobbyType + " Room:" + roomName + " PlayerID:" + playerId;
                 } else {
-                    label.text = "Lobby:" + PhotonNetwork.lobby.Type + " Room:None";
+                    label.text = "Lobby:" + lobbyType + " Room:None";
                 }
             } else {
                 label.text = "No Connect";

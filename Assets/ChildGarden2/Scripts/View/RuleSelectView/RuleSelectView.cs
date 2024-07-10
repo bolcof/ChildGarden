@@ -7,7 +7,7 @@ using Cysharp.Threading.Tasks;
 using UnityEngine.Video;
 using static RuleManager;
 
-public class RuleSelectView : Photon.PunBehaviour {
+public class RuleSelectView : MonoBehaviour {
 
     //static
     [SerializeField] private int selectableRuleNum;
@@ -25,22 +25,8 @@ public class RuleSelectView : Photon.PunBehaviour {
 
     public async UniTask Set(bool isSelector) {
         //TODO: fuckin code
-
         //TODO:これ2回呼ばれちゃってんのよ
         Debug.Log("rule select view set");
-        /*foreach (var rsb in buttonsList) {
-            Destroy(rsb.gameObject);
-        }*/
-        //buttonsList.Clear();
-        for (int i = 0; i < selectableRuleNum; i++) {
-            //TODO:randomize
-            /*var subject = Instantiate(RuleSubjectButton, RuleSubjectRoot.transform);
-            subject.GetComponent<RuleSubjectButton>().SetInfomation(i, this);
-            subject.GetComponent<Button>().enabled = isSelector;
-            buttonsList.Add(subject.GetComponent<RuleSubjectButton>());
-            Debug.Log("rule select view add");
-            */
-        }
         foreach (var subject in buttonsList) {
             subject.GetComponent<RuleSubjectButton>().SetInfomation(this);
             subject.GetComponent<Button>().enabled = isSelector;
@@ -84,7 +70,7 @@ public class RuleSelectView : Photon.PunBehaviour {
         }
         buttonsList.Find(r => r.thisButtonsRuleId == ruleId).SetHighlight(true);
         ruleIndex = ruleId;
-        photonView.RPC(nameof(ChangeOthersHighlight), PhotonTargets.OthersBuffered, ruleIndex);
+        RoomConector.Instance.rpcListner.RPC_RuleSelectView_ChangeOthersHighlight(ruleIndex);
 
         DecideButton.GetComponent<Button>().enabled = true;
     }
@@ -95,7 +81,7 @@ public class RuleSelectView : Photon.PunBehaviour {
             rsb.SetHighlight(false);
         }
         ruleIndex = -1;
-        photonView.RPC(nameof(ChangeOthersHighlight), PhotonTargets.OthersBuffered, ruleIndex);
+        RoomConector.Instance.rpcListner.RPC_RuleSelectView_ChangeOthersHighlight(ruleIndex);
 
         DecideButton.GetComponent<Button>().enabled = false;
     }
@@ -114,24 +100,14 @@ public class RuleSelectView : Photon.PunBehaviour {
         }
     }
 
-    public async UniTask Decide() { //TODO Archive
-        photonView.RPC(nameof(CloseRuleSelectPanel), PhotonTargets.AllBuffered);
+    public async UniTask Decide() { //TODO Archive -> naze?
+        RoomConector.Instance.rpcListner.RPC_RuleSelectView_CloseRuleSelectPanel();
         await UniTask.Delay(3200);
-        photonView.RPC(nameof(OpenGate), PhotonTargets.AllBuffered);
+        RoomConector.Instance.rpcListner.RPC_RuleSelectView_OpenGate();
         await UniTask.Delay(500);
-        photonView.RPC(nameof(ToNextRound), PhotonTargets.AllBuffered);
+        RoomConector.Instance.rpcListner.RPC_RuleSelectView_ToNextRound();
     }
 
-    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
-        //これが無いと動くけどエラーが出る
-        if (stream.isWriting) {
-            // ここにオブジェクトの状態を送信するコードを書きます
-        } else {
-            // ここにオブジェクトの状態を受信して更新するコードを書きます
-        }
-    }
-
-    [PunRPC]
     public void ChangeOthersHighlight(int ruleId) {
         foreach (var rsb in buttonsList) {
             rsb.SetHighlight(false);
@@ -146,20 +122,18 @@ public class RuleSelectView : Photon.PunBehaviour {
                 break;
         }
     }
-    [PunRPC]
+
     public void CloseRuleSelectPanel() {
         _animator.SetBool("Close", true);
         SoundManager.Instance.PlaySoundEffect(SoundManager.Instance.SE_RuleSelectViewClosing);
     }
 
-    [PunRPC]
     public void OpenGate() {
         //TODO bad position
         GameManager.Instance.BackGroundVideoStart();
         ViewManager.Instance.playingView.OpenNewGate(true).Forget();
     }
 
-    [PunRPC]
     public void ToNextRound() {
         gameObject.SetActive(false);
         RuleManager.instance.SetRule(ruleIndex);
