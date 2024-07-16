@@ -74,9 +74,11 @@ public class GameManager : NetworkBehaviour {
 
     public void NextRoundStart() {
         Debug.Log("MyDebug NextRound!");
-        if (RoomConector.Instance.HasStateAuthority) {
-            RoomConector.Instance.rpcListner.RPC_PlayingView_ApplyTimeLimit((int)timeLimit);
-        }
+        //TODO:kore naito sorezore kara 2kai yobaretyau nandeya.
+        //if (RoomConector.Instance.HasStateAuthority) {
+        //  RoomConector.Instance.rpcListner.RPC_PlayingView_ApplyTimeLimit((int)timeLimit);
+        //}
+        RoomConector.Instance.rpcListner.RPC_PlayingView_ApplyTimeLimit((int)timeLimit);
         CountDownStart().Forget();
 
         stageManager.AppearMyPlayerPin();
