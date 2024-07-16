@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Video;
 
-public class ForceRestarter : Photon.PunBehaviour {
+public class ForceRestarter : MonoBehaviour {
     [SerializeField] private float inactivityTime;
     [SerializeField] private float timer = 0f;
     [SerializeField] private List<GameObject> MustDestroyObject;
@@ -18,14 +18,14 @@ public class ForceRestarter : Photon.PunBehaviour {
                 timer += Time.deltaTime;
                 if (timer >= inactivityTime) {
                     Debug.Log(inactivityTime.ToString() + "秒間の無操作を検知しました。");
-                    OnInactivityDetected();
+                    //OnInactivityDetected();
                     timer = 0f;
                 }
             }
 
             if (Input.GetKeyDown(KeyCode.R)) {
                 Debug.Log("Rでの再起動");
-                OnInactivityDetected();
+                //OnInactivityDetected();
                 timer = 0f;
             }
         }
@@ -40,14 +40,7 @@ public class ForceRestarter : Photon.PunBehaviour {
         }
     }
 
-    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
-        //これが無いと動くけどエラーが出る
-        if (stream.isWriting) {
-            // ここにオブジェクトの状態を送信するコードを書きます
-        } else {
-            // ここにオブジェクトの状態を受信して更新するコードを書きます
-        }
-    }
+    /*
     public void OnInactivityDetected() {
         Debug.Log("OnInactivityDetected");
         if (ableForceRestart) {
@@ -61,7 +54,7 @@ public class ForceRestarter : Photon.PunBehaviour {
         if (ableForceRestart) {
             photonView.RPC(nameof(RoomBreakAndRestart), PhotonTargets.AllBuffered);
         }
-    }
+    }*/
 
     public void OnlyRestart() {
         SoundManager.Instance.AllSoundStop();
@@ -69,11 +62,10 @@ public class ForceRestarter : Photon.PunBehaviour {
             Destroy(obj);
         }
         SoundManager.Instance.PlayBgm(SoundManager.Instance.BGM_Title);
-        PhotonNetwork.LoadLevel("Restarter");
+        SceneManager.LoadScene("Restarter");
     }
 
-    [PunRPC]
-    public void RoomBreakAndRestart() {
+    /*public void RoomBreakAndRestart() {
         SoundManager.Instance.AllSoundStop();
         foreach (var obj in MustDestroyObject) {
             Destroy(obj);
@@ -86,4 +78,5 @@ public class ForceRestarter : Photon.PunBehaviour {
             PhotonNetwork.LeaveRoom();
         }
     }
+    */
 }
