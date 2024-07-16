@@ -237,7 +237,7 @@ public class RuleManager : NetworkBehaviour {
     }
 
     public bool WholeWinnerIsMe() {
-        if (RoundManager.Instance.isWin.Count(r => r == 1) > RoundManager.Instance.isWin.Count(r => r == 0)) {
+        if (RoundManager.instance.isWin.Count(r => r == 1) > RoundManager.instance.isWin.Count(r => r == 0)) {
             return true;
         } else {
             return false;

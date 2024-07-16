@@ -48,7 +48,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43b2e5e07218c7145b91c3ebad3c19b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roundManager: {fileID: 2610326606202948468}
   ruleManager: {fileID: 2530666752715617214}
   stageManager: {fileID: 7399397119454308964}
   createRayPoint: {fileID: 0}
@@ -140,8 +139,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf5d906d47ec5604a8a0941e0a104df0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _RoundNum: 4
-  _currentRound: 0
+  RoundNum: 4
+  currentRound: 0
   isWin: 
 --- !u!114 &7063702711417555976
 MonoBehaviour:

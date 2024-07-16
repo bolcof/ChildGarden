@@ -11,7 +11,6 @@ public class GameManager : NetworkBehaviour {
 
     public static GameManager Instance;
 
-    [SerializeField] RoundManager roundManager;
     [SerializeField] RuleManager ruleManager;
     [SerializeField] UtsuwaManager stageManager;
 
@@ -56,7 +55,7 @@ public class GameManager : NetworkBehaviour {
 
         stageManager.SetStage();
 
-        roundManager.currentRound = 1;
+        RoundManager.instance.currentRound = 1;
         ruleManager.SetFirstRound();
 
         ViewManager.Instance.playingView.RoundStart(1, ruleManager.currentRule);
@@ -73,20 +72,22 @@ public class GameManager : NetworkBehaviour {
     }
 
     public void NextRoundStart() {
-        Debug.Log("MyDebug NextRound!");
-        if (RoomConector.Instance.HasStateAuthority) {
-            RoomConector.Instance.rpcListner.RPC_PlayingView_ApplyTimeLimit((int)timeLimit);
-        }
+        Debug.Log("MyDebug NextRound! " + RoomConector.Instance.MyPlayerId().ToString());
+        //TODO:kore naito sorezore kara 2kai yobaretyau nandeya.
+        //if (RoomConector.Instance.HasStateAuthority) {
+        //  RoomConector.Instance.rpcListner.RPC_PlayingView_ApplyTimeLimit((int)timeLimit);
+        //}
+        RoomConector.Instance.rpcListner.RPC_PlayingView_ApplyTimeLimit((int)timeLimit);
         CountDownStart().Forget();
 
         stageManager.AppearMyPlayerPin();
         ruleManager.ResetCount();
 
-        roundManager.currentRound++;
-        SoundManager.Instance.PlayBgm(SoundManager.Instance.BGM_GameScene[roundManager.currentRound - 1]);
+        RoundManager.instance.currentRound++;
+        SoundManager.Instance.PlayBgm(SoundManager.Instance.BGM_GameScene[RoundManager.instance.currentRound - 1]);
 
         ViewManager.Instance.playingView.gameObject.SetActive(true);
-        ViewManager.Instance.playingView.RoundStart(roundManager.currentRound, ruleManager.currentRule);
+        ViewManager.Instance.playingView.RoundStart(RoundManager.instance.currentRound, ruleManager.currentRule);
 
         remainingTimeLimit = timeLimit;
 
@@ -94,8 +95,8 @@ public class GameManager : NetworkBehaviour {
     }
 
     public void BackGroundVideoStart() {
-        backgroundRoot.backgrounds[roundManager.currentRound].GetComponent<VideoPlayer>().Play();
-        backgroundRoot.backgrounds[roundManager.currentRound].GetComponent<BackgroundSlider>().StartSlider();
+        backgroundRoot.backgrounds[RoundManager.instance.currentRound].GetComponent<VideoPlayer>().Play();
+        backgroundRoot.backgrounds[RoundManager.instance.currentRound].GetComponent<BackgroundSlider>().StartSlider();
     }
 
     private async UniTask CountDownStart() {
@@ -132,15 +133,15 @@ public class GameManager : NetworkBehaviour {
         foreach (var bgo in backgroundRoot.backgrounds) {
             bgo.SetActive(false);
         }
-        if (roundManager.currentRound <= 3) {
-            backgroundRoot.backgrounds[roundManager.currentRound].SetActive(true);
+        if (RoundManager.instance.currentRound <= 3) {
+            backgroundRoot.backgrounds[RoundManager.instance.currentRound].SetActive(true);
         }
     }
 
     public void MyPlayerWin() {
         RPC_OtherPlayerWin(RoomConector.Instance.MyPlayerId());
         winnerIsMine = 1;
-        roundManager.FinishRound(1);
+        RoundManager.instance.FinishRound(1);
         DecideWinner();
     }
 
@@ -148,7 +149,7 @@ public class GameManager : NetworkBehaviour {
     public void RPC_OtherPlayerWin(int winnerID, RpcInfo info = default) {
         if (info.Source != Runner.LocalPlayer) {
             winnerIsMine = 0;
-            roundManager.FinishRound(0);
+            RoundManager.instance.FinishRound(0);
             DecideWinner();
         }
     }
@@ -156,7 +157,7 @@ public class GameManager : NetworkBehaviour {
     [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
     public void RPC_TimeOverAndDraw() {
         winnerIsMine = 2;
-        roundManager.FinishRound(2);
+        RoundManager.instance.FinishRound(2);
         DecideWinner();
     }
 

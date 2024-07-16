@@ -12,7 +12,7 @@ public class ZizouMovie : MonoBehaviour {
     private void Awake() {
         myVideoPlayer.loopPointReached += ZizouMovieEnd;
         canUseMovieIds.Clear();
-        for(int i = 0; i < zizouVideoList.Count - 1; i++) {
+        for (int i = 0; i < zizouVideoList.Count - 1; i++) {
             canUseMovieIds.Add(i);
         }
     }
@@ -20,8 +20,8 @@ public class ZizouMovie : MonoBehaviour {
     public void Set(int isWinner) {
         int id = -1;
         if (RoomConector.Instance.rpcListner.HasStateAuthority) {
-            if (RoundManager.Instance.currentRound == RoundManager.Instance.RoundNum) {
-                id = zizouVideoList.Count - 1; //最終ラウンド用の映像
+            if (RoundManager.instance.currentRound == RoundManager.instance.RoundNum) {
+                id = zizouVideoList.Count - 1; //???I???E???h?p???f??
             } else {
                 id = canUseMovieIds[Random.Range(0, canUseMovieIds.Count)];
                 Debug.Log("Set ZizouMovie ID:" + id.ToString());
