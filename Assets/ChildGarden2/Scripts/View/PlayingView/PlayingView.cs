@@ -55,7 +55,7 @@ public class PlayingView : MonoBehaviour {
         }
         for (int i = 0; i < round - 1; i++) {
             roundResults[i].enabled = true;
-            roundResults[i].sprite = roundResultImage[RoundManager.Instance.isWin[i]];
+            roundResults[i].sprite = roundResultImage[RoundManager.instance.isWin[i]];
         }
         hasWin = -1;
 
@@ -225,7 +225,7 @@ public class PlayingView : MonoBehaviour {
     }
 
     public async UniTask CloseNewGateAndGoNext() {
-        if (RoundManager.Instance.currentRound != RoundManager.Instance.RoundNum) {
+        if (RoundManager.instance.currentRound != RoundManager.instance.RoundNum) {
             Debug.Log("Close New Gate And Go Next");
             SoundManager.Instance.PlaySoundEffect(SoundManager.Instance.SE_CloseNewDoor);
 
@@ -267,7 +267,7 @@ public class PlayingView : MonoBehaviour {
             await UniTask.Delay(1100);
         }
 
-        if (RoundManager.Instance.currentRound != RoundManager.Instance.RoundNum) {
+        if (RoundManager.instance.currentRound != RoundManager.instance.RoundNum) {
             RoomConector.Instance.rpcListner.RPC_PlayingView_ToRuleSelectFromPlayingView();
         } else {
             RoomConector.Instance.rpcListner.RPC_PlayingView_ToEndingView();

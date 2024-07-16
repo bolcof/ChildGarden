@@ -21,7 +21,7 @@ public class ZizouView : Photon.PunBehaviour {
     public void Set(int isWinner) {
         if (PhotonNetwork.isMasterClient) {
             int id = -1;
-            if (RoundManager.Instance.currentRound == RoundManager.Instance.RoundNum) {
+            if (RoundManager.instance.currentRound == RoundManager.instance.RoundNum) {
                 id = zizouVideoList.Count - 1;
             } else {
                 id = Random.Range(0, zizouVideoList.Count - 1);
@@ -49,7 +49,7 @@ public class ZizouView : Photon.PunBehaviour {
 
     public void PushToRuleSelect(VideoPlayer vp) {
         Debug.Log("Rule Select vp");
-        if (RoundManager.Instance.currentRound != RoundManager.Instance.RoundNum) {
+        if (RoundManager.instance.currentRound != RoundManager.instance.RoundNum) {
             photonView.RPC(nameof(ToRuleSelectFromZizowView), PhotonTargets.AllBuffered);
         } else {
             photonView.RPC(nameof(ToEndingView), PhotonTargets.AllBuffered);
