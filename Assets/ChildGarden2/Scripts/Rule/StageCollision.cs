@@ -16,8 +16,8 @@ public class StageCollision : MonoBehaviour {
     }
 
     private void Awake() {
-        PhotonView photonView = GetComponent<PhotonView>();
-        holderId = photonView.owner.ID;
+        //PhotonView photonView = GetComponent<PhotonView>();
+        //holderId = photonView.owner.ID;
         if (holderId == RoomConector.Instance.MyPlayerId()) {
             isMine = true;
             RuleManager.instance.myUtsuwa = null; //TODO delete

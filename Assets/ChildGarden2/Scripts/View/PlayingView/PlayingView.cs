@@ -290,7 +290,7 @@ public class PlayingView : MonoBehaviour {
             viewManager.ruleSelectView.GetComponent<RuleSelectView>().Set(false).Forget();
         } else {
             //TODO:selector
-            viewManager.ruleSelectView.GetComponent<RuleSelectView>().Set(PhotonNetwork.isMasterClient).Forget();
+            viewManager.ruleSelectView.GetComponent<RuleSelectView>().Set(RoomConector.Instance.HasStateAuthority).Forget();
         }
     }
 

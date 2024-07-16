@@ -9,9 +9,6 @@ public class Restarter : MonoBehaviour {
         Resources.UnloadUnusedAssets();
         // ガベージコレクションを強制的に実行
         System.GC.Collect();
-        if (PhotonNetwork.inRoom) {
-            PhotonNetwork.LeaveRoom();
-        }
         SceneManager.LoadScene("MainGame");
     }
 }

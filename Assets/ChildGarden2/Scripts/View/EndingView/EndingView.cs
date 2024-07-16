@@ -6,7 +6,7 @@ using TMPro;
 using System.Linq;
 using Cysharp.Threading.Tasks;
 
-public class EndingView : Photon.PunBehaviour {
+public class EndingView : MonoBehaviour {
     [SerializeField] private VideoPlayer videoPlayer;
     [SerializeField] private TextMeshProUGUI testLabel;
     [SerializeField] private List<VideoClip> endingVideos = new List<VideoClip>();
@@ -32,15 +32,6 @@ public class EndingView : Photon.PunBehaviour {
             viewManager = GameObject.Find("ViewManager").GetComponent<ViewManager>();
         }
         GameObject.Find("ForceRestarter").GetComponent<ForceRestarter>().ableForceRestart = false;
-    }
-
-    //これが無いと動くけどエラーが出る
-    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
-        if (stream.isWriting) {
-            // ここにオブジェクトの状態を送信するコードを書きます
-        } else {
-            // ここにオブジェクトの状態を受信して更新するコードを書きます
-        }
     }
 
     public void OnEndVideo(VideoPlayer vp) {

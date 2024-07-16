@@ -37,24 +37,6 @@ public class ConsoleDisplay : MonoBehaviour {
         // ログを追加
         //photonView.RPC(nameof(AddLog), PhotonTargets.AllBuffered, combinedLog);
     }
-    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
-        //これが無いと動くけどエラーが出る
-        if (stream.isWriting) {
-            // ここにオブジェクトの状態を送信するコードを書きます
-        } else {
-            // ここにオブジェクトの状態を受信して更新するコードを書きます
-        }
-    }
-
-    [PunRPC]
-    /*public void AddLog(string logString) {
-        logs.Add(logString);
-
-        // ログの最大数を超えたら古いものから削除
-        if (logs.Count > maxLogs) {
-            logs.RemoveAt(0);
-        }
-    }*/
 
     void OnGUI() {
         GUI.skin.label.fontSize = fontSize;
