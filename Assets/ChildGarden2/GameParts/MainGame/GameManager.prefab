@@ -69,15 +69,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UtsuwaList:
-  - {fileID: 1211487857972061069, guid: 927b10ad5486da74291bc531566b1040, type: 3}
-  - {fileID: 1211487857972061069, guid: cd520b46f189d47d78fca0159a5d095d, type: 3}
-  - {fileID: 1211487857972061069, guid: 53a1042a414cc464ba5458767804b350, type: 3}
+  - {fileID: 1211487857972061069, guid: 84f72aab71b424925841b222e455248c, type: 3}
+  - {fileID: 1211487857972061069, guid: 08c7b70bee9d74a88bc88d18dbf80a99, type: 3}
+  - {fileID: 1211487857972061069, guid: 24ff3a73530314c40bbb93eab46400d5, type: 3}
+  - {fileID: 1211487857972061069, guid: 34685eed5e08f455a807a9b658ee4e05, type: 3}
   myBoxCollision: {fileID: 7810039791910776433, guid: 6434851dc3934574e85aa49164bf8c52, type: 3}
   spawnPoints:
-  - {x: -5.3, y: -3.35, z: 0}
+  - {x: -3.3, y: -3.35, z: 0}
   - {x: -2.3, y: -3.35, z: 0}
   - {x: 1.3, y: -3.35, z: 0}
-  - {x: 4.3, y: -3.35, z: 0}
+  - {x: 2.3, y: -3.35, z: 0}
   mySpawnPositionId: -1
   myUtsuwaId: -1
   myOnbutsuColorId: -1
@@ -99,7 +100,7 @@ MonoBehaviour:
     missionNum: 3
     explainText: "\u3055\u3044\u3057\u3087 \u304A\u3093\u3076\u3064\u304F\u3093\u30923\u3064\u3086\u304B\u306B\u304A\u3068\u3059"
   - id: 1
-    missionNum: 1
+    missionNum: 3
     explainText: "\u3042\u3044\u3066\u306E\u3067\u3082\u3058\u3076\u3093\u306E\u3067\u3082<br><color=#fff17d>\u300C\u304A\u3093\u3076\u3064\u304F\u3093\u300D</color>\u3092<color=#ff5757>6\u3053</color><br><color=#fff17d>\u300C\u3058\u3076\u3093\u306E\u3046\u3064\u308F\u300D</color>\u306B\u306E\u305B\u3088\u3046"
   - id: 2
     missionNum: 8
