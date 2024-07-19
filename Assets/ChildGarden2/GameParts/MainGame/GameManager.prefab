@@ -69,8 +69,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UtsuwaList:
-  - {fileID: 1211487857972061069, guid: 84f72aab71b424925841b222e455248c, type: 3}
-  - {fileID: 1211487857972061069, guid: 08c7b70bee9d74a88bc88d18dbf80a99, type: 3}
   - {fileID: 1211487857972061069, guid: 24ff3a73530314c40bbb93eab46400d5, type: 3}
   - {fileID: 1211487857972061069, guid: 34685eed5e08f455a807a9b658ee4e05, type: 3}
   myBoxCollision: {fileID: 7810039791910776433, guid: 6434851dc3934574e85aa49164bf8c52, type: 3}
