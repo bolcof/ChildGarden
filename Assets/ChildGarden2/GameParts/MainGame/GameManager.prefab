@@ -79,10 +79,10 @@ MonoBehaviour:
   - {fileID: 1211487857972061069, guid: c32bcf4f271184565b3f3c683bdfb5f5, type: 3}
   myBoxCollision: {fileID: 7810039791910776433, guid: 6434851dc3934574e85aa49164bf8c52, type: 3}
   spawnPoints:
-  - {x: -3.3, y: -3.35, z: 0}
+  - {x: -5.3, y: -3.35, z: 0}
   - {x: -2.3, y: -3.35, z: 0}
   - {x: 1.3, y: -3.35, z: 0}
-  - {x: 2.3, y: -3.35, z: 0}
+  - {x: 4.3, y: -3.35, z: 0}
   mySpawnPositionId: -1
   myUtsuwaId: -1
   myOnbutsuColorId: -1
