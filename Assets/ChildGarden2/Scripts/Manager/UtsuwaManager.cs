@@ -103,7 +103,7 @@ public class UtsuwaManager : NetworkBehaviour {
         List<int> colorIdList = new List<int>();
         List<int> randomizeList = new List<int>();
 
-        int onbutsuColorVariation = 3;
+        int onbutsuColorVariation = 4;
 
         for (int i = 0; i < onbutsuColorVariation; i++) {
             colorIdList.Add(i);
@@ -115,7 +115,7 @@ public class UtsuwaManager : NetworkBehaviour {
             colorIdList.RemoveAt(index);
         }
 
-        RPC_SetOnbutsuColor(randomizeList[0], randomizeList[1], randomizeList[2] /*, randomizeList[3]*/);
+        RPC_SetOnbutsuColor(randomizeList[0], randomizeList[1], randomizeList[2], randomizeList[3]);
         return randomizeList;
     }
 
@@ -184,12 +184,12 @@ public class UtsuwaManager : NetworkBehaviour {
 
 
     [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
-    public void RPC_SetOnbutsuColor(int color1, int color2, int color3/*, int color4*/) {
+    public void RPC_SetOnbutsuColor(int color1, int color2, int color3, int color4) {
         GameObject.Find("MainCamera").GetComponent<CreateRayPoint>().usingOnbutsuColor.Clear();
         GameObject.Find("MainCamera").GetComponent<CreateRayPoint>().usingOnbutsuColor.Add(color1);
         GameObject.Find("MainCamera").GetComponent<CreateRayPoint>().usingOnbutsuColor.Add(color2);
         GameObject.Find("MainCamera").GetComponent<CreateRayPoint>().usingOnbutsuColor.Add(color3);
-        //GameObject.Find("MainCamera").GetComponent<CreateRayPoint>().usingOnbutsuColor.Add(color4);
+        GameObject.Find("MainCamera").GetComponent<CreateRayPoint>().usingOnbutsuColor.Add(color4);
         myOnbutsuColorId = GameObject.Find("MainCamera").GetComponent<CreateRayPoint>().usingOnbutsuColor[RoomConector.Instance.networkRunner.LocalPlayer.PlayerId - 1];
     }
 }
