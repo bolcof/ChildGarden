@@ -87,7 +87,7 @@ MonoBehaviour:
   dropped: 0
   checkRadius: 1
   touchingObjectsCount: 0
-  _spriteRenderer: {fileID: 0}
+  _spriteRenderer: {fileID: 4350161734553053977}
   _polygonCollider: {fileID: -2475386607655179751}
   _circleCollider: {fileID: 0}
   dissappearEffect: {fileID: 1429954232896169633, guid: 83036083a4ebcd34f98131bd3cf6f4d2, type: 3}
