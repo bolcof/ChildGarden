@@ -18,6 +18,8 @@ GameObject:
   - component: {fileID: 3603512459264543227}
   - component: {fileID: 5133591791976668193}
   - component: {fileID: -2100686329042482365}
+  - component: {fileID: 4347976726374807581}
+  - component: {fileID: 7486787807905914850}
   m_Layer: 0
   m_Name: Utuwa_03
   m_TagString: Utsuwa
@@ -155,7 +157,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1008348657628407914}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 6200000, guid: bf9e23e0bdbb5ca4d907dc38d02d91b8, type: 2}
   m_IncludeLayers:
@@ -180,7 +182,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.014419556, y: -0.017518222}
+  m_Offset: {x: 0.0230155, y: -0.7279889}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -191,7 +193,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 5.6675205, y: 1.418821}
+  m_Size: {x: 3.9475498, y: 0.7458495}
   m_EdgeRadius: 0
 --- !u!58 &4977366926896492329
 CircleCollider2D:
@@ -200,7 +202,7 @@ CircleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1008348657628407914}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 6200000, guid: bf9e23e0bdbb5ca4d907dc38d02d91b8, type: 2}
   m_IncludeLayers:
@@ -235,7 +237,7 @@ CircleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1008348657628407914}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 6200000, guid: bf9e23e0bdbb5ca4d907dc38d02d91b8, type: 2}
   m_IncludeLayers:
@@ -298,6 +300,84 @@ MonoBehaviour:
   SyncParent: 0
   _autoAOIOverride: 1
   DisableSharedModeInterpolation: 0
+--- !u!60 &4347976726374807581
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1008348657628407914}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 6200000, guid: bf9e23e0bdbb5ca4d907dc38d02d91b8, type: 2}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 5.28, y: 2.74}
+    newSize: {x: 8.54, y: 4.4201174}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 2.28, y: -0.42999998}
+      - {x: 2.47, y: 0.02}
+      - {x: 2.3999999, y: 0.42}
+      - {x: 2.6399999, y: 0.69}
+      - {x: 2.6299999, y: 1.12}
+      - {x: 2.2521272, y: 1.4019108}
+      - {x: 1.6297591, y: 0.3985335}
+      - {x: 0.029133976, y: 0.20939945}
+      - {x: -1.72125, y: 0.53853357}
+      - {x: -2.32, y: 1.27}
+      - {x: -2.6399999, y: 0.83}
+      - {x: -2.47, y: 0.41}
+      - {x: -1.93, y: -0.07}
+      - {x: -2.01, y: -0.62}
+      - {x: -1.8499999, y: -0.76}
+      - {x: -1.23, y: -0.71}
+      - {x: -0.39999998, y: -1.04}
+      - {x: 0.42999998, y: -0.87}
+      - {x: 1.3399999, y: -1.11}
+      - {x: 2.07, y: -0.52}
+  m_UseDelaunayMesh: 0
+--- !u!114 &7486787807905914850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1008348657628407914}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6876803ba35184bf9b6a393e33a2f264, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tolerance: 0.1
 --- !u!1001 &7503177457540252149
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -372,7 +452,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8829731837057954800, guid: a81eb47048d2046478719ffb9ee7e4a3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2
+      value: -2.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
