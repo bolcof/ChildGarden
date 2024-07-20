@@ -180,18 +180,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.014419556, y: -0.017518222}
+  m_Offset: {x: 0.018437624, y: -0.90600795}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 5.76, y: 1.79}
+    oldSize: {x: 10, y: 10}
     newSize: {x: 8.54, y: 4.4201174}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 5.6675205, y: 1.418821}
+  m_Size: {x: 6.3907876, y: 1.0021974}
   m_EdgeRadius: 0
 --- !u!58 &4977366926896492329
 CircleCollider2D:
@@ -225,7 +225,7 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 2.64, y: 0.67}
+  m_Offset: {x: 2.99, y: -0.45}
   serializedVersion: 2
   m_Radius: 0.25
 --- !u!58 &3603512459264543227
@@ -260,7 +260,7 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -2.61, y: 0.67}
+  m_Offset: {x: -2.95, y: -0.46}
   serializedVersion: 2
   m_Radius: 0.25
 --- !u!114 &5133591791976668193
@@ -372,7 +372,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8829731837057954800, guid: a81eb47048d2046478719ffb9ee7e4a3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2
+      value: -3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
