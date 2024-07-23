@@ -6,6 +6,6 @@ PhysicsMaterial2D:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: _Onbutu02
-  friction: 1
-  bounciness: 0.5
+  m_Name: Utuwa_02
+  friction: 0.5
+  bounciness: 0
