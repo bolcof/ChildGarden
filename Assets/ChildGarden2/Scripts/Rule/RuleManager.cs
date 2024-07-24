@@ -29,8 +29,8 @@ public class RuleManager : NetworkBehaviour {
 
     public List<Onbutsu> OnbutsuList = new List<Onbutsu>();
 
-    [SerializeField] private NetworkObject Rule05Obj, Rule06Obj;
-    private GameObject Rule05_GoalLine, Rule06_BigUtsuwa;
+    [SerializeField] private GameObject Rule05_GoalLine;
+    //TODO:Rule06_BigUtsuwa;
 
     private bool firstCommitAppeared, nearToWinAppeared;
     public bool nearToLoseAppeared;
@@ -42,6 +42,7 @@ public class RuleManager : NetworkBehaviour {
         } else {
             Destroy(gameObject);
         }
+        Rule05_GoalLine = GameObject.Find("Rule05-GoalLine");
         Debug.Log("MyDebug RuleManager Spawned");
     }
 
@@ -60,20 +61,17 @@ public class RuleManager : NetworkBehaviour {
     }
 
     private void SetSpecialObject(int id) {
-        if (Rule05_GoalLine != null) {
-            Rule05_GoalLine.SetActive(false);
-        }
-        if (Rule06_BigUtsuwa != null) {
+        Rule05_GoalLine.SetActive(false);
+        /*if (Rule06_BigUtsuwa != null) {
             Rule06_BigUtsuwa.SetActive(false);
-        }
+        }*/
 
         if (id == 5) {
-            Rule05_GoalLine = RoomConector.Instance.networkRunner.Spawn(Rule05Obj).gameObject;
             Rule05_GoalLine.SetActive(true);
-        } else if (id == 6) {
+        }/* else if (id == 6) {
             Rule05_GoalLine = RoomConector.Instance.networkRunner.Spawn(Rule06Obj).gameObject;
             Rule06_BigUtsuwa.SetActive(true);
-        }
+        }*/
     }
 
     public void ResetCount() {
@@ -186,6 +184,7 @@ public class RuleManager : NetworkBehaviour {
         }
     }
     public bool CheckRule_5() {
+        Debug.Log("MyDebug2 Rule05 checking");
         float missionNum = Rule05_GoalLine.transform.position.y;
         float highestOnbutsuHeight = myUtsuwa.transform.position.y;
 
@@ -198,8 +197,9 @@ public class RuleManager : NetworkBehaviour {
         float targetCount = highestOnbutsuHeight;
         ApplyProgressState(Devide5Per((targetCount - myUtsuwa.transform.position.y) / (missionNum - myUtsuwa.transform.position.y)));
 
-        if (OnbutsuList.FindAll(OnbutsuOnLine => OnbutsuOnLine.onLine && OnbutsuOnLine.landing_Utsuwa && OnbutsuOnLine.StagingId == RoomConector.Instance.MyPlayerId()).Count >= 1 ) {
+        if (OnbutsuList.FindAll(OnbutsuOnLine => OnbutsuOnLine.onLine && OnbutsuOnLine.landing_Utsuwa && OnbutsuOnLine.StagingId == RoomConector.Instance.MyPlayerId()).Count >= 1) {
             GameManager.Instance.MyPlayerWin();
+            Debug.Log("MyDebug2 Rule05 complete");
             Rule05_GoalLine.SetActive(false);
             return true;
         } else {
