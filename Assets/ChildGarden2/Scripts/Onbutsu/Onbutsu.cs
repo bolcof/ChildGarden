@@ -139,6 +139,9 @@ public class Onbutsu : NetworkBehaviour {
         _spriteRenderer.enabled = false;
         gameObject.GetComponent<Rigidbody2D>().simulated = false;
 
-        Instantiate(dissappearEffect, transform.position, Quaternion.identity);
+        var effectObj = Instantiate(dissappearEffect, transform.position, Quaternion.identity);
+        if (!LocalStateManager.Instance.canPutOnbutsu) {
+            effectObj.GetComponent<AudioSource>().enabled = false;
+        }
     }
 }
