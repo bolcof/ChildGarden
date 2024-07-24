@@ -289,8 +289,7 @@ public class PlayingView : MonoBehaviour {
         } else if (hasWin == 1) {
             viewManager.ruleSelectView.GetComponent<RuleSelectView>().Set(false).Forget();
         } else {
-            //TODO:selector
-            viewManager.ruleSelectView.GetComponent<RuleSelectView>().Set(RoomConector.Instance.HasStateAuthority).Forget();
+            viewManager.ruleSelectView.GetComponent<RuleSelectView>().Set(RoomConector.Instance.networkRunner.IsSharedModeMasterClient).Forget();
         }
     }
 
