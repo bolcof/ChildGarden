@@ -7,7 +7,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class UtsuwaManager : NetworkBehaviour {
-    [SerializeField] private List<Utsuwa> UtsuwaList = new List<Utsuwa>();
+    [SerializeField] private List<Utsuwa> utsuwaObjectList = new List<Utsuwa>();
+    private List<int> randomizedUtuwaIdList = new List<int>();
     [SerializeField] private GameObject myBoxCollision;
     [SerializeField] private List<Vector3> spawnPoints;
 
@@ -26,7 +27,8 @@ public class UtsuwaManager : NetworkBehaviour {
             if (RoomConector.Instance.networkRunner.IsSharedModeMasterClient) {
                 Debug.Log("I'm masterClient");
                 // DONE ID全部ここから振り分けないと、クライアント側で処理が並行して被る
-                List<int> positionIdList = RandomizedPositionIdList();
+                List<int> positionIdList = RandomizePositionIdList();
+                randomizedUtuwaIdList = RandomizeUtsuwaIdList();
                 RandomizedColorIds();
 
                 Debug.Log("positionID list :  " + string.Join(",", positionIdList));
@@ -67,7 +69,7 @@ public class UtsuwaManager : NetworkBehaviour {
 
     void SpawnPlayer() {
         Vector3 spawnPoint = spawnPoints[mySpawnPositionId];
-        var Player = RoomConector.Instance.networkRunner.Spawn(UtsuwaList[RoomConector.Instance.MyPlayerId() - 1], new Vector3(spawnPoint.x, spawnPoint.y + 2, spawnPoint.z), Quaternion.identity);
+        var Player = RoomConector.Instance.networkRunner.Spawn(utsuwaObjectList[randomizedUtuwaIdList[RoomConector.Instance.MyPlayerId() - 1]], new Vector3(spawnPoint.x, spawnPoint.y + 2, spawnPoint.z), Quaternion.identity);
         myUtsuwa = Player.GetComponent<Utsuwa>();
         AppearMyPlayerPin();
     }
@@ -76,7 +78,7 @@ public class UtsuwaManager : NetworkBehaviour {
         myUtsuwa.SignEnabled(true);
     }
 
-    private List<int> RandomizedPositionIdList() {
+    private List<int> RandomizePositionIdList() {
 
         if (RoomConector.Instance.PlayerNum > spawnPoints.Count) {
             Debug.LogError("playerNum cannot be greater than spawnPositionIds");
@@ -99,6 +101,29 @@ public class UtsuwaManager : NetworkBehaviour {
         return randomizeList;
     }
 
+    private List<int> RandomizeUtsuwaIdList() {
+
+        if (RoomConector.Instance.PlayerNum > utsuwaObjectList.Count) {
+            Debug.LogError("playerNum cannot be greater than UtsuwaList");
+            return new List<int>();
+        }
+
+        List<int> utsuwaIdList = new List<int>();
+        List<int> randomizeList = new List<int>();
+
+        for (int i = 0; i < utsuwaObjectList.Count; i++) {
+            utsuwaIdList.Add(i);
+        }
+
+        for (int i = 0; i < RoomConector.Instance.PlayerNum; i++) {
+            int index = Random.Range(0, utsuwaObjectList.Count);
+            randomizeList.Add(utsuwaIdList[index]);
+            utsuwaIdList.RemoveAt(index);
+        }
+
+        return randomizeList;
+    }
+
     private List<int> RandomizedColorIds() {
         List<int> colorIdList = new List<int>();
         List<int> randomizeList = new List<int>();
@@ -116,29 +141,6 @@ public class UtsuwaManager : NetworkBehaviour {
         }
 
         RPC_SetOnbutsuColor(randomizeList[0], randomizeList[1], randomizeList[2], randomizeList[3]);
-        return randomizeList;
-    }
-
-    //TODO:必要だったら使う
-    private List<int> RandomizedUtsuwaIdList() {
-
-        if (RoomConector.Instance.PlayerNum > UtsuwaList.Count) {
-            Debug.LogError("playerNum cannot be greater than utsuwaList");
-            return new List<int>();
-        }
-
-        List<int> utsuwaIdList = new List<int>();
-        List<int> randomizeList = new List<int>();
-
-        for (int i = 0; i < spawnPoints.Count; i++) {
-            utsuwaIdList.Add(i);
-        }
-
-        for (int i = 0; i < RoomConector.Instance.PlayerNum; i++) {
-            int index = Random.Range(0, utsuwaIdList.Count);
-            randomizeList.Add(utsuwaIdList[index]);
-            utsuwaIdList.RemoveAt(index);
-        }
         return randomizeList;
     }
 

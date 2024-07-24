@@ -68,11 +68,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c378749de8884024e9e8dd557e38154a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UtsuwaList:
+  utsuwaObjectList:
+  - {fileID: 1211487857972061069, guid: 84f72aab71b424925841b222e455248c, type: 3}
   - {fileID: 1211487857972061069, guid: 24ff3a73530314c40bbb93eab46400d5, type: 3}
   - {fileID: 1211487857972061069, guid: 34685eed5e08f455a807a9b658ee4e05, type: 3}
-  - {fileID: 1211487857972061069, guid: 84f72aab71b424925841b222e455248c, type: 3}
-  - {fileID: 1211487857972061069, guid: 08c7b70bee9d74a88bc88d18dbf80a99, type: 3}
   - {fileID: 1211487857972061069, guid: 357e270bd4120445298787435b9b4a6d, type: 3}
   - {fileID: 1211487857972061069, guid: effbdc764f48546dea8945f1fa34dcb6, type: 3}
   - {fileID: 1211487857972061069, guid: fb3931d3464e845518ea74d6dffd62d2, type: 3}
@@ -129,8 +128,7 @@ MonoBehaviour:
   myUtsuwa: {fileID: 0}
   otherUtsuwaList: []
   OnbutsuList: []
-  Rule05Obj: {fileID: 2077931016347738816, guid: 3275ccc9d3c1b4bd5bc16be2dcb3cc03, type: 3}
-  Rule06Obj: {fileID: 4513531154935297391, guid: 5e892d528d3a84ebab8a97c079ad36a7, type: 3}
+  Rule05_GoalLine: {fileID: 0}
   nearToLoseAppeared: 0
 --- !u!114 &2610326606202948468
 MonoBehaviour:
