@@ -157,7 +157,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 1008348657628407914}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: bf9e23e0bdbb5ca4d907dc38d02d91b8, type: 2}
+  m_Material: {fileID: 6200000, guid: 148fecd69773f447196d1759e5726192, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -200,7 +200,7 @@ CircleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1008348657628407914}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 6200000, guid: bf9e23e0bdbb5ca4d907dc38d02d91b8, type: 2}
   m_IncludeLayers:
@@ -235,7 +235,7 @@ CircleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1008348657628407914}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 6200000, guid: bf9e23e0bdbb5ca4d907dc38d02d91b8, type: 2}
   m_IncludeLayers:
