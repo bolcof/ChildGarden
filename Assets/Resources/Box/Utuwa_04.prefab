@@ -15,14 +15,14 @@ GameObject:
   - component: {fileID: 4091169066542195343}
   - component: {fileID: 5133591791976668193}
   - component: {fileID: -2100686329042482365}
-  - component: {fileID: 2520153833603915824}
-  - component: {fileID: 2476401826458762355}
+  - component: {fileID: 6795309851971899208}
+  - component: {fileID: 7877256566920699172}
   m_Layer: 0
   m_Name: Utuwa_04
   m_TagString: Utsuwa
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!224 &7723840977719512314
 RectTransform:
@@ -56,9 +56,9 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 10
+  m_Mass: 100
   m_LinearDrag: 10
-  m_AngularDrag: 0.05
+  m_AngularDrag: 5
   m_GravityScale: 1
   m_Material: {fileID: 6200000, guid: bf9e23e0bdbb5ca4d907dc38d02d91b8, type: 2}
   m_IncludeLayers:
@@ -67,7 +67,7 @@ Rigidbody2D:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 7
@@ -182,7 +182,7 @@ MonoBehaviour:
   SyncParent: 0
   _autoAOIOverride: 1
   DisableSharedModeInterpolation: 0
---- !u!60 &2520153833603915824
+--- !u!60 &6795309851971899208
 PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -191,7 +191,7 @@ PolygonCollider2D:
   m_GameObject: {fileID: 1008348657628407914}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: bf9e23e0bdbb5ca4d907dc38d02d91b8, type: 2}
+  m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -226,35 +226,40 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.02, y: -1.99}
-      - {x: 0.01, y: -2.06}
-      - {x: 0.06, y: -1.99}
-    - - {x: 0.57, y: -1.23}
-      - {x: 0.62, y: -0.84999996}
-      - {x: 0.7, y: -0.71999997}
-      - {x: 1.26, y: -0.45999998}
-      - {x: 1.18, y: 0.19}
-      - {x: 1.76, y: 0.35999998}
-      - {x: 2.05, y: 0.65}
-      - {x: 2.01, y: 1.51}
-      - {x: 2.06, y: 1.67}
-      - {x: 1.5899999, y: 1.89}
-      - {x: 0.66675454, y: 0.2644059}
-      - {x: 0.31, y: -0.71999997}
-      - {x: 0.07, y: -0.77}
-      - {x: -1.53, y: 1.77}
-      - {x: -1.76, y: 1.79}
-      - {x: -2.46, y: 1.52}
-      - {x: -2.6799998, y: 1.37}
-      - {x: -1.8499999, y: 0.32}
-      - {x: -1.26, y: -0.04}
-      - {x: -1.0699999, y: -0.22}
-      - {x: -0.95, y: -0.51}
-      - {x: -0.26, y: -1.14}
-      - {x: 0.01, y: -1.8199999}
-      - {x: 0.42999998, y: -1.48}
+    - - {x: 0.02, y: -1.91}
+      - {x: 0.03, y: -1.99}
+      - {x: 0.089999996, y: -1.99}
+      - {x: 0.07, y: -1.91}
+    - - {x: 0.61, y: -1.18}
+      - {x: 0.76, y: -0.78999996}
+      - {x: 0.77, y: -0.41}
+      - {x: 1.55, y: -0.06}
+      - {x: 1.48, y: 0.63}
+      - {x: 1.5799999, y: 0.78}
+      - {x: 2.12, y: 0.93}
+      - {x: 2.44, y: 1.16}
+      - {x: 2.53, y: 1.43}
+      - {x: 2.46, y: 2.58}
+      - {x: 1.9699999, y: 2.8}
+      - {x: 0.45999998, y: 0.38}
+      - {x: 0.41, y: -0.35999998}
+      - {x: 0.089999996, y: -0.44}
+      - {x: -0.83, y: 1.05}
+      - {x: -0.85999995, y: 1.55}
+      - {x: -1.8499999, y: 2.6599998}
+      - {x: -2.28, y: 2.62}
+      - {x: -3.24, y: 2.19}
+      - {x: -2.6799998, y: 1.55}
+      - {x: -2.4299998, y: 1.11}
+      - {x: -2.11, y: 0.81}
+      - {x: -1.49, y: 0.45}
+      - {x: -1.09, y: -0.17999999}
+      - {x: -0.35, y: -0.79999995}
+      - {x: 0, y: -1.68}
+      - {x: 0.089999996, y: -1.6999999}
+      - {x: 0.51, y: -1.3199999}
   m_UseDelaunayMesh: 0
---- !u!114 &2476401826458762355
+--- !u!114 &7877256566920699172
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -266,7 +271,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6876803ba35184bf9b6a393e33a2f264, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tolerance: 0.04
+  tolerance: 0.05
 --- !u!1001 &7503177457540252149
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -279,6 +284,10 @@ PrefabInstance:
       propertyPath: m_SortingLayer
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3737896262079014917, guid: a81eb47048d2046478719ffb9ee7e4a3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 4726465552771730654, guid: a81eb47048d2046478719ffb9ee7e4a3, type: 3}
       propertyPath: m_SortingLayer
       value: 0
@@ -286,6 +295,10 @@ PrefabInstance:
     - target: {fileID: 6314663352391929190, guid: a81eb47048d2046478719ffb9ee7e4a3, type: 3}
       propertyPath: m_Name
       value: PinTriangle
+      objectReference: {fileID: 0}
+    - target: {fileID: 6314663352391929190, guid: a81eb47048d2046478719ffb9ee7e4a3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 6693313234879441965, guid: a81eb47048d2046478719ffb9ee7e4a3, type: 3}
       propertyPath: m_LocalPosition.x
