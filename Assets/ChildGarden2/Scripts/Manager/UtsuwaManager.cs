@@ -7,12 +7,13 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class UtsuwaManager : NetworkBehaviour {
-    [SerializeField] private List<Utsuwa> UtsuwaList = new List<Utsuwa>();
+    [SerializeField] private List<Utsuwa> utsuwaObjectList = new List<Utsuwa>();
+    private List<int> randomizedUtuwaIdList = new List<int>();
     [SerializeField] private GameObject myBoxCollision;
     [SerializeField] private List<Vector3> spawnPoints;
 
     public int mySpawnPositionId = -1;
-    public int myUtsuwaId = -1;
+    public int myObjectId = -1;
     public int myOnbutsuColorId = -1;
 
     public Utsuwa myUtsuwa;
@@ -26,25 +27,14 @@ public class UtsuwaManager : NetworkBehaviour {
             if (RoomConector.Instance.networkRunner.IsSharedModeMasterClient) {
                 Debug.Log("I'm masterClient");
                 // DONE ID全部ここから振り分けないと、クライアント側で処理が並行して被る
-                List<int> positionIdList = RandomizedPositionIdList();
+                List<int> randomizedPositionIdList = RandomizePositionIdList();
+                randomizedUtuwaIdList = RandomizeUtsuwaIdList();
                 RandomizedColorIds();
 
-                Debug.Log("positionID list :  " + string.Join(",", positionIdList));
+                Debug.Log("positionID list :  " + string.Join(",", randomizedPositionIdList));
                 Debug.Log("colorId list : " + string.Join(",", GameObject.Find("MainCamera").GetComponent<CreateRayPoint>().usingOnbutsuColor));
 
-                switch (RoomConector.Instance.PlayerNum) {
-                    case 2:
-                        Debug.Log("2player Play");
-                        RPC_SetSpawnId_2player(positionIdList[0], positionIdList[1]);
-                        break;
-                    case 3:
-                        Debug.Log("3player Play");
-                        RPC_SetSpawnId_3player(positionIdList[0], positionIdList[1], positionIdList[2]);
-                        break;
-                    default:
-                        Debug.LogAssertion("wrong playerNum!");
-                        break;
-                }
+                RPC_SetSpawnId_2Players(randomizedPositionIdList[0], randomizedPositionIdList[1], randomizedUtuwaIdList[0], randomizedUtuwaIdList[1]);
             } else {
                 Debug.Log("I'm not masterClient");
                 // マスタークライアント以外のプレイヤーは、スポーンポイントの初期化情報を待つ
@@ -67,7 +57,7 @@ public class UtsuwaManager : NetworkBehaviour {
 
     void SpawnPlayer() {
         Vector3 spawnPoint = spawnPoints[mySpawnPositionId];
-        var Player = RoomConector.Instance.networkRunner.Spawn(UtsuwaList[RoomConector.Instance.MyPlayerId() - 1], new Vector3(spawnPoint.x, spawnPoint.y + 2, spawnPoint.z), Quaternion.identity);
+        var Player = RoomConector.Instance.networkRunner.Spawn(utsuwaObjectList[myObjectId], new Vector3(spawnPoint.x, spawnPoint.y + 2, spawnPoint.z), Quaternion.identity);
         myUtsuwa = Player.GetComponent<Utsuwa>();
         AppearMyPlayerPin();
     }
@@ -76,7 +66,7 @@ public class UtsuwaManager : NetworkBehaviour {
         myUtsuwa.SignEnabled(true);
     }
 
-    private List<int> RandomizedPositionIdList() {
+    private List<int> RandomizePositionIdList() {
 
         if (RoomConector.Instance.PlayerNum > spawnPoints.Count) {
             Debug.LogError("playerNum cannot be greater than spawnPositionIds");
@@ -94,6 +84,29 @@ public class UtsuwaManager : NetworkBehaviour {
             int index = Random.Range(0, positionIdList.Count);
             randomizeList.Add(positionIdList[index]);
             positionIdList.RemoveAt(index);
+        }
+
+        return randomizeList;
+    }
+
+    private List<int> RandomizeUtsuwaIdList() {
+
+        if (RoomConector.Instance.PlayerNum > utsuwaObjectList.Count) {
+            Debug.LogError("playerNum cannot be greater than UtsuwaList");
+            return new List<int>();
+        }
+
+        List<int> utsuwaObjectIdList = new List<int>();
+        List<int> randomizeList = new List<int>();
+
+        for (int i = 0; i < utsuwaObjectList.Count; i++) {
+            utsuwaObjectIdList.Add(i);
+        }
+
+        for (int i = 0; i < RoomConector.Instance.PlayerNum; i++) {
+            int index = Random.Range(0, utsuwaObjectList.Count);
+            randomizeList.Add(utsuwaObjectIdList[index]);
+            utsuwaObjectIdList.RemoveAt(index);
         }
 
         return randomizeList;
@@ -119,69 +132,25 @@ public class UtsuwaManager : NetworkBehaviour {
         return randomizeList;
     }
 
-    //TODO:必要だったら使う
-    private List<int> RandomizedUtsuwaIdList() {
-
-        if (RoomConector.Instance.PlayerNum > UtsuwaList.Count) {
-            Debug.LogError("playerNum cannot be greater than utsuwaList");
-            return new List<int>();
-        }
-
-        List<int> utsuwaIdList = new List<int>();
-        List<int> randomizeList = new List<int>();
-
-        for (int i = 0; i < spawnPoints.Count; i++) {
-            utsuwaIdList.Add(i);
-        }
-
-        for (int i = 0; i < RoomConector.Instance.PlayerNum; i++) {
-            int index = Random.Range(0, utsuwaIdList.Count);
-            randomizeList.Add(utsuwaIdList[index]);
-            utsuwaIdList.RemoveAt(index);
-        }
-        return randomizeList;
-    }
-
     [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
-    public void RPC_SetSpawnId_2player(int player1posId, int player2posId) {
+    public void RPC_SetSpawnId_2Players(int positionId_01, int positionId_02, int objectId_01, int objectId_02) {
         //PlayerIDは1から始まる
         switch (RoomConector.Instance.MyPlayerId()) {
             case 1:
-                mySpawnPositionId = player1posId;
-                Debug.Log("Set Player" + RoomConector.Instance.MyPlayerId().ToString() + " -> PositionID:" + player1posId.ToString());
+                mySpawnPositionId = positionId_01;
+                myObjectId = objectId_01;
+                Debug.Log("Set Player" + RoomConector.Instance.MyPlayerId().ToString() + " -> PositionID:" + positionId_01.ToString());
                 break;
             case 2:
-                mySpawnPositionId = player2posId;
-                Debug.Log("Set Player" + RoomConector.Instance.MyPlayerId().ToString() + " -> PositionID:" + player2posId.ToString());
+                mySpawnPositionId = positionId_02;
+                myObjectId = objectId_02;
+                Debug.Log("Set Player" + RoomConector.Instance.MyPlayerId().ToString() + " -> PositionID:" + positionId_02.ToString());
                 break;
             default:
                 Debug.LogError("wrong Player Num int SetSpawnPlayerId");
                 break;
         }
     }
-
-    [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
-    public void RPC_SetSpawnId_3player(int player1posId, int player2posId, int player3posId) {
-        //PlayerIDは1から始まる
-        switch (RoomConector.Instance.MyPlayerId()) {
-            case 1:
-                mySpawnPositionId = player1posId;
-                Debug.Log("Set Player" + RoomConector.Instance.MyPlayerId().ToString() + " -> PositionID:" + player1posId.ToString());
-                break;
-            case 2:
-                mySpawnPositionId = player2posId;
-                Debug.Log("Set Player" + RoomConector.Instance.MyPlayerId().ToString() + " -> PositionID:" + player2posId.ToString());
-                break;
-            case 3:
-                mySpawnPositionId = player3posId;
-                Debug.Log("Set Player" + RoomConector.Instance.MyPlayerId().ToString() + " -> PositionID:" + player3posId.ToString());
-                break;
-            default:
-                Debug.LogError("wrong Player Num int SetSpawnPlayerId");
-                break;
-        }
-    }
-
 
     [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
     public void RPC_SetOnbutsuColor(int color1, int color2, int color3, int color4) {
