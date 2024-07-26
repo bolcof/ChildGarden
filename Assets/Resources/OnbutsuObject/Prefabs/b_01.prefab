@@ -190,9 +190,9 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 2
-  m_AngularDrag: 0.2
+  m_Mass: 10
+  m_LinearDrag: 3
+  m_AngularDrag: 5
   m_GravityScale: 1
   m_Material: {fileID: 6200000, guid: 567c3e1c229207743a7398d9f2980a88, type: 2}
   m_IncludeLayers:
