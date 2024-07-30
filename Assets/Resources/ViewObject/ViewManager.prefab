@@ -130,8 +130,6 @@ MonoBehaviour:
   ruleExplainView: {fileID: 4405852533632950121}
   playingViewObj: {fileID: 30894812167153666}
   playingView: {fileID: 8566193182530182392}
-  zizouViewObj: {fileID: 0}
-  zizouView: {fileID: 0}
   ruleSelectViewObj: {fileID: 8583391790372957398}
   ruleSelectView: {fileID: 3488815928485174780}
   endingViewObj: {fileID: 8567447167129435991}
