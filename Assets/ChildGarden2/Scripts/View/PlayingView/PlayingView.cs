@@ -26,6 +26,7 @@ public class PlayingView : MonoBehaviour {
 
     public AngelSpeaking angelSpeaking;
 
+    [SerializeField] private GameObject prayElements;
     [SerializeField] private GameObject finishLabel;
 
     [SerializeField] private Image gateBack;
@@ -90,6 +91,10 @@ public class PlayingView : MonoBehaviour {
             otherProgressGuages[cpuId].fillAmount = progress;
             otherProgressLabels[cpuId].text = (progress * 100).ToString("F0");
         }
+    }
+
+    public void AppearPrayButton() {
+
     }
 
     public async UniTask RoundFinish(int result) {

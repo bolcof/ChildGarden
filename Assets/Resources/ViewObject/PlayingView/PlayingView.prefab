@@ -765,7 +765,7 @@ GameObject:
   - component: {fileID: 6083485087901176725}
   - component: {fileID: 4106687764940892079}
   m_Layer: 5
-  m_Name: Background
+  m_Name: PrayBackground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4254,6 +4254,7 @@ MonoBehaviour:
   - {fileID: 6459406040458317778}
   - {fileID: 2614305637826810261}
   angelSpeaking: {fileID: 56552712463374998}
+  prayElements: {fileID: 626745673268556028}
   finishLabel: {fileID: 509801800856226730}
   gateBack: {fileID: 104059656594495437}
   gateR: {fileID: 6003789529933297308}

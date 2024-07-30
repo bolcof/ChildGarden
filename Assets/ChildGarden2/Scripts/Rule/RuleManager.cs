@@ -127,6 +127,7 @@ public class RuleManager : NetworkBehaviour {
             return false;
         }
     }
+
     public bool CheckRule_1() {
         float missionNum = rules[1].missionNum;
         int targetCount = OnbutsuList.FindAll(on => on.landing_Utsuwa && on.StagingId == RoomConector.Instance.MyPlayerId()).Count;
@@ -140,6 +141,7 @@ public class RuleManager : NetworkBehaviour {
             return false;
         }
     }
+
     public bool CheckRule_2() {
         float missionNum = rules[2].missionNum;
         int targetCount = OnbutsuList.FindAll(on => on.landing_Utsuwa && on.holderId == RoomConector.Instance.MyPlayerId()).Count;
@@ -153,6 +155,7 @@ public class RuleManager : NetworkBehaviour {
             return false;
         }
     }
+
     public bool CheckRule_3() {
         float missionNum = rules[3].missionNum;
         int targetCount = OnbutsuList.FindAll(on => on.dropped && on.holderId == RoomConector.Instance.MyPlayerId() && on.hasLand_Utsuwa).Count;
@@ -166,6 +169,7 @@ public class RuleManager : NetworkBehaviour {
             return false;
         }
     }
+
     public bool CheckRule_4() {
         float missionNum = rules[4].missionNum;
         int targetCount =
@@ -183,6 +187,7 @@ public class RuleManager : NetworkBehaviour {
             return false;
         }
     }
+
     public bool CheckRule_5() {
         Debug.Log("MyDebug2 Rule05 checking");
         float missionNum = Rule05_GoalLine.transform.position.y;
