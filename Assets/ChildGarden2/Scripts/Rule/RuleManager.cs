@@ -121,12 +121,13 @@ public class RuleManager : NetworkBehaviour {
         ApplyProgressState(targetCount / missionNum);
 
         if (targetCount >= missionNum) {
-            GameManager.Instance.MyPlayerWin();
+            MissionComplete();
             return true;
         } else {
             return false;
         }
     }
+
     public bool CheckRule_1() {
         float missionNum = rules[1].missionNum;
         int targetCount = OnbutsuList.FindAll(on => on.landing_Utsuwa && on.StagingId == RoomConector.Instance.MyPlayerId()).Count;
@@ -134,12 +135,13 @@ public class RuleManager : NetworkBehaviour {
         ApplyProgressState(targetCount / missionNum);
 
         if (targetCount >= missionNum) {
-            GameManager.Instance.MyPlayerWin();
+            MissionComplete();
             return true;
         } else {
             return false;
         }
     }
+
     public bool CheckRule_2() {
         float missionNum = rules[2].missionNum;
         int targetCount = OnbutsuList.FindAll(on => on.landing_Utsuwa && on.holderId == RoomConector.Instance.MyPlayerId()).Count;
@@ -147,12 +149,13 @@ public class RuleManager : NetworkBehaviour {
         ApplyProgressState(targetCount / missionNum);
 
         if (targetCount >= missionNum) {
-            GameManager.Instance.MyPlayerWin();
+            MissionComplete();
             return true;
         } else {
             return false;
         }
     }
+
     public bool CheckRule_3() {
         float missionNum = rules[3].missionNum;
         int targetCount = OnbutsuList.FindAll(on => on.dropped && on.holderId == RoomConector.Instance.MyPlayerId() && on.hasLand_Utsuwa).Count;
@@ -160,12 +163,13 @@ public class RuleManager : NetworkBehaviour {
         ApplyProgressState(targetCount / missionNum);
 
         if (targetCount >= missionNum) {
-            GameManager.Instance.MyPlayerWin();
+            MissionComplete();
             return true;
         } else {
             return false;
         }
     }
+
     public bool CheckRule_4() {
         float missionNum = rules[4].missionNum;
         int targetCount =
@@ -177,14 +181,14 @@ public class RuleManager : NetworkBehaviour {
         ApplyProgressState(targetCount / missionNum);
 
         if (targetCount >= missionNum) {
-            GameManager.Instance.MyPlayerWin();
+            MissionComplete();
             return true;
         } else {
             return false;
         }
     }
+
     public bool CheckRule_5() {
-        Debug.Log("MyDebug2 Rule05 checking");
         float missionNum = Rule05_GoalLine.transform.position.y;
         float highestOnbutsuHeight = myUtsuwa.transform.position.y;
 
@@ -198,8 +202,7 @@ public class RuleManager : NetworkBehaviour {
         ApplyProgressState(Devide5Per((targetCount - myUtsuwa.transform.position.y) / (missionNum - myUtsuwa.transform.position.y)));
 
         if (OnbutsuList.FindAll(OnbutsuOnLine => OnbutsuOnLine.onLine && OnbutsuOnLine.landing_Utsuwa && OnbutsuOnLine.StagingId == RoomConector.Instance.MyPlayerId()).Count >= 1) {
-            GameManager.Instance.MyPlayerWin();
-            Debug.Log("MyDebug2 Rule05 complete");
+            MissionComplete();
             Rule05_GoalLine.SetActive(false);
             return true;
         } else {
@@ -234,6 +237,11 @@ public class RuleManager : NetworkBehaviour {
             i += 0.05f;
         }
         return i;
+    }
+
+    private void MissionComplete() {
+        //GameManager.Instance.MyPlayerWin();
+        ViewManager.Instance.playingView.AppearPrayButton();
     }
 
     public bool WholeWinnerIsMe() {

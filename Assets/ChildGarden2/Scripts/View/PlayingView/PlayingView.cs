@@ -26,6 +26,9 @@ public class PlayingView : MonoBehaviour {
 
     public AngelSpeaking angelSpeaking;
 
+    [SerializeField] private GameObject prayElements;
+    private Vector3 prayElementsTargetPosition;
+
     [SerializeField] private GameObject finishLabel;
 
     [SerializeField] private Image gateBack;
@@ -68,6 +71,11 @@ public class PlayingView : MonoBehaviour {
             otherProgressGuages[i].fillAmount = 0.0f;
             otherProgressLabels[i].text = "0";
         }
+
+        if (round == 1) {
+            prayElementsTargetPosition = prayElements.transform.position;
+        }
+        prayElements.transform.position = prayElementsTargetPosition + new Vector3(500.0f, 0.0f, 0.0f);
     }
 
     public void ApplyTimeLimit(int sec) {
@@ -90,6 +98,14 @@ public class PlayingView : MonoBehaviour {
             otherProgressGuages[cpuId].fillAmount = progress;
             otherProgressLabels[cpuId].text = (progress * 100).ToString("F0");
         }
+    }
+
+    public void AppearPrayButton() {
+        prayElements.transform.DOMove(prayElementsTargetPosition, 0.5f);
+    }
+
+    public void PushPrayButton() {
+        GameManager.Instance.MyPlayerWin();
     }
 
     public async UniTask RoundFinish(int result) {
