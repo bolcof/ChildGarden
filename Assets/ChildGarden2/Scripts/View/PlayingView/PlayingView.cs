@@ -29,6 +29,8 @@ public class PlayingView : MonoBehaviour {
     [SerializeField] private GameObject prayElements;
     private Vector3 prayElementsTargetPosition;
     private bool CanPray = true;
+    [SerializeField] private GameObject IdleAnimObj;
+    [SerializeField] private GameObject PrayAnimObj;
 
     [SerializeField] private GameObject finishLabel;
 
@@ -111,6 +113,8 @@ public class PlayingView : MonoBehaviour {
         {
             GameManager.Instance.MyPlayerWin();
             CanPray = false;
+            IdleAnimObj.SetActive(false);
+            PrayAnimObj.SetActive(true);
         }
     }
 
@@ -128,6 +132,8 @@ public class PlayingView : MonoBehaviour {
         Debug.Log("Close New Gate");
         SoundManager.Instance.PlaySoundEffect(SoundManager.Instance.SE_CloseNewDoor);
         offedScreen.enabled = true;
+        IdleAnimObj.SetActive(true);
+        PrayAnimObj.SetActive(false);
         foreach (var l in resultLabels) {
             l.SetActive(false);
         }

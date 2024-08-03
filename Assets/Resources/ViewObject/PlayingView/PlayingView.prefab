@@ -4312,6 +4312,8 @@ MonoBehaviour:
   - {fileID: 2614305637826810261}
   angelSpeaking: {fileID: 56552712463374998}
   prayElements: {fileID: 626745673268556028}
+  IdleAnimObj: {fileID: 9012111120278635969}
+  PrayAnimObj: {fileID: 2713430299130210240}
   finishLabel: {fileID: 509801800856226730}
   gateBack: {fileID: 104059656594495437}
   gateR: {fileID: 6003789529933297308}
@@ -6658,9 +6660,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51e6e0c8cb3ea42d5913a0ee9b84e0e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &2713430299130210240 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 804367823124084494, guid: 0838cf481913842b59bfd031f51c73b3, type: 3}
+  m_PrefabInstance: {fileID: 3351164377223958734}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &7737491837618774584 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5035215604498363126, guid: 0838cf481913842b59bfd031f51c73b3, type: 3}
+  m_PrefabInstance: {fileID: 3351164377223958734}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &9012111120278635969 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6021534176630461711, guid: 0838cf481913842b59bfd031f51c73b3, type: 3}
   m_PrefabInstance: {fileID: 3351164377223958734}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4531166779002274883
