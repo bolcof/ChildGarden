@@ -106,6 +106,7 @@ public class PlayingView : MonoBehaviour {
     }
 
     public void AppearPrayButton() {
+        prayElements.SetActive(true);
         prayElements.transform.DOMove(prayElementsTargetPosition, 0.5f);
         CanPray = true;
     }
@@ -245,7 +246,7 @@ public class PlayingView : MonoBehaviour {
         Debug.Log("OpenGate old");
         gateLabel.DOFade(0.0f, 0.25f);
         gateBack.DOFade(0.5f, 0.25f);
-
+        prayElements.SetActive(false);
         await UniTask.Delay(250);
 
         SoundManager.Instance.PlaySoundEffect(SoundManager.Instance.SE_OpenDoor);
