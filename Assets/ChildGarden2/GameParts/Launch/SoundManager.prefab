@@ -460,6 +460,7 @@ MonoBehaviour:
   SE_SelectRule: {fileID: 8300000, guid: 9d43002a9cb8bc24aa51a01e26da9b32, type: 3}
   SE_ClickGo: {fileID: 8300000, guid: db71b7748849be54ca1a8982da45b4f3, type: 3}
   SE_NotSelectableClick: {fileID: 8300000, guid: 2aede7f135a12f94887abb6300a9bd14, type: 3}
+  SE_AppearPray: {fileID: 8300000, guid: edf592fb6fa0a418a904c85838872513, type: 3}
   BGM_Title: {fileID: 8300000, guid: 9615a34b6e75f4f4496cd57007c1043f, type: 3}
   BGM_Introduction: {fileID: 8300000, guid: 68a566d1224214e09905534b80e769e7, type: 3}
   BGM_GameScene:

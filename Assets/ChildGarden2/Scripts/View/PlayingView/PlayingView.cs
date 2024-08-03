@@ -28,8 +28,12 @@ public class PlayingView : MonoBehaviour {
 
     [SerializeField] private GameObject prayElements;
     private Vector3 prayElementsTargetPosition;
+    private bool CanPray = true;
+    [SerializeField] private GameObject IdleAnimObj;
+    [SerializeField] private GameObject PrayAnimObj;
 
     [SerializeField] private GameObject finishLabel;
+    [SerializeField] private GameObject FinishScreen;
 
     [SerializeField] private Image gateBack;
     [SerializeField] private RectTransform gateR, gateL;
@@ -75,6 +79,7 @@ public class PlayingView : MonoBehaviour {
 
         if (round == 1) {
             prayElementsTargetPosition = prayElements.transform.position;
+            SoundManager.Instance.PlaySoundEffect(SoundManager.Instance.SE_AppearPray);
         }
         prayElements.transform.position = prayElementsTargetPosition + new Vector3(500.0f, 0.0f, 0.0f);
     }
@@ -102,19 +107,26 @@ public class PlayingView : MonoBehaviour {
     }
 
     public void AppearPrayButton() {
+        prayElements.SetActive(true);
         prayElements.transform.DOMove(prayElementsTargetPosition, 0.5f);
+        CanPray = true;
     }
 
     public void PushPrayButton() {
-        GameManager.Instance.MyPlayerWin();
+        if (CanPray)
+        {
+            GameManager.Instance.MyPlayerWin();
+            CanPray = false;
+            IdleAnimObj.SetActive(false);
+            PrayAnimObj.SetActive(true);
+        }
     }
 
     public async UniTask RoundFinish(int result) {
         finishLabel.SetActive(true);
+        FinishScreen.SetActive(true);
         SoundManager.Instance.PlaySoundEffect(SoundManager.Instance.SE_RoundFinish);
         await UniTask.Delay(4000);
-        finishLabel.SetActive(false);
-
         hasWin = result;
         CloseNewGate(result).Forget();
     }
@@ -123,6 +135,8 @@ public class PlayingView : MonoBehaviour {
         Debug.Log("Close New Gate");
         SoundManager.Instance.PlaySoundEffect(SoundManager.Instance.SE_CloseNewDoor);
         offedScreen.enabled = true;
+        IdleAnimObj.SetActive(true);
+        PrayAnimObj.SetActive(false);
         foreach (var l in resultLabels) {
             l.SetActive(false);
         }
@@ -198,6 +212,8 @@ public class PlayingView : MonoBehaviour {
         }
         offedScreen.enabled = false;
         resultLabels[hasWin].SetActive(true);
+        finishLabel.SetActive(false);
+        FinishScreen.SetActive(false);
 
         var underSequence = DOTween.Sequence();
         var underBarSpeed = 0.075f;
@@ -231,7 +247,7 @@ public class PlayingView : MonoBehaviour {
         Debug.Log("OpenGate old");
         gateLabel.DOFade(0.0f, 0.25f);
         gateBack.DOFade(0.5f, 0.25f);
-
+        prayElements.SetActive(false);
         await UniTask.Delay(250);
 
         SoundManager.Instance.PlaySoundEffect(SoundManager.Instance.SE_OpenDoor);

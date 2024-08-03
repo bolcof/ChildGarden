@@ -28,6 +28,7 @@ public class SoundManager : MonoBehaviour {
     [SerializeField] public AudioClip SE_SelectRule;
     [SerializeField] public AudioClip SE_ClickGo;
     [SerializeField] public AudioClip SE_NotSelectableClick;
+    [SerializeField] public AudioClip SE_AppearPray;
 
     [SerializeField] public AudioClip BGM_Title;
     [SerializeField] public AudioClip BGM_Introduction;
