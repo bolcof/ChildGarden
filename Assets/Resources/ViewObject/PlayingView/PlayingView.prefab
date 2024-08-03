@@ -4359,7 +4359,7 @@ MonoBehaviour:
   - {fileID: 3512828935981784460}
   - {fileID: 4844804116049383520}
   topBarXPosDiff: 63.75
-  zizowMovie: {fileID: 1551670837001594179}
+  sortedZizouMovie: {fileID: 6342490856158695779}
 --- !u!1 &6098083117070794324
 GameObject:
   m_ObjectHideFlags: 0
@@ -6261,15 +6261,15 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 285110896159420614, guid: 3d552dd7939cd3b40a4c4bf331dfecbf, type: 3}
   m_PrefabInstance: {fileID: 730358666364015600}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1551670837001594179 stripped
+--- !u!114 &6342490856158695779 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2281747425910683315, guid: 3d552dd7939cd3b40a4c4bf331dfecbf, type: 3}
+  m_CorrespondingSourceObject: {fileID: 5919925094116868755, guid: 3d552dd7939cd3b40a4c4bf331dfecbf, type: 3}
   m_PrefabInstance: {fileID: 730358666364015600}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d330b0dd1834cce4ea17c984168e88a2, type: 3}
+  m_Script: {fileID: 11500000, guid: 25914a265c567084abf6086f124bb813, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &1182422309395656340

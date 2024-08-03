@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 9160671999001973326}
   - component: {fileID: 8318210120190266188}
   - component: {fileID: 2320817731740541224}
-  - component: {fileID: 2281747425910683315}
+  - component: {fileID: 5919925094116868755}
   m_Layer: 5
   m_Name: ZizouMovie
   m_TagString: Untagged
@@ -110,7 +110,7 @@ MonoBehaviour:
     y: 0
     width: 1
     height: 1
---- !u!114 &2281747425910683315
+--- !u!114 &5919925094116868755
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -119,14 +119,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 4834914462287475600}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d330b0dd1834cce4ea17c984168e88a2, type: 3}
+  m_Script: {fileID: 11500000, guid: 25914a265c567084abf6086f124bb813, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   myVideoPlayer: {fileID: 8318210120190266188}
   zizouVideoList:
-  - {fileID: 32900000, guid: 2e527cfc3d92c467c9e27ad7adb5cae3, type: 3}
-  - {fileID: 32900000, guid: f9a5bf157301844b7a53dd9da502d3e0, type: 3}
-  - {fileID: 32900000, guid: a70aef5c7149f4fb9b6274ea9265b8af, type: 3}
-  - {fileID: 32900000, guid: 713aef80abb0d43138ee6060a22fbbf6, type: 3}
-  - {fileID: 32900000, guid: 5e0ca2c7b35c245608248bd693b7e010, type: 3}
-  - {fileID: 32900000, guid: 239f7fe8a3ba144b9969c148c63f98c0, type: 3}
+  - {fileID: 32900000, guid: f5295d1454897428db63842c30c4a33a, type: 3}
+  - {fileID: 32900000, guid: e889cf19292424c05bd13b5af1837bd2, type: 3}
+  - {fileID: 32900000, guid: f18aaf440ea904a6380d8b7c03b11ecc, type: 3}
+  - {fileID: 32900000, guid: e0a54e32430514dcebb63787592d6172, type: 3}
+  - {fileID: 32900000, guid: a309342f739a946dfb3bad9e9930d977, type: 3}
+  - {fileID: 32900000, guid: 7742c5ba475744737b27f7b2cb430773, type: 3}
+  - {fileID: 32900000, guid: e239ac2db1df6493ebb39a0797b91709, type: 3}
+  - {fileID: 32900000, guid: 729a21440655840ebbc64b4b0a3be7ca, type: 3}

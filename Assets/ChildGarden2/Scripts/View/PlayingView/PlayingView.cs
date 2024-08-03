@@ -47,7 +47,8 @@ public class PlayingView : MonoBehaviour {
     [SerializeField] private float topBarXPosDiff;
 
     private int hasWin;
-    public ZizouMovie zizowMovie;
+    //public RandomZizouMovie zizowMovie;
+    [SerializeField] SortedZizouMovie sortedZizouMovie;
 
     private ViewManager viewManager;
 
@@ -216,7 +217,7 @@ public class PlayingView : MonoBehaviour {
         await UniTask.Delay(400);
 
         if (isZizowMovieClose) {
-            zizowMovie.gameObject.SetActive(false);
+            sortedZizouMovie.gameObject.SetActive(false);
         }
 
         var doorBaseSpeed = 0.36f;
@@ -234,7 +235,7 @@ public class PlayingView : MonoBehaviour {
         await UniTask.Delay(250);
 
         SoundManager.Instance.PlaySoundEffect(SoundManager.Instance.SE_OpenDoor);
-        zizowMovie.gameObject.SetActive(false);
+        sortedZizouMovie.gameObject.SetActive(false);
         gateBack.DOFade(0.0f, 0.1f);
         gateR.DOAnchorPos(new Vector2(1500f, 0f), 0.25f);
         gateL.DOAnchorPos(new Vector2(-1500f, 0f), 0.25f);
@@ -292,8 +293,8 @@ public class PlayingView : MonoBehaviour {
 
     public void PlayZizowMovie() {
         Debug.Log("PlayZizowMovie");
-        zizowMovie.gameObject.SetActive(true);
-        zizowMovie.Set(hasWin);
+        sortedZizouMovie.gameObject.SetActive(true);
+        sortedZizouMovie.Set(hasWin);
     }
 
     public void ToRuleSelectFromPlayingView() {
