@@ -28,6 +28,7 @@ public class PlayingView : MonoBehaviour {
 
     [SerializeField] private GameObject prayElements;
     private Vector3 prayElementsTargetPosition;
+    private bool CanPray = true;
 
     [SerializeField] private GameObject finishLabel;
 
@@ -102,10 +103,15 @@ public class PlayingView : MonoBehaviour {
 
     public void AppearPrayButton() {
         prayElements.transform.DOMove(prayElementsTargetPosition, 0.5f);
-    }
+        CanPray = true;
+}
 
     public void PushPrayButton() {
-        GameManager.Instance.MyPlayerWin();
+        if (CanPray)
+        {
+            GameManager.Instance.MyPlayerWin();
+            CanPray = false;
+        }
     }
 
     public async UniTask RoundFinish(int result) {
