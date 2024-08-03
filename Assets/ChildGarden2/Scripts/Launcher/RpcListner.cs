@@ -40,7 +40,7 @@ public class RpcListner : NetworkBehaviour {
 
     [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
     public void RPC_ZizouMovie_SetZizouMovieId(int id) {
-        ViewManager.Instance.playingView.zizowMovie.SetZizouMovieId(id);
+        //ViewManager.Instance.playingView.zizowMovie.SetZizouMovieId(id);
     }
 
     [Rpc(RpcSources.All, RpcTargets.All)]

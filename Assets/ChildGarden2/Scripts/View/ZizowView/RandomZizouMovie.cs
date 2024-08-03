@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Video;
 
-public class ZizouMovie : MonoBehaviour {
+public class RandomZizouMovie : MonoBehaviour {
     [SerializeField] VideoPlayer myVideoPlayer;
     [SerializeField] List<VideoClip> zizouVideoList = new List<VideoClip>();
     [SerializeField] private List<int> canUseMovieIds = new List<int>();

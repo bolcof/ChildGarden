@@ -243,12 +243,4 @@ public class RuleManager : NetworkBehaviour {
         //GameManager.Instance.MyPlayerWin();
         ViewManager.Instance.playingView.AppearPrayButton();
     }
-
-    public bool WholeWinnerIsMe() {
-        if (RoundManager.instance.isWin.Count(r => r == 1) > RoundManager.instance.isWin.Count(r => r == 0)) {
-            return true;
-        } else {
-            return false;
-        }
-    }
 }
