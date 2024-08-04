@@ -28,22 +28,20 @@ public class PlayingView : MonoBehaviour {
 
     [SerializeField] private GameObject prayElements;
     private Vector3 prayElementsTargetPosition;
-    private bool CanPray = true;
+    private bool canPray = true;
     private bool effectPray = true;
-    [SerializeField] private GameObject IdleAnimObj;
-    [SerializeField] private GameObject PrayAnimObj;
+    [SerializeField] private GameObject idleAnimObj;
+    [SerializeField] private GameObject prayAnimObj;
 
-    [SerializeField] private GameObject PrayButtonEffect;
-    private GameObject PrayButtonEffectObj;
+    [SerializeField] private GameObject prayButtonEffect;
+    private GameObject prayButtonEffectObj;
     public float fadeInDuration = 2.0f;
     public float fadeOutDuration = 2.0f;
 
     [SerializeField] private GameObject finishLabel;
-    [SerializeField] private GameObject FinishScreen;
-    [SerializeField] private GameObject FrontLight;
-    [SerializeField] private GameObject BackLight;
-    [SerializeField] private Image FrontLightImage; 
-    [SerializeField] private Image BackLightImage;
+    [SerializeField] private GameObject finishScreen;
+    [SerializeField] private Image frontLightImage; 
+    [SerializeField] private Image backLightImage;
 
     [SerializeField] private Image gateBack;
     [SerializeField] private RectTransform gateR, gateL;
@@ -69,12 +67,9 @@ public class PlayingView : MonoBehaviour {
     public void RoundStart(int round, RuleManager.Rule currentRule) {
         purposeLabel.text = currentRule.explainText;
 
-        FrontLightImage = FrontLight.GetComponentInChildren<Image>();
-        BackLightImage = BackLight.GetComponentInChildren<Image>();
-
         // 初期の透明度を0に設定
-        LightTextAlpha(FrontLightImage, 0f);
-        LightTextAlpha(BackLightImage, 0f);
+        LightTextAlpha(frontLightImage, 0f);
+        LightTextAlpha(backLightImage, 0f);
         LightTextAlpha(purposeLabel, 0f);
         LightTextAlpha(timerLabel, 0f);
         LightTextAlpha(myProgressGuage, 0f);
@@ -91,8 +86,8 @@ public class PlayingView : MonoBehaviour {
         }
         
         // 2秒のディレイの後、2秒かけてフェードイン
-        FrontLightImage.DOFade(1f, 2f).SetDelay(2f);
-        BackLightImage.DOFade(1f, 2f).SetDelay(2f);
+        frontLightImage.DOFade(1f, 2f).SetDelay(2f);
+        backLightImage.DOFade(1f, 2f).SetDelay(2f);
         purposeLabel.DOFade(1f, 2f).SetDelay(2f);
         timerLabel.DOFade(1f, 2f).SetDelay(2f);
         myProgressGuage.DOFade(1f, 2f).SetDelay(2f);
@@ -167,7 +162,7 @@ public class PlayingView : MonoBehaviour {
     public void AppearPrayButton() {
         prayElements.SetActive(true);
         prayElements.transform.DOMove(prayElementsTargetPosition, 0.5f);
-        CanPray = true;
+        canPray = true;
         AppearPrayButtonEffect();
         effectPray = false;
     }
@@ -175,9 +170,9 @@ public class PlayingView : MonoBehaviour {
     public void AppearPrayButtonEffect(){
         if(effectPray){ 
             Vector3 spawnPosition = new Vector3(4.2f, 2.6f, 0f);
-            var PrayButtonEffectObj = Instantiate(PrayButtonEffect, spawnPosition, Quaternion.identity);
+            var prayButtonEffectObj = Instantiate(prayButtonEffect, spawnPosition, Quaternion.identity);
 
-            Material particleMaterial = PrayButtonEffectObj.GetComponent<Renderer>().material;
+            Material particleMaterial = prayButtonEffectObj.GetComponent<Renderer>().material;
             Color startColor = particleMaterial.color;
             startColor.a = 0f;
             particleMaterial.color = startColor;
@@ -187,18 +182,18 @@ public class PlayingView : MonoBehaviour {
     }
 
     public void PushPrayButton() {
-        if (CanPray)
+        if (canPray)
         {
             GameManager.Instance.MyPlayerWin();
-            CanPray = false;
+            canPray = false;
             effectPray = true;
-            IdleAnimObj.SetActive(false);
-            PrayAnimObj.SetActive(true);
+            idleAnimObj.SetActive(false);
+            prayAnimObj.SetActive(true);
 
             //Material particleMaterial = PrayButtonEffectObj.GetComponent<Renderer>().material;
             //particleMaterial.DOFade(0f, fadeOutDuration).OnComplete(() => {
                 // フェードアウトが完了したらオブジェクトを削除
-                Destroy(PrayButtonEffectObj);
+                Destroy(prayButtonEffectObj);
             //    });
                 
         }
@@ -206,13 +201,15 @@ public class PlayingView : MonoBehaviour {
 
     public async UniTask RoundFinish(int result) {
         finishLabel.SetActive(true);
-        FinishScreen.SetActive(true);
-        FrontLightImage.DOFade(0f, 2f);
-        BackLightImage.DOFade(0f, 2f);
+        finishScreen.SetActive(true);
+        frontLightImage.DOFade(0f, 2f);
+        backLightImage.DOFade(0f, 2f);
         purposeLabel.DOFade(0f, 2f);
         timerLabel.DOFade(0f, 2f);
         myProgressGuage.DOFade(0f, 2f);
         myProgressLabel.DOFade(0f, 2f);
+
+        prayElements.transform.DOMove(prayElementsTargetPosition + new Vector3(500.0f, 0.0f, 0.0f), 0.5f);
 
         foreach (var guage in otherProgressGuages)
         {
@@ -234,8 +231,8 @@ public class PlayingView : MonoBehaviour {
         Debug.Log("Close New Gate");
         SoundManager.Instance.PlaySoundEffect(SoundManager.Instance.SE_CloseNewDoor);
         offedScreen.enabled = true;
-        IdleAnimObj.SetActive(true);
-        PrayAnimObj.SetActive(false);
+        idleAnimObj.SetActive(true);
+        prayAnimObj.SetActive(false);
         foreach (var l in resultLabels) {
             l.SetActive(false);
         }
@@ -312,7 +309,7 @@ public class PlayingView : MonoBehaviour {
         offedScreen.enabled = false;
         resultLabels[hasWin].SetActive(true);
         finishLabel.SetActive(false);
-        FinishScreen.SetActive(false);
+        finishScreen.SetActive(false);
 
         var underSequence = DOTween.Sequence();
         var underBarSpeed = 0.075f;

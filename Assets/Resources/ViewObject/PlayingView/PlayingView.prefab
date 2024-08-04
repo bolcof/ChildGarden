@@ -4380,18 +4380,15 @@ MonoBehaviour:
   - {fileID: 2614305637826810261}
   angelSpeaking: {fileID: 56552712463374998}
   prayElements: {fileID: 4067914179686606256}
-  IdleAnimObj: {fileID: 9012111120278635969}
-  PrayAnimObj: {fileID: 2713430299130210240}
-  PrayButtonEffect: {fileID: 5824670795371433373, guid: 4300ba7cfb97e3d4abff9c2536f01e5a, type: 3}
+  idleAnimObj: {fileID: 9012111120278635969}
+  prayAnimObj: {fileID: 2713430299130210240}
+  prayButtonEffect: {fileID: 5785309979198694788, guid: b958a3f7c2eac034899b7f11c46867b4, type: 3}
   fadeInDuration: 2
   fadeOutDuration: 2
   finishLabel: {fileID: 509801800856226730}
-  FinishScreen: {fileID: 8578141128160706600}
-  FrontLight: {fileID: 7194667680430689749}
-  BackLight: {fileID: 90437418407464168}
-  FrontLightImage: {fileID: 4676157340504497821}
-  BackLightImage: {fileID: 4694852810809585843}
-  textComponent: {fileID: 613228407629752001}
+  finishScreen: {fileID: 8578141128160706600}
+  frontLightImage: {fileID: 4676157340504497821}
+  backLightImage: {fileID: 4694852810809585843}
   gateBack: {fileID: 104059656594495437}
   gateR: {fileID: 6003789529933297308}
   gateL: {fileID: 8872820198038548681}
