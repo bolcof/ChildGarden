@@ -930,6 +930,10 @@ PrefabInstance:
       propertyPath: m_SortingLayer
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2611291263556488316, guid: 1a3aaaeb52ac0f849905f84dd1d8e072, type: 3}
+      propertyPath: FrontLightImage
+      value: 
+      objectReference: {fileID: 1313112182326758937}
     - target: {fileID: 3322606750192747948, guid: 1a3aaaeb52ac0f849905f84dd1d8e072, type: 3}
       propertyPath: m_SortingLayer
       value: 0
@@ -1083,6 +1087,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5958775138788325510, guid: 1a3aaaeb52ac0f849905f84dd1d8e072, type: 3}
   m_PrefabInstance: {fileID: 5970665631182753924}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1313112182326758937 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4676157340504497821, guid: 1a3aaaeb52ac0f849905f84dd1d8e072, type: 3}
+  m_PrefabInstance: {fileID: 5970665631182753924}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &3842259913413816689 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7462011348789551605, guid: 1a3aaaeb52ac0f849905f84dd1d8e072, type: 3}

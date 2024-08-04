@@ -33,10 +33,17 @@ public class PlayingView : MonoBehaviour {
     [SerializeField] private GameObject IdleAnimObj;
     [SerializeField] private GameObject PrayAnimObj;
 
-     [SerializeField] private GameObject PrayButtonEffect;
+    [SerializeField] private GameObject PrayButtonEffect;
+    private GameObject PrayButtonEffectObj;
+    public float fadeInDuration = 2.0f;
+    public float fadeOutDuration = 2.0f;
 
     [SerializeField] private GameObject finishLabel;
     [SerializeField] private GameObject FinishScreen;
+    [SerializeField] private GameObject FrontLight;
+    [SerializeField] private GameObject BackLight;
+    [SerializeField] private Image FrontLightImage; 
+    [SerializeField] private Image BackLightImage;
 
     [SerializeField] private Image gateBack;
     [SerializeField] private RectTransform gateR, gateL;
@@ -61,6 +68,16 @@ public class PlayingView : MonoBehaviour {
 
     public void RoundStart(int round, RuleManager.Rule currentRule) {
         purposeLabel.text = currentRule.explainText;
+
+        FrontLightImage = FrontLight.GetComponentInChildren<Image>();
+        BackLightImage = BackLight.GetComponentInChildren<Image>();
+
+        LightAlpha(FrontLightImage, 0f);
+        LightAlpha(BackLightImage, 0f);
+
+        FrontLightImage.DOFade(1f, 2f).SetDelay(2f);
+        BackLightImage.DOFade(1f, 2f).SetDelay(2f);
+
         for (int i = 0; i < 4; i++) {
             roundResults[i].enabled = false;
         }
@@ -86,6 +103,14 @@ public class PlayingView : MonoBehaviour {
         }
         prayElements.transform.position = prayElementsTargetPosition + new Vector3(500.0f, 0.0f, 0.0f);
     }
+    
+    private void LightAlpha(Image image, float alpha)
+    {
+        Color color = image.color;
+        color.a = alpha;
+        image.color = color;
+    }
+
 
     public void ApplyTimeLimit(int sec) {
         timerLabel.text = sec.ToString();
@@ -116,10 +141,17 @@ public class PlayingView : MonoBehaviour {
         AppearPrayButtonEffect();
         effectPray = false;
     }
+
     public void AppearPrayButtonEffect(){
         if(effectPray){ 
-             Vector3 spawnPosition = new Vector3(4.2f, 2.6f, 0f);
-            var effectObj = Instantiate(PrayButtonEffect, spawnPosition, Quaternion.identity);
+            Vector3 spawnPosition = new Vector3(4.2f, 2.6f, 0f);
+            var PrayButtonEffectObj = Instantiate(PrayButtonEffect, spawnPosition, Quaternion.identity);
+
+            Material particleMaterial = PrayButtonEffectObj.GetComponent<Renderer>().material;
+            Color startColor = particleMaterial.color;
+            startColor.a = 0f;
+            particleMaterial.color = startColor;
+            particleMaterial.DOFade(1f, fadeInDuration);
 
         }
     }
@@ -132,12 +164,21 @@ public class PlayingView : MonoBehaviour {
             effectPray = true;
             IdleAnimObj.SetActive(false);
             PrayAnimObj.SetActive(true);
+
+            //Material particleMaterial = PrayButtonEffectObj.GetComponent<Renderer>().material;
+            //particleMaterial.DOFade(0f, fadeOutDuration).OnComplete(() => {
+                // フェードアウトが完了したらオブジェクトを削除
+                Destroy(PrayButtonEffectObj);
+            //    });
+                
         }
     }
 
     public async UniTask RoundFinish(int result) {
         finishLabel.SetActive(true);
         FinishScreen.SetActive(true);
+        FrontLightImage.DOFade(0f, 2f);
+        BackLightImage.DOFade(0f, 2f);
         SoundManager.Instance.PlaySoundEffect(SoundManager.Instance.SE_RoundFinish);
         await UniTask.Delay(4000);
         hasWin = result;

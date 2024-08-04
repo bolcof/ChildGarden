@@ -4385,6 +4385,10 @@ MonoBehaviour:
   PrayButtonEffect: {fileID: 5824670795371433373, guid: 4300ba7cfb97e3d4abff9c2536f01e5a, type: 3}
   finishLabel: {fileID: 509801800856226730}
   FinishScreen: {fileID: 8578141128160706600}
+  FrontLight: {fileID: 7194667680430689749}
+  BackLight: {fileID: 90437418407464168}
+  FrontLightImage: {fileID: 4676157340504497821}
+  BackLightImage: {fileID: 4694852810809585843}
   gateBack: {fileID: 104059656594495437}
   gateR: {fileID: 6003789529933297308}
   gateL: {fileID: 8872820198038548681}
@@ -5047,7 +5051,7 @@ GameObject:
   - component: {fileID: 584969677670186657}
   - component: {fileID: 4676157340504497821}
   m_Layer: 5
-  m_Name: FrameLight
+  m_Name: FrontLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
