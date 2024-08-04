@@ -4383,12 +4383,15 @@ MonoBehaviour:
   IdleAnimObj: {fileID: 9012111120278635969}
   PrayAnimObj: {fileID: 2713430299130210240}
   PrayButtonEffect: {fileID: 5824670795371433373, guid: 4300ba7cfb97e3d4abff9c2536f01e5a, type: 3}
+  fadeInDuration: 2
+  fadeOutDuration: 2
   finishLabel: {fileID: 509801800856226730}
   FinishScreen: {fileID: 8578141128160706600}
   FrontLight: {fileID: 7194667680430689749}
   BackLight: {fileID: 90437418407464168}
   FrontLightImage: {fileID: 4676157340504497821}
   BackLightImage: {fileID: 4694852810809585843}
+  textComponent: {fileID: 613228407629752001}
   gateBack: {fileID: 104059656594495437}
   gateR: {fileID: 6003789529933297308}
   gateL: {fileID: 8872820198038548681}

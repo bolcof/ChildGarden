@@ -72,11 +72,41 @@ public class PlayingView : MonoBehaviour {
         FrontLightImage = FrontLight.GetComponentInChildren<Image>();
         BackLightImage = BackLight.GetComponentInChildren<Image>();
 
-        LightAlpha(FrontLightImage, 0f);
-        LightAlpha(BackLightImage, 0f);
+        // 初期の透明度を0に設定
+        LightTextAlpha(FrontLightImage, 0f);
+        LightTextAlpha(BackLightImage, 0f);
+        LightTextAlpha(purposeLabel, 0f);
+        LightTextAlpha(timerLabel, 0f);
+        LightTextAlpha(myProgressGuage, 0f);
+        LightTextAlpha(myProgressLabel, 0f);
 
+        foreach (var guage in otherProgressGuages)
+        {
+            LightTextAlpha(guage, 0f);
+        }
+
+        foreach (var label in otherProgressLabels)
+        {
+            LightTextAlpha(label, 0f);
+        }
+        
+        // 2秒のディレイの後、2秒かけてフェードイン
         FrontLightImage.DOFade(1f, 2f).SetDelay(2f);
         BackLightImage.DOFade(1f, 2f).SetDelay(2f);
+        purposeLabel.DOFade(1f, 2f).SetDelay(2f);
+        timerLabel.DOFade(1f, 2f).SetDelay(2f);
+        myProgressGuage.DOFade(1f, 2f).SetDelay(2f);
+        myProgressLabel.DOFade(1f, 2f).SetDelay(2f);
+
+        foreach (var guage in otherProgressGuages)
+        {
+            guage.DOFade(1f, 2f).SetDelay(2f);
+        }
+
+        foreach (var label in otherProgressLabels)
+        {
+            label.DOFade(1f, 2f).SetDelay(2f);
+        }
 
         for (int i = 0; i < 4; i++) {
             roundResults[i].enabled = false;
@@ -104,11 +134,11 @@ public class PlayingView : MonoBehaviour {
         prayElements.transform.position = prayElementsTargetPosition + new Vector3(500.0f, 0.0f, 0.0f);
     }
     
-    private void LightAlpha(Image image, float alpha)
+    private void LightTextAlpha(Graphic graphic, float alpha)
     {
-        Color color = image.color;
+        Color color = graphic.color;
         color.a = alpha;
-        image.color = color;
+        graphic.color = color;
     }
 
 
@@ -179,6 +209,21 @@ public class PlayingView : MonoBehaviour {
         FinishScreen.SetActive(true);
         FrontLightImage.DOFade(0f, 2f);
         BackLightImage.DOFade(0f, 2f);
+        purposeLabel.DOFade(0f, 2f);
+        timerLabel.DOFade(0f, 2f);
+        myProgressGuage.DOFade(0f, 2f);
+        myProgressLabel.DOFade(0f, 2f);
+
+        foreach (var guage in otherProgressGuages)
+        {
+            guage.DOFade(0f, 2f);
+        }
+
+        foreach (var label in otherProgressLabels)
+        {
+            label.DOFade(0f, 2f);
+        }
+
         SoundManager.Instance.PlaySoundEffect(SoundManager.Instance.SE_RoundFinish);
         await UniTask.Delay(4000);
         hasWin = result;
