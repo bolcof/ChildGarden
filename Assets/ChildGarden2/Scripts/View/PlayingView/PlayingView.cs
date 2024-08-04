@@ -29,10 +29,11 @@ public class PlayingView : MonoBehaviour {
     [SerializeField] private GameObject prayElements;
     private Vector3 prayElementsTargetPosition;
     private bool CanPray = true;
+    private bool effectPray = true;
     [SerializeField] private GameObject IdleAnimObj;
     [SerializeField] private GameObject PrayAnimObj;
 
-     [SerializeField] private GameObject AppearPrayButtonEffect;
+     [SerializeField] private GameObject PrayButtonEffect;
 
     [SerializeField] private GameObject finishLabel;
     [SerializeField] private GameObject FinishScreen;
@@ -112,8 +113,15 @@ public class PlayingView : MonoBehaviour {
         prayElements.SetActive(true);
         prayElements.transform.DOMove(prayElementsTargetPosition, 0.5f);
         CanPray = true;
-        Vector3 spawnPosition = new Vector3(1417, 820, 0);
-        var effectObj = Instantiate(AppearPrayButtonEffect, spawnPosition, Quaternion.identity);
+        AppearPrayButtonEffect();
+        effectPray = false;
+    }
+    public void AppearPrayButtonEffect(){
+        if(effectPray){ 
+             Vector3 spawnPosition = new Vector3(4.2f, 2.6f, 0f);
+            var effectObj = Instantiate(PrayButtonEffect, spawnPosition, Quaternion.identity);
+
+        }
     }
 
     public void PushPrayButton() {
@@ -121,6 +129,7 @@ public class PlayingView : MonoBehaviour {
         {
             GameManager.Instance.MyPlayerWin();
             CanPray = false;
+            effectPray = true;
             IdleAnimObj.SetActive(false);
             PrayAnimObj.SetActive(true);
         }
