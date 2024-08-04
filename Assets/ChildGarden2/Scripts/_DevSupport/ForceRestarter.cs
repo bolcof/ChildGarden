@@ -5,10 +5,21 @@ using UnityEngine.SceneManagement;
 using UnityEngine.Video;
 
 public class ForceRestarter : MonoBehaviour {
+    public static ForceRestarter instance;
+
     [SerializeField] private float inactivityTime;
     [SerializeField] private float timer = 0f;
     [SerializeField] private List<GameObject> MustDestroyObject;
     public bool ableForceRestart;
+
+    private void Awake() {
+        if (instance == null) {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        } else {
+            Destroy(gameObject);
+        }
+    }
 
     void Update() {
         if (SceneManager.GetActiveScene().name != "Launcher") {
@@ -18,14 +29,14 @@ public class ForceRestarter : MonoBehaviour {
                 timer += Time.deltaTime;
                 if (timer >= inactivityTime) {
                     Debug.Log(inactivityTime.ToString() + "秒間の無操作を検知しました。");
-                    //OnInactivityDetected();
+                    OnInactivityDetected();
                     timer = 0f;
                 }
             }
 
             if (Input.GetKeyDown(KeyCode.R)) {
                 Debug.Log("Rでの再起動");
-                //OnInactivityDetected();
+                OnInactivityDetected();
                 timer = 0f;
             }
         }
@@ -40,21 +51,13 @@ public class ForceRestarter : MonoBehaviour {
         }
     }
 
-    /*
+    
     public void OnInactivityDetected() {
         Debug.Log("OnInactivityDetected");
         if (ableForceRestart) {
-            photonView.RPC(nameof(RoomBreakAndRestart), PhotonTargets.AllBuffered);
+            RoomBreakAndRestart();
         }
     }
-
-    public override void OnPhotonPlayerDisconnected(PhotonPlayer otherPlayer) {
-        Debug.Log("OnPhotonPlayerDisconnected");
-        base.OnPhotonPlayerDisconnected(otherPlayer);
-        if (ableForceRestart) {
-            photonView.RPC(nameof(RoomBreakAndRestart), PhotonTargets.AllBuffered);
-        }
-    }*/
 
     public void OnlyRestart() {
         SoundManager.Instance.AllSoundStop();
@@ -62,21 +65,12 @@ public class ForceRestarter : MonoBehaviour {
             Destroy(obj);
         }
         SoundManager.Instance.PlayBgm(SoundManager.Instance.BGM_Title);
+        Debug.Log("MyDebug Resterter");
         SceneManager.LoadScene("Restarter");
     }
 
-    /*public void RoomBreakAndRestart() {
-        SoundManager.Instance.AllSoundStop();
-        foreach (var obj in MustDestroyObject) {
-            Destroy(obj);
-        }
-
-        SoundManager.Instance.PlayBgm(SoundManager.Instance.BGM_Title);
-        PhotonNetwork.LoadLevel("Restarter");
-
-        if (PhotonNetwork.inRoom) {
-            PhotonNetwork.LeaveRoom();
-        }
+    public void RoomBreakAndRestart() {
+        RoomConector.Instance.networkRunner.Shutdown();
+        OnlyRestart();
     }
-    */
 }
