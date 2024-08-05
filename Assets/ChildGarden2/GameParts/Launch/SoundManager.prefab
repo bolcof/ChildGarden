@@ -460,7 +460,8 @@ MonoBehaviour:
   SE_SelectRule: {fileID: 8300000, guid: 9d43002a9cb8bc24aa51a01e26da9b32, type: 3}
   SE_ClickGo: {fileID: 8300000, guid: db71b7748849be54ca1a8982da45b4f3, type: 3}
   SE_NotSelectableClick: {fileID: 8300000, guid: 2aede7f135a12f94887abb6300a9bd14, type: 3}
-  SE_AppearPray: {fileID: 8300000, guid: edf592fb6fa0a418a904c85838872513, type: 3}
+  SE_AppearPray: {fileID: 8300000, guid: 72579b8e2de6b474bb418cafa0e04379, type: 3}
+  SE_OnbutuTouch: {fileID: 8300000, guid: 0404bd22d99e24feba588ec30a51c17d, type: 3}
   BGM_Title: {fileID: 8300000, guid: 9615a34b6e75f4f4496cd57007c1043f, type: 3}
   BGM_Introduction: {fileID: 8300000, guid: 68a566d1224214e09905534b80e769e7, type: 3}
   BGM_GameScene:
@@ -470,6 +471,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 4e59f90345203b94bb40773497963fda, type: 3}
   BGM_RuleSelect: {fileID: 8300000, guid: d842fa9a103f648c48d5db94f29e7a47, type: 3}
   BGM_Ending: {fileID: 0}
+  BGM_PrayEffect: {fileID: 8300000, guid: d03e0ae70f16247d4abc06a80693c324, type: 3}
   BgmSource: {fileID: 2026546443131375385}
   SeSource: {fileID: 8234518103088884369}
   ChargeSource: {fileID: 8706694425756934646}
