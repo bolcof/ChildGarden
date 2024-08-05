@@ -4382,7 +4382,7 @@ MonoBehaviour:
   prayElements: {fileID: 4067914179686606256}
   idleAnimObj: {fileID: 9012111120278635969}
   prayAnimObj: {fileID: 2713430299130210240}
-  prayButtonEffect: {fileID: 5785309979198694788, guid: b958a3f7c2eac034899b7f11c46867b4, type: 3}
+  prayButtonEffect: {fileID: 5824670795371433373, guid: 4300ba7cfb97e3d4abff9c2536f01e5a, type: 3}
   fadeInDuration: 2
   fadeOutDuration: 2
   finishLabel: {fileID: 509801800856226730}
