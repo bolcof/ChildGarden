@@ -2953,7 +2953,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &4618331227534121426
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4382,7 +4382,7 @@ MonoBehaviour:
   prayElements: {fileID: 4067914179686606256}
   idleAnimObj: {fileID: 9012111120278635969}
   prayAnimObj: {fileID: 2713430299130210240}
-  prayButtonEffect: {fileID: 5824670795371433373, guid: 4300ba7cfb97e3d4abff9c2536f01e5a, type: 3}
+  prayButtonEffectPrefab: {fileID: 5824670795371433373, guid: 4300ba7cfb97e3d4abff9c2536f01e5a, type: 3}
   fadeInDuration: 2
   fadeOutDuration: 2
   finishLabel: {fileID: 509801800856226730}

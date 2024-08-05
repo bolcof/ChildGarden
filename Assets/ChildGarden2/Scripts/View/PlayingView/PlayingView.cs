@@ -33,8 +33,8 @@ public class PlayingView : MonoBehaviour {
     [SerializeField] private GameObject idleAnimObj;
     [SerializeField] private GameObject prayAnimObj;
 
-    [SerializeField] private GameObject prayButtonEffect;
-    private GameObject prayButtonEffectObj;
+    [SerializeField] private GameObject prayButtonEffectPrefab;
+    private GameObject prayButtonEffect;
     public float fadeInDuration = 2.0f;
     public float fadeOutDuration = 2.0f;
 
@@ -170,14 +170,7 @@ public class PlayingView : MonoBehaviour {
     public void AppearPrayButtonEffect(){
         if(effectPray){ 
             Vector3 spawnPosition = new Vector3(4.2f, 2.6f, 0f);
-            var prayButtonEffectObj = Instantiate(prayButtonEffect, spawnPosition, Quaternion.identity);
-
-            Material particleMaterial = prayButtonEffectObj.GetComponent<Renderer>().material;
-            Color startColor = particleMaterial.color;
-            startColor.a = 0f;
-            particleMaterial.color = startColor;
-            particleMaterial.DOFade(1f, fadeInDuration);
-
+            prayButtonEffect = Instantiate(prayButtonEffectPrefab, spawnPosition, Quaternion.identity);
         }
     }
 
@@ -186,16 +179,8 @@ public class PlayingView : MonoBehaviour {
         {
             GameManager.Instance.MyPlayerWin();
             canPray = false;
-            effectPray = true;
             idleAnimObj.SetActive(false);
-            prayAnimObj.SetActive(true);
-
-            //Material particleMaterial = PrayButtonEffectObj.GetComponent<Renderer>().material;
-            //particleMaterial.DOFade(0f, fadeOutDuration).OnComplete(() => {
-                // フェードアウトが完了したらオブジェクトを削除
-                Destroy(prayButtonEffectObj);
-            //    });
-                
+            prayAnimObj.SetActive(true);             
         }
     }
 
@@ -208,6 +193,8 @@ public class PlayingView : MonoBehaviour {
         timerLabel.DOFade(0f, 2f);
         myProgressGuage.DOFade(0f, 2f);
         myProgressLabel.DOFade(0f, 2f);
+        effectPray = true;
+        Destroy(prayButtonEffect); 
 
         prayElements.transform.DOMove(prayElementsTargetPosition + new Vector3(500.0f, 0.0f, 0.0f), 0.5f);
 
