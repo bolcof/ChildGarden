@@ -28,12 +28,20 @@ public class PlayingView : MonoBehaviour {
 
     [SerializeField] private GameObject prayElements;
     private Vector3 prayElementsTargetPosition;
-    private bool CanPray = true;
-    [SerializeField] private GameObject IdleAnimObj;
-    [SerializeField] private GameObject PrayAnimObj;
+    private bool canPray = true;
+    private bool effectPray = true;
+    [SerializeField] private GameObject idleAnimObj;
+    [SerializeField] private GameObject prayAnimObj;
+
+    [SerializeField] private GameObject prayButtonEffect;
+    private GameObject prayButtonEffectObj;
+    public float fadeInDuration = 2.0f;
+    public float fadeOutDuration = 2.0f;
 
     [SerializeField] private GameObject finishLabel;
-    [SerializeField] private GameObject FinishScreen;
+    [SerializeField] private GameObject finishScreen;
+    [SerializeField] private Image frontLightImage; 
+    [SerializeField] private Image backLightImage;
 
     [SerializeField] private Image gateBack;
     [SerializeField] private RectTransform gateR, gateL;
@@ -58,6 +66,43 @@ public class PlayingView : MonoBehaviour {
 
     public void RoundStart(int round, RuleManager.Rule currentRule) {
         purposeLabel.text = currentRule.explainText;
+
+        // 初期の透明度を0に設定
+        LightTextAlpha(frontLightImage, 0f);
+        LightTextAlpha(backLightImage, 0f);
+        LightTextAlpha(purposeLabel, 0f);
+        LightTextAlpha(timerLabel, 0f);
+        LightTextAlpha(myProgressGuage, 0f);
+        LightTextAlpha(myProgressLabel, 0f);
+
+        foreach (var guage in otherProgressGuages)
+        {
+            LightTextAlpha(guage, 0f);
+        }
+
+        foreach (var label in otherProgressLabels)
+        {
+            LightTextAlpha(label, 0f);
+        }
+        
+        // 2秒のディレイの後、2秒かけてフェードイン
+        frontLightImage.DOFade(1f, 2f).SetDelay(2f);
+        backLightImage.DOFade(1f, 2f).SetDelay(2f);
+        purposeLabel.DOFade(1f, 2f).SetDelay(2f);
+        timerLabel.DOFade(1f, 2f).SetDelay(2f);
+        myProgressGuage.DOFade(1f, 2f).SetDelay(2f);
+        myProgressLabel.DOFade(1f, 2f).SetDelay(2f);
+
+        foreach (var guage in otherProgressGuages)
+        {
+            guage.DOFade(1f, 2f).SetDelay(2f);
+        }
+
+        foreach (var label in otherProgressLabels)
+        {
+            label.DOFade(1f, 2f).SetDelay(2f);
+        }
+
         for (int i = 0; i < 4; i++) {
             roundResults[i].enabled = false;
         }
@@ -83,6 +128,14 @@ public class PlayingView : MonoBehaviour {
         }
         prayElements.transform.position = prayElementsTargetPosition + new Vector3(500.0f, 0.0f, 0.0f);
     }
+    
+    private void LightTextAlpha(Graphic graphic, float alpha)
+    {
+        Color color = graphic.color;
+        color.a = alpha;
+        graphic.color = color;
+    }
+
 
     public void ApplyTimeLimit(int sec) {
         timerLabel.text = sec.ToString();
@@ -109,22 +162,65 @@ public class PlayingView : MonoBehaviour {
     public void AppearPrayButton() {
         prayElements.SetActive(true);
         prayElements.transform.DOMove(prayElementsTargetPosition, 0.5f);
-        CanPray = true;
+        canPray = true;
+        AppearPrayButtonEffect();
+        effectPray = false;
+    }
+
+    public void AppearPrayButtonEffect(){
+        if(effectPray){ 
+            Vector3 spawnPosition = new Vector3(4.2f, 2.6f, 0f);
+            var prayButtonEffectObj = Instantiate(prayButtonEffect, spawnPosition, Quaternion.identity);
+
+            Material particleMaterial = prayButtonEffectObj.GetComponent<Renderer>().material;
+            Color startColor = particleMaterial.color;
+            startColor.a = 0f;
+            particleMaterial.color = startColor;
+            particleMaterial.DOFade(1f, fadeInDuration);
+
+        }
     }
 
     public void PushPrayButton() {
-        if (CanPray)
+        if (canPray)
         {
             GameManager.Instance.MyPlayerWin();
-            CanPray = false;
-            IdleAnimObj.SetActive(false);
-            PrayAnimObj.SetActive(true);
+            canPray = false;
+            effectPray = true;
+            idleAnimObj.SetActive(false);
+            prayAnimObj.SetActive(true);
+
+            //Material particleMaterial = PrayButtonEffectObj.GetComponent<Renderer>().material;
+            //particleMaterial.DOFade(0f, fadeOutDuration).OnComplete(() => {
+                // フェードアウトが完了したらオブジェクトを削除
+                Destroy(prayButtonEffectObj);
+            //    });
+                
         }
     }
 
     public async UniTask RoundFinish(int result) {
         finishLabel.SetActive(true);
-        FinishScreen.SetActive(true);
+        finishScreen.SetActive(true);
+        frontLightImage.DOFade(0f, 2f);
+        backLightImage.DOFade(0f, 2f);
+        purposeLabel.DOFade(0f, 2f);
+        timerLabel.DOFade(0f, 2f);
+        myProgressGuage.DOFade(0f, 2f);
+        myProgressLabel.DOFade(0f, 2f);
+
+        prayElements.transform.DOMove(prayElementsTargetPosition + new Vector3(500.0f, 0.0f, 0.0f), 0.5f);
+
+        foreach (var guage in otherProgressGuages)
+        {
+            guage.DOFade(0f, 2f);
+        }
+
+        foreach (var label in otherProgressLabels)
+        {
+            label.DOFade(0f, 2f);
+        }
+
         SoundManager.Instance.PlaySoundEffect(SoundManager.Instance.SE_RoundFinish);
         await UniTask.Delay(4000);
         hasWin = result;
@@ -135,8 +231,8 @@ public class PlayingView : MonoBehaviour {
         Debug.Log("Close New Gate");
         SoundManager.Instance.PlaySoundEffect(SoundManager.Instance.SE_CloseNewDoor);
         offedScreen.enabled = true;
-        IdleAnimObj.SetActive(true);
-        PrayAnimObj.SetActive(false);
+        idleAnimObj.SetActive(true);
+        prayAnimObj.SetActive(false);
         foreach (var l in resultLabels) {
             l.SetActive(false);
         }
@@ -213,7 +309,7 @@ public class PlayingView : MonoBehaviour {
         offedScreen.enabled = false;
         resultLabels[hasWin].SetActive(true);
         finishLabel.SetActive(false);
-        FinishScreen.SetActive(false);
+        finishScreen.SetActive(false);
 
         var underSequence = DOTween.Sequence();
         var underBarSpeed = 0.075f;
