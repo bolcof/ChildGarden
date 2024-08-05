@@ -37,7 +37,7 @@ public class RuleExplainView : NetworkBehaviour {
 
         explainPages[currentIndex].SetActive(true);
 
-        if (currentIndex == 6) {
+        if (currentIndex == 7) {
             fripButton.SetActive(false);
             startButton.SetActive(true);
         }
