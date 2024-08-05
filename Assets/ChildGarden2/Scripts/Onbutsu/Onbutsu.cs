@@ -80,9 +80,13 @@ public class Onbutsu : NetworkBehaviour {
     private void OnCollisionEnter2D(Collision2D collision) {
         switch (collision.gameObject.tag) {
             case "Utsuwa":
+            //ぶるぶる問題が解決したら有効にしたい
+            //SoundManager.Instance.PlaySoundEffect(SoundManager.Instance.SE_OnbutuTouch);
                 hasLand_Utsuwa = true;
                 break;
             case "Onbutu":
+            //ぶるぶる問題が解決したら有効にしたい
+            //SoundManager.Instance.PlaySoundEffect(SoundManager.Instance.SE_OnbutuTouch);
                 if (collision.gameObject.GetComponent<Onbutsu>().landing_Utsuwa) {
                     hasLand_Utsuwa = true;
                 }

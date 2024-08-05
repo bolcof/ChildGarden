@@ -124,9 +124,8 @@ public class PlayingView : MonoBehaviour {
 
         if (round == 1) {
             prayElementsTargetPosition = prayElements.transform.position;
-            SoundManager.Instance.PlaySoundEffect(SoundManager.Instance.SE_AppearPray);
-        }
-        prayElements.transform.position = prayElementsTargetPosition + new Vector3(500.0f, 0.0f, 0.0f);
+            prayElements.transform.position = prayElementsTargetPosition + new Vector3(500.0f, 0.0f, 0.0f);
+            }
     }
     
     private void LightTextAlpha(Graphic graphic, float alpha)
@@ -168,7 +167,8 @@ public class PlayingView : MonoBehaviour {
     }
 
     public void AppearPrayButtonEffect(){
-        if(effectPray){ 
+        if(effectPray){
+            SoundManager.Instance.PlaySoundEffect(SoundManager.Instance.SE_AppearPray);
             Vector3 spawnPosition = new Vector3(4.2f, 2.6f, 0f);
             prayButtonEffect = Instantiate(prayButtonEffectPrefab, spawnPosition, Quaternion.identity);
         }
