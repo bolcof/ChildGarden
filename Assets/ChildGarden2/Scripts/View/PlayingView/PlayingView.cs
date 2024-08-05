@@ -218,8 +218,6 @@ public class PlayingView : MonoBehaviour {
         Debug.Log("Close New Gate");
         SoundManager.Instance.PlaySoundEffect(SoundManager.Instance.SE_CloseNewDoor);
         offedScreen.enabled = true;
-        idleAnimObj.SetActive(true);
-        prayAnimObj.SetActive(false);
         foreach (var l in resultLabels) {
             l.SetActive(false);
         }
@@ -297,6 +295,8 @@ public class PlayingView : MonoBehaviour {
         resultLabels[hasWin].SetActive(true);
         finishLabel.SetActive(false);
         finishScreen.SetActive(false);
+        idleAnimObj.SetActive(true);
+        prayAnimObj.SetActive(false);
 
         var underSequence = DOTween.Sequence();
         var underBarSpeed = 0.075f;
