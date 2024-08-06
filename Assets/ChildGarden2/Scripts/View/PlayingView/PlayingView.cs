@@ -181,8 +181,7 @@ public class PlayingView : MonoBehaviour {
             GameManager.Instance.MyPlayerWin();
             canPray = false;
             idleAnimObj.SetActive(false);
-            prayAnimObj.SetActive(true); 
-            SoundManager.Instance.StopPraySoundEffect(); // 引数なしで呼び出す             
+            prayAnimObj.SetActive(true);              
         }
     }
 
@@ -196,7 +195,8 @@ public class PlayingView : MonoBehaviour {
         myProgressGuage.DOFade(0f, 2f);
         myProgressLabel.DOFade(0f, 2f);
         effectPray = true;
-        Destroy(prayButtonEffect); 
+        Destroy(prayButtonEffect);
+        SoundManager.Instance.StopPraySoundEffect(); // 引数なしで呼び出す 
 
         prayElements.transform.DOMove(prayElementsTargetPosition + new Vector3(500.0f, 0.0f, 0.0f), 0.5f);
 
