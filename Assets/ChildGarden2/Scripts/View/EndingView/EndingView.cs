@@ -21,10 +21,10 @@ public class EndingView : MonoBehaviour {
         GameObject.Find("Cursor").GetComponent<CursorBehaviour>().displayed = false;
 
         if (RoundManager.instance.WholeWinnerIsMe()) {
-            int id = Random.Range(0, 2);
+            int id = Random.Range(0, 3);
             videoPlayer.clip = endingVideos[id];
         } else {
-            int id = Random.Range(3, 5);
+            int id = Random.Range(3, 6);
             videoPlayer.clip = endingVideos[id];
         }
         videoPlayer.Play();
