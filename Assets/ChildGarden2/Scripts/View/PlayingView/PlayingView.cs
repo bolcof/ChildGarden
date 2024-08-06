@@ -39,7 +39,7 @@ public class PlayingView : MonoBehaviour {
     public float fadeOutDuration = 2.0f;
 
     [SerializeField] private GameObject finishLabel;
-    [SerializeField] private GameObject finishScreen;
+    [SerializeField] private Image finishScreenImage;
     [SerializeField] private Image frontLightImage; 
     [SerializeField] private Image backLightImage;
 
@@ -88,6 +88,7 @@ public class PlayingView : MonoBehaviour {
         // 2秒のディレイの後、2秒かけてフェードイン
         frontLightImage.DOFade(1f, 2f).SetDelay(2f);
         backLightImage.DOFade(1f, 2f).SetDelay(2f);
+        finishScreenImage.DOFade(0f, 2f).SetDelay(2f);
         purposeLabel.DOFade(1f, 2f).SetDelay(2f);
         timerLabel.DOFade(1f, 2f).SetDelay(2f);
         myProgressGuage.DOFade(1f, 2f).SetDelay(2f);
@@ -187,9 +188,9 @@ public class PlayingView : MonoBehaviour {
 
     public async UniTask RoundFinish(int result) {
         finishLabel.SetActive(true);
-        finishScreen.SetActive(true);
         frontLightImage.DOFade(0f, 2f);
         backLightImage.DOFade(0f, 2f);
+        finishScreenImage.DOFade(1f, 2f);
         purposeLabel.DOFade(0f, 2f);
         timerLabel.DOFade(0f, 2f);
         myProgressGuage.DOFade(0f, 2f);
@@ -296,7 +297,6 @@ public class PlayingView : MonoBehaviour {
         offedScreen.enabled = false;
         resultLabels[hasWin].SetActive(true);
         finishLabel.SetActive(false);
-        finishScreen.SetActive(false);
         idleAnimObj.SetActive(true);
         prayAnimObj.SetActive(false);
 

@@ -4443,7 +4443,7 @@ MonoBehaviour:
   fadeInDuration: 2
   fadeOutDuration: 2
   finishLabel: {fileID: 509801800856226730}
-  finishScreen: {fileID: 8578141128160706600}
+  finishScreenImage: {fileID: 1210977198724441773}
   frontLightImage: {fileID: 4676157340504497821}
   backLightImage: {fileID: 4694852810809585843}
   gateBack: {fileID: 104059656594495437}
@@ -6165,14 +6165,13 @@ GameObject:
   - component: {fileID: 2360223167121945511}
   - component: {fileID: 17451432344395411}
   - component: {fileID: 1210977198724441773}
-  - component: {fileID: 6839988080369373758}
   m_Layer: 5
   m_Name: FinishScreen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2360223167121945511
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6230,27 +6229,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!95 &6839988080369373758
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8578141128160706600}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 4769609d2809e4203b375d7d0ed18651, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &8724049213099036558
 GameObject:
   m_ObjectHideFlags: 0
