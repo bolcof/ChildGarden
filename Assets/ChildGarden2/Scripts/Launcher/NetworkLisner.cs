@@ -97,7 +97,7 @@ public class NetworkLisner : SimulationBehaviour, IPlayerJoined, INetworkRunnerC
     public void OnPlayerLeft(NetworkRunner runner, PlayerRef player) {
         if (networkRunner.SessionInfo.IsValid && networkRunner.SessionInfo.Name != "Lobby") {
             Debug.Log("MyDebug player left");
-            ForceRestarter.instance.RoomBreakAndRestart();
+            ForceRestarter.instance.ForceSuperRestart();
         }
     }
 }

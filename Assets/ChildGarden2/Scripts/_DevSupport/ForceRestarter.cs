@@ -51,11 +51,10 @@ public class ForceRestarter : MonoBehaviour {
         }
     }
 
-    
     public void OnInactivityDetected() {
         Debug.Log("OnInactivityDetected");
         if (ableForceRestart) {
-            RoomBreakAndRestart();
+            ForceSuperRestart();
         }
     }
 
@@ -72,5 +71,11 @@ public class ForceRestarter : MonoBehaviour {
     public void RoomBreakAndRestart() {
         RoomConector.Instance.networkRunner.Shutdown();
         OnlyRestart();
+    }
+
+    public void ForceSuperRestart() {
+        // アプリケーション全体を再起動する
+        Application.Quit();
+        System.Diagnostics.Process.Start(Application.dataPath.Replace("_Data", ".exe")); // Windowsの場合
     }
 }
