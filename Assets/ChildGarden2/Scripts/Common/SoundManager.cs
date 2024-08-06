@@ -29,8 +29,7 @@ public class SoundManager : MonoBehaviour {
     [SerializeField] public AudioClip SE_ClickGo;
     [SerializeField] public AudioClip SE_NotSelectableClick;
     [SerializeField] public AudioClip SE_AppearPray;
-    [SerializeField] public AudioClip SE_OnbutuTouch;
-    [SerializeField] public AudioClip SE_PrayEffect;
+    [SerializeField] public AudioClip SE_Prayloop;
 
     [SerializeField] public AudioClip BGM_Title;
     [SerializeField] public AudioClip BGM_Introduction;
@@ -38,7 +37,7 @@ public class SoundManager : MonoBehaviour {
     [SerializeField] public AudioClip BGM_RuleSelect;
     [SerializeField] public AudioClip BGM_Ending;
 
-    [SerializeField] public AudioSource BgmSource, SeSource, ChargeSource;
+    [SerializeField] public AudioSource BgmSource, SeSource, ChargeSource, PraySource;
 
     private void Awake() {
         if (Instance == null) {
@@ -62,6 +61,14 @@ public class SoundManager : MonoBehaviour {
         ChargeSource.Stop();
         ChargeSource.clip = SE_OnbutsuCharging[level];
         ChargeSource.Play();
+    }
+    public void PraySoundEffect(AudioClip clip) {
+        PraySource.clip = clip;
+        PraySource.Play();
+    }
+
+    public void StopPraySoundEffect() {
+        PraySource.Stop();
     }
 
     public void StopSoundEffect() {

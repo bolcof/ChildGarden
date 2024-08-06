@@ -169,6 +169,7 @@ public class PlayingView : MonoBehaviour {
     public void AppearPrayButtonEffect(){
         if(effectPray){
             SoundManager.Instance.PlaySoundEffect(SoundManager.Instance.SE_AppearPray);
+            SoundManager.Instance.PraySoundEffect(SoundManager.Instance.SE_Prayloop); // 引数を渡して呼び出す
             Vector3 spawnPosition = new Vector3(4.2f, 2.6f, 0f);
             prayButtonEffect = Instantiate(prayButtonEffectPrefab, spawnPosition, Quaternion.identity);
         }
@@ -180,7 +181,8 @@ public class PlayingView : MonoBehaviour {
             GameManager.Instance.MyPlayerWin();
             canPray = false;
             idleAnimObj.SetActive(false);
-            prayAnimObj.SetActive(true);             
+            prayAnimObj.SetActive(true); 
+            SoundManager.Instance.StopPraySoundEffect(); // 引数なしで呼び出す             
         }
     }
 
